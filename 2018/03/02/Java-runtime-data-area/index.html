@@ -96,20 +96,27 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="doohong&#39;s blog">
-<meta property="og:url" content="http://doohong.github.com/index.html">
+  <meta name="description" content="Runtime Data Area JVM이 프로그램을 수행하기 위해 운영체제로부터 할당 받는 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역이다. 이 영역은 각각의 목젝에 따라 크게 Method Area, Heap Area, Stack Area, PC Register, Native Method Stack로 나눌 수 있다.">
+<meta name="keywords" content="JAVA,JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조">
+<meta property="og:url" content="http://doohong.github.com/2018/03/02/Java-runtime-data-area/index.html">
 <meta property="og:site_name" content="doohong&#39;s blog">
+<meta property="og:description" content="Runtime Data Area JVM이 프로그램을 수행하기 위해 운영체제로부터 할당 받는 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역이다. 이 영역은 각각의 목젝에 따라 크게 Method Area, Heap Area, Stack Area, PC Register, Native Method Stack로 나눌 수 있다.">
 <meta property="og:locale" content="ko">
+<meta property="og:image" content="http://doohong.github.com/images/java/java_runtime_data_area.png">
+<meta property="og:updated_time" content="2019-01-24T02:50:27.330Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="doohong&#39;s blog">
+<meta name="twitter:title" content="[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조">
+<meta name="twitter:description" content="Runtime Data Area JVM이 프로그램을 수행하기 위해 운영체제로부터 할당 받는 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역이다. 이 영역은 각각의 목젝에 따라 크게 Method Area, Heap Area, Stack Area, PC Register, Native Method Stack로 나눌 수 있다.">
+<meta name="twitter:image" content="http://doohong.github.com/images/java/java_runtime_data_area.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://doohong.github.com/">
+  <link rel="canonical" href="http://doohong.github.com/2018/03/02/Java-runtime-data-area/">
 
 
 
@@ -119,7 +126,7 @@
   };
 </script>
 
-  <title>doohong's blog</title>
+  <title>[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조 | doohong's blog</title>
   
 
 
@@ -167,8 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -210,7 +216,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -332,233 +338,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/REST-API/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/23/REST-API/" class="post-title-link" itemprop="url">REST API란</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-24 11:08:48" itemprop="dateModified" datetime="2019-01-24T11:08:48+09:00">2019-01-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/23/REST-API/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/REST-API/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><ul>
-<li>Application Programming Interface</li>
-<li>응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다.</li>
-</ul>
-<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><ul>
-<li>REpresentational State Treansfer</li>
-<li>인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나</li>
-<li>시스템 제각각의 독립적인 진화를 보장하기 위한 방법</li>
-<li>REST API : REST 아키텍처 스타일을 따르는 API  </li>
-</ul>
-<h1 id="그런-REST-API로-괜찮은가"><a href="#그런-REST-API로-괜찮은가" class="headerlink" title="그런 REST API로 괜찮은가"></a>그런 REST API로 괜찮은가</h1><blockquote>
-<p><a href="https://tv.naver.com/v/2292653" target="_blank" rel="noopener">그런 REST API로 괜찮은가</a> - 이응준님 강연을 보고 작성하였습니다.</p>
-</blockquote>
-<ul>
-<li>오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다.</li>
-<li>REST의 제약조건 중에서 특히 <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 잘 만족하지 못한다.</li>
-<li>REST를 따르겠다면, <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 만족시켜야한다.<ul>
-<li><strong>Self-descriptive</strong>는 custom media type이나 profile link relation 등으로 만족시킬 수 있다.</li>
-<li><strong>HATEOAS</strong>는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.<h2 id="Self-descriptive-message"><a href="#Self-descriptive-message" class="headerlink" title="Self descriptive message"></a>Self descriptive message</h2></li>
-</ul>
-</li>
-<li>메세지 스스로 메세지에 대한 설명이 가능해야 한다. <ul>
-<li>이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Self-descriptive-message를-달성하기-위한-방법"><a href="#Self-descriptive-message를-달성하기-위한-방법" class="headerlink" title="Self descriptive message를 달성하기 위한 방법"></a>Self descriptive message를 달성하기 위한 방법</h3><ol>
-<li>미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. </li>
-<li>ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다.</li>
-</ol>
-<h2 id="HATEOAS"><a href="#HATEOAS" class="headerlink" title="HATEOAS"></a>HATEOAS</h2><ul>
-<li>하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다.<ul>
-<li>HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.<br>어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.<h3 id="HATEOAS를-달성하기-위한-방법"><a href="#HATEOAS를-달성하기-위한-방법" class="headerlink" title="HATEOAS를 달성하기 위한 방법"></a>HATEOAS를 달성하기 위한 방법</h3></li>
-</ul>
-<ol>
-<li>데이터 링크 제공</li>
-<li>HTTP 헤더에 Location, Link를 활용하는 방법</li>
-</ol>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -590,10 +372,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/02/Java-runtime-data-area/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조</a>
+          <h1 class="post-title" itemprop="name headline">[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조
+
               
             
           </h1>
@@ -699,9 +479,7 @@
       
 
       
-        
-          
-            <h1 id="Runtime-Data-Area"><a href="#Runtime-Data-Area" class="headerlink" title="Runtime Data Area"></a>Runtime Data Area</h1><ul>
+        <h1 id="Runtime-Data-Area"><a href="#Runtime-Data-Area" class="headerlink" title="Runtime Data Area"></a>Runtime Data Area</h1><ul>
 <li>JVM이 프로그램을 수행하기 위해 운영체제로부터 할당 받는 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역이다.</li>
 <li>이 영역은 각각의 목젝에 따라 크게 <strong>Method Area</strong>, <strong>Heap Area</strong>, <strong>Stack Area</strong>, <strong>PC Register</strong>, <strong>Native Method Stack</strong>로 나눌 수 있다.</li>
 </ul>
@@ -730,8 +508,6 @@
 <li>JNI를 통해 표준에 가까운 방식으로 구현이 가능하다.</li>
 </ul>
 
-          
-        
       
     </div>
 
@@ -752,230 +528,42 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/01/Java-summary/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/01/Java-summary/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-01 13:30:00" itemprop="dateCreated datePublished" datetime="2018-03-01T13:30:00+09:00">2018-03-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-24 10:44:24" itemprop="dateModified" datetime="2019-01-24T10:44:24+09:00">2019-01-24</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
           
-
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
           
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/03/01/Java-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/01/Java-summary/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="자바-언어의-이해"><a href="#자바-언어의-이해" class="headerlink" title="자바 언어의 이해"></a>자바 언어의 이해</h1><h2 id="자바"><a href="#자바" class="headerlink" title="자바"></a>자바</h2><ul>
-<li>자바는 썬 마이크로시스템즈에서 제임스 고슬링이 다른 연구원들과 함꼐 고안한 오크(Oak)라는 언어에서 시작되었다.       </li>
-<li>오크는 가전제품에서 사용될 목적이었으나, 인터넷이 발전하면서 인터넷 친화적 언어로 사용되었고 1995년 ‘자바’로 이름을 변경하였다.</li>
-<li>1995년~1999년까지는 윈도우 프로그램 개발이 주류여서 C++언어에 비해 자바는 열세였지만 1999년도부터 자바는 활성화 되었고 현재 자바는 IT기술 전반에서 가장 널리 사용하는 프로그래밍 언어가 되었다.</li>
-</ul>
-<h2 id="자바-프로그래밍"><a href="#자바-프로그래밍" class="headerlink" title="자바 프로그래밍"></a>자바 프로그래밍</h2><p>자바의 프로그램의 실행 과정은 다음과 같다.</p>
-<p><img src="/images/java/java_programming.png" alt="java_programming.png"></p>
-<h2 id="자바-컴파일러-Java-compiler"><a href="#자바-컴파일러-Java-compiler" class="headerlink" title="자바 컴파일러(Java compiler)"></a>자바 컴파일러(Java compiler)</h2><ul>
-<li>Java를 가지고 작성한 자바 소스 코드를 자바 가상 머신이 이해할 수 있는 자바 바이트 코드로 변환한다. </li>
-<li>자바 컴파일러는 자바를 설치하면 javac.exe라는 실행 파일 형태로 설치 된다.</li>
-</ul>
-<h2 id="자바-바이트-코드-Java-bytecode"><a href="#자바-바이트-코드-Java-bytecode" class="headerlink" title="자바 바이트 코드(Java bytecode)"></a>자바 바이트 코드(Java bytecode)</h2><ul>
-<li>자바 바이트 코드란 자바 가상 머신이 이해할 수 있는 언어로 변환된 자바 소스 코드를 의미한다.</li>
-<li>자바 컴파일러에 의해서 변환되는 코드의 명령어 크기가 1바이트라서 자바 바이트 코드라고 불린다.</li>
-<li>자바 바이트 코드의 확장자는 .class 이다.</li>
-<li>자바 바이트 코드는 자바 가상 머신이 설치되어 있다면 어떤 운영체제에서라도 실행 될 수 있다.<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2></li>
-<li>JVM이란 JAVA Virtual Machine의 약자로 자바 가성 머신을 줄여 부르는 용어이다.</li>
-<li>자바 컴파일러를 통해 바이트코드를 생성한다. 바이트코드는 하드웨어에 종속적이지 않은 중간 파일로, JVM은 이러한 바이트코드를 실행 시키기 위한 가상의 기계라고 할 수 있다.</li>
-<li>JVM이 설치되어 있으면 서로 다른 기기나 운영체제에서 동일하게 프로그램을 실행할 수 있다.</li>
-</ul>
-<p><img src="/images/java/java_jvm.png" alt="jvm"></p>
-<h2 id="JVM의-구성"><a href="#JVM의-구성" class="headerlink" title="JVM의 구성"></a>JVM의 구성</h2><p>자바 가상 머신(JVM)은 다음과 같이 구성된다.</p>
-<ul>
-<li>자바 인터프리터(interpreter)</li>
-<li>클래스 로더(class loader)</li>
-<li>JIT 컴파일러 (Just-In-Time compiler)</li>
-<li>가비지 컬렉터(garbage collector)</li>
-</ul>
-<p>자바 컴파일러에 의해 변환된 자바 바이트 코드를 읽고 해석하는 역할을 하는 것이 자바 <strong>인터프리터(interpreter)</strong>이다.</p>
-<p>자바는 동적으로 클래스를 읽어오므로, 프로그램이 실행 중인 런타임에서야 모든 코드가 자바 가상머신과 연결된다. 이렇게 동적으로 클래스를 로딩해주는 역할을 하는 것이 바로 <strong>클래스 로더(class loader)</strong>이다.</p>
-<p><strong>JIT 컴파일러 (Just-In-Time compiler)</strong>란 프로그램이 실행 중인 런타임에 실제 기계어로 변환해 주는 컴파일러를 의미한다. 동적 번역(dynamic translation)이라고도 불리는 이 기법은 프로그램의 실행 속도를 향상시키기 위해 개발되었습니다.<br>즉, JIT 컴파일러는 자바 컴파일러가 생성한 자바 바이트 코드를 런타임에 바로 기계어로 변환하는데 사용된다.</p>
-<p>자바 가상 머신은 <strong>가비지 컬렉터(garbage collector)</strong>를 이용하여 더는 사용하지 않는 메모리를 자동으로 회수해 준다. 따라서 개발자가 따로 메모리를 관리하지 않아도 되므로, 더욱 손쉽게 프로그래밍을 할 수 있도록 도와준다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/01/Java-summary/" rel="next" title="[JAVA]자바의 기본 개념 정리">
+                <i class="fa fa-chevron-left"></i> [JAVA]자바의 기본 개념 정리
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/23/REST-API/" rel="prev" title="REST API란">
+                REST API란 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -985,14 +573,22 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1013,8 +609,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            흝어보기
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -1145,6 +750,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Runtime-Data-Area"><span class="nav-number">1.</span> <span class="nav-text">Runtime Data Area</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Method-Area-메소드-영역"><span class="nav-number">1.1.</span> <span class="nav-text">Method Area(메소드 영역)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Heap-area-힙-영역"><span class="nav-number">1.2.</span> <span class="nav-text">Heap area(힙 영역)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stack-area-스택-영역"><span class="nav-number">1.3.</span> <span class="nav-text">Stack area (스택 영역)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PC-Register-PC-레지스터"><span class="nav-number">1.4.</span> <span class="nav-text">PC Register (PC 레지스터)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Native-method-stack"><span class="nav-number">1.5.</span> <span class="nav-text">Native method stack</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -1271,6 +893,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -1284,9 +910,28 @@
   <script id="dsq-count-scr" src="https://doohong-github-io.disqus.com/count.js" async></script>
 
 
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://doohong.github.com/2018/03/02/Java-runtime-data-area/";
+    this.page.identifier = "2018/03/02/Java-runtime-data-area/";
+    this.page.title = '[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://doohong-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
 
 
 
+
+
+  
 
 
   
