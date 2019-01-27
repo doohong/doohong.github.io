@@ -56,6 +56,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[[OOP]상속(Inheritance)이란?]]></title>
+    <url>%2F2019%2F01%2F02%2FOOP-Inheritance%2F</url>
+    <content type="text"><![CDATA[상속(Inheritance)이란상위 클래스의 기능을 재사용, 확장하는 방법 상속을 통한 기능 재사용시 발생할 수 있는 단점 상위 클래스 변경 어려움 클래스 증가 상속 오용 상속의 단점 해결 방법은 -&gt; 조립!! 조립(Composition)여러 객체를 묶어서 더 복잡한 기능을 제공 보통 필드로 다른 객체를 참조하는 방식으로 조립 또는 객체를 필요 시점에 생성/구함 특정 기능을 재사용 하고 싶다면 특정 객체를 생성하여 사용 상속보다는 조립상속하기에 앞서 조립으로 풀 수 없는지 검토 진짜 하위 타입인 경우에만 상속 사용]]></content>
+      <categories>
+        <category>OOP</category>
+      </categories>
+      <tags>
+        <tag>OOP</tag>
+        <tag> Object-Oriented Programming</tag>
+        <tag>Inheritance</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[OOP]객체 지향 프로그램 이란?]]></title>
     <url>%2F2019%2F01%2F01%2FOOP-summary%2F</url>
     <content type="text"><![CDATA[객체 지향 프로그래밍(Object-Oriented Programming) 객체 지향 프로그래밍 이란 기존 절차 지향 프로그래밍 기법만의 유지보수와 기존 소프트웨어 재사용이 어려움에 좀더 나은 프로그램을 만들기 위한 프로그래밍 패러다임이다. 프로그래밍에서 필요한 데이터를 추상화 시켜 상태와 행위를 가진 객체를 만들고 그 객체들 간의 유기적인 상호작용을 통해 로직을 구성하는 프로그래밍 방법이다. 객체 지향 프로그래밍은 인간중심적 프로그래밍 패러다임이다. 유지보수와 재사용성이 높다. software maintenance is not “keep it working like before.” It is “keep being useful in a changing world” -jessica Kerr 객체지향 VS 절차지향객체지향 데이터와 프로시저를 알맞게 묶음 설계에 많은 시간이 투자된다. 유지보수 및 업그레이드가 쉽다. 절차지향 데이터가 여로 프로시저를 이용 객체지향에 비해 쉽다. 이러한 데이터를 공유하는 방식은 변화가 필요할 때 수정을 복잡하게 만든ㄴ다. 객체객체란 데이터와 기능을 가진 물리적으로 존재하거나 추상적으로 생각 할 수 있는 것. 객체의 핵심 -&gt; 기능제공 객체는 제공하는 기능으로 정의 내부적으로 가진 필드로 정의 하지 않음 클래스(Class)클래스는 특정한 기능을 가진 객체를 생성하게 해주는 설계도라고 할 수 있다.클래스로 부터 만들어진 객체를 해당 클래스의 인스턴스라고 한다. 클래스에는 객체에 포함될 변수와 메소드를 정의해야 한다.]]></content>
