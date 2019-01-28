@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[REST API 만들기-1]]></title>
     <url>%2F2019%2F01%2F24%2FREST-API-1%2F</url>
-    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. “Event” REST API 만들기-1추가할 의존성 및 JDK 버전 Web JPA HATEOAS REST Docs H2 PostgreSQL Lombok JDK 11시작하기Event 클래스 만들기.패키지를 하나 만들고 그안에 Event 클래스를 생성한다.이벤트 클래스는 나중에 DB의 테이블과 매칭될 Entity 클래스 이다.123456789101112public class Event &#123; private String name; private String description; private LocalDateTime beginEnrollmentDateTime; private LocalDateTime closeEnrollmentDateTime; private LocalDateTime beginEventDateTime; private LocalDateTime endEventDateTime; private String location; private int basePrice; private int maxPrice; private int limitOfEnrollment;&#125; EventStatus enum 클래스 생성123public enum EventStatus &#123; DRAFT, PUBLISHED, BEGEAN_ENROLLMENT;&#125; Event 클래스에 lombok 어노테이션 추가12@Builder @AllArgsConstructor @NoArgsConstructor@Getter @Setter @EqualsAndHashCode(of="id") Test 클래스를 만들어 junit 테스트12345678910111213141516171819202122232425@Testpublic void builder()&#123; Event event = Event.builder() .name("inflearn") .description("rst API") .build(); assertThat(event).isNotNull();&#125;@Testpublic void JavaBean()&#123; //Given String name = "Event"; String description = "Spring"; //When Event event = new Event(); event.setName("Event"); event.setDescription("Spring"); //Then assertThat(event.getName()).isEqualTo(name); assertThat(event.getDescription()).isEqualTo(description);&#125; Lombok 과 AssertJ의 추가적인 설명 LombokAssertJ]]></content>
+    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. “Event” REST API 만들기-1추가할 의존성 및 JDK 버전 Web JPA HATEOAS REST Docs H2 PostgreSQL Lombok JDK 11 시작하기Event 클래스 만들기.패키지를 하나 만들고 그안에 Event 클래스를 생성한다.이벤트 클래스는 나중에 DB의 테이블과 매칭될 Entity 클래스 이다.123456789101112public class Event &#123; private String name; private String description; private LocalDateTime beginEnrollmentDateTime; private LocalDateTime closeEnrollmentDateTime; private LocalDateTime beginEventDateTime; private LocalDateTime endEventDateTime; private String location; private int basePrice; private int maxPrice; private int limitOfEnrollment;&#125; EventStatus enum 클래스 생성123public enum EventStatus &#123; DRAFT, PUBLISHED, BEGEAN_ENROLLMENT;&#125; Event 클래스에 lombok 어노테이션 추가12@Builder @AllArgsConstructor @NoArgsConstructor@Getter @Setter @EqualsAndHashCode(of="id") Test 클래스를 만들어 junit 테스트12345678910111213141516171819202122232425@Testpublic void builder()&#123; Event event = Event.builder() .name("inflearn") .description("rst API") .build(); assertThat(event).isNotNull();&#125;@Testpublic void JavaBean()&#123; //Given String name = "Event"; String description = "Spring"; //When Event event = new Event(); event.setName("Event"); event.setDescription("Spring"); //Then assertThat(event.getName()).isEqualTo(name); assertThat(event.getDescription()).isEqualTo(description);&#125; Lombok 과 AssertJ의 추가적인 설명 LombokAssertJ]]></content>
       <categories>
         <category>RESTAPI</category>
       </categories>
@@ -57,8 +57,8 @@
   </entry>
   <entry>
     <title><![CDATA[[OOP]상속(Inheritance)이란?]]></title>
-    <url>%2F2019%2F01%2F02%2FOOP-Inheritance%2F</url>
-    <content type="text"><![CDATA[상속(Inheritance)이란상위 클래스의 기능을 재사용, 확장하는 방법 상속을 통한 기능 재사용시 발생할 수 있는 단점 상위 클래스 변경 어려움 클래스 증가 상속 오용 상속의 단점 해결 방법은 -&gt; 조립!! 조립(Composition)여러 객체를 묶어서 더 복잡한 기능을 제공 보통 필드로 다른 객체를 참조하는 방식으로 조립 또는 객체를 필요 시점에 생성/구함 특정 기능을 재사용 하고 싶다면 특정 객체를 생성하여 사용 상속보다는 조립상속하기에 앞서 조립으로 풀 수 없는지 검토 진짜 하위 타입인 경우에만 상속 사용]]></content>
+    <url>%2F2019%2F01%2F03%2FOOP-Inheritance%2F</url>
+    <content type="text"><![CDATA[객체 지향 프로그래밍 입문 - 최범균님의 인프런 강좌을 보고 작성하였습니다. 상속(Inheritance)이란상위 클래스의 기능을 재사용, 확장하는 방법 상속을 통한 기능 재사용시 발생할 수 있는 단점 상위 클래스 변경 어려움 클래스 증가 상속 오용 상속의 단점 해결 방법은 -&gt; 조립!! 조립(Composition)여러 객체를 묶어서 더 복잡한 기능을 제공 보통 필드로 다른 객체를 참조하는 방식으로 조립 또는 객체를 필요 시점에 생성/구함 특정 기능을 재사용 하고 싶다면 특정 객체를 생성하여 사용 상속보다는 조립상속하기에 앞서 조립으로 풀 수 없는지 검토 진짜 하위 타입인 경우에만 상속 사용]]></content>
       <categories>
         <category>OOP</category>
       </categories>
@@ -69,9 +69,22 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[[OOP]캡슐화( encapsulation)란?]]></title>
+    <url>%2F2019%2F01%2F02%2FOOP-encapsulation%2F</url>
+    <content type="text"><![CDATA[객체 지향 프로그래밍 입문 - 최범균님의 인프런 강좌을 보고 작성하였습니다. 캡슐화(encapsulation)란?캡슐화(encapsulation)는 일반적으로 연관 있는 변수와 함수를 클래스로 묶는 작업을 말한다. 객체가 기능을 어떻게 구현 했는지 외부에 감추는 것 구현에 사용된 데이터의 상세 내용을 외부에 감춤 캡슐화만 잘해도 좋은 코드를 만들 수 있음 정보은닉(Information Hiding) 의미 포함(최근에 포함해서 이야기 많이함) 캡슐화의 장점외부에 영향 없이 객체 내부 구현 변경 가능 클래스 내부 메소드의 구현만 변경하면 되게끔 -&gt; 외부 소스코드의 연쇄적인 변경 x 캡슐화를 잘 할수 있는 규칙!!Tell, Don’t Ask 규칙= 데이터를 달라고 부탁하지 말고 직접 해달라고 하기!Demeter’s Law 규칙 메서드에서 생성한 객체의 메서드만 호출 파라미터로 받은 객체의 메서드만 호출 필드로 참조하는 객체의 메서드만 호출 acc.getExpDate().isAfter(now) -&gt; acc.isExpired();Date date = acc.getExpDate(); date.isAfter(now); -&gt; acc.isValid(now);]]></content>
+      <categories>
+        <category>OOP</category>
+      </categories>
+      <tags>
+        <tag>OOP</tag>
+        <tag> Object-Oriented Programming</tag>
+        <tag> encapsulation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[OOP]객체 지향 프로그램 이란?]]></title>
     <url>%2F2019%2F01%2F01%2FOOP-summary%2F</url>
-    <content type="text"><![CDATA[객체 지향 프로그래밍(Object-Oriented Programming) 객체 지향 프로그래밍 이란 기존 절차 지향 프로그래밍 기법만의 유지보수와 기존 소프트웨어 재사용이 어려움에 좀더 나은 프로그램을 만들기 위한 프로그래밍 패러다임이다. 프로그래밍에서 필요한 데이터를 추상화 시켜 상태와 행위를 가진 객체를 만들고 그 객체들 간의 유기적인 상호작용을 통해 로직을 구성하는 프로그래밍 방법이다. 객체 지향 프로그래밍은 인간중심적 프로그래밍 패러다임이다. 유지보수와 재사용성이 높다. software maintenance is not “keep it working like before.” It is “keep being useful in a changing world” -jessica Kerr 객체지향 VS 절차지향객체지향 데이터와 프로시저를 알맞게 묶음 설계에 많은 시간이 투자된다. 유지보수 및 업그레이드가 쉽다. 절차지향 데이터가 여로 프로시저를 이용 객체지향에 비해 쉽다. 이러한 데이터를 공유하는 방식은 변화가 필요할 때 수정을 복잡하게 만든ㄴ다. 객체객체란 데이터와 기능을 가진 물리적으로 존재하거나 추상적으로 생각 할 수 있는 것. 객체의 핵심 -&gt; 기능제공 객체는 제공하는 기능으로 정의 내부적으로 가진 필드로 정의 하지 않음 클래스(Class)클래스는 특정한 기능을 가진 객체를 생성하게 해주는 설계도라고 할 수 있다.클래스로 부터 만들어진 객체를 해당 클래스의 인스턴스라고 한다. 클래스에는 객체에 포함될 변수와 메소드를 정의해야 한다.]]></content>
+    <content type="text"><![CDATA[객체 지향 프로그래밍(Object-Oriented Programming) 객체 지향 프로그래밍 이란 기존 절차 지향 프로그래밍 기법만의 유지보수와 기존 소프트웨어 재사용이 어려움에 좀더 나은 프로그램을 만들기 위한 프로그래밍 패러다임이다. 프로그래밍에서 필요한 데이터를 추상화 시켜 상태와 행위를 가진 객체를 만들고 그 객체들 간의 유기적인 상호작용을 통해 로직을 구성하는 프로그래밍 방법이다. 객체 지향 프로그래밍은 인간중심적 프로그래밍 패러다임이다. 유지보수와 재사용성이 높다. software maintenance is not “keep it working like before.” It is “keep being useful in a changing world” -jessica Kerr 객체지향 VS 절차지향객체지향 데이터와 프로시저를 알맞게 묶음 설계에 많은 시간이 투자된다. 유지보수 및 업그레이드가 쉽다. 절차지향 데이터가 여로 프로시저를 이용 객체지향에 비해 쉽다. 이러한 데이터를 공유하는 방식은 변화가 필요할 때 수정을 복잡하게 만든ㄴ다. 객체 객체란 데이터와 기능을 가진 물리적으로 존재하거나 추상적으로 생각 할 수 있는 것. 객체의 핵심 -&gt; 기능제공 객체는 제공하는 기능으로 정의 내부적으로 가진 필드로 정의 하지 않음 클래스(Class)클래스는 특정한 기능을 가진 객체를 생성하게 해주는 설계도라고 할 수 있다.클래스로 부터 만들어진 객체를 해당 클래스의 인스턴스라고 한다. 클래스에는 객체에 포함될 변수와 메소드를 정의해야 한다.]]></content>
       <categories>
         <category>OOP</category>
       </categories>

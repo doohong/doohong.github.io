@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  “Event” REST API 만들기-1추가할 의존성 및 JDK 버전 Web JPA HATEOAS REST Docs H2 PostgreSQL Lombok JDK 11시작하기Event 클래스 만들기.패키지를 하나 만들고 그안에 Event 클래스를 생성한다.이벤트 클래스는 나중">
+  <meta name="description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  “Event” REST API 만들기-1추가할 의존성 및 JDK 버전 Web JPA HATEOAS REST Docs H2 PostgreSQL Lombok JDK 11  시작하기Event 클래스 만들기.패키지를 하나 만들고 그안에 Event 클래스를 생성한다.이벤트 클래스는">
 <meta name="keywords" content="RESTAPI,REST,API">
 <meta property="og:type" content="article">
 <meta property="og:title" content="REST API 만들기-1">
 <meta property="og:url" content="http://doohong.github.com/2019/01/24/REST-API-1/index.html">
 <meta property="og:site_name" content="doohong&#39;s blog">
-<meta property="og:description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  “Event” REST API 만들기-1추가할 의존성 및 JDK 버전 Web JPA HATEOAS REST Docs H2 PostgreSQL Lombok JDK 11시작하기Event 클래스 만들기.패키지를 하나 만들고 그안에 Event 클래스를 생성한다.이벤트 클래스는 나중">
+<meta property="og:description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  “Event” REST API 만들기-1추가할 의존성 및 JDK 버전 Web JPA HATEOAS REST Docs H2 PostgreSQL Lombok JDK 11  시작하기Event 클래스 만들기.패키지를 하나 만들고 그안에 Event 클래스를 생성한다.이벤트 클래스는">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2019-01-25T06:12:51.896Z">
+<meta property="og:updated_time" content="2019-01-28T13:01:42.244Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="REST API 만들기-1">
-<meta name="twitter:description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  “Event” REST API 만들기-1추가할 의존성 및 JDK 버전 Web JPA HATEOAS REST Docs H2 PostgreSQL Lombok JDK 11시작하기Event 클래스 만들기.패키지를 하나 만들고 그안에 Event 클래스를 생성한다.이벤트 클래스는 나중">
+<meta name="twitter:description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  “Event” REST API 만들기-1추가할 의존성 및 JDK 버전 Web JPA HATEOAS REST Docs H2 PostgreSQL Lombok JDK 11  시작하기Event 클래스 만들기.패키지를 하나 만들고 그안에 Event 클래스를 생성한다.이벤트 클래스는">
 
 
 
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-01-25 15:12:51" itemprop="dateModified" datetime="2019-01-25T15:12:51+09:00">2019-01-25</time>
+                <time title="Updated at: 2019-01-28 22:01:42" itemprop="dateModified" datetime="2019-01-28T22:01:42+09:00">2019-01-28</time>
               
             
           </span>
@@ -496,9 +496,9 @@
 <li>H2</li>
 <li>PostgreSQL</li>
 <li>Lombok</li>
-<li>JDK 11<h2 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h2><h3 id="Event-클래스-만들기"><a href="#Event-클래스-만들기" class="headerlink" title="Event 클래스 만들기."></a>Event 클래스 만들기.</h3>패키지를 하나 만들고 그안에 Event 클래스를 생성한다.<br>이벤트 클래스는 나중에 DB의 테이블과 매칭될 Entity 클래스 이다.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime closeEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime endEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> String location;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> basePrice;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxPrice; </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> limitOfEnrollment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>JDK 11</li>
 </ul>
+<h2 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h2><h3 id="Event-클래스-만들기"><a href="#Event-클래스-만들기" class="headerlink" title="Event 클래스 만들기."></a>Event 클래스 만들기.</h3><p>패키지를 하나 만들고 그안에 Event 클래스를 생성한다.<br>이벤트 클래스는 나중에 DB의 테이블과 매칭될 Entity 클래스 이다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime closeEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime endEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> String location;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> basePrice;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxPrice; </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> limitOfEnrollment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="EventStatus-enum-클래스-생성"><a href="#EventStatus-enum-클래스-생성" class="headerlink" title="EventStatus enum 클래스 생성"></a>EventStatus enum 클래스 생성</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EventStatus &#123;</span><br><span class="line">    DRAFT, PUBLISHED, BEGEAN_ENROLLMENT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Event-클래스에-lombok-어노테이션-추가"><a href="#Event-클래스에-lombok-어노테이션-추가" class="headerlink" title="Event 클래스에 lombok 어노테이션 추가"></a>Event 클래스에 lombok 어노테이션 추가</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Getter</span> <span class="meta">@Setter</span> <span class="meta">@EqualsAndHashCode</span>(of=<span class="string">"id"</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="Test-클래스를-만들어-junit-테스트"><a href="#Test-클래스를-만들어-junit-테스트" class="headerlink" title="Test 클래스를 만들어 junit 테스트"></a>Test 클래스를 만들어 junit 테스트</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">builder</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Event event = Event.builder()</span><br><span class="line">            .name(<span class="string">"inflearn"</span>)</span><br><span class="line">            .description(<span class="string">"rst API"</span>)</span><br><span class="line">            .build();</span><br><span class="line">    assertThat(event).isNotNull();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">JavaBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//Given</span></span><br><span class="line">    String name = <span class="string">"Event"</span>;</span><br><span class="line">    String description = <span class="string">"Spring"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//When</span></span><br><span class="line">    Event event = <span class="keyword">new</span> Event();</span><br><span class="line">    event.setName(<span class="string">"Event"</span>);</span><br><span class="line">    event.setDescription(<span class="string">"Spring"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Then</span></span><br><span class="line">    assertThat(event.getName()).isEqualTo(name);</span><br><span class="line">    assertThat(event.getDescription()).isEqualTo(description);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -632,7 +632,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -704,7 +704,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

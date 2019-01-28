@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-01-25 15:12:51" itemprop="dateModified" datetime="2019-01-25T15:12:51+09:00">2019-01-25</time>
+                <time title="Updated at: 2019-01-28 22:01:42" itemprop="dateModified" datetime="2019-01-28T22:01:42+09:00">2019-01-28</time>
               
             
           </span>
@@ -496,9 +496,9 @@
 <li>H2</li>
 <li>PostgreSQL</li>
 <li>Lombok</li>
-<li>JDK 11<h2 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h2><h3 id="Event-클래스-만들기"><a href="#Event-클래스-만들기" class="headerlink" title="Event 클래스 만들기."></a>Event 클래스 만들기.</h3>패키지를 하나 만들고 그안에 Event 클래스를 생성한다.<br>이벤트 클래스는 나중에 DB의 테이블과 매칭될 Entity 클래스 이다.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime closeEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime endEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> String location;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> basePrice;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxPrice; </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> limitOfEnrollment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>JDK 11</li>
 </ul>
+<h2 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h2><h3 id="Event-클래스-만들기"><a href="#Event-클래스-만들기" class="headerlink" title="Event 클래스 만들기."></a>Event 클래스 만들기.</h3><p>패키지를 하나 만들고 그안에 Event 클래스를 생성한다.<br>이벤트 클래스는 나중에 DB의 테이블과 매칭될 Entity 클래스 이다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime closeEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime endEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> String location;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> basePrice;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxPrice; </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> limitOfEnrollment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="EventStatus-enum-클래스-생성"><a href="#EventStatus-enum-클래스-생성" class="headerlink" title="EventStatus enum 클래스 생성"></a>EventStatus enum 클래스 생성</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> EventStatus &#123;</span><br><span class="line">    DRAFT, PUBLISHED, BEGEAN_ENROLLMENT;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Event-클래스에-lombok-어노테이션-추가"><a href="#Event-클래스에-lombok-어노테이션-추가" class="headerlink" title="Event 클래스에 lombok 어노테이션 추가"></a>Event 클래스에 lombok 어노테이션 추가</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Getter</span> <span class="meta">@Setter</span> <span class="meta">@EqualsAndHashCode</span>(of=<span class="string">"id"</span>)</span><br></pre></td></tr></table></figure>
 <h3 id="Test-클래스를-만들어-junit-테스트"><a href="#Test-클래스를-만들어-junit-테스트" class="headerlink" title="Test 클래스를 만들어 junit 테스트"></a>Test 클래스를 만들어 junit 테스트</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">builder</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Event event = Event.builder()</span><br><span class="line">            .name(<span class="string">"inflearn"</span>)</span><br><span class="line">            .description(<span class="string">"rst API"</span>)</span><br><span class="line">            .build();</span><br><span class="line">    assertThat(event).isNotNull();</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">JavaBean</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//Given</span></span><br><span class="line">    String name = <span class="string">"Event"</span>;</span><br><span class="line">    String description = <span class="string">"Spring"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//When</span></span><br><span class="line">    Event event = <span class="keyword">new</span> Event();</span><br><span class="line">    event.setName(<span class="string">"Event"</span>);</span><br><span class="line">    event.setDescription(<span class="string">"Spring"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Then</span></span><br><span class="line">    assertThat(event.getName()).isEqualTo(name);</span><br><span class="line">    assertThat(event.getDescription()).isEqualTo(description);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -802,12 +802,24 @@
                 
               
 
-              <time title="Post created: 2019-01-23 16:00:00 / Updated at: 16:55:19" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
+              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-28 21:28:43" itemprop="dateModified" datetime="2019-01-28T21:28:43+09:00">2019-01-28</time>
               
             
           </span>
@@ -910,12 +922,12 @@
 <li>하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다.<ul>
 <li>HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.<br>어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.<h3 id="HATEOAS를-달성하기-위한-방법"><a href="#HATEOAS를-달성하기-위한-방법" class="headerlink" title="HATEOAS를 달성하기 위한 방법"></a>HATEOAS를 달성하기 위한 방법</h3></li>
 </ul>
+</li>
+</ul>
 <ol>
 <li>데이터 링크 제공</li>
 <li>HTTP 헤더에 Location, Link를 활용하는 방법</li>
 </ol>
-</li>
-</ul>
 
           
         
@@ -1250,7 +1262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/02/OOP-Inheritance/">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/03/OOP-Inheritance/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="박주홍">
@@ -1270,7 +1282,206 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/02/OOP-Inheritance/" class="post-title-link" itemprop="url">[OOP]상속(Inheritance)이란?</a>
+                <a href="/2019/01/03/OOP-Inheritance/" class="post-title-link" itemprop="url">[OOP]상속(Inheritance)이란?</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-03 14:24:00" itemprop="dateCreated datePublished" datetime="2019-01-03T14:24:00+09:00">2019-01-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-28 21:58:29" itemprop="dateModified" datetime="2019-01-28T21:58:29+09:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/OOP/" itemprop="url" rel="index"><span itemprop="name">OOP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/03/OOP-Inheritance/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/03/OOP-Inheritance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9E%85%EB%AC%B8/" target="_blank" rel="noopener">객체 지향 프로그래밍 입문</a> - 최범균님의 인프런 강좌을 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="상속-Inheritance-이란"><a href="#상속-Inheritance-이란" class="headerlink" title="상속(Inheritance)이란"></a>상속(Inheritance)이란</h1><p>상위 클래스의 기능을 재사용, 확장하는 방법</p>
+<h2 id="상속을-통한-기능-재사용시-발생할-수-있는-단점"><a href="#상속을-통한-기능-재사용시-발생할-수-있는-단점" class="headerlink" title="상속을 통한 기능 재사용시 발생할 수 있는 단점"></a>상속을 통한 기능 재사용시 발생할 수 있는 단점</h2><ol>
+<li>상위 클래스 변경 어려움</li>
+<li>클래스 증가</li>
+<li>상속 오용</li>
+</ol>
+<p><strong>상속의 단점 해결 방법은 -&gt; 조립!!</strong></p>
+<h2 id="조립-Composition"><a href="#조립-Composition" class="headerlink" title="조립(Composition)"></a>조립(Composition)</h2><p>여러 객체를 묶어서 더 복잡한 기능을 제공</p>
+<p>보통 필드로 다른 객체를 참조하는 방식으로 조립 또는 객체를 필요 시점에 생성/구함</p>
+<p>특정 기능을 재사용 하고 싶다면 특정 객체를 생성하여 사용</p>
+<h2 id="상속보다는-조립"><a href="#상속보다는-조립" class="headerlink" title="상속보다는 조립"></a>상속보다는 조립</h2><p>상속하기에 앞서 조립으로 풀 수 없는지 검토</p>
+<p>진짜 하위 타입인 경우에만 상속 사용    </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/02/OOP-encapsulation/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/02/OOP-encapsulation/" class="post-title-link" itemprop="url">[OOP]캡슐화( encapsulation)란?</a>
               
             
           </h1>
@@ -1312,7 +1523,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-01-27 20:20:20" itemprop="dateModified" datetime="2019-01-27T20:20:20+09:00">2019-01-27</time>
+                <time title="Updated at: 2019-01-28 21:56:00" itemprop="dateModified" datetime="2019-01-28T21:56:00+09:00">2019-01-28</time>
               
             
           </span>
@@ -1347,8 +1558,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/2019/01/02/OOP-Inheritance/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/02/OOP-Inheritance/" itemprop="commentCount"></span>
+                <a href="/2019/01/02/OOP-encapsulation/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/02/OOP-encapsulation/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1378,18 +1589,29 @@
       
         
           
-            <h1 id="상속-Inheritance-이란"><a href="#상속-Inheritance-이란" class="headerlink" title="상속(Inheritance)이란"></a>상속(Inheritance)이란</h1><p>상위 클래스의 기능을 재사용, 확장하는 방법</p>
-<h2 id="상속을-통한-기능-재사용시-발생할-수-있는-단점"><a href="#상속을-통한-기능-재사용시-발생할-수-있는-단점" class="headerlink" title="상속을 통한 기능 재사용시 발생할 수 있는 단점"></a>상속을 통한 기능 재사용시 발생할 수 있는 단점</h2><ol>
-<li>상위 클래스 변경 어려움</li>
-<li>클래스 증가</li>
-<li>상속 오용</li>
-</ol>
-<p><strong>상속의 단점 해결 방법은 -&gt; 조립!!</strong></p>
-<h2 id="조립-Composition"><a href="#조립-Composition" class="headerlink" title="조립(Composition)"></a>조립(Composition)</h2><p>여러 객체를 묶어서 더 복잡한 기능을 제공</p>
-<p>보통 필드로 다른 객체를 참조하는 방식으로 조립 또는 객체를 필요 시점에 생성/구함</p>
-<p>특정 기능을 재사용 하고 싶다면 특정 객체를 생성하여 사용</p>
-<h2 id="상속보다는-조립"><a href="#상속보다는-조립" class="headerlink" title="상속보다는 조립"></a>상속보다는 조립</h2><p>상속하기에 앞서 조립으로 풀 수 없는지 검토</p>
-<p>진짜 하위 타입인 경우에만 상속 사용    </p>
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9E%85%EB%AC%B8/" target="_blank" rel="noopener">객체 지향 프로그래밍 입문</a> - 최범균님의 인프런 강좌을 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="캡슐화-encapsulation-란"><a href="#캡슐화-encapsulation-란" class="headerlink" title="캡슐화(encapsulation)란?"></a>캡슐화(encapsulation)란?</h1><p>캡슐화(encapsulation)는 일반적으로 연관 있는 변수와 함수를 클래스로 묶는 작업을 말한다.</p>
+<p>객체가 기능을 어떻게 구현 했는지 외부에 감추는 것</p>
+<ul>
+<li>구현에 사용된 데이터의 상세 내용을 외부에 감춤</li>
+</ul>
+<p>캡슐화만 잘해도 좋은 코드를 만들 수 있음</p>
+<p><strong>정보은닉(Information Hiding)</strong> 의미 포함(최근에 포함해서 이야기 많이함)</p>
+<h2 id="캡슐화의-장점"><a href="#캡슐화의-장점" class="headerlink" title="캡슐화의 장점"></a>캡슐화의 장점</h2><p>외부에 영향 없이 객체 내부 구현 변경 가능</p>
+<ul>
+<li>클래스 내부 메소드의 구현만 변경하면 되게끔 -&gt; 외부 소스코드의 연쇄적인 변경 x</li>
+</ul>
+<h2 id="캡슐화를-잘-할수-있는-규칙"><a href="#캡슐화를-잘-할수-있는-규칙" class="headerlink" title="캡슐화를 잘 할수 있는 규칙!!"></a>캡슐화를 잘 할수 있는 규칙!!</h2><p><strong>Tell, Don’t Ask 규칙</strong><br>= 데이터를 달라고 부탁하지 말고 직접 해달라고 하기!<br><strong>Demeter’s Law 규칙</strong></p>
+<ul>
+<li>메서드에서 생성한 객체의 메서드만 호출</li>
+<li>파라미터로 받은 객체의 메서드만 호출</li>
+<li>필드로 참조하는 객체의 메서드만 호출</li>
+</ul>
+<blockquote>
+<p>acc.getExpDate().isAfter(now)                 -&gt; acc.isExpired();<br>Date date = acc.getExpDate(); date.isAfter(now);    -&gt; acc.isValid(now);</p>
+</blockquote>
 
           
         
@@ -1508,7 +1730,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-01-26 21:18:54" itemprop="dateModified" datetime="2019-01-26T21:18:54+09:00">2019-01-26</time>
+                <time title="Updated at: 2019-01-26 21:17:46" itemprop="dateModified" datetime="2019-01-26T21:17:46+09:00">2019-01-26</time>
               
             
           </span>
@@ -1591,9 +1813,9 @@
 <ul>
 <li>데이터가 여로 프로시저를 이용</li>
 <li>객체지향에 비해 쉽다.</li>
-<li>이러한 데이터를 공유하는 방식은 변화가 필요할 때 수정을 복잡하게 만든ㄴ다. </li>
+<li>이러한 데이터를 공유하는 방식은 변화가 필요할 때 수정을 복잡하게 만든ㄴ다. <h2 id="객체"><a href="#객체" class="headerlink" title="객체"></a>객체</h2></li>
 </ul>
-<h2 id="객체"><a href="#객체" class="headerlink" title="객체"></a>객체</h2><p>객체란 데이터와 기능을 가진 물리적으로 존재하거나 추상적으로 생각 할 수 있는 것.</p>
+<p>객체란 데이터와 기능을 가진 물리적으로 존재하거나 추상적으로 생각 할 수 있는 것.</p>
 <h3 id="객체의-핵심-gt-기능제공"><a href="#객체의-핵심-gt-기능제공" class="headerlink" title="객체의 핵심 -&gt; 기능제공"></a>객체의 핵심 -&gt; 기능제공</h3><ul>
 <li>객체는 제공하는 기능으로 정의</li>
 <li>내부적으로 가진 필드로 정의 하지 않음</li>
@@ -2281,225 +2503,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/01/Java-summary/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/01/Java-summary/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-01 13:30:00" itemprop="dateCreated datePublished" datetime="2018-03-01T13:30:00+09:00">2018-03-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-24 10:44:24" itemprop="dateModified" datetime="2019-01-24T10:44:24+09:00">2019-01-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/03/01/Java-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/01/Java-summary/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="자바-언어의-이해"><a href="#자바-언어의-이해" class="headerlink" title="자바 언어의 이해"></a>자바 언어의 이해</h1><h2 id="자바"><a href="#자바" class="headerlink" title="자바"></a>자바</h2><ul>
-<li>자바는 썬 마이크로시스템즈에서 제임스 고슬링이 다른 연구원들과 함꼐 고안한 오크(Oak)라는 언어에서 시작되었다.       </li>
-<li>오크는 가전제품에서 사용될 목적이었으나, 인터넷이 발전하면서 인터넷 친화적 언어로 사용되었고 1995년 ‘자바’로 이름을 변경하였다.</li>
-<li>1995년~1999년까지는 윈도우 프로그램 개발이 주류여서 C++언어에 비해 자바는 열세였지만 1999년도부터 자바는 활성화 되었고 현재 자바는 IT기술 전반에서 가장 널리 사용하는 프로그래밍 언어가 되었다.</li>
-</ul>
-<h2 id="자바-프로그래밍"><a href="#자바-프로그래밍" class="headerlink" title="자바 프로그래밍"></a>자바 프로그래밍</h2><p>자바의 프로그램의 실행 과정은 다음과 같다.</p>
-<p><img src="/images/java/java_programming.png" alt="java_programming.png"></p>
-<h2 id="자바-컴파일러-Java-compiler"><a href="#자바-컴파일러-Java-compiler" class="headerlink" title="자바 컴파일러(Java compiler)"></a>자바 컴파일러(Java compiler)</h2><ul>
-<li>Java를 가지고 작성한 자바 소스 코드를 자바 가상 머신이 이해할 수 있는 자바 바이트 코드로 변환한다. </li>
-<li>자바 컴파일러는 자바를 설치하면 javac.exe라는 실행 파일 형태로 설치 된다.</li>
-</ul>
-<h2 id="자바-바이트-코드-Java-bytecode"><a href="#자바-바이트-코드-Java-bytecode" class="headerlink" title="자바 바이트 코드(Java bytecode)"></a>자바 바이트 코드(Java bytecode)</h2><ul>
-<li>자바 바이트 코드란 자바 가상 머신이 이해할 수 있는 언어로 변환된 자바 소스 코드를 의미한다.</li>
-<li>자바 컴파일러에 의해서 변환되는 코드의 명령어 크기가 1바이트라서 자바 바이트 코드라고 불린다.</li>
-<li>자바 바이트 코드의 확장자는 .class 이다.</li>
-<li>자바 바이트 코드는 자바 가상 머신이 설치되어 있다면 어떤 운영체제에서라도 실행 될 수 있다.<h2 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h2></li>
-<li>JVM이란 JAVA Virtual Machine의 약자로 자바 가성 머신을 줄여 부르는 용어이다.</li>
-<li>자바 컴파일러를 통해 바이트코드를 생성한다. 바이트코드는 하드웨어에 종속적이지 않은 중간 파일로, JVM은 이러한 바이트코드를 실행 시키기 위한 가상의 기계라고 할 수 있다.</li>
-<li>JVM이 설치되어 있으면 서로 다른 기기나 운영체제에서 동일하게 프로그램을 실행할 수 있다.</li>
-</ul>
-<p><img src="/images/java/java_jvm.png" alt="jvm"></p>
-<h2 id="JVM의-구성"><a href="#JVM의-구성" class="headerlink" title="JVM의 구성"></a>JVM의 구성</h2><p>자바 가상 머신(JVM)은 다음과 같이 구성된다.</p>
-<ul>
-<li>자바 인터프리터(interpreter)</li>
-<li>클래스 로더(class loader)</li>
-<li>JIT 컴파일러 (Just-In-Time compiler)</li>
-<li>가비지 컬렉터(garbage collector)</li>
-</ul>
-<p>자바 컴파일러에 의해 변환된 자바 바이트 코드를 읽고 해석하는 역할을 하는 것이 자바 <strong>인터프리터(interpreter)</strong>이다.</p>
-<p>자바는 동적으로 클래스를 읽어오므로, 프로그램이 실행 중인 런타임에서야 모든 코드가 자바 가상머신과 연결된다. 이렇게 동적으로 클래스를 로딩해주는 역할을 하는 것이 바로 <strong>클래스 로더(class loader)</strong>이다.</p>
-<p><strong>JIT 컴파일러 (Just-In-Time compiler)</strong>란 프로그램이 실행 중인 런타임에 실제 기계어로 변환해 주는 컴파일러를 의미한다. 동적 번역(dynamic translation)이라고도 불리는 이 기법은 프로그램의 실행 속도를 향상시키기 위해 개발되었습니다.<br>즉, JIT 컴파일러는 자바 컴파일러가 생성한 자바 바이트 코드를 런타임에 바로 기계어로 변환하는데 사용된다.</p>
-<p>자바 가상 머신은 <strong>가비지 컬렉터(garbage collector)</strong>를 이용하여 더는 사용하지 않는 메모리를 자동으로 회수해 준다. 따라서 개발자가 따로 메모리를 관리하지 않아도 되므로, 더욱 손쉽게 프로그래밍을 할 수 있도록 도와준다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2542,7 +2552,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2614,7 +2624,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
