@@ -1262,6 +1262,261 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/09/Spring-bean/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/09/Spring-bean/" class="post-title-link" itemprop="url">[Spring]빈 등록하기!</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-09 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-09T16:00:00+09:00">2019-01-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-30 23:17:14" itemprop="dateModified" datetime="2019-01-30T23:17:14+09:00">2019-01-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/09/Spring-bean/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/09/Spring-bean/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="빈-등록-방법"><a href="#빈-등록-방법" class="headerlink" title="빈 등록 방법"></a>빈 등록 방법</h1><p>빈 등록 방법에는 크게 3가지 방법이 있다</p>
+<h2 id="XML을-이용한-빈-등록"><a href="#XML을-이용한-빈-등록" class="headerlink" title="XML을 이용한 빈 등록"></a>XML을 이용한 빈 등록</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aaa"</span> <span class="attr">class</span>=<span class="string">"xxx.yyy.zzz.AAA"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prop"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>위와 같은 방법으로 xml 설정파일에 직접 등록할 수 있다.</p>
+<p>하지만 xml을 통한 빈 등록 방식은 2가지 정도의 문제점이 있다.</p>
+<ol>
+<li>빈의 성격 구분을 하기 힘들어진다.</li>
+<li>어플리케이션의 크기가 조금만 커져도 빈의 양이 늘어 관리하기 버거울 수 있다.</li>
+</ol>
+<p>그래서 스프링에서는 클래스에 특정 애노테이션을 부여하고 부여한 클래스를 찾아 자동으로 빈등록을 해주는 <strong>빈 스캐닝</strong> 이라는 기능을 제공해준다.</p>
+<h2 id="Annotation을-이용한-빈-등록"><a href="#Annotation을-이용한-빈-등록" class="headerlink" title="Annotation을 이용한 빈 등록"></a>Annotation을 이용한 빈 등록</h2><h3 id="빈-등록-Annotation"><a href="#빈-등록-Annotation" class="headerlink" title="빈 등록 Annotation"></a>빈 등록 Annotation</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Component</td>
+<td>컴포넌트를 나타내는 일반적인 스테리오 타입으로 <bean> 태그와 동일한 역할을 함</bean></td>
+</tr>
+<tr>
+<td>@Repository</td>
+<td>퍼시스턴스 레이어, 영속성을 가지는 속성(파일, 데이터베이스)을 가진 클래스</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>서비스 레이어, 비지니스 로직을 가진 클래스</td>
+</tr>
+<tr>
+<td>@Controller</td>
+<td>프리젠테이션 레이어, 웹 어플리케이션에서 웹 요청과 응답을 처리하는 클래스</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>@Repository, @Service, @Controller는 더 특정한 유즈케이승 대한 @Component의 구체화된 형태이다.</p>
+</blockquote>
+<h3 id="빈-의존관계-주입-Annotation"><a href="#빈-의존관계-주입-Annotation" class="headerlink" title="빈 의존관계 주입 Annotation"></a>빈 의존관계 주입 Annotation</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Autowired</td>
+<td>정밀한 의존관계 주입이 필요한 경우에 유용.<br> @Autowired는 프로퍼티, setter 메서드, 생성자, 일반 메서드에 적용 가능.<br> 의존하는 객체를 주입할 때 주로 Type을 이용</td>
+</tr>
+<tr>
+<td>@Resource</td>
+<td>어플리케이션에서 필요로 하는 자원을 자동 연결할 때 사용<br> @Resource는 poperty, setter 메서드에 적용 가능<br> 의존하는 객체를 주입할 때 주로 Name을 이용</td>
+</tr>
+<tr>
+<td>@Value</td>
+<td>단순한 값을 주입할 때 사용되는 annotation.<br> @Value(“Spring”)은 <property ..="" value="Spring">와 동일한 역할</property></td>
+</tr>
+<tr>
+<td>@Qualifier</td>
+<td>@Qualifier는 @Autowired annotation과 같이 사용.<br> @Autowired는 타입으로 찾아서 주입하므로, 동일 타입의 Bean 객체가<br> 여러 개 존재할 때 특정 Bean을 찾기 위해 사용</td>
+</tr>
+</tbody>
+</table>
+<p>@Component를 통해 자동으로 Bean을 등록하고, @Autowired로 의존관계를 주입받는 어노테이션을 클래스에서 선언하여 사용했을 경우에는 해당 클래스가 위치한 특정 패키지를 Scan하기 위한 설정을 XML에 해야함.<br> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"패키기 경로"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>다음과 같은 태그를 넣어 주기만 하면 dev.wedding.kr.test패키지 하위에 존재하는 빈 스캔 대상(스테레오 타입 내오테이션 클래스)을 빈 으로 등록해준다.</p>
+<h2 id="자바-코드로-빈-등록"><a href="#자바-코드로-빈-등록" class="headerlink" title="자바 코드로 빈 등록"></a>자바 코드로 빈 등록</h2><p>스프링 3.0 부터 기존의 xml 방식을 벗어나 java로 설정 파일을 작성할 수 있게 되었다.</p>
+<p>java로 설정파일을 작성하게 되면 IDE의 기능을 최대한 활용할 수 있기 때문에<br>작성하기도 쉽고, 이해하기도 쉬워진다.</p>
+<p>게다가 IDE에서 문법 체크를 지원해주므로 실수할 일도 줄어들게 된다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigurationBeanFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarInfoProvider <span class="title">kiaCar</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> KiaCar();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarInfoProvider <span class="title">hyundaiCar</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HyundaiCar();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>래스 레벨에서는 @Configuration을 붙이고, 메서드 레벨에서는 @Bean애노테이션을 붙이면 된다.</p>
+<p>@Bean이 붙은 메서드명이 각각의 bean의 이름이 된다. 리턴되는 객체를 스프링 컨테이버가 빈으로 활용한다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/07/Spring-summary/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2320,219 +2575,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/03/java-string/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/03/java-string/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-3.String, StringBuffer, StringBuilder</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-03 19:15:00" itemprop="dateCreated datePublished" datetime="2018-03-03T19:15:00+09:00">2018-03-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-25 13:49:27" itemprop="dateModified" datetime="2019-01-25T13:49:27+09:00">2019-01-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/03/03/java-string/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/03/java-string/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="String-StringBuffer-StringBuilder-의-특징"><a href="#String-StringBuffer-StringBuilder-의-특징" class="headerlink" title="String, StringBuffer, StringBuilder 의 특징"></a>String, StringBuffer, StringBuilder 의 특징</h1><p>String, StringBuffer, StringBuilder 이 세가지 클래스들은 모두 문자열 처리를 위한 클래스 이다. </p>
-<p>대부분의 자바를 처음 공부하는 사람들은 문자열 처리를 위해서 String 클래스만을 사용하며 조금더 공부하여 StringBuffer 클래스를 알게되면 정확한 차이를 모르는채 성능 향상이라는 이유로 StringBuffer 클래스를 자주 사용한다.</p>
-<p>그렇다면 이 세가지 클래스에 정확한 차이점을  알아보고 상황에 맞게 잘 사용해 보도록 하자</p>
-<h2 id="String-클래스"><a href="#String-클래스" class="headerlink" title="String 클래스"></a>String 클래스</h2><p>String 클래스와 다른 2개의 클래스와의 가장 큰 차이점은 String 클래스는 <strong>immutable(불변)</strong> 하고 StringBuffer, StringBuilder 클래스는 <strong>mutable(가변)</strong> 한다는 점이다.</p>
-<p>이게 무슨 말인지 쉽게 설명 하자면 String 객체는 한번 생성되면 할당된 메모리 공간이 변하지 않는다.</p>
-<p>+연산자 또는 문자열에 변화를 줘도 메모리 공간이 변하는 것이 아니라 새로운 String 객체를 만든 후, 새 String 객체에 연결된 문자열을 저장하고 그객체를 참조하도록 한다.</p>
-<p>변경되기 전의 문자열은 더이상 어느곳에서도 참조하지 않게 되면 가비지 콜렉터(언제 제거될지 모름)에 의해 제거 된다.</p>
-<p>이러한 이유로 String 객체는 문자열 연산이 많아질 때 성능이 떨어질 수 밖에 없는 단점이 있다.</p>
-<p>그렇다면 왜 이러한 단점을 가지면서도 <strong>immutable(불변)</strong> 클래스인 String 클래스를 기본 문자열처리 클래스로 정했을까?</p>
-<p><strong>immutable(불변)</strong> 클래스의 가장 큰 장점은 안전하게 공유될 수 있다는 점이다. </p>
-<p>즉, 변경은 적고 읽기만 많은 경우, 또는 여러 쓰레드나 객체에서 공유하는 경우, synchronization(동기화)와 같은 특별한 안전장치 없이도 안전하게 공유 될수 있다. </p>
-<p>대부분의 문자열이 복잡한 문자열 처리과정보다는 한번 설정된 문자열들을 여러 곳에서 공유하는 경우가 많으므로, 자바에서 기본 문자열을 처리하는 클래스로 String 클래스를 immutable 패턴으로 설정하였다.</p>
-<h2 id="StringBuffer-StringBuilder-클래스"><a href="#StringBuffer-StringBuilder-클래스" class="headerlink" title="StringBuffer, StringBuilder 클래스"></a>StringBuffer, StringBuilder 클래스</h2><p>StringBuffer, StringBuilder 클래스는 String 과 다르게 <strong>mutable(가변)</strong> 클래스이다.</p>
-<p>즉 문자열 연산에 있어서 클래스를 한번만 만들고 연산이 필요할 때 크기를 변경시켜 문자열을 변경한다. 이 경우 객체를 새로 생성하지 않는다.</p>
-<p>그러므로 문자열 연산이 자주 있을 때 String 클래스 대신 사용하면 성능이 좋다는 장점이 있다.</p>
-<p>StringBuilder는 JDK 5.0 에서 새로 추가된 클래스이다.<br>두 클래스에서 제공하는 메소드는 동일하다. </p>
-<p>차이점은 StringBuffer는 멀티쓰레드환경에서 synchronized키워드가 가능하므로 동기화가 가능하다. 즉, thread-safe하다.</p>
-<p>StringBuilder는 동기화를 지원하지 않기 때문에 멀티쓰레드환경에서는 적합하지 않다. 대신 StringBuilder가 동기화를 고려하지 않기 때문에 싱글쓰레드 환경에서 StringBuffer에 비해 연산처리가 빠르다.</p>
-<h2 id="String-StringBuffer-StringBuilder-선택-기준"><a href="#String-StringBuffer-StringBuilder-선택-기준" class="headerlink" title="String, StringBuffer, StringBuilder 선택 기준"></a>String, StringBuffer, StringBuilder 선택 기준</h2><ol>
-<li><p>String 객체는 불변이기 때문에 변하지 않는 문자열은 String을 사용한다.</p>
-</li>
-<li><p>StringBuilder는 비동기방식이기 때문에 Single Thread 환경하에서, 변화되는 문자열의 사용한다.</p>
-</li>
-<li><p>StringBuffer 동기방식으로 저장되기 때문에 멀티쓰레드로 접근하거나 문자열이 변경될 경우에 사용한다.</p>
-</li>
-</ol>
-<h2 id="JDK-버전에-따른-차이"><a href="#JDK-버전에-따른-차이" class="headerlink" title="JDK 버전에 따른 차이"></a>JDK 버전에 따른 차이</h2><p>JDK 1.5버전 이후에는 컴파일 단계에서 String 객체를 사용하더라도 StringBuilder로 컴파일 되도록 변경 되었다.</p>
-<p>그렇기 때문에 String 클래스를 활용해도 성능차이가 없어지긴 하였지만 반복 루프를 사용해 문자열을 더할때 객체를 게속 추가하는 사실에는 변함이 없다.</p>
-<p>따라서 String 클래스를 쓰는 대신, 스레드와 관련이 있으면 StringBuffer를, 스레드 안전 여부와 상관이 없으면 StringBuilder를 사용하는 것을 권장한다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2582,7 +2624,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2658,7 +2700,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">21</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
