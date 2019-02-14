@@ -357,6 +357,231 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/02/02/Algorithm-carpet/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/02/Algorithm-carpet/" class="post-title-link" itemprop="url">[Algorithm]프로그래머스-카펫</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-02-02 18:20:00" itemprop="dateCreated datePublished" datetime="2019-02-02T18:20:00+09:00">2019-02-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-02-14 20:17:21" itemprop="dateModified" datetime="2019-02-14T20:17:21+09:00">2019-02-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/02/02/Algorithm-carpet/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/02/Algorithm-carpet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="카펫"><a href="#카펫" class="headerlink" title="카펫"></a>카펫</h1><h2 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h2><p>Leo는 카펫을 사러 갔다가 아래 그림과 같이 중앙에는 빨간색으로 칠해져 있고 모서리는 갈색으로 칠해져 있는 격자 모양 카펫을 봤습니다.</p>
+<p><img src="/images/algoritm/carpet.png" alt="carpet"></p>
+<p>Leo는 집으로 돌아와서 아까 본 카펫의 빨간색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했습니다.</p>
+<p>Leo가 본 카펫에서 갈색 격자의 수 brown, 빨간색 격자의 수 red가 매개변수로 주어질 때 카펫의 가로, 세로 크기를 순서대로 배열에 담아 return 하도록 solution 함수를 작성해주세요.</p>
+<h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul>
+<li>갈색 격자의 수 brown은 8 이상 5,000 이하인 자연수입니다.</li>
+<li>빨간색 격자의 수 red는 1 이상 2,000,000 이하인 자연수입니다.</li>
+<li>카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 깁니다.</li>
+</ul>
+<h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><table>
+<thead>
+<tr>
+<th>brown</th>
+<th>red</th>
+<th>return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>2</td>
+<td>[4,3]</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>[3,3]</td>
+</tr>
+<tr>
+<td>24</td>
+<td>24</td>
+<td>[8,6]</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://hsin.hr/coci/archive/2010_2011/contest4_tasks.pdf" target="_blank" rel="noopener">출처</a></p>
+<h2 id="소스-코드"><a href="#소스-코드" class="headerlink" title="소스 코드"></a>소스 코드</h2><p><strong>자바</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] solution(<span class="keyword">int</span> brown, <span class="keyword">int</span> red) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] answer = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> garo;</span><br><span class="line">        <span class="keyword">int</span> sero;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= red;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(red%i==<span class="number">0</span>)&#123;</span><br><span class="line">                garo = i &gt;= red/i? i :red/i;</span><br><span class="line">                sero = i &gt;= red/i? red/i :i;</span><br><span class="line">                System.out.println(garo);</span><br><span class="line">                System.out.println(sero);</span><br><span class="line">                <span class="keyword">if</span>(brown == (sero*<span class="number">2</span>)+((garo+<span class="number">2</span>)*<span class="number">2</span>))&#123;</span><br><span class="line">                    answer[<span class="number">0</span>]=garo+<span class="number">2</span>;</span><br><span class="line">                    answer[<span class="number">1</span>]=sero+<span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="소스코드-설명"><a href="#소스코드-설명" class="headerlink" title="소스코드 설명"></a>소스코드 설명</h2><p>저는 카펫에 갈색 부분이 빨간 부분의 세로<em>2 개, (가로+2)</em>2 개만큼 있다는걸 발견 하였습니다.</p>
+<p>빨간 부분의 개수를 이용해서 가로 세로가 되는 경우를 전부 구하며 그경우에 위에 식을 대입하여 갈색 부분의 갯수와 일치 하는지 확인하였습니다.</p>
+<p>일치하는 경우가 빨간 부분의 가로 세로가 되고 전체 카펫의 가로와 세로의 길이는 빨간 부분의 가로와 세로에 각각 2개만큼 더한게 됩니다. </p>
+<p>몫과 나머지를 이용하여 빨간 부분의 가로세로를 구하는 부분에서 더 큰값을 가로로 잡기위해 삼항연산자를 사용하였습니다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/02/01/Algorithm-sort/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2398,248 +2623,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/07/Spring-summary/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/07/Spring-summary/" class="post-title-link" itemprop="url">[Spring]Spring Framework</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-07 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-07T16:00:00+09:00">2019-01-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-29 23:47:47" itemprop="dateModified" datetime="2019-01-29T23:47:47+09:00">2019-01-29</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/07/Spring-summary/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/07/Spring-summary/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Spring-Framework란"><a href="#Spring-Framework란" class="headerlink" title="Spring Framework란?"></a>Spring Framework란?</h1><blockquote>
-<p>java <strong>엔터프라이즈 개발</strong> 을 편리하게 해주는 <strong>오픈소스</strong> <strong>경량급</strong> <strong>애플리케이션 프레임워크</strong>이다.</p>
-</blockquote>
-<ul>
-<li>애플리케이션 프레임워크<ul>
-<li>특정 계층이나 기술, 업무 분야에 국한되지 않고 애플리케이션 전 영역을 포괄하는 범용적인 프레임 워크</li>
-</ul>
-</li>
-<li>경량급 프레임워크<ul>
-<li>단순한 웹컨테이너에서도 엔터프라이즈 개발의 고급 기술을 대부분 사용할 수 있다.</li>
-</ul>
-</li>
-<li>엔터프라이즈 개발 용이<ul>
-<li>개발자가 복잡하고 실수하기 쉬운 Low Level(보안,인증)에 많이 신경 쓰지 않으면서 Business Logic 개발에 전념할 수 있도록 해준다.</li>
-</ul>
-</li>
-<li>오픈소스<ul>
-<li>Spring은 Open Source 의 장점을 충분히 취하면서 동시에 Open Source 제품의 단점과 한계를 잘 극복한다.</li>
-</ul>
-</li>
-</ul>
-<h2 id="Spring-Framework-전략"><a href="#Spring-Framework-전략" class="headerlink" title="Spring Framework 전략"></a>Spring Framework 전략</h2><ol>
-<li>Protable Service</li>
-<li>Abstraction </li>
-<li>DI</li>
-<li>AOP</li>
-<li>POJO</li>
-</ol>
-<h3 id="Protable-ServiceAbstraction-서비스-추상화"><a href="#Protable-ServiceAbstraction-서비스-추상화" class="headerlink" title="Protable ServiceAbstraction(서비스 추상화)"></a>Protable ServiceAbstraction(서비스 추상화)</h3><p>트랜잭션 추상화, OXM 추상화, 데이터 액세스의 Exception 변환기능 등 기술적인 복잡함은 추상화를 통해 Low Level의 기술 구현 부분과 기술을 사용하는 인터페이스로 분리한다.</p>
-<h3 id="DI-Dependency-Injection"><a href="#DI-Dependency-Injection" class="headerlink" title="DI(Dependency Injection)"></a>DI(Dependency Injection)</h3><p>Spring은 객체지향에 충실한 설계가 가능하도록 단순한 객체 형태로 개발할 수 있고, DI는 유연하게 확장 가능한 객체를 만들어 두고 그 관계는 외부에서 다이내믹하게 설정해준다.</p>
-<h3 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP(Aspect Oriented Programming)"></a>AOP(Aspect Oriented Programming)</h3><p>AOP는 애플리케이션 로직을 담당하는 코드에 남아 있는 기술 관련 코드를 분리해서 별도의 모듈로 관리하게 해주는 강력한 기술</p>
-<h3 id="POJO-Plain-Old-Java-Object"><a href="#POJO-Plain-Old-Java-Object" class="headerlink" title="POJO(Plain Old Java Object)"></a>POJO(Plain Old Java Object)</h3><p>POJO는 객체지향 원리에 충실하면서, 특정 환경이나 규약에 종속되지 않고 필요에 따라 재활용될 수 있는 방식으로 설계된 객체</p>
-<h2 id="Spring-Framework-특징"><a href="#Spring-Framework-특징" class="headerlink" title="Spring Framework 특징"></a>Spring Framework 특징</h2><ul>
-<li>컨테이너 역할<ul>
-<li>Spring 컨테이너는 Java 객체의 Life Cycle을 관리하며, Spring 컨테이너로 부터 필요한 객체를 가져와 사용할 수 있다.</li>
-</ul>
-</li>
-<li>DI(Dependency Injection)지원<ul>
-<li>Spring은 설정 파일이나 어노테이션을 통해서 객체간의 의존관계를 설정할 수있다.</li>
-</ul>
-</li>
-<li>AOP 지원<ul>
-<li>Spring은 트랜잭션이나 로깅, 보안과 같이 공통적으로 필요로 하는 모듈들을 실제 핵심 모듈에서 분리해서 적용할 수 있다.</li>
-</ul>
-</li>
-<li>POJO 지원<ul>
-<li>Spring 컨테이너에 저장되는 Java객체는 특정한 인터페이스를 구현하거나, 특정 클래스를 상속받지 않아도 된다.</li>
-</ul>
-</li>
-<li>트랜잭션 처리를 위한 일관된 방법을 지원<ul>
-<li>JDBC, JTA 등 어떤 트랜잭션을 사용하던 설정을 통해 정보를 관리하므로 트랜잭션 구현에 상관없이 동일한 코드 사용가능</li>
-</ul>
-</li>
-<li>영속성(persistence)과 관련된 다양한 API 지원<ul>
-<li>Spring은 MyBatis, Hibernate 등 데이터베이스 처리를 위한 ORM(Object Relational Mapping) 프레임워크들과의 연동 지원 </li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2689,7 +2672,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2795,7 +2778,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">35</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

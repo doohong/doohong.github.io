@@ -96,25 +96,27 @@
 
 
 
-  <meta name="description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  Event 생성 APITDD를 위한 테스트 작성테스트 할것입력값들을 전달하면 JSON 응답으로 201이 나오는지 확인.  Location 헤더에 생성된 이벤트를 조회할 수 있는 URI 담겨 있는지 확인. id는 DB에 들어갈 때 자동생성된 값으로 나오는지 확인 EventCo">
-<meta name="keywords" content="RESTAPI,REST,API">
+  <meta name="description" content="카펫문제 설명Leo는 카펫을 사러 갔다가 아래 그림과 같이 중앙에는 빨간색으로 칠해져 있고 모서리는 갈색으로 칠해져 있는 격자 모양 카펫을 봤습니다.  Leo는 집으로 돌아와서 아까 본 카펫의 빨간색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했습니다. Leo가 본 카펫에서 갈색 격자의 수 brown, 빨간색 격자의 수 re">
+<meta name="keywords" content="Algorithm,프로그래머스,완전탐색,카펫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="REST API 만들기-2">
-<meta property="og:url" content="http://doohong.github.com/2019/01/25/REST-API-2/index.html">
+<meta property="og:title" content="[Algorithm]프로그래머스-카펫">
+<meta property="og:url" content="http://doohong.github.com/2019/02/02/Algorithm-carpet/index.html">
 <meta property="og:site_name" content="doohong&#39;s blog">
-<meta property="og:description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  Event 생성 APITDD를 위한 테스트 작성테스트 할것입력값들을 전달하면 JSON 응답으로 201이 나오는지 확인.  Location 헤더에 생성된 이벤트를 조회할 수 있는 URI 담겨 있는지 확인. id는 DB에 들어갈 때 자동생성된 값으로 나오는지 확인 EventCo">
+<meta property="og:description" content="카펫문제 설명Leo는 카펫을 사러 갔다가 아래 그림과 같이 중앙에는 빨간색으로 칠해져 있고 모서리는 갈색으로 칠해져 있는 격자 모양 카펫을 봤습니다.  Leo는 집으로 돌아와서 아까 본 카펫의 빨간색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했습니다. Leo가 본 카펫에서 갈색 격자의 수 brown, 빨간색 격자의 수 re">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2019-02-13T12:19:06.861Z">
+<meta property="og:image" content="http://doohong.github.com/images/algoritm/carpet.png">
+<meta property="og:updated_time" content="2019-02-14T11:17:21.210Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="REST API 만들기-2">
-<meta name="twitter:description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  Event 생성 APITDD를 위한 테스트 작성테스트 할것입력값들을 전달하면 JSON 응답으로 201이 나오는지 확인.  Location 헤더에 생성된 이벤트를 조회할 수 있는 URI 담겨 있는지 확인. id는 DB에 들어갈 때 자동생성된 값으로 나오는지 확인 EventCo">
+<meta name="twitter:title" content="[Algorithm]프로그래머스-카펫">
+<meta name="twitter:description" content="카펫문제 설명Leo는 카펫을 사러 갔다가 아래 그림과 같이 중앙에는 빨간색으로 칠해져 있고 모서리는 갈색으로 칠해져 있는 격자 모양 카펫을 봤습니다.  Leo는 집으로 돌아와서 아까 본 카펫의 빨간색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했습니다. Leo가 본 카펫에서 갈색 격자의 수 brown, 빨간색 격자의 수 re">
+<meta name="twitter:image" content="http://doohong.github.com/images/algoritm/carpet.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://doohong.github.com/2019/01/25/REST-API-2/">
+  <link rel="canonical" href="http://doohong.github.com/2019/02/02/Algorithm-carpet/">
 
 
 
@@ -124,7 +126,7 @@
   };
 </script>
 
-  <title>REST API 만들기-2 | doohong's blog</title>
+  <title>[Algorithm]프로그래머스-카펫 | doohong's blog</title>
   
 
 
@@ -361,7 +363,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/25/REST-API-2/">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/02/02/Algorithm-carpet/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="박주홍">
@@ -378,7 +380,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">REST API 만들기-2
+          <h1 class="post-title" itemprop="name headline">[Algorithm]프로그래머스-카펫
 
               
             
@@ -404,7 +406,7 @@
                 
               
 
-              <time title="Post created: 2019-01-25 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-25T18:00:00+09:00">2019-01-25</time>
+              <time title="Post created: 2019-02-02 18:20:00" itemprop="dateCreated datePublished" datetime="2019-02-02T18:20:00+09:00">2019-02-02</time>
             
 
             
@@ -421,7 +423,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-02-13 21:19:06" itemprop="dateModified" datetime="2019-02-13T21:19:06+09:00">2019-02-13</time>
+                <time title="Updated at: 2019-02-14 20:17:21" itemprop="dateModified" datetime="2019-02-14T20:17:21+09:00">2019-02-14</time>
               
             
           </span>
@@ -438,7 +440,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
 
                 
                 
@@ -456,8 +458,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/2019/01/25/REST-API-2/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/25/REST-API-2/" itemprop="commentCount"></span>
+                <a href="/2019/02/02/Algorithm-carpet/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/02/Algorithm-carpet/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -485,35 +487,47 @@
       
 
       
-        <blockquote>
-<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
-</blockquote>
-<h1 id="Event-생성-API"><a href="#Event-생성-API" class="headerlink" title="Event 생성 API"></a>Event 생성 API</h1><h2 id="TDD를-위한-테스트-작성"><a href="#TDD를-위한-테스트-작성" class="headerlink" title="TDD를 위한 테스트 작성"></a>TDD를 위한 테스트 작성</h2><p>테스트 할것<br>입력값들을 전달하면 JSON 응답으로 201이 나오는지 확인.</p>
-<ul>
-<li>Location 헤더에 생성된 이벤트를 조회할 수 있는 URI 담겨 있는지 확인.</li>
-<li>id는 DB에 들어갈 때 자동생성된 값으로 나오는지 확인 <h3 id="EventControllerTest-클래스-생성"><a href="#EventControllerTest-클래스-생성" class="headerlink" title="EventControllerTest 클래스 생성"></a>EventControllerTest 클래스 생성</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@WebMvcTest</span> <span class="comment">//web과 관련된 빈들이 등록 됨</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventControllerTests</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    MockMvc mockMvc; <span class="comment">// 가짜 요청을 만들어 DispatcherServlet 에게 보내고 응답을 확인(웹서버를 띄우진 않음)</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    ObjectMapper objectMapper; <span class="comment">//자동으로 빈으로 등록해줌  </span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createEvent</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Event event = Event.builder()</span><br><span class="line">                .name(<span class="string">"Spring"</span>)</span><br><span class="line">                .description(<span class="string">"REST API Development with Spring"</span>)</span><br><span class="line">                .beginEnrollmentDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">23</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .closeEnrollmentDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">24</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .beginEventDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">25</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .endEventDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">26</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .basePrice(<span class="number">100</span>)</span><br><span class="line">                .maxPrice(<span class="number">200</span>)</span><br><span class="line">                .limitOfEnrollment(<span class="number">100</span>)</span><br><span class="line">                .location(<span class="string">"강남역 D2 스타텁 팩토리"</span>)</span><br><span class="line">                .build();</span><br><span class="line">        </span><br><span class="line">        mockMvc.perform(post(<span class="string">"/api/events"</span>)</span><br><span class="line">                    .contentType((MediaType).APPLICATION_JSON_UTF8)</span><br><span class="line">                    .accepot(MediaTypes.HAL_JSON)</span><br><span class="line">                    .content(objectMapper.writeValueAsString(event))) </span><br><span class="line">                .andDo(print())</span><br><span class="line">                .andExpect(status().isCreated()</span><br><span class="line">                .andExpect(jsonPath(<span class="string">"id"</span>).exists());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+        <h1 id="카펫"><a href="#카펫" class="headerlink" title="카펫"></a>카펫</h1><h2 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h2><p>Leo는 카펫을 사러 갔다가 아래 그림과 같이 중앙에는 빨간색으로 칠해져 있고 모서리는 갈색으로 칠해져 있는 격자 모양 카펫을 봤습니다.</p>
+<p><img src="/images/algoritm/carpet.png" alt="carpet"></p>
+<p>Leo는 집으로 돌아와서 아까 본 카펫의 빨간색과 갈색으로 색칠된 격자의 개수는 기억했지만, 전체 카펫의 크기는 기억하지 못했습니다.</p>
+<p>Leo가 본 카펫에서 갈색 격자의 수 brown, 빨간색 격자의 수 red가 매개변수로 주어질 때 카펫의 가로, 세로 크기를 순서대로 배열에 담아 return 하도록 solution 함수를 작성해주세요.</p>
+<h2 id="제한사항"><a href="#제한사항" class="headerlink" title="제한사항"></a>제한사항</h2><ul>
+<li>갈색 격자의 수 brown은 8 이상 5,000 이하인 자연수입니다.</li>
+<li>빨간색 격자의 수 red는 1 이상 2,000,000 이하인 자연수입니다.</li>
+<li>카펫의 가로 길이는 세로 길이와 같거나, 세로 길이보다 깁니다.</li>
 </ul>
-<p><strong>@WebMvcTest</strong></p>
-<ul>
-<li>MockMvc 빈을 자동 설정 </li>
-<li>웹 관련 빈만 등록.(슬라이스)</li>
-</ul>
-<p><strong>MockMvc</strong></p>
-<ul>
-<li>스프링 MVC 테스트 핵심클래스</li>
-<li>웹 서버를 띄우지 않고도 스프링 MVC(DispatcherServlet)가 요청을 처리하는 과정을 확인할 수 있기 때문에 컨트롤러 테스트용으로 자주 쓰임</li>
-</ul>
-<p><strong>ObjectMapper</strong></p>
-<ul>
-<li>스프링 부트에 mapping Jackson이 의존성주입이 되있을경우 자동 빈등록 </li>
-</ul>
-<p><strong>objectMapper.writeValueAsString(event)</strong></p>
-<ul>
-<li>객체를 JSON으로 변환!</li>
-</ul>
-<h3 id="EventController-클래스-작성"><a href="#EventController-클래스-작성" class="headerlink" title="EventController 클래스 작성"></a>EventController 클래스 작성</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value =<span class="string">"/api/events"</span>, produces = MediaTypes.HAL_JSON_UTF8_VALUE )</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventController</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">createEvent</span><span class="params">(@RequestMapping Event event)</span></span>&#123;</span><br><span class="line">        URI createdUri = linkTo(EventController.class).slash(<span class="string">"&#123;id&#125;"</span>).toUri();</span><br><span class="line">        event.setID(<span class="number">10</span>); <span class="comment">//우선 임의로 아이디값을 준다. </span></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.created(createdUri).body(event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>테스트를 진행하면 정상적으로 실행이 된다. </p>
+<h2 id="입출력-예"><a href="#입출력-예" class="headerlink" title="입출력 예"></a>입출력 예</h2><table>
+<thead>
+<tr>
+<th>brown</th>
+<th>red</th>
+<th>return</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>2</td>
+<td>[4,3]</td>
+</tr>
+<tr>
+<td>8</td>
+<td>1</td>
+<td>[3,3]</td>
+</tr>
+<tr>
+<td>24</td>
+<td>24</td>
+<td>[8,6]</td>
+</tr>
+</tbody>
+</table>
+<p><a href="http://hsin.hr/coci/archive/2010_2011/contest4_tasks.pdf" target="_blank" rel="noopener">출처</a></p>
+<h2 id="소스-코드"><a href="#소스-코드" class="headerlink" title="소스 코드"></a>소스 코드</h2><p><strong>자바</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] solution(<span class="keyword">int</span> brown, <span class="keyword">int</span> red) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] answer = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">int</span> garo;</span><br><span class="line">        <span class="keyword">int</span> sero;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;= red;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(red%i==<span class="number">0</span>)&#123;</span><br><span class="line">                garo = i &gt;= red/i? i :red/i;</span><br><span class="line">                sero = i &gt;= red/i? red/i :i;</span><br><span class="line">                System.out.println(garo);</span><br><span class="line">                System.out.println(sero);</span><br><span class="line">                <span class="keyword">if</span>(brown == (sero*<span class="number">2</span>)+((garo+<span class="number">2</span>)*<span class="number">2</span>))&#123;</span><br><span class="line">                    answer[<span class="number">0</span>]=garo+<span class="number">2</span>;</span><br><span class="line">                    answer[<span class="number">1</span>]=sero+<span class="number">2</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> answer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="소스코드-설명"><a href="#소스코드-설명" class="headerlink" title="소스코드 설명"></a>소스코드 설명</h2><p>저는 카펫에 갈색 부분이 빨간 부분의 세로<em>2 개, (가로+2)</em>2 개만큼 있다는걸 발견 하였습니다.</p>
+<p>빨간 부분의 개수를 이용해서 가로 세로가 되는 경우를 전부 구하며 그경우에 위에 식을 대입하여 갈색 부분의 갯수와 일치 하는지 확인하였습니다.</p>
+<p>일치하는 경우가 빨간 부분의 가로 세로가 되고 전체 카펫의 가로와 세로의 길이는 빨간 부분의 가로와 세로에 각각 2개만큼 더한게 됩니다. </p>
+<p>몫과 나머지를 이용하여 빨간 부분의 가로세로를 구하는 부분에서 더 큰값을 가로로 잡기위해 삼항연산자를 사용하였습니다.</p>
 
       
     </div>
@@ -537,11 +551,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RESTAPI/" rel="tag"># RESTAPI</a>
+            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
           
-            <a href="/tags/REST/" rel="tag"># REST</a>
+            <a href="/tags/프로그래머스/" rel="tag"># 프로그래머스</a>
           
-            <a href="/tags/API/" rel="tag"># API</a>
+            <a href="/tags/완전탐색/" rel="tag"># 완전탐색</a>
+          
+            <a href="/tags/카펫/" rel="tag"># 카펫</a>
           
         </div>
       
@@ -554,8 +570,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/24/REST-API-1/" rel="next" title="REST API 만들기-1">
-                <i class="fa fa-chevron-left"></i> REST API 만들기-1
+              <a href="/2019/02/01/Algorithm-sort/" rel="next" title="[Algorithm]기본적인 정렬 알고리즘">
+                <i class="fa fa-chevron-left"></i> [Algorithm]기본적인 정렬 알고리즘
               </a>
             
           </div>
@@ -563,10 +579,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/26/REST-API-3/" rel="prev" title="REST API 만들기-3">
-                REST API 만들기-3 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -841,7 +853,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Event-생성-API"><span class="nav-number">1.</span> <span class="nav-text">Event 생성 API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#TDD를-위한-테스트-작성"><span class="nav-number">1.1.</span> <span class="nav-text">TDD를 위한 테스트 작성</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EventControllerTest-클래스-생성"><span class="nav-number">1.1.1.</span> <span class="nav-text">EventControllerTest 클래스 생성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EventController-클래스-작성"><span class="nav-number">1.1.2.</span> <span class="nav-text">EventController 클래스 작성</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#카펫"><span class="nav-number">1.</span> <span class="nav-text">카펫</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#문제-설명"><span class="nav-number">1.1.</span> <span class="nav-text">문제 설명</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#제한사항"><span class="nav-number">1.2.</span> <span class="nav-text">제한사항</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#입출력-예"><span class="nav-number">1.3.</span> <span class="nav-text">입출력 예</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#소스-코드"><span class="nav-number">1.4.</span> <span class="nav-text">소스 코드</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#소스코드-설명"><span class="nav-number">1.5.</span> <span class="nav-text">소스코드 설명</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -993,9 +1005,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://doohong.github.com/2019/01/25/REST-API-2/";
-    this.page.identifier = "2019/01/25/REST-API-2/";
-    this.page.title = 'REST API 만들기-2';
+    this.page.url = "http://doohong.github.com/2019/02/02/Algorithm-carpet/";
+    this.page.identifier = "2019/02/02/Algorithm-carpet/";
+    this.page.title = '[Algorithm]프로그래머스-카펫';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
