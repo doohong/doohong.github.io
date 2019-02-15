@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="객체 지향 프로그래밍 입문 - 최범균님의 인프런 강좌을 보고 작성하였습니다.  상속(Inheritance)이란상위 클래스의 기능을 재사용, 확장하는 방법 상속을 통한 기능 재사용시 발생할 수 있는 단점 상위 클래스 변경 어려움 클래스 증가 상속 오용  상속의 단점 해결 방법은 -&amp;gt; 조립!! 조립(Composition)여러 객체를 묶어서 더 복잡한 기">
-<meta name="keywords" content="OOP, Object-Oriented Programming,Inheritance">
+  <meta name="description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  입력값 제한하기현재 API는 입력값으로 id 또는 입력 받은 데이터를 가지고 계산해야하는 값까지도 입력으로 줄 수가 있습니다. 이번 포스팅에서는 입력으로 받으면 안되는 값들을 EventDTO를 적용하여 제한하는 방법에 대해서 알아보겠습니다.  EventDTOEvent 클래스">
+<meta name="keywords" content="RESTAPI,REST,API">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[OOP]상속(Inheritance)이란?">
-<meta property="og:url" content="http://doohong.github.com/2019/01/03/OOP-Inheritance/index.html">
+<meta property="og:title" content="REST API 만들기-4">
+<meta property="og:url" content="http://doohong.github.com/2019/01/27/REST-API-4/index.html">
 <meta property="og:site_name" content="doohong&#39;s blog">
-<meta property="og:description" content="객체 지향 프로그래밍 입문 - 최범균님의 인프런 강좌을 보고 작성하였습니다.  상속(Inheritance)이란상위 클래스의 기능을 재사용, 확장하는 방법 상속을 통한 기능 재사용시 발생할 수 있는 단점 상위 클래스 변경 어려움 클래스 증가 상속 오용  상속의 단점 해결 방법은 -&amp;gt; 조립!! 조립(Composition)여러 객체를 묶어서 더 복잡한 기">
+<meta property="og:description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  입력값 제한하기현재 API는 입력값으로 id 또는 입력 받은 데이터를 가지고 계산해야하는 값까지도 입력으로 줄 수가 있습니다. 이번 포스팅에서는 입력으로 받으면 안되는 값들을 EventDTO를 적용하여 제한하는 방법에 대해서 알아보겠습니다.  EventDTOEvent 클래스">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2019-01-28T12:58:29.873Z">
+<meta property="og:updated_time" content="2019-02-15T10:54:00.816Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[OOP]상속(Inheritance)이란?">
-<meta name="twitter:description" content="객체 지향 프로그래밍 입문 - 최범균님의 인프런 강좌을 보고 작성하였습니다.  상속(Inheritance)이란상위 클래스의 기능을 재사용, 확장하는 방법 상속을 통한 기능 재사용시 발생할 수 있는 단점 상위 클래스 변경 어려움 클래스 증가 상속 오용  상속의 단점 해결 방법은 -&amp;gt; 조립!! 조립(Composition)여러 객체를 묶어서 더 복잡한 기">
+<meta name="twitter:title" content="REST API 만들기-4">
+<meta name="twitter:description" content="스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다.  입력값 제한하기현재 API는 입력값으로 id 또는 입력 받은 데이터를 가지고 계산해야하는 값까지도 입력으로 줄 수가 있습니다. 이번 포스팅에서는 입력으로 받으면 안되는 값들을 EventDTO를 적용하여 제한하는 방법에 대해서 알아보겠습니다.  EventDTOEvent 클래스">
 
 
 
 
 
 
-  <link rel="canonical" href="http://doohong.github.com/2019/01/03/OOP-Inheritance/">
+  <link rel="canonical" href="http://doohong.github.com/2019/01/27/REST-API-4/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>[OOP]상속(Inheritance)이란? | doohong's blog</title>
+  <title>REST API 만들기-4 | doohong's blog</title>
   
 
 
@@ -361,7 +361,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/03/OOP-Inheritance/">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/27/REST-API-4/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="박주홍">
@@ -378,7 +378,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[OOP]상속(Inheritance)이란?
+          <h1 class="post-title" itemprop="name headline">REST API 만들기-4
 
               
             
@@ -404,7 +404,7 @@
                 
               
 
-              <time title="Post created: 2019-01-03 14:24:00" itemprop="dateCreated datePublished" datetime="2019-01-03T14:24:00+09:00">2019-01-03</time>
+              <time title="Post created: 2019-01-27 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-27T18:00:00+09:00">2019-01-27</time>
             
 
             
@@ -421,7 +421,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-01-28 21:58:29" itemprop="dateModified" datetime="2019-01-28T21:58:29+09:00">2019-01-28</time>
+                <time title="Updated at: 2019-02-15 19:54:00" itemprop="dateModified" datetime="2019-02-15T19:54:00+09:00">2019-02-15</time>
               
             
           </span>
@@ -438,7 +438,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/OOP/" itemprop="url" rel="index"><span itemprop="name">OOP</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
 
                 
                 
@@ -456,8 +456,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/2019/01/03/OOP-Inheritance/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/03/OOP-Inheritance/" itemprop="commentCount"></span>
+                <a href="/2019/01/27/REST-API-4/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/27/REST-API-4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -486,20 +486,23 @@
 
       
         <blockquote>
-<p><a href="https://www.inflearn.com/course/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9E%85%EB%AC%B8/" target="_blank" rel="noopener">객체 지향 프로그래밍 입문</a> - 최범균님의 인프런 강좌을 보고 작성하였습니다.</p>
+<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
 </blockquote>
-<h1 id="상속-Inheritance-이란"><a href="#상속-Inheritance-이란" class="headerlink" title="상속(Inheritance)이란"></a>상속(Inheritance)이란</h1><p>상위 클래스의 기능을 재사용, 확장하는 방법</p>
-<h2 id="상속을-통한-기능-재사용시-발생할-수-있는-단점"><a href="#상속을-통한-기능-재사용시-발생할-수-있는-단점" class="headerlink" title="상속을 통한 기능 재사용시 발생할 수 있는 단점"></a>상속을 통한 기능 재사용시 발생할 수 있는 단점</h2><ol>
-<li>상위 클래스 변경 어려움</li>
-<li>클래스 증가</li>
-<li>상속 오용</li>
-</ol>
-<p><strong>상속의 단점 해결 방법은 -&gt; 조립!!</strong></p>
-<h2 id="조립-Composition"><a href="#조립-Composition" class="headerlink" title="조립(Composition)"></a>조립(Composition)</h2><p>여러 객체를 묶어서 더 복잡한 기능을 제공</p>
-<p>보통 필드로 다른 객체를 참조하는 방식으로 조립 또는 객체를 필요 시점에 생성/구함</p>
-<p>특정 기능을 재사용 하고 싶다면 특정 객체를 생성하여 사용</p>
-<h2 id="상속보다는-조립"><a href="#상속보다는-조립" class="headerlink" title="상속보다는 조립"></a>상속보다는 조립</h2><p>상속하기에 앞서 조립으로 풀 수 없는지 검토</p>
-<p>진짜 하위 타입인 경우에만 상속 사용    </p>
+<h1 id="입력값-제한하기"><a href="#입력값-제한하기" class="headerlink" title="입력값 제한하기"></a>입력값 제한하기</h1><p>현재 API는 입력값으로 id 또는 입력 받은 데이터를 가지고 계산해야하는 값까지도 입력으로 줄 수가 있습니다.</p>
+<p>이번 포스팅에서는 입력으로 받으면 안되는 값들을 EventDTO를 적용하여 제한하는 방법에 대해서 알아보겠습니다. </p>
+<h2 id="EventDTO"><a href="#EventDTO" class="headerlink" title="EventDTO"></a>EventDTO</h2><p>Event 클래스에 어노테이션을 추가해서 DTO로 분리하는것과 같은 기능을 할 수는 있지만, 그런경우에 도메인 클래스에 너무 많은 어노테이션이 추가 됩니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@NoArgsConstructor</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventDto</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime closeEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime endEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> String location; <span class="comment">// (optional) 이게 없으면 온라인 모임</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> basePrice; <span class="comment">// (optional)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxPrice; <span class="comment">// (optional)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> limitOfEnrollment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>받기로 한 값들만 가지고 EventDTO 클래스를 만듭니다.</p>
+<h2 id="ModelMapper"><a href="#ModelMapper" class="headerlink" title="ModelMapper"></a>ModelMapper</h2><p>입력 타입을  DTO로 바꿧으니 DTO를 다시 Event 객체로 변경해주어야 Event 타입으로 바꿔 주어야 EventRepository 를 쓸수 있습니다.</p>
+<p>EventDTO 객체를 Event객체로 바꿔주려면 직접 옮기는 방법도 있지만 ModelMapper 를 사용해 쉽게 바꿔줄수 있습니다.</p>
+<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.modelmapper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>modelmapper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="빈등록"><a href="#빈등록" class="headerlink" title="빈등록"></a>빈등록</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ModelMapper <span class="title">modelMapper</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> ModelMapper();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="EventController"><a href="#EventController" class="headerlink" title="EventController"></a>EventController</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">private</span> <span class="keyword">final</span> ModelMapper modelMapper;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">EventController</span><span class="params">(EventRepository eventRepository, ModelMapper modelMapper)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.eventRepository = eventRepository;</span><br><span class="line">        <span class="keyword">this</span>.modelMapper = modelMapper;</span><br><span class="line">    &#125;</span><br><span class="line">```  </span><br><span class="line">생성자를 통해 ModelMapper 주입을 받습니다.</span><br><span class="line">```java</span><br><span class="line">Event event = modelMapper.map(eventDto,Event.class);</span><br></pre></td></tr></table></figure>
+<p>이렇게 ModelMapper를 통해 Event 객체로 변환할 수 있습니다.</p>
+<h2 id="EventControllerTests"><a href="#EventControllerTests" class="headerlink" title="EventControllerTests"></a>EventControllerTests</h2><p>테스트에서 더이상 테스트에서 만든 Event객체를 쓰지 않기 때문에 Mockito를 사용해서 Stubbing 하는 기능이 적용되지 않습니다.</p>
+<p>그래서 이제 @WebMvcTest 어노테이션을 지우고 @SpringBootTest 와 SpringBootTest에서  MockMvc를 쓰기위해@AutoConfigureMock0Mvc 를 추가하여줍니다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(post(<span class="string">"/api/events"</span>)</span><br><span class="line">                    .contentType(MediaType.APPLICATION_JSON_UTF8)</span><br><span class="line">                    .accept(MediaTypes.HAL_JSON)</span><br><span class="line">                    .content(objectMapper.writeValueAsString(event)))</span><br><span class="line">                    .andDo(print())</span><br><span class="line">                    .andExpect(status().isCreated())</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"id"</span>).exists())</span><br><span class="line">                    .andExpect(header().exists(HttpHeaders.LOCATION))</span><br><span class="line">                    .andExpect(header().string(HttpHeaders.CONTENT_TYPE,MediaTypes.HAL_JSON_UTF8_VALUE))</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"id"</span>).value(Machers.not(<span class="number">10</span>)))</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"free"</span>).value(Machers.not(<span class="keyword">true</span>)))</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"eventStatus"</span>).value(Machers.not(<span class="keyword">true</span>)));</span><br></pre></td></tr></table></figure>
+<p>id, free, eventStatus 같은 입력으로 받아서 안되는 값들이 잘 제한됬는지 이렇게 코드를 추가하여 확인할 수 있습니다.</p>
 
       
     </div>
@@ -523,11 +526,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/OOP/" rel="tag"># OOP</a>
+            <a href="/tags/RESTAPI/" rel="tag"># RESTAPI</a>
           
-            <a href="/tags/Object-Oriented-Programming/" rel="tag">#  Object-Oriented Programming</a>
+            <a href="/tags/REST/" rel="tag"># REST</a>
           
-            <a href="/tags/Inheritance/" rel="tag"># Inheritance</a>
+            <a href="/tags/API/" rel="tag"># API</a>
           
         </div>
       
@@ -540,8 +543,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/02/OOP-encapsulation/" rel="next" title="[OOP]캡슐화( encapsulation)란?">
-                <i class="fa fa-chevron-left"></i> [OOP]캡슐화( encapsulation)란?
+              <a href="/2019/01/26/REST-API-3/" rel="next" title="REST API 만들기-3">
+                <i class="fa fa-chevron-left"></i> REST API 만들기-3
               </a>
             
           </div>
@@ -550,8 +553,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/04/OOP-polymorphism/" rel="prev" title="[OOP]다형성과 추상화">
-                [OOP]다형성과 추상화 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/01/Algorithm-sort/" rel="prev" title="[Algorithm]기본적인 정렬 알고리즘">
+                [Algorithm]기본적인 정렬 알고리즘 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -827,7 +830,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#상속-Inheritance-이란"><span class="nav-number">1.</span> <span class="nav-text">상속(Inheritance)이란</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#상속을-통한-기능-재사용시-발생할-수-있는-단점"><span class="nav-number">1.1.</span> <span class="nav-text">상속을 통한 기능 재사용시 발생할 수 있는 단점</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#조립-Composition"><span class="nav-number">1.2.</span> <span class="nav-text">조립(Composition)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#상속보다는-조립"><span class="nav-number">1.3.</span> <span class="nav-text">상속보다는 조립</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#입력값-제한하기"><span class="nav-number">1.</span> <span class="nav-text">입력값 제한하기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#EventDTO"><span class="nav-number">1.1.</span> <span class="nav-text">EventDTO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ModelMapper"><span class="nav-number">1.2.</span> <span class="nav-text">ModelMapper</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pom-xml"><span class="nav-number">1.2.1.</span> <span class="nav-text">pom.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#빈등록"><span class="nav-number">1.2.2.</span> <span class="nav-text">빈등록</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EventController"><span class="nav-number">1.2.3.</span> <span class="nav-text">EventController</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EventControllerTests"><span class="nav-number">1.3.</span> <span class="nav-text">EventControllerTests</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -979,9 +982,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://doohong.github.com/2019/01/03/OOP-Inheritance/";
-    this.page.identifier = "2019/01/03/OOP-Inheritance/";
-    this.page.title = '[OOP]상속(Inheritance)이란?';
+    this.page.url = "http://doohong.github.com/2019/01/27/REST-API-4/";
+    this.page.identifier = "2019/01/27/REST-API-4/";
+    this.page.title = 'REST API 만들기-4';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');
