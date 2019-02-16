@@ -357,6 +357,431 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/03/java-string/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/03/03/java-string/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-3.String, StringBuffer, StringBuilder</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-03-03 19:15:00" itemprop="dateCreated datePublished" datetime="2018-03-03T19:15:00+09:00">2018-03-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-25 13:49:27" itemprop="dateModified" datetime="2019-01-25T13:49:27+09:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/03/03/java-string/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/03/java-string/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="String-StringBuffer-StringBuilder-의-특징"><a href="#String-StringBuffer-StringBuilder-의-특징" class="headerlink" title="String, StringBuffer, StringBuilder 의 특징"></a>String, StringBuffer, StringBuilder 의 특징</h1><p>String, StringBuffer, StringBuilder 이 세가지 클래스들은 모두 문자열 처리를 위한 클래스 이다. </p>
+<p>대부분의 자바를 처음 공부하는 사람들은 문자열 처리를 위해서 String 클래스만을 사용하며 조금더 공부하여 StringBuffer 클래스를 알게되면 정확한 차이를 모르는채 성능 향상이라는 이유로 StringBuffer 클래스를 자주 사용한다.</p>
+<p>그렇다면 이 세가지 클래스에 정확한 차이점을  알아보고 상황에 맞게 잘 사용해 보도록 하자</p>
+<h2 id="String-클래스"><a href="#String-클래스" class="headerlink" title="String 클래스"></a>String 클래스</h2><p>String 클래스와 다른 2개의 클래스와의 가장 큰 차이점은 String 클래스는 <strong>immutable(불변)</strong> 하고 StringBuffer, StringBuilder 클래스는 <strong>mutable(가변)</strong> 한다는 점이다.</p>
+<p>이게 무슨 말인지 쉽게 설명 하자면 String 객체는 한번 생성되면 할당된 메모리 공간이 변하지 않는다.</p>
+<p>+연산자 또는 문자열에 변화를 줘도 메모리 공간이 변하는 것이 아니라 새로운 String 객체를 만든 후, 새 String 객체에 연결된 문자열을 저장하고 그객체를 참조하도록 한다.</p>
+<p>변경되기 전의 문자열은 더이상 어느곳에서도 참조하지 않게 되면 가비지 콜렉터(언제 제거될지 모름)에 의해 제거 된다.</p>
+<p>이러한 이유로 String 객체는 문자열 연산이 많아질 때 성능이 떨어질 수 밖에 없는 단점이 있다.</p>
+<p>그렇다면 왜 이러한 단점을 가지면서도 <strong>immutable(불변)</strong> 클래스인 String 클래스를 기본 문자열처리 클래스로 정했을까?</p>
+<p><strong>immutable(불변)</strong> 클래스의 가장 큰 장점은 안전하게 공유될 수 있다는 점이다. </p>
+<p>즉, 변경은 적고 읽기만 많은 경우, 또는 여러 쓰레드나 객체에서 공유하는 경우, synchronization(동기화)와 같은 특별한 안전장치 없이도 안전하게 공유 될수 있다. </p>
+<p>대부분의 문자열이 복잡한 문자열 처리과정보다는 한번 설정된 문자열들을 여러 곳에서 공유하는 경우가 많으므로, 자바에서 기본 문자열을 처리하는 클래스로 String 클래스를 immutable 패턴으로 설정하였다.</p>
+<h2 id="StringBuffer-StringBuilder-클래스"><a href="#StringBuffer-StringBuilder-클래스" class="headerlink" title="StringBuffer, StringBuilder 클래스"></a>StringBuffer, StringBuilder 클래스</h2><p>StringBuffer, StringBuilder 클래스는 String 과 다르게 <strong>mutable(가변)</strong> 클래스이다.</p>
+<p>즉 문자열 연산에 있어서 클래스를 한번만 만들고 연산이 필요할 때 크기를 변경시켜 문자열을 변경한다. 이 경우 객체를 새로 생성하지 않는다.</p>
+<p>그러므로 문자열 연산이 자주 있을 때 String 클래스 대신 사용하면 성능이 좋다는 장점이 있다.</p>
+<p>StringBuilder는 JDK 5.0 에서 새로 추가된 클래스이다.<br>두 클래스에서 제공하는 메소드는 동일하다. </p>
+<p>차이점은 StringBuffer는 멀티쓰레드환경에서 synchronized키워드가 가능하므로 동기화가 가능하다. 즉, thread-safe하다.</p>
+<p>StringBuilder는 동기화를 지원하지 않기 때문에 멀티쓰레드환경에서는 적합하지 않다. 대신 StringBuilder가 동기화를 고려하지 않기 때문에 싱글쓰레드 환경에서 StringBuffer에 비해 연산처리가 빠르다.</p>
+<h2 id="String-StringBuffer-StringBuilder-선택-기준"><a href="#String-StringBuffer-StringBuilder-선택-기준" class="headerlink" title="String, StringBuffer, StringBuilder 선택 기준"></a>String, StringBuffer, StringBuilder 선택 기준</h2><ol>
+<li><p>String 객체는 불변이기 때문에 변하지 않는 문자열은 String을 사용한다.</p>
+</li>
+<li><p>StringBuilder는 비동기방식이기 때문에 Single Thread 환경하에서, 변화되는 문자열의 사용한다.</p>
+</li>
+<li><p>StringBuffer 동기방식으로 저장되기 때문에 멀티쓰레드로 접근하거나 문자열이 변경될 경우에 사용한다.</p>
+</li>
+</ol>
+<h2 id="JDK-버전에-따른-차이"><a href="#JDK-버전에-따른-차이" class="headerlink" title="JDK 버전에 따른 차이"></a>JDK 버전에 따른 차이</h2><p>JDK 1.5버전 이후에는 컴파일 단계에서 String 객체를 사용하더라도 StringBuilder로 컴파일 되도록 변경 되었다.</p>
+<p>그렇기 때문에 String 클래스를 활용해도 성능차이가 없어지긴 하였지만 반복 루프를 사용해 문자열을 더할때 객체를 게속 추가하는 사실에는 변함이 없다.</p>
+<p>따라서 String 클래스를 쓰는 대신, 스레드와 관련이 있으면 StringBuffer를, 스레드 안전 여부와 상관이 없으면 StringBuilder를 사용하는 것을 권장한다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/02/Java-runtime-data-area/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/03/02/Java-runtime-data-area/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-03-02 18:20:00" itemprop="dateCreated datePublished" datetime="2018-03-02T18:20:00+09:00">2018-03-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-24 11:50:27" itemprop="dateModified" datetime="2019-01-24T11:50:27+09:00">2019-01-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/03/02/Java-runtime-data-area/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/02/Java-runtime-data-area/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Runtime-Data-Area"><a href="#Runtime-Data-Area" class="headerlink" title="Runtime Data Area"></a>Runtime Data Area</h1><ul>
+<li>JVM이 프로그램을 수행하기 위해 운영체제로부터 할당 받는 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역이다.</li>
+<li>이 영역은 각각의 목젝에 따라 크게 <strong>Method Area</strong>, <strong>Heap Area</strong>, <strong>Stack Area</strong>, <strong>PC Register</strong>, <strong>Native Method Stack</strong>로 나눌 수 있다.</li>
+</ul>
+<p><img src="/images/java/java_runtime_data_area.png" alt="Runtime Data Area"></p>
+<h2 id="Method-Area-메소드-영역"><a href="#Method-Area-메소드-영역" class="headerlink" title="Method Area(메소드 영역)"></a>Method Area(메소드 영역)</h2><ul>
+<li>클래스 멤버 변수의 이름, 데이터 타입, 접근 제어자 정보같은 필드 정보와 메소드의 이름, 리턴 타입, 파라미터, 접근 제어자 정보같은 메소드 정보, Type정보(Interface인지 class인지), Constant Pool(상수 풀 : 문자 상수, 타입, 필드, 객체 참조가 저장됨), static 변수, final class 변수등이 생성되는 영역이다.</li>
+<li>프로그램이 실행되면 모든 코드가 저장되어 있는 상태가 아니다. new 키워드를 통해 객체가 동적으로 생성되기 이전에는 텍스트 일 뿐이다.</li>
+<li>객체 생성 후에 메소드를 실행하게 되면 해당 클래스 코드에 대한 정보를 Method Area에 저장 하게 된다. </li>
+</ul>
+<h2 id="Heap-area-힙-영역"><a href="#Heap-area-힙-영역" class="headerlink" title="Heap area(힙 영역)"></a>Heap area(힙 영역)</h2><ul>
+<li>사용자가 관리하는 인스턴스가 생성되는 공간으로 객체를 동적으로 생성하면 인스턴스가 Heap 영역의 메모리에 할당되어 사용되어진다. 프로그램은 시작될 때 미리 Heap 영역을 많이 할당해 놓으며 인스턴스와 인스턴스 변수가 저장된다. 레퍼런스 변수의 경우 Heap에 인스턴스가 저장 되는것이 아니라 포인터가 저장된다.</li>
+<li>메소드 영역에 로드된 클래스만 생성이 가능하고 Garbage Collector가 참조되지 않는 메모리를 확인하고 제거하는 영역이다.</li>
+</ul>
+<h2 id="Stack-area-스택-영역"><a href="#Stack-area-스택-영역" class="headerlink" title="Stack area (스택 영역)"></a>Stack area (스택 영역)</h2><ul>
+<li>지역 변수, 파라미터, 리턴 값, 연산에 사용되는 임시 값등이 생성되는 영역이다.</li>
+<li>int x = 10; 이라는 소스를 작성했다면 정수값이 할당될 수 있는 메모리공간을 x라고 잡아두고 그 메모리 영역에 값이 10이 들어간다. 즉, 스택에 메모리에 이름이 x라고 붙여주고 값이 10인 메모리 공간을 만든다.</li>
+<li>Animal dog = new Animal(); 이라는 코드를 작성했다면 Animal dog은 스택 영역에 생성되고 new로 생성된 Animal클래스의 인스턴스는 힙 영역에 생성된다.</li>
+<li>스택영역에 생성된 dog의 값으로 힙 영역의 주소값을 가지고 있다. 즉 스택 영역에 생성된 dog가 힙 영역에 생성된 객체를 참조하고 있는 것이다.</li>
+</ul>
+<h2 id="PC-Register-PC-레지스터"><a href="#PC-Register-PC-레지스터" class="headerlink" title="PC Register (PC 레지스터)"></a>PC Register (PC 레지스터)</h2><ul>
+<li>PC Registers는 Thread가 생성될 때 마다 생기는 공간으로 Thread가 어떠한 명령을 실행하게 될지에 대한 부분을 기록을 한다.</li>
+<li>JVM은 Stacks-Base 방식으로 작동 하는데, JVM은 CPU에 직접 Instruction을 수행하지 않고, Stack에서 Operand를 뽑아내 이를 별도의 메모리 공간에 저장하는 방식을 취하는데, 이러한 메모리 공간을 PC Registers라고 한다.</li>
+</ul>
+<h2 id="Native-method-stack"><a href="#Native-method-stack" class="headerlink" title="Native method stack"></a>Native method stack</h2><ul>
+<li>자바 외 언어로 작성된 네이티브 코드를 위한 메모리 영역이다. 보통 C/C++등의 코드를 수행하기 위한 스택이다. </li>
+<li>JNI를 통해 표준에 가까운 방식으로 구현이 가능하다.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/01/Java-summary/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -607,7 +1032,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -719,7 +1144,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">38</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

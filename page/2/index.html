@@ -357,6 +357,539 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/Spring-Lombok/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/23/Spring-Lombok/" class="post-title-link" itemprop="url">[Spring-library]Lombok이란?</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-25 13:46:47" itemprop="dateModified" datetime="2019-01-25T13:46:47+09:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/23/Spring-Lombok/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/Spring-Lombok/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Lombok이란"><a href="#Lombok이란" class="headerlink" title="Lombok이란?"></a>Lombok이란?</h1><p> <strong><em>Lombok</em></strong>은 자바에서 Model(DTO, VO, Domain Class) 클래스를 작성할 때, 멤버 변수에 대한 Getter/Setter Method, Equals(), hashCode(), ToString()과 멤버 변수에 값을 설정하는 생성자 등등을 @Getter, @Setter 같은 어노테이션을 통해 자동으로 생성해주는 라이브러리 이다. </p>
+<blockquote>
+<p><a href="https://projectlombok.org" target="_blank" rel="noopener">공식홈페이지</a></p>
+</blockquote>
+<h1 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h1><h2 id="라이브러리-의존성-설정"><a href="#라이브러리-의존성-설정" class="headerlink" title="라이브러리 의존성 설정"></a>라이브러리 의존성 설정</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.18.4&lt;/version&gt;</span><br><span class="line">		&lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">provided <span class="string">'org.projectlombok:lombok:1.18.4'</span></span><br></pre></td></tr></table></figure>
+<h2 id="AssertJ-메소드-임포트"><a href="#AssertJ-메소드-임포트" class="headerlink" title="AssertJ 메소드 임포트"></a>AssertJ 메소드 임포트</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br></pre></td></tr></table></figure>
+<h2 id="Lombok-어노테이션"><a href="#Lombok-어노테이션" class="headerlink" title="Lombok 어노테이션"></a>Lombok 어노테이션</h2><table>
+<thead>
+<tr>
+<th>@어노테이션</th>
+<th>설명</th>
+<th>세부기능</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Getter, @Setter</td>
+<td>Getter, Setter 메소드 자동생성</td>
+<td>– AccessLevel : 해당 접근 제한자를 설정 <br> – lazy : 동기화를 이용하여 최초 1회만 호출</td>
+</tr>
+<tr>
+<td>@ToString</td>
+<td>ToString 메소드 자동생성</td>
+<td>– exclude : 출력하지 않을 필드명 입력 <br> – includeFieldNames : 필등명 생략 여부 설정<br>– callSuper : 상위 클래스 toString호출 여부 설정</td>
+</tr>
+<tr>
+<td>@EqualsAndHashCode</td>
+<td>equals, hashcode 메소드 자동생성</td>
+<td>– of : 포함 할 필드, – exclude : 제외 할 필드</td>
+</tr>
+<tr>
+<td>@Data</td>
+<td>@ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 자동생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@val</td>
+<td>equals, hashcode 메소드 자동생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@NonNull</td>
+<td>해당 값이 Null 일경우 NullPointerException을 발생</td>
+<td></td>
+</tr>
+<tr>
+<td>@Cleanup</td>
+<td>자동 리소스 관리 : close() 메소드를 귀찮음 없게 안전하게 호출</td>
+<td></td>
+</tr>
+<tr>
+<td>@NoArgsConstructor</td>
+<td>인자 없는 생성자 생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@RequriedArgsConstructor</td>
+<td>필수 인자만 있는 생성자 생성(다른 생성자가 없을 때에만 만들어짐)</td>
+<td></td>
+</tr>
+<tr>
+<td>@AllArgsConstructor</td>
+<td>모든 인자를 가진 생성자 생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@Value</td>
+<td>불편 클래스를 쉽게 생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@Builder</td>
+<td>Builder API 처럼 사용 할 수 있도록 지원</td>
+<td></td>
+</tr>
+<tr>
+<td>@SneakyThrows</td>
+<td>Exception 발생시 체크된 Throable로 감싸서 전달</td>
+<td></td>
+</tr>
+<tr>
+<td>@Synchronized</td>
+<td>메소드에서 동기화 Lock을 설정</td>
+<td></td>
+</tr>
+<tr>
+<td>@Log</td>
+<td>종류별 로그를 사용할 수 있도록 한다.</td>
+<td>– 기본 변수명 : Log (Config 파일 만들어서 명칭 변경 가능)<br>– 로그 종류 : @Log, @Slf4j, @CommonLog, XSlf4j, JBossLog 등</td>
+</tr>
+</tbody>
+</table>
+<h2 id="실제-사용"><a href="#실제-사용" class="headerlink" title="실제 사용"></a>실제 사용</h2><h3 id="Lombok-어노테이션을-이용하여-만든-Event-Class"><a href="#Lombok-어노테이션을-이용하여-만든-Event-Class" class="headerlink" title="Lombok 어노테이션을 이용하여 만든 Event Class"></a>Lombok 어노테이션을 이용하여 만든 Event Class</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Getter</span> <span class="meta">@Setter</span> <span class="meta">@EqualsAndHashCode</span>(of=<span class="string">"id"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="실제로-만들어진-class파일"><a href="#실제로-만들어진-class파일" class="headerlink" title="실제로 만들어진 .class파일"></a>실제로 만들어진 .class파일</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Source code recreated from a .class file by IntelliJ IDEA</span></span><br><span class="line"><span class="comment">// (powered by Fernflower decompiler)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.doohong.restapi.event;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Event2.<span class="function">Event2Builder <span class="title">builder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Event2.Event2Builder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event2</span><span class="params">(<span class="keyword">final</span> Integer id, <span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">final</span> Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(<span class="keyword">final</span> Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Event2)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Event2 other = (Event2)o;</span><br><span class="line">            <span class="keyword">if</span> (!other.canEqual(<span class="keyword">this</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Object <span class="keyword">this</span>$id = <span class="keyword">this</span>.getId();</span><br><span class="line">                Object other$id = other.getId();</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>$id == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (other$id != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="keyword">this</span>$id.equals(other$id)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(<span class="keyword">final</span> Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Event2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> PRIME = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        Object $id = <span class="keyword">this</span>.getId();</span><br><span class="line">        <span class="keyword">int</span> result = result * <span class="number">59</span> + ($id == <span class="keyword">null</span> ? <span class="number">43</span> : $id.hashCode());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Event2Builder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        Event2Builder() &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Event2.<span class="function">Event2Builder <span class="title">id</span><span class="params">(<span class="keyword">final</span> Integer id)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Event2.<span class="function">Event2Builder <span class="title">name</span><span class="params">(<span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Event2 <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Event2(<span class="keyword">this</span>.id, <span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Integer var10000 = <span class="keyword">this</span>.id;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/09/Spring-bean/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/09/Spring-bean/" class="post-title-link" itemprop="url">[Spring]빈 등록하기!</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-09 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-09T16:00:00+09:00">2019-01-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-30 23:17:14" itemprop="dateModified" datetime="2019-01-30T23:17:14+09:00">2019-01-30</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/09/Spring-bean/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/09/Spring-bean/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="빈-등록-방법"><a href="#빈-등록-방법" class="headerlink" title="빈 등록 방법"></a>빈 등록 방법</h1><p>빈 등록 방법에는 크게 3가지 방법이 있다</p>
+<h2 id="XML을-이용한-빈-등록"><a href="#XML을-이용한-빈-등록" class="headerlink" title="XML을 이용한 빈 등록"></a>XML을 이용한 빈 등록</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"aaa"</span> <span class="attr">class</span>=<span class="string">"xxx.yyy.zzz.AAA"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prop"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>위와 같은 방법으로 xml 설정파일에 직접 등록할 수 있다.</p>
+<p>하지만 xml을 통한 빈 등록 방식은 2가지 정도의 문제점이 있다.</p>
+<ol>
+<li>빈의 성격 구분을 하기 힘들어진다.</li>
+<li>어플리케이션의 크기가 조금만 커져도 빈의 양이 늘어 관리하기 버거울 수 있다.</li>
+</ol>
+<p>그래서 스프링에서는 클래스에 특정 애노테이션을 부여하고 부여한 클래스를 찾아 자동으로 빈등록을 해주는 <strong>빈 스캐닝</strong> 이라는 기능을 제공해준다.</p>
+<h2 id="Annotation을-이용한-빈-등록"><a href="#Annotation을-이용한-빈-등록" class="headerlink" title="Annotation을 이용한 빈 등록"></a>Annotation을 이용한 빈 등록</h2><h3 id="빈-등록-Annotation"><a href="#빈-등록-Annotation" class="headerlink" title="빈 등록 Annotation"></a>빈 등록 Annotation</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Component</td>
+<td>컴포넌트를 나타내는 일반적인 스테리오 타입으로 <bean> 태그와 동일한 역할을 함</bean></td>
+</tr>
+<tr>
+<td>@Repository</td>
+<td>퍼시스턴스 레이어, 영속성을 가지는 속성(파일, 데이터베이스)을 가진 클래스</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>서비스 레이어, 비지니스 로직을 가진 클래스</td>
+</tr>
+<tr>
+<td>@Controller</td>
+<td>프리젠테이션 레이어, 웹 어플리케이션에서 웹 요청과 응답을 처리하는 클래스</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>@Repository, @Service, @Controller는 더 특정한 유즈케이승 대한 @Component의 구체화된 형태이다.</p>
+</blockquote>
+<h3 id="빈-의존관계-주입-Annotation"><a href="#빈-의존관계-주입-Annotation" class="headerlink" title="빈 의존관계 주입 Annotation"></a>빈 의존관계 주입 Annotation</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Autowired</td>
+<td>정밀한 의존관계 주입이 필요한 경우에 유용.<br> @Autowired는 프로퍼티, setter 메서드, 생성자, 일반 메서드에 적용 가능.<br> 의존하는 객체를 주입할 때 주로 Type을 이용</td>
+</tr>
+<tr>
+<td>@Resource</td>
+<td>어플리케이션에서 필요로 하는 자원을 자동 연결할 때 사용<br> @Resource는 poperty, setter 메서드에 적용 가능<br> 의존하는 객체를 주입할 때 주로 Name을 이용</td>
+</tr>
+<tr>
+<td>@Value</td>
+<td>단순한 값을 주입할 때 사용되는 annotation.<br> @Value(“Spring”)은 <property ..="" value="Spring">와 동일한 역할</property></td>
+</tr>
+<tr>
+<td>@Qualifier</td>
+<td>@Qualifier는 @Autowired annotation과 같이 사용.<br> @Autowired는 타입으로 찾아서 주입하므로, 동일 타입의 Bean 객체가<br> 여러 개 존재할 때 특정 Bean을 찾기 위해 사용</td>
+</tr>
+</tbody>
+</table>
+<p>@Component를 통해 자동으로 Bean을 등록하고, @Autowired로 의존관계를 주입받는 어노테이션을 클래스에서 선언하여 사용했을 경우에는 해당 클래스가 위치한 특정 패키지를 Scan하기 위한 설정을 XML에 해야함.<br> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"패키기 경로"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>다음과 같은 태그를 넣어 주기만 하면 dev.wedding.kr.test패키지 하위에 존재하는 빈 스캔 대상(스테레오 타입 내오테이션 클래스)을 빈 으로 등록해준다.</p>
+<h2 id="자바-코드로-빈-등록"><a href="#자바-코드로-빈-등록" class="headerlink" title="자바 코드로 빈 등록"></a>자바 코드로 빈 등록</h2><p>스프링 3.0 부터 기존의 xml 방식을 벗어나 java로 설정 파일을 작성할 수 있게 되었다.</p>
+<p>java로 설정파일을 작성하게 되면 IDE의 기능을 최대한 활용할 수 있기 때문에<br>작성하기도 쉽고, 이해하기도 쉬워진다.</p>
+<p>게다가 IDE에서 문법 체크를 지원해주므로 실수할 일도 줄어들게 된다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigurationBeanFactory</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarInfoProvider <span class="title">kiaCar</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> KiaCar();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> CarInfoProvider <span class="title">hyundaiCar</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> HyundaiCar();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>래스 레벨에서는 @Configuration을 붙이고, 메서드 레벨에서는 @Bean애노테이션을 붙이면 된다.</p>
+<p>@Bean이 붙은 메서드명이 각각의 bean의 이름이 된다. 리턴되는 객체를 스프링 컨테이버가 빈으로 활용한다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/08/Spring-IoCDI/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2066,431 +2599,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/03/java-string/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/03/java-string/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-3.String, StringBuffer, StringBuilder</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-03 19:15:00" itemprop="dateCreated datePublished" datetime="2018-03-03T19:15:00+09:00">2018-03-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-25 13:49:27" itemprop="dateModified" datetime="2019-01-25T13:49:27+09:00">2019-01-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/03/03/java-string/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/03/java-string/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="String-StringBuffer-StringBuilder-의-특징"><a href="#String-StringBuffer-StringBuilder-의-특징" class="headerlink" title="String, StringBuffer, StringBuilder 의 특징"></a>String, StringBuffer, StringBuilder 의 특징</h1><p>String, StringBuffer, StringBuilder 이 세가지 클래스들은 모두 문자열 처리를 위한 클래스 이다. </p>
-<p>대부분의 자바를 처음 공부하는 사람들은 문자열 처리를 위해서 String 클래스만을 사용하며 조금더 공부하여 StringBuffer 클래스를 알게되면 정확한 차이를 모르는채 성능 향상이라는 이유로 StringBuffer 클래스를 자주 사용한다.</p>
-<p>그렇다면 이 세가지 클래스에 정확한 차이점을  알아보고 상황에 맞게 잘 사용해 보도록 하자</p>
-<h2 id="String-클래스"><a href="#String-클래스" class="headerlink" title="String 클래스"></a>String 클래스</h2><p>String 클래스와 다른 2개의 클래스와의 가장 큰 차이점은 String 클래스는 <strong>immutable(불변)</strong> 하고 StringBuffer, StringBuilder 클래스는 <strong>mutable(가변)</strong> 한다는 점이다.</p>
-<p>이게 무슨 말인지 쉽게 설명 하자면 String 객체는 한번 생성되면 할당된 메모리 공간이 변하지 않는다.</p>
-<p>+연산자 또는 문자열에 변화를 줘도 메모리 공간이 변하는 것이 아니라 새로운 String 객체를 만든 후, 새 String 객체에 연결된 문자열을 저장하고 그객체를 참조하도록 한다.</p>
-<p>변경되기 전의 문자열은 더이상 어느곳에서도 참조하지 않게 되면 가비지 콜렉터(언제 제거될지 모름)에 의해 제거 된다.</p>
-<p>이러한 이유로 String 객체는 문자열 연산이 많아질 때 성능이 떨어질 수 밖에 없는 단점이 있다.</p>
-<p>그렇다면 왜 이러한 단점을 가지면서도 <strong>immutable(불변)</strong> 클래스인 String 클래스를 기본 문자열처리 클래스로 정했을까?</p>
-<p><strong>immutable(불변)</strong> 클래스의 가장 큰 장점은 안전하게 공유될 수 있다는 점이다. </p>
-<p>즉, 변경은 적고 읽기만 많은 경우, 또는 여러 쓰레드나 객체에서 공유하는 경우, synchronization(동기화)와 같은 특별한 안전장치 없이도 안전하게 공유 될수 있다. </p>
-<p>대부분의 문자열이 복잡한 문자열 처리과정보다는 한번 설정된 문자열들을 여러 곳에서 공유하는 경우가 많으므로, 자바에서 기본 문자열을 처리하는 클래스로 String 클래스를 immutable 패턴으로 설정하였다.</p>
-<h2 id="StringBuffer-StringBuilder-클래스"><a href="#StringBuffer-StringBuilder-클래스" class="headerlink" title="StringBuffer, StringBuilder 클래스"></a>StringBuffer, StringBuilder 클래스</h2><p>StringBuffer, StringBuilder 클래스는 String 과 다르게 <strong>mutable(가변)</strong> 클래스이다.</p>
-<p>즉 문자열 연산에 있어서 클래스를 한번만 만들고 연산이 필요할 때 크기를 변경시켜 문자열을 변경한다. 이 경우 객체를 새로 생성하지 않는다.</p>
-<p>그러므로 문자열 연산이 자주 있을 때 String 클래스 대신 사용하면 성능이 좋다는 장점이 있다.</p>
-<p>StringBuilder는 JDK 5.0 에서 새로 추가된 클래스이다.<br>두 클래스에서 제공하는 메소드는 동일하다. </p>
-<p>차이점은 StringBuffer는 멀티쓰레드환경에서 synchronized키워드가 가능하므로 동기화가 가능하다. 즉, thread-safe하다.</p>
-<p>StringBuilder는 동기화를 지원하지 않기 때문에 멀티쓰레드환경에서는 적합하지 않다. 대신 StringBuilder가 동기화를 고려하지 않기 때문에 싱글쓰레드 환경에서 StringBuffer에 비해 연산처리가 빠르다.</p>
-<h2 id="String-StringBuffer-StringBuilder-선택-기준"><a href="#String-StringBuffer-StringBuilder-선택-기준" class="headerlink" title="String, StringBuffer, StringBuilder 선택 기준"></a>String, StringBuffer, StringBuilder 선택 기준</h2><ol>
-<li><p>String 객체는 불변이기 때문에 변하지 않는 문자열은 String을 사용한다.</p>
-</li>
-<li><p>StringBuilder는 비동기방식이기 때문에 Single Thread 환경하에서, 변화되는 문자열의 사용한다.</p>
-</li>
-<li><p>StringBuffer 동기방식으로 저장되기 때문에 멀티쓰레드로 접근하거나 문자열이 변경될 경우에 사용한다.</p>
-</li>
-</ol>
-<h2 id="JDK-버전에-따른-차이"><a href="#JDK-버전에-따른-차이" class="headerlink" title="JDK 버전에 따른 차이"></a>JDK 버전에 따른 차이</h2><p>JDK 1.5버전 이후에는 컴파일 단계에서 String 객체를 사용하더라도 StringBuilder로 컴파일 되도록 변경 되었다.</p>
-<p>그렇기 때문에 String 클래스를 활용해도 성능차이가 없어지긴 하였지만 반복 루프를 사용해 문자열을 더할때 객체를 게속 추가하는 사실에는 변함이 없다.</p>
-<p>따라서 String 클래스를 쓰는 대신, 스레드와 관련이 있으면 StringBuffer를, 스레드 안전 여부와 상관이 없으면 StringBuilder를 사용하는 것을 권장한다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/02/Java-runtime-data-area/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/02/Java-runtime-data-area/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-02 18:20:00" itemprop="dateCreated datePublished" datetime="2018-03-02T18:20:00+09:00">2018-03-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-24 11:50:27" itemprop="dateModified" datetime="2019-01-24T11:50:27+09:00">2019-01-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/03/02/Java-runtime-data-area/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/02/Java-runtime-data-area/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Runtime-Data-Area"><a href="#Runtime-Data-Area" class="headerlink" title="Runtime Data Area"></a>Runtime Data Area</h1><ul>
-<li>JVM이 프로그램을 수행하기 위해 운영체제로부터 할당 받는 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역이다.</li>
-<li>이 영역은 각각의 목젝에 따라 크게 <strong>Method Area</strong>, <strong>Heap Area</strong>, <strong>Stack Area</strong>, <strong>PC Register</strong>, <strong>Native Method Stack</strong>로 나눌 수 있다.</li>
-</ul>
-<p><img src="/images/java/java_runtime_data_area.png" alt="Runtime Data Area"></p>
-<h2 id="Method-Area-메소드-영역"><a href="#Method-Area-메소드-영역" class="headerlink" title="Method Area(메소드 영역)"></a>Method Area(메소드 영역)</h2><ul>
-<li>클래스 멤버 변수의 이름, 데이터 타입, 접근 제어자 정보같은 필드 정보와 메소드의 이름, 리턴 타입, 파라미터, 접근 제어자 정보같은 메소드 정보, Type정보(Interface인지 class인지), Constant Pool(상수 풀 : 문자 상수, 타입, 필드, 객체 참조가 저장됨), static 변수, final class 변수등이 생성되는 영역이다.</li>
-<li>프로그램이 실행되면 모든 코드가 저장되어 있는 상태가 아니다. new 키워드를 통해 객체가 동적으로 생성되기 이전에는 텍스트 일 뿐이다.</li>
-<li>객체 생성 후에 메소드를 실행하게 되면 해당 클래스 코드에 대한 정보를 Method Area에 저장 하게 된다. </li>
-</ul>
-<h2 id="Heap-area-힙-영역"><a href="#Heap-area-힙-영역" class="headerlink" title="Heap area(힙 영역)"></a>Heap area(힙 영역)</h2><ul>
-<li>사용자가 관리하는 인스턴스가 생성되는 공간으로 객체를 동적으로 생성하면 인스턴스가 Heap 영역의 메모리에 할당되어 사용되어진다. 프로그램은 시작될 때 미리 Heap 영역을 많이 할당해 놓으며 인스턴스와 인스턴스 변수가 저장된다. 레퍼런스 변수의 경우 Heap에 인스턴스가 저장 되는것이 아니라 포인터가 저장된다.</li>
-<li>메소드 영역에 로드된 클래스만 생성이 가능하고 Garbage Collector가 참조되지 않는 메모리를 확인하고 제거하는 영역이다.</li>
-</ul>
-<h2 id="Stack-area-스택-영역"><a href="#Stack-area-스택-영역" class="headerlink" title="Stack area (스택 영역)"></a>Stack area (스택 영역)</h2><ul>
-<li>지역 변수, 파라미터, 리턴 값, 연산에 사용되는 임시 값등이 생성되는 영역이다.</li>
-<li>int x = 10; 이라는 소스를 작성했다면 정수값이 할당될 수 있는 메모리공간을 x라고 잡아두고 그 메모리 영역에 값이 10이 들어간다. 즉, 스택에 메모리에 이름이 x라고 붙여주고 값이 10인 메모리 공간을 만든다.</li>
-<li>Animal dog = new Animal(); 이라는 코드를 작성했다면 Animal dog은 스택 영역에 생성되고 new로 생성된 Animal클래스의 인스턴스는 힙 영역에 생성된다.</li>
-<li>스택영역에 생성된 dog의 값으로 힙 영역의 주소값을 가지고 있다. 즉 스택 영역에 생성된 dog가 힙 영역에 생성된 객체를 참조하고 있는 것이다.</li>
-</ul>
-<h2 id="PC-Register-PC-레지스터"><a href="#PC-Register-PC-레지스터" class="headerlink" title="PC Register (PC 레지스터)"></a>PC Register (PC 레지스터)</h2><ul>
-<li>PC Registers는 Thread가 생성될 때 마다 생기는 공간으로 Thread가 어떠한 명령을 실행하게 될지에 대한 부분을 기록을 한다.</li>
-<li>JVM은 Stacks-Base 방식으로 작동 하는데, JVM은 CPU에 직접 Instruction을 수행하지 않고, Stack에서 Operand를 뽑아내 이를 별도의 메모리 공간에 저장하는 방식을 취하는데, 이러한 메모리 공간을 PC Registers라고 한다.</li>
-</ul>
-<h2 id="Native-method-stack"><a href="#Native-method-stack" class="headerlink" title="Native method stack"></a>Native method stack</h2><ul>
-<li>자바 외 언어로 작성된 네이티브 코드를 위한 메모리 영역이다. 보통 C/C++등의 코드를 수행하기 위한 스택이다. </li>
-<li>JNI를 통해 표준에 가까운 방식으로 구현이 가능하다.</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2540,7 +2648,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">21</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2652,7 +2760,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">38</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
