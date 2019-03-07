@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Call by Value/Call by Reference]]></title>
+    <url>%2F2019%2F03%2F08%2Fcallby%2F</url>
+    <content type="text"><![CDATA[Call by Value/Call by Referencejava에서 인수로 매개 변수를 전달하는 방식이 크게 두가지다. 기본 데이터형은 모두 Call by Value로 처리되고 클래스의 객체는 Call by Reference로 처리 된다. Call by Value123456789101112131415Class CallByValue&#123; public static void swap(int x, int y) &#123; int temp = x; x = y; y = temp; &#125; public static void main(String[] args) &#123; int a = 10; int b = 20; System.out.println("swap() 호출 전 : a = " + a + ", b = " + b); swap(a, b); System.out.println("swap() 호출 후 : a = " + a + ", b = " + b); &#125;&#125; 12swap() 호출 전 : a = 10, b = 20swap() 호출 후 : a = 10, b = 20 인수로 기본 데이터형을 사용하면 모두 Call by Value가 된다. 값을 복사하여 처리하기 때문에 메소드 밖의 변수에는 영향을 미치지 않게 되어 값이 변경되지 않는다. Call by Reference1234567891011121314151617181920Class CallByReference&#123; int value; CallByReference(int value) &#123; this.value = value; &#125; public static void swap(CallByReference x, CallByReference y) &#123;\ int temp = x.value; x.value = y.value; y.value = temp; &#125; public static void main(String[] args) &#123; CallByReference a = new CallByReference(10); CallByReference b = new CallByReference(20); System.out.println("swap() 호출 전 : a = " + a.value + ", b = " + b.value); swap(a, b); System.out.println("swap() 호출 전 : a = " + a.value + ", b = " + b.value); &#125;&#125; 12swap() 호출 전 : a = 10, b = 20swap() 호출 후 : a = 20, b = 10 CallByReference 클래스의 객체를 생성하여 값을 전달하게 되면 객체가 저장한 값이 주소값이기 때문에 swap메서드에서 변경시킨 결과가 main메서드로 돌려지게 된다. 이렇게 다른 메소드에서 현재의 메소드 내의 변수 값을 바꾸는 현상을 사이드 이펙트(side effect) 라고 한다. 사이드 이펙트 는 메소드 간의 값 전달을 쉽게 하기 때문에 편리하지만, 실수로 프로그래머가 모르는 사이에 값이 바뀌면 심각한 문제를 일으킬 수 있기 때문에 위험하다고 알려져 있다. 그래서 Java는 모든 기본 데이터형은 Call by Value로 값을 주고받아 ‘사이드 이펙트’가 일어나지 않도록 했고, Call by Reference가 필요한 경우는 명시적으로 클래스 객체를 주고받도록 정해둔 것이다.]]></content>
+      <categories>
+        <category>jobinterview</category>
+      </categories>
+      <tags>
+        <tag>Call by Value</tag>
+        <tag>Call by Reference</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[http/https 차이점]]></title>
     <url>%2F2019%2F03%2F07%2Fhttp_https%2F</url>
     <content type="text"><![CDATA[http/httpshttp http는 HyperText Tranfer Protocol의 약자로 www상에서 정보를 주고 받는 프로토콜이다. http는 텍스트 교환으로 네트워크상에서 정보를 누군가가 마음대로 열람, 수정이 가능하다. 위에 보이는 warning페이지가 http로 보내는 정보를 무단으로 열람하여 redirect 하는 경우 https 뒤에 붙는 S는 Secure Socket의 약어로 보안성을 강화한 프로토콜 일반 텍스트를 이용하는 대신에, SSL이나 TLS 프로토콜을 통해 세션 데이터를 암호화 한다. https의 원리의 핵심은 공개키 암호화 방식 이다. 공개키 암호화 방식 공개키 방식에서는 두 개의 키를 갖는다. 누구에게나 공개가 가능한 공개키, 자신만이 갖고 있는 개인키 A키로 암호화 하면 B키로 복호화 가능 B키로 암호화 하면 A키로 복호화 가능 클라이언트는 공개키를 얻은 사용자가 암호화 하여 정보를 보내고, 서버는 개인키로 해독하여 요청에 대해 처리한다. 서버가 정보를 제공할 때 개인키로 암호화하면 공개키로 복호화 할 수 있다는 점을 통해 서버에서 개인키로 암호화 했다는 것을 보장할 수 있다. 이렇게 믿을 수 있는경우 브라우저에서는 주소 창의 색을 다르게 하여 안전하다고 알려 준다.]]></content>
