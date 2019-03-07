@@ -357,6 +357,249 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/05/Java-AccessModifier/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/03/05/Java-AccessModifier/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-5.접근제어자</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-03-05 18:20:00" itemprop="dateCreated datePublished" datetime="2018-03-05T18:20:00+09:00">2018-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-02-01 22:22:48" itemprop="dateModified" datetime="2019-02-01T22:22:48+09:00">2019-02-01</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/03/05/Java-AccessModifier/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/05/Java-AccessModifier/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="접근제어자-Access-Modifier"><a href="#접근제어자-Access-Modifier" class="headerlink" title="접근제어자(Access Modifier)"></a>접근제어자(Access Modifier)</h1><p>접근제어자는 변수나 메소드, 클래스에 대한 접근을 제어하는 문법이다.</p>
+<p>접근을 제어하는 이유는 객체가 가진 고유의 멤버 변수값들이 외부에서 잘못 변경되는 것을 막기 위해서 이다.</p>
+<p>자바에는 다음과 같은 접근제어자가 있다.</p>
+<ol>
+<li><strong>private</strong></li>
+<li><strong>default</strong></li>
+<li><strong>protected</strong></li>
+<li><strong>public</strong></li>
+</ol>
+<h2 id="private"><a href="#private" class="headerlink" title="private"></a>private</h2><p>접근제어자가 private 으로 설정 되어 있다면 그 변수나 메소드는 해당 클래스에만 접근이 가능하다.</p>
+<p>최상위 클래스 선언에서는 private를 사용할 수 없다. </p>
+<h2 id="default"><a href="#default" class="headerlink" title="default"></a>default</h2><p>접근제어자를 별도로 설정하지 않는다면 default 접근제어자가 된다. default 접근제어자는 해당 패키지 내에서 접근이 가능하다.</p>
+<h2 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h2><p>protected 접근제어자는 default 접근제어자와 마찬가지로 동일 패키지내에서 접근이 가능하며 추가적으로 해당 클래스를 상속받은 외부 패키지의 클래스에서도 접근이 가능하다.</p>
+<h2 id="public"><a href="#public" class="headerlink" title="public"></a>public</h2><p>public 접근제어자는 모든 클래스에 의해 접근할 수 있다. 즉 접근 제약이 없다.</p>
+<h2 id="접근-권한"><a href="#접근-권한" class="headerlink" title="접근 권한"></a>접근 권한</h2><table>
+<thead>
+<tr>
+<th>종류</th>
+<th style="text-align:center">클래스</th>
+<th style="text-align:center">하위클래스</th>
+<th style="text-align:center">동일패키지</th>
+<th style="text-align:center">모든클래스</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>private</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td>default</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td>protected</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+</tr>
+<tr>
+<td>public</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+</tr>
+</tbody>
+</table>
+<p><strong>public &gt; protected &gt; default &gt; private</strong></p>
+<h2 id="꿀팁"><a href="#꿀팁" class="headerlink" title="꿀팁"></a>꿀팁</h2><p>메소드를 오버라이딩 할 경우 부모 클래스의 메소드의 접근제어자보다 좁아질 수는 없다.</p>
+<p><strong>그러나 확장될 수는 있다.</strong></p>
+<p>private 로 선언된 메소드를 public 으로 오버라이딩하여 모든곳에서 접근 가능하도록 수정이 가능하다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/04/java-string-pool/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1247,7 +1490,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -1377,7 +1620,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">46</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
