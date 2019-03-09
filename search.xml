@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[DB-index]]></title>
+    <url>%2F2019%2F03%2F09%2FDB-index%2F</url>
+    <content type="text"><![CDATA[indexindex란RDBMS에서 검색 속도를 높이는 기술중 하나이다. 대게 B-Tree, B+ Tree 구조를 갖는다. index는 해당 TABLE의 컬럼을 색인화 한다. index는 논리적/물리적으로 테이블과 독립적임 TABLE 에는 데이터의 레코드가 순서 없이 저장된다. 이때 데이터를 찾을 경우 데이터 페이지의 청므 레코드부터 끝 레코드까지 다 읽어 검색 조건과 비교하게 된다.이러한 방식을 full scan이라고 하는데 full scan이 아닌 색인화 되어 있는 index파일을 검색하여 검색속도를 빠르게 한다. index의 장단점 키 값을 기초로 하여 테이블에서 검색과 정렬 속도가 향상된다. 테이블의 기본 키는 자동으로 인덱스 된다. 인덱스를 만들면 .mdb 파일 크기가 늘어난다. 데이터를 업데이트 하거나 레코드를 추가 또는 삭제할 때 성능이 떨어진다. index 생성시 고려할 점 WHERE 절에서 사용되는 컬럼을 인덱스로 만든다. like ‘%~~~’는 조심(처음 %가 붙으면 table scan이 된다.) 데이터의 중복도가 높은 열은 인덱스로 만들지 않는다.(값이 true/false 이거나 성별 같은 경우) join, order by 에 자주 사용되는 열에는 인덱스를 생성해주는 것이 좋다. 외래키가 사용되는 열에는 인덱스를 생성해주는 것이 좋다. insert, delete, update 등 데이터의 변경이 많은 컬럼에는 인덱스를 걸지 않는 편이 좋음]]></content>
+      <categories>
+        <category>jobinterview</category>
+      </categories>
+      <tags>
+        <tag>index</tag>
+        <tag>db</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Call by Value/Call by Reference]]></title>
     <url>%2F2019%2F03%2F08%2Fcallby%2F</url>
     <content type="text"><![CDATA[Call by Value/Call by Referencejava에서 인수로 매개 변수를 전달하는 방식이 크게 두가지다. 기본 데이터형은 모두 Call by Value로 처리되고 클래스의 객체는 Call by Reference로 처리 된다. Call by Value123456789101112131415Class CallByValue&#123; public static void swap(int x, int y) &#123; int temp = x; x = y; y = temp; &#125; public static void main(String[] args) &#123; int a = 10; int b = 20; System.out.println("swap() 호출 전 : a = " + a + ", b = " + b); swap(a, b); System.out.println("swap() 호출 후 : a = " + a + ", b = " + b); &#125;&#125; 12swap() 호출 전 : a = 10, b = 20swap() 호출 후 : a = 10, b = 20 인수로 기본 데이터형을 사용하면 모두 Call by Value가 된다. 값을 복사하여 처리하기 때문에 메소드 밖의 변수에는 영향을 미치지 않게 되어 값이 변경되지 않는다. Call by Reference1234567891011121314151617181920Class CallByReference&#123; int value; CallByReference(int value) &#123; this.value = value; &#125; public static void swap(CallByReference x, CallByReference y) &#123;\ int temp = x.value; x.value = y.value; y.value = temp; &#125; public static void main(String[] args) &#123; CallByReference a = new CallByReference(10); CallByReference b = new CallByReference(20); System.out.println("swap() 호출 전 : a = " + a.value + ", b = " + b.value); swap(a, b); System.out.println("swap() 호출 전 : a = " + a.value + ", b = " + b.value); &#125;&#125; 12swap() 호출 전 : a = 10, b = 20swap() 호출 후 : a = 20, b = 10 CallByReference 클래스의 객체를 생성하여 값을 전달하게 되면 객체가 저장한 값이 주소값이기 때문에 swap메서드에서 변경시킨 결과가 main메서드로 돌려지게 된다. 이렇게 다른 메소드에서 현재의 메소드 내의 변수 값을 바꾸는 현상을 사이드 이펙트(side effect) 라고 한다. 사이드 이펙트 는 메소드 간의 값 전달을 쉽게 하기 때문에 편리하지만, 실수로 프로그래머가 모르는 사이에 값이 바뀌면 심각한 문제를 일으킬 수 있기 때문에 위험하다고 알려져 있다. 그래서 Java는 모든 기본 데이터형은 Call by Value로 값을 주고받아 ‘사이드 이펙트’가 일어나지 않도록 했고, Call by Reference가 필요한 경우는 명시적으로 클래스 객체를 주고받도록 정해둔 것이다.]]></content>
