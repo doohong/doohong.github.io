@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[DB-join]]></title>
+    <url>%2F2019%2F03%2F10%2FDB-join%2F</url>
+    <content type="text"><![CDATA[JOIN조인이란?두개이상의 테이블이나 데이터베잇스를 연결하여 데이터를 검색하는 방법 이다. 보통 보통 Primary key혹은 Foreign key로 두 테이블을 연결한다. INNER JOIN결합된 테이블에 조건의 내용이 공통으로 들어가 있는 값을 결과 집합으로 만들어준다. 1234SELECT 열 목록FROM 첫번째 테이블 [AS 별칭] INNER JOIN 두번째 테이블 [AS별칭]ON(join_condition) OUTER JOININNER JOIN 문을 포함하고 한쪽에만 내용이 있더라도 지정한 기준 테이블에 있는 모든 데이터를 가져오는 조인 12345SELECT 열목록FROM 첫번째 테이블&lt;LEFT | RIGHT | FULL&gt; OUTER JOIN 두번째 테이블ON(join_condition)[WHERE 검색조건] LEFT OUTER JOIN왼쪽 테이블이 기준이 되어서 그 테이블에 있는 데이터를 모두 가져온다. 기준으로 지정되지 않은 오른쪽 테이블에서 가져올 수 없는 열은 NULL로 표현된다. RIGHT OUTER JOIN오른쪽 테이블이 기준이 되어서 그 테이블에 있는 데이터를 모두 가져온다. 기준으로 지정되지 않은 왼쪽 테이블에서 가져올 수 없는 열은 NULL로 표현된다. FULL OUTER JOIN왼쪽과 오른쪽에 관계없이 조건이 일치하지 않아도 양쪽의 모든 내용을 포함해서 나타낸다. CROSS JOIN결과값이 한쪽 테이블의 모든행들과 다른쪽 테이블의 모든 행을 조인시킨다.결과 집합은 두 테이블의 개수를 곱한 값만큼 생성되며, 조인되는 테이블에 공통되는 행이 없어도 되며 조건절인 ON 키워드가 사용되지 않는다.123SELECT 열목록FROM 첫번째 테이블 CROSS JOIN 두번째 테이블 SELF JOIN하나의 테이블에 같은 데이터가 존재하는데 그 의미가 다르게 존재하는 경우. 즉, 같은 데이터이지만 다른 열에 있는 경우에는 두 테이블을 서로 SELF JOIN 문으로 확인가능]]></content>
+      <categories>
+        <category>jobinterview</category>
+      </categories>
+      <tags>
+        <tag>db</tag>
+        <tag>join</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[DB-index]]></title>
     <url>%2F2019%2F03%2F09%2FDB-index%2F</url>
     <content type="text"><![CDATA[indexindex란RDBMS에서 검색 속도를 높이는 기술중 하나이다. 대게 B-Tree, B+ Tree 구조를 갖는다. index는 해당 TABLE의 컬럼을 색인화 한다. index는 논리적/물리적으로 테이블과 독립적임 TABLE 에는 데이터의 레코드가 순서 없이 저장된다. 이때 데이터를 찾을 경우 데이터 페이지의 청므 레코드부터 끝 레코드까지 다 읽어 검색 조건과 비교하게 된다.이러한 방식을 full scan이라고 하는데 full scan이 아닌 색인화 되어 있는 index파일을 검색하여 검색속도를 빠르게 한다. index의 장단점 키 값을 기초로 하여 테이블에서 검색과 정렬 속도가 향상된다. 테이블의 기본 키는 자동으로 인덱스 된다. 인덱스를 만들면 .mdb 파일 크기가 늘어난다. 데이터를 업데이트 하거나 레코드를 추가 또는 삭제할 때 성능이 떨어진다. index 생성시 고려할 점 WHERE 절에서 사용되는 컬럼을 인덱스로 만든다. like ‘%~~~’는 조심(처음 %가 붙으면 table scan이 된다.) 데이터의 중복도가 높은 열은 인덱스로 만들지 않는다.(값이 true/false 이거나 성별 같은 경우) join, order by 에 자주 사용되는 열에는 인덱스를 생성해주는 것이 좋다. 외래키가 사용되는 열에는 인덱스를 생성해주는 것이 좋다. insert, delete, update 등 데이터의 변경이 많은 컬럼에는 인덱스를 걸지 않는 편이 좋음]]></content>
