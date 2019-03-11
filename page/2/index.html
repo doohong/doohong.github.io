@@ -1237,233 +1237,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/REST-API/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/23/REST-API/" class="post-title-link" itemprop="url">REST API란</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-28 21:28:43" itemprop="dateModified" datetime="2019-01-28T21:28:43+09:00">2019-01-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/23/REST-API/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/REST-API/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
-</blockquote>
-<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><ul>
-<li>Application Programming Interface</li>
-<li>응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다.</li>
-</ul>
-<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><ul>
-<li>REpresentational State Treansfer</li>
-<li>인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나</li>
-<li>시스템 제각각의 독립적인 진화를 보장하기 위한 방법</li>
-<li>REST API : REST 아키텍처 스타일을 따르는 API  </li>
-</ul>
-<h1 id="그런-REST-API로-괜찮은가"><a href="#그런-REST-API로-괜찮은가" class="headerlink" title="그런 REST API로 괜찮은가"></a>그런 REST API로 괜찮은가</h1><blockquote>
-<p><a href="https://tv.naver.com/v/2292653" target="_blank" rel="noopener">그런 REST API로 괜찮은가</a> - 이응준님 강연을 보고 작성하였습니다.</p>
-</blockquote>
-<ul>
-<li>오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다.</li>
-<li>REST의 제약조건 중에서 특히 <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 잘 만족하지 못한다.</li>
-<li>REST를 따르겠다면, <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 만족시켜야한다.<ul>
-<li><strong>Self-descriptive</strong>는 custom media type이나 profile link relation 등으로 만족시킬 수 있다.</li>
-<li><strong>HATEOAS</strong>는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.<h2 id="Self-descriptive-message"><a href="#Self-descriptive-message" class="headerlink" title="Self descriptive message"></a>Self descriptive message</h2></li>
-</ul>
-</li>
-<li>메세지 스스로 메세지에 대한 설명이 가능해야 한다. <ul>
-<li>이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Self-descriptive-message를-달성하기-위한-방법"><a href="#Self-descriptive-message를-달성하기-위한-방법" class="headerlink" title="Self descriptive message를 달성하기 위한 방법"></a>Self descriptive message를 달성하기 위한 방법</h3><ol>
-<li>미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. </li>
-<li>ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다.</li>
-</ol>
-<h2 id="HATEOAS"><a href="#HATEOAS" class="headerlink" title="HATEOAS"></a>HATEOAS</h2><ul>
-<li>하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다.<ul>
-<li>HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.<br>어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.<h3 id="HATEOAS를-달성하기-위한-방법"><a href="#HATEOAS를-달성하기-위한-방법" class="headerlink" title="HATEOAS를 달성하기 위한 방법"></a>HATEOAS를 달성하기 위한 방법</h3></li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>데이터 링크 제공</li>
-<li>HTTP 헤더에 Location, Link를 활용하는 방법</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/Spring-Lombok/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1687,6 +1460,233 @@
 </table>
 <h2 id="실제-사용"><a href="#실제-사용" class="headerlink" title="실제 사용"></a>실제 사용</h2><h3 id="Lombok-어노테이션을-이용하여-만든-Event-Class"><a href="#Lombok-어노테이션을-이용하여-만든-Event-Class" class="headerlink" title="Lombok 어노테이션을 이용하여 만든 Event Class"></a>Lombok 어노테이션을 이용하여 만든 Event Class</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Getter</span> <span class="meta">@Setter</span> <span class="meta">@EqualsAndHashCode</span>(of=<span class="string">"id"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="실제로-만들어진-class파일"><a href="#실제로-만들어진-class파일" class="headerlink" title="실제로 만들어진 .class파일"></a>실제로 만들어진 .class파일</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Source code recreated from a .class file by IntelliJ IDEA</span></span><br><span class="line"><span class="comment">// (powered by Fernflower decompiler)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.doohong.restapi.event;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Event2.<span class="function">Event2Builder <span class="title">builder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Event2.Event2Builder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event2</span><span class="params">(<span class="keyword">final</span> Integer id, <span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">final</span> Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(<span class="keyword">final</span> Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Event2)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Event2 other = (Event2)o;</span><br><span class="line">            <span class="keyword">if</span> (!other.canEqual(<span class="keyword">this</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Object <span class="keyword">this</span>$id = <span class="keyword">this</span>.getId();</span><br><span class="line">                Object other$id = other.getId();</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>$id == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (other$id != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="keyword">this</span>$id.equals(other$id)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(<span class="keyword">final</span> Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Event2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> PRIME = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        Object $id = <span class="keyword">this</span>.getId();</span><br><span class="line">        <span class="keyword">int</span> result = result * <span class="number">59</span> + ($id == <span class="keyword">null</span> ? <span class="number">43</span> : $id.hashCode());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Event2Builder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        Event2Builder() &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Event2.<span class="function">Event2Builder <span class="title">id</span><span class="params">(<span class="keyword">final</span> Integer id)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Event2.<span class="function">Event2Builder <span class="title">name</span><span class="params">(<span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Event2 <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Event2(<span class="keyword">this</span>.id, <span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Integer var10000 = <span class="keyword">this</span>.id;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/REST-API/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/23/REST-API/" class="post-title-link" itemprop="url">REST API란</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-28 21:28:43" itemprop="dateModified" datetime="2019-01-28T21:28:43+09:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/23/REST-API/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/REST-API/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><ul>
+<li>Application Programming Interface</li>
+<li>응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다.</li>
+</ul>
+<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><ul>
+<li>REpresentational State Treansfer</li>
+<li>인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나</li>
+<li>시스템 제각각의 독립적인 진화를 보장하기 위한 방법</li>
+<li>REST API : REST 아키텍처 스타일을 따르는 API  </li>
+</ul>
+<h1 id="그런-REST-API로-괜찮은가"><a href="#그런-REST-API로-괜찮은가" class="headerlink" title="그런 REST API로 괜찮은가"></a>그런 REST API로 괜찮은가</h1><blockquote>
+<p><a href="https://tv.naver.com/v/2292653" target="_blank" rel="noopener">그런 REST API로 괜찮은가</a> - 이응준님 강연을 보고 작성하였습니다.</p>
+</blockquote>
+<ul>
+<li>오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다.</li>
+<li>REST의 제약조건 중에서 특히 <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 잘 만족하지 못한다.</li>
+<li>REST를 따르겠다면, <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 만족시켜야한다.<ul>
+<li><strong>Self-descriptive</strong>는 custom media type이나 profile link relation 등으로 만족시킬 수 있다.</li>
+<li><strong>HATEOAS</strong>는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.<h2 id="Self-descriptive-message"><a href="#Self-descriptive-message" class="headerlink" title="Self descriptive message"></a>Self descriptive message</h2></li>
+</ul>
+</li>
+<li>메세지 스스로 메세지에 대한 설명이 가능해야 한다. <ul>
+<li>이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Self-descriptive-message를-달성하기-위한-방법"><a href="#Self-descriptive-message를-달성하기-위한-방법" class="headerlink" title="Self descriptive message를 달성하기 위한 방법"></a>Self descriptive message를 달성하기 위한 방법</h3><ol>
+<li>미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. </li>
+<li>ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다.</li>
+</ol>
+<h2 id="HATEOAS"><a href="#HATEOAS" class="headerlink" title="HATEOAS"></a>HATEOAS</h2><ul>
+<li>하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다.<ul>
+<li>HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.<br>어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.<h3 id="HATEOAS를-달성하기-위한-방법"><a href="#HATEOAS를-달성하기-위한-방법" class="headerlink" title="HATEOAS를 달성하기 위한 방법"></a>HATEOAS를 달성하기 위한 방법</h3></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>데이터 링크 제공</li>
+<li>HTTP 헤더에 Location, Link를 활용하는 방법</li>
+</ol>
+
           
         
       
