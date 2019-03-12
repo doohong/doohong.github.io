@@ -113,7 +113,7 @@
 <meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage6.PNG">
 <meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage7.PNG">
 <meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage8.PNG">
-<meta property="og:updated_time" content="2019-03-12T05:47:21.853Z">
+<meta property="og:updated_time" content="2019-03-12T05:52:20.537Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JAVA]자바의 기본 개념 정리-6.자바 가비지 컬렉터">
 <meta name="twitter:description" content="가비지 컬렉션쉽게 이야기해서 Java가 개발자 대신 사용하지 않는 객체를 자동으로 찾아 메모리에서 제거해줌으로써 메모리를 관리해주는 것이다. GC 대상이 되는 객체 모든 객체 참조가 null 인 경우 객체가 블럭 안에서 생성되고 블럭이 종료된 경우 부모 객체가 null이 된 경우, 자식 객체는 자동적으로 GC 대상이 된다. 객체가 Weak 참조만 가지고 있">
@@ -406,7 +406,7 @@
                 
               
 
-              <time title="Post created: 2019-03-12 13:20:00 / Updated at: 14:47:21" itemprop="dateCreated datePublished" datetime="2019-03-12T13:20:00+09:00">2019-03-12</time>
+              <time title="Post created: 2019-03-12 13:20:00 / Updated at: 14:52:20" itemprop="dateCreated datePublished" datetime="2019-03-12T13:20:00+09:00">2019-03-12</time>
             
 
             
@@ -514,9 +514,11 @@
 </ol>
 <p><img src="/images/java/GenerationalGarbage3.PNG" alt="Generational Garbage"></p>
 <ol start="4">
-<li>다음 minor garbage collection이 시작될때 Eden space에서 비 참조 객체는 삭제되고 참조객체는 참조 객체는 두번째 S1로 이동한다.<br>또한 S0의 minor minor garbage collection를 통해 S1공간으로 이동하게 되며 age가 증가 된다.<br>모든 객체들이 S1으로 이동하게 되면 S0와 Eden space는 Clear 된다.<br><img src="/images/java/GenerationalGarbage4.PNG" alt="Generational Garbage"></li>
+<li><p>다음 minor garbage collection이 시작될때 Eden space에서 비 참조 객체는 삭제되고 참조객체는 참조 객체는 두번째 S1로 이동한다.<br>또한 S0의 minor minor garbage collection를 통해 S1공간으로 이동하게 되며 age가 증가 된다.<br>모든 객체들이 S1으로 이동하게 되면 S0와 Eden space는 Clear 된다.<br><img src="/images/java/GenerationalGarbage4.PNG" alt="Generational Garbage"></p>
+</li>
+<li><p>다음 minor garbage collection에도 S0로 같은 작업이 반복된다. 그리고 Eden Space와 S1 공간은 Clear 된다.</p>
+</li>
 </ol>
-<p>5.다음 minor garbage collection에도 S0로 같은 작업이 반복된다. 그리고 Eden Space와 S1 공간은 Clear 된다.</p>
 <p><img src="/images/java/GenerationalGarbage5.PNG" alt="Generational Garbage"></p>
 <ol start="6">
 <li>minor garbage collection 후 일정한 age를 넘게 되면 young generation에서 old로 승격 된다.</li>
