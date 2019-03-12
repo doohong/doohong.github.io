@@ -357,6 +357,233 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/12/Java-garbagecollection/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/12/Java-garbagecollection/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-6.자바 가비지 컬렉터</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-12 13:20:00 / Updated at: 14:33:08" itemprop="dateCreated datePublished" datetime="2019-03-12T13:20:00+09:00">2019-03-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/12/Java-garbagecollection/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/12/Java-garbagecollection/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="가비지-컬렉션"><a href="#가비지-컬렉션" class="headerlink" title="가비지 컬렉션"></a>가비지 컬렉션</h1><p>쉽게 이야기해서 Java가 개발자 대신 사용하지 않는 객체를 자동으로 찾아 메모리에서 제거해줌으로써 메모리를 관리해주는 것이다.</p>
+<h2 id="GC-대상이-되는-객체"><a href="#GC-대상이-되는-객체" class="headerlink" title="GC 대상이 되는 객체"></a>GC 대상이 되는 객체</h2><ol>
+<li>모든 객체 참조가 null 인 경우</li>
+<li>객체가 블럭 안에서 생성되고 블럭이 종료된 경우</li>
+<li>부모 객체가 null이 된 경우, 자식 객체는 자동적으로 GC 대상이 된다.</li>
+<li>객체가 Weak 참조만 가지고 있을 경우</li>
+<li>객체가 Soft 참조이지만 메모리 부족이 발생한 경우</li>
+</ol>
+<h2 id="가비지-컬렉션-과정-Generational-Garbage-Collection"><a href="#가비지-컬렉션-과정-Generational-Garbage-Collection" class="headerlink" title="가비지 컬렉션 과정 - Generational Garbage Collection"></a>가비지 컬렉션 과정 - Generational Garbage Collection</h2><p>Generational Garbage Collection에서는 힙을 Young, Old or Tenured, Permanent Generation으로 나눈다.<br><img src="/images/java/heap.png" alt="heap"></p>
+<p>Young 영역</p>
+<ul>
+<li>새롭게 생성한 객체의 대부분이 여기에 위치한다.</li>
+<li>가득차게 되면 minor garbage collection이 일어난다.</li>
+<li>대부분 객체가 금방 사라지기 때문에 많은 객체가 이 곳에서 사라진다.</li>
+</ul>
+<p>Old 영역</p>
+<ul>
+<li>접근 불가능 상태가 되지 않고 Young 영역에서 살아남은 객체들이 복사된다.</li>
+<li>Young 영역 보다 크기가 크게 할당하고 큰 만큼 GC는 적게 발생한다.</li>
+<li>이 영역에서 객체가 사라질때 Major GC라고 한다.</li>
+</ul>
+<p>Permanet 영역</p>
+<ul>
+<li>Method Area라고도 한다.</li>
+<li>JVM이 클래스들과 메소드들을 설명하기 위해 필요한 메타데이터들을 포함하고 있다.</li>
+</ul>
+<ol>
+<li>새로운 객체는 Eden space에 할당 된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage.png" alt="Generational Garbage"></p>
+<ol start="2">
+<li>Eden space가 채워지면 minor garbage collection이 시작 된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage2.png" alt="Generational Garbage"></p>
+<ol start="3">
+<li>참조되는 오브젝트들은 첫 번째 S0로 이동되어지고, 비 참조 객체는 Eden space가 clear 될 때 반환된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage3.png" alt="Generational Garbage"></p>
+<ol start="4">
+<li>다음 minor garbage collection이 시작될때 Eden space에서 비 참조 객체는 삭제되고 참조객체는 참조 객체는 두번째 S1로 이동한다.<br>또한 S0의 minor minor garbage collection를 통해 S1공간으로 이동하게 되며 age가 증가 된다.<br>모든 객체들이 S1으로 이동하게 되면 S0와 Eden space는 Clear 된다.<br><img src="/images/java/GenerationalGarbage4.png" alt="Generational Garbage"></li>
+</ol>
+<p>5.다음 minor garbage collection에도 S0로 같은 작업이 반복된다. 그리고 Eden Space와 S1 공간은 Clear 된다.</p>
+<p><img src="/images/java/GenerationalGarbage5.png" alt="Generational Garbage"></p>
+<ol start="6">
+<li>minor garbage collection 후 일정한 age를 넘게 되면 young generation에서 old로 승격 된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage6.png" alt="Generational Garbage"></p>
+<ol start="7">
+<li>minor garbage collection가 계속 발생하면 객체는 게속 old로 승격된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage7.png" alt="Generational Garbage"></p>
+<ol start="8">
+<li>결국 major garbage collection가 일어나며 old가 Clear 되고 정리된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage8.png" alt="Generational Garbage"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/10/DB-join/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2208,208 +2435,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/27/REST-API-4/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/27/REST-API-4/" class="post-title-link" itemprop="url">REST API 만들기-4</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-27 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-27T18:00:00+09:00">2019-01-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-02-15 19:54:00" itemprop="dateModified" datetime="2019-02-15T19:54:00+09:00">2019-02-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/27/REST-API-4/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/27/REST-API-4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
-</blockquote>
-<h1 id="입력값-제한하기"><a href="#입력값-제한하기" class="headerlink" title="입력값 제한하기"></a>입력값 제한하기</h1><p>현재 API는 입력값으로 id 또는 입력 받은 데이터를 가지고 계산해야하는 값까지도 입력으로 줄 수가 있습니다.</p>
-<p>이번 포스팅에서는 입력으로 받으면 안되는 값들을 EventDTO를 적용하여 제한하는 방법에 대해서 알아보겠습니다. </p>
-<h2 id="EventDTO"><a href="#EventDTO" class="headerlink" title="EventDTO"></a>EventDTO</h2><p>Event 클래스에 어노테이션을 추가해서 DTO로 분리하는것과 같은 기능을 할 수는 있지만, 그런경우에 도메인 클래스에 너무 많은 어노테이션이 추가 됩니다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@NoArgsConstructor</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventDto</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String description;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime closeEnrollmentDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime beginEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> LocalDateTime endEventDateTime;</span><br><span class="line">    <span class="keyword">private</span> String location; <span class="comment">// (optional) 이게 없으면 온라인 모임</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> basePrice; <span class="comment">// (optional)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> maxPrice; <span class="comment">// (optional)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> limitOfEnrollment;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>받기로 한 값들만 가지고 EventDTO 클래스를 만듭니다.</p>
-<h2 id="ModelMapper"><a href="#ModelMapper" class="headerlink" title="ModelMapper"></a>ModelMapper</h2><p>입력 타입을  DTO로 바꿧으니 DTO를 다시 Event 객체로 변경해주어야 Event 타입으로 바꿔 주어야 EventRepository 를 쓸수 있습니다.</p>
-<p>EventDTO 객체를 Event객체로 바꿔주려면 직접 옮기는 방법도 있지만 ModelMapper 를 사용해 쉽게 바꿔줄수 있습니다.</p>
-<h3 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h3> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.modelmapper/modelmapper --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.modelmapper<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>modelmapper<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="빈등록"><a href="#빈등록" class="headerlink" title="빈등록"></a>빈등록</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Bean</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> ModelMapper <span class="title">modelMapper</span><span class="params">()</span></span>&#123;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">new</span> ModelMapper();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="EventController"><a href="#EventController" class="headerlink" title="EventController"></a>EventController</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">private</span> <span class="keyword">final</span> ModelMapper modelMapper;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="title">EventController</span><span class="params">(EventRepository eventRepository, ModelMapper modelMapper)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.eventRepository = eventRepository;</span><br><span class="line">        <span class="keyword">this</span>.modelMapper = modelMapper;</span><br><span class="line">    &#125;</span><br><span class="line">```  </span><br><span class="line">생성자를 통해 ModelMapper 주입을 받습니다.</span><br><span class="line">```java</span><br><span class="line">Event event = modelMapper.map(eventDto,Event.class);</span><br></pre></td></tr></table></figure>
-<p>이렇게 ModelMapper를 통해 Event 객체로 변환할 수 있습니다.</p>
-<h2 id="EventControllerTests"><a href="#EventControllerTests" class="headerlink" title="EventControllerTests"></a>EventControllerTests</h2><p>테스트에서 더이상 테스트에서 만든 Event객체를 쓰지 않기 때문에 Mockito를 사용해서 Stubbing 하는 기능이 적용되지 않습니다.</p>
-<p>그래서 이제 @WebMvcTest 어노테이션을 지우고 @SpringBootTest 와 SpringBootTest에서  MockMvc를 쓰기위해@AutoConfigureMock0Mvc 를 추가하여줍니다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">mockMvc.perform(post(<span class="string">"/api/events"</span>)</span><br><span class="line">                    .contentType(MediaType.APPLICATION_JSON_UTF8)</span><br><span class="line">                    .accept(MediaTypes.HAL_JSON)</span><br><span class="line">                    .content(objectMapper.writeValueAsString(event)))</span><br><span class="line">                    .andDo(print())</span><br><span class="line">                    .andExpect(status().isCreated())</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"id"</span>).exists())</span><br><span class="line">                    .andExpect(header().exists(HttpHeaders.LOCATION))</span><br><span class="line">                    .andExpect(header().string(HttpHeaders.CONTENT_TYPE,MediaTypes.HAL_JSON_UTF8_VALUE))</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"id"</span>).value(Machers.not(<span class="number">10</span>)))</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"free"</span>).value(Machers.not(<span class="keyword">true</span>)))</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"eventStatus"</span>).value(Machers.not(<span class="keyword">true</span>)));</span><br></pre></td></tr></table></figure>
-<p>id, free, eventStatus 같은 입력으로 받아서 안되는 값들이 잘 제한됬는지 이렇게 코드를 추가하여 확인할 수 있습니다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2459,7 +2484,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2607,7 +2632,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">55</span>
+                      
+                    
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
