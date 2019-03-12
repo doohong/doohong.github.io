@@ -105,15 +105,15 @@
 <meta property="og:description" content="가비지 컬렉션쉽게 이야기해서 Java가 개발자 대신 사용하지 않는 객체를 자동으로 찾아 메모리에서 제거해줌으로써 메모리를 관리해주는 것이다. GC 대상이 되는 객체 모든 객체 참조가 null 인 경우 객체가 블럭 안에서 생성되고 블럭이 종료된 경우 부모 객체가 null이 된 경우, 자식 객체는 자동적으로 GC 대상이 된다. 객체가 Weak 참조만 가지고 있">
 <meta property="og:locale" content="ko">
 <meta property="og:image" content="http://doohong.github.com/images/java/heap.png">
-<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage.png">
-<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage2.png">
-<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage3.png">
-<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage4.png">
-<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage5.png">
-<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage6.png">
-<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage7.png">
-<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage8.png">
-<meta property="og:updated_time" content="2019-03-12T05:33:08.347Z">
+<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage.PNG">
+<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage2.PNG">
+<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage3.PNG">
+<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage4.PNG">
+<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage5.PNG">
+<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage6.PNG">
+<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage7.PNG">
+<meta property="og:image" content="http://doohong.github.com/images/java/GenerationalGarbage8.PNG">
+<meta property="og:updated_time" content="2019-03-12T05:47:21.853Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[JAVA]자바의 기본 개념 정리-6.자바 가비지 컬렉터">
 <meta name="twitter:description" content="가비지 컬렉션쉽게 이야기해서 Java가 개발자 대신 사용하지 않는 객체를 자동으로 찾아 메모리에서 제거해줌으로써 메모리를 관리해주는 것이다. GC 대상이 되는 객체 모든 객체 참조가 null 인 경우 객체가 블럭 안에서 생성되고 블럭이 종료된 경우 부모 객체가 null이 된 경우, 자식 객체는 자동적으로 GC 대상이 된다. 객체가 Weak 참조만 가지고 있">
@@ -139,14 +139,6 @@
 
 
 
-
-  <script async src="//www.googletagmanager.com/gtag/js?id=UA-133232274-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-133232274-1');
-  </script>
 
 
 
@@ -414,7 +406,7 @@
                 
               
 
-              <time title="Post created: 2019-03-12 13:20:00 / Updated at: 14:33:08" itemprop="dateCreated datePublished" datetime="2019-03-12T13:20:00+09:00">2019-03-12</time>
+              <time title="Post created: 2019-03-12 13:20:00 / Updated at: 14:47:21" itemprop="dateCreated datePublished" datetime="2019-03-12T13:20:00+09:00">2019-03-12</time>
             
 
             
@@ -512,32 +504,32 @@
 <ol>
 <li>새로운 객체는 Eden space에 할당 된다.</li>
 </ol>
-<p><img src="/images/java/GenerationalGarbage.png" alt="Generational Garbage"></p>
+<p><img src="/images/java/GenerationalGarbage.PNG" alt="Generational Garbage"></p>
 <ol start="2">
 <li>Eden space가 채워지면 minor garbage collection이 시작 된다.</li>
 </ol>
-<p><img src="/images/java/GenerationalGarbage2.png" alt="Generational Garbage"></p>
+<p><img src="/images/java/GenerationalGarbage2.PNG" alt="Generational Garbage"></p>
 <ol start="3">
 <li>참조되는 오브젝트들은 첫 번째 S0로 이동되어지고, 비 참조 객체는 Eden space가 clear 될 때 반환된다.</li>
 </ol>
-<p><img src="/images/java/GenerationalGarbage3.png" alt="Generational Garbage"></p>
+<p><img src="/images/java/GenerationalGarbage3.PNG" alt="Generational Garbage"></p>
 <ol start="4">
-<li>다음 minor garbage collection이 시작될때 Eden space에서 비 참조 객체는 삭제되고 참조객체는 참조 객체는 두번째 S1로 이동한다.<br>또한 S0의 minor minor garbage collection를 통해 S1공간으로 이동하게 되며 age가 증가 된다.<br>모든 객체들이 S1으로 이동하게 되면 S0와 Eden space는 Clear 된다.<br><img src="/images/java/GenerationalGarbage4.png" alt="Generational Garbage"></li>
+<li>다음 minor garbage collection이 시작될때 Eden space에서 비 참조 객체는 삭제되고 참조객체는 참조 객체는 두번째 S1로 이동한다.<br>또한 S0의 minor minor garbage collection를 통해 S1공간으로 이동하게 되며 age가 증가 된다.<br>모든 객체들이 S1으로 이동하게 되면 S0와 Eden space는 Clear 된다.<br><img src="/images/java/GenerationalGarbage4.PNG" alt="Generational Garbage"></li>
 </ol>
 <p>5.다음 minor garbage collection에도 S0로 같은 작업이 반복된다. 그리고 Eden Space와 S1 공간은 Clear 된다.</p>
-<p><img src="/images/java/GenerationalGarbage5.png" alt="Generational Garbage"></p>
+<p><img src="/images/java/GenerationalGarbage5.PNG" alt="Generational Garbage"></p>
 <ol start="6">
 <li>minor garbage collection 후 일정한 age를 넘게 되면 young generation에서 old로 승격 된다.</li>
 </ol>
-<p><img src="/images/java/GenerationalGarbage6.png" alt="Generational Garbage"></p>
+<p><img src="/images/java/GenerationalGarbage6.PNG" alt="Generational Garbage"></p>
 <ol start="7">
 <li>minor garbage collection가 계속 발생하면 객체는 게속 old로 승격된다.</li>
 </ol>
-<p><img src="/images/java/GenerationalGarbage7.png" alt="Generational Garbage"></p>
+<p><img src="/images/java/GenerationalGarbage7.PNG" alt="Generational Garbage"></p>
 <ol start="8">
 <li>결국 major garbage collection가 일어나며 old가 Clear 되고 정리된다.</li>
 </ol>
-<p><img src="/images/java/GenerationalGarbage8.png" alt="Generational Garbage"></p>
+<p><img src="/images/java/GenerationalGarbage8.PNG" alt="Generational Garbage"></p>
 
       
     </div>
