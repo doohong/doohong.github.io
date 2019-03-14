@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Algorithm]프로그래머스-도둑질]]></title>
+    <url>%2F2019%2F03%2F14%2FAlgorithm-%20thievery%2F</url>
+    <content type="text"><![CDATA[도둑질문제 설명도둑이 어느 마을을 털 계획을 하고 있습니다. 이 마을의 모든 집들은 아래 그림과 같이 동그랗게 배치되어 있습니다. 각 집들은 서로 인접한 집들과 방범장치가 연결되어 있기 때문에 인접한 두 집을 털면 경보가 울립니다. 각 집에 있는 돈이 담긴 배열 money가 주어질 때, 도둑이 훔칠 수 있는 돈의 최댓값을 return 하도록 solution 함수를 작성하세요. 제한사항이 마을에 있는 집은 3개 이상 1,000,000개 이하입니다. money 배열의 각 원소는 0 이상 1,000 이하인 정수입니다. 입출력 예 money return [1,2,3,1] 4 소스 코드자바123456789101112131415161718192021class Solution &#123; public int solution(int[] money) &#123; int answer = 0; int length = money.length; int[] dp =new int[length-1]; int[] dp2= new int[length]; dp[0]=money[0]; dp[1]=money[0]; dp2[0]=0; dp2[1]=money[1]; for(int i=2;i&lt;length-1;i++)&#123; dp[i]=Math.max(dp[i-2]+money[i],dp[i-1]); &#125; for(int i=2;i&lt;length;i++)&#123; dp2[i]=Math.max(dp2[i-2]+money[i],dp2[i-1]); &#125; return Math.max(dp[length-2],dp2[length-1]); &#125;&#125; 소스코드 설명값을 저장할 dp배열을 2개를 만들었습니다. 한개는 처음 집을 훔치는 경우이며 다른 한개는 처음 집을 훔치지 않는 경우 입니다. dp배열은 처음 집을 훔치기때문에 인접한 마지막 집은 훔칠수 없으므로 반복문은 length-1 전까지만 돌렸습니다. dp[0]과 dp[1]은 0번째 집부터 1번째 집까지 가장 많이 훔칠수 있는 금액인데 0번집을 훔치기때문에 1번째 집은 훔칠수없게되고 dp[1]까지의 가장큰 금액은 첫번째 집을 훔친 경우이므로 dp[0],dp[1]에는 0번 집의 돈을 넣어 줬습니다. 반복문을 돌면서 두번째 전의 최대 돈에 현재 번째 집의 돈을 합친것과 이전의 최대 돈을 비교하여 dp배열을 채웁니다. dp2의 경우는 0번째 집에서는 돈을 훔치지 않는 경우이며 0을 넣어주고 dp2[1]에는 1번째 집의 돈을 넣어주고 똑같은 방법으로 반복을 시킵니다. dp2는 첫번째 집에서는 돈을 훔치지 않으므로 반복문은 length까지 돌렸습니다. dp와 dp2의 마지막 값을 비교하여 더 큰값을 출력 하여 정답을 구하였습니다.]]></content>
+      <categories>
+        <category>Algorithm</category>
+      </categories>
+      <tags>
+        <tag>Algorithm</tag>
+        <tag>프로그래머스</tag>
+        <tag>동적계획법</tag>
+        <tag>도둑질</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Algorithm]프로그래머스-정수 삼각형]]></title>
     <url>%2F2019%2F03%2F13%2FAlgorithm-triangle%2F</url>
     <content type="text"><![CDATA[정수 삼각형문제 설명 위와 같은 삼각형의 꼭대기에서 바닥까지 이어지는 경로 중, 거쳐간 숫자의 합이 가장 큰 경우를 찾아보려고 합니다. 아래 칸으로 이동할 때는 대각선 방향으로 한 칸 오른쪽 또는 왼쪽으로만 이동 가능합니다. 예를 들어 3에서는 그 아래칸의 8 또는 1로만 이동이 가능합니다. 삼각형의 정보가 담긴 배열 triangle이 매개변수로 주어질 때, 거쳐간 숫자의 최댓값을 return 하도록 solution 함수를 완성하세요. 제한사항삼각형의 높이는 1 이상 500 이하입니다. 삼각형을 이루고 있는 숫자는 0 이상 9,999 이하의 정수입니다. 입출력 예 triangle return [[7], [3, 8], [8, 1, 0], [2, 7, 4, 4], [4, 5, 2, 6, 5]] 30 출처 소스 코드자바123456789101112class Solution &#123; int answer=0; public int solution(int[][] triangle) &#123; for(int i =triangle.length-2;i&gt;=0;i--)&#123; for(int j=0;j&lt;triangle[i].length;j++)&#123; triangle[i][j]=triangle[i+1][j]&gt;triangle[i+1][j+1]?triangle[i][j]+triangle[i+1][j]: triangle[i][j]+ triangle[i+1][j+1]; &#125; &#125; return triangle[0][0]; &#125; &#125; 소스코드 설명처음에는 재귀함수를 통하여 모든 결과를 더하고 맨마지막 행에 도달했을 때 점수가 최대값보다 크면 최대값을 갱신하는 방법을 이용하였습니다. 문제가 원하는 방법이 아니듯 시간 초과로 실패 하였고 다른 방법을 생각하였습니다. 갈수 있는 길은 [i][j]일 경우 [i+1][j] or [i+1][j+1]이기 때문에 반대로 올라가는 방법을 생각하게 되었고 [i][j]에 [i+1][j] 과 [i+1][j+1] 더 큰값을 더해주면서 삼각형 맨 위까지 반복문을 돌리게 되면 triangle[0][0]에는 최대 값이 저장 됩니다.]]></content>
@@ -216,19 +230,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[REST API란]]></title>
-    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
-    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
-      <categories>
-        <category>RESTAPI</category>
-      </categories>
-      <tags>
-        <tag>RESTAPI</tag>
-        <tag>REST</tag>
-        <tag>API</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[[Spring-library]Lombok이란?]]></title>
     <url>%2F2019%2F01%2F23%2FSpring-Lombok%2F</url>
     <content type="text"><![CDATA[Lombok이란? Lombok은 자바에서 Model(DTO, VO, Domain Class) 클래스를 작성할 때, 멤버 변수에 대한 Getter/Setter Method, Equals(), hashCode(), ToString()과 멤버 변수에 값을 설정하는 생성자 등등을 @Getter, @Setter 같은 어노테이션을 통해 자동으로 생성해주는 라이브러리 이다. 공식홈페이지 시작하기라이브러리 의존성 설정Maven12345678&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.projectlombok&lt;/groupId&gt; &lt;artifactId&gt;lombok&lt;/artifactId&gt; &lt;version&gt;1.18.4&lt;/version&gt; &lt;scope&gt;provided&lt;/scope&gt; &lt;/dependency&gt;&lt;/dependencies&gt; Gradle1provided 'org.projectlombok:lombok:1.18.4' AssertJ 메소드 임포트1import lombok.*; Lombok 어노테이션 @어노테이션 설명 세부기능 @Getter, @Setter Getter, Setter 메소드 자동생성 – AccessLevel : 해당 접근 제한자를 설정 – lazy : 동기화를 이용하여 최초 1회만 호출 @ToString ToString 메소드 자동생성 – exclude : 출력하지 않을 필드명 입력 – includeFieldNames : 필등명 생략 여부 설정– callSuper : 상위 클래스 toString호출 여부 설정 @EqualsAndHashCode equals, hashcode 메소드 자동생성 – of : 포함 할 필드, – exclude : 제외 할 필드 @Data @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 자동생성 @val equals, hashcode 메소드 자동생성 @NonNull 해당 값이 Null 일경우 NullPointerException을 발생 @Cleanup 자동 리소스 관리 : close() 메소드를 귀찮음 없게 안전하게 호출 @NoArgsConstructor 인자 없는 생성자 생성 @RequriedArgsConstructor 필수 인자만 있는 생성자 생성(다른 생성자가 없을 때에만 만들어짐) @AllArgsConstructor 모든 인자를 가진 생성자 생성 @Value 불편 클래스를 쉽게 생성 @Builder Builder API 처럼 사용 할 수 있도록 지원 @SneakyThrows Exception 발생시 체크된 Throable로 감싸서 전달 @Synchronized 메소드에서 동기화 Lock을 설정 @Log 종류별 로그를 사용할 수 있도록 한다. – 기본 변수명 : Log (Config 파일 만들어서 명칭 변경 가능)– 로그 종류 : @Log, @Slf4j, @CommonLog, XSlf4j, JBossLog 등 실제 사용Lombok 어노테이션을 이용하여 만든 Event Class1234567@Builder @AllArgsConstructor @NoArgsConstructor@Getter @Setter @EqualsAndHashCode(of="id")public class Event &#123; private Integer id; private String name;&#125; 실제로 만들어진 .class파일123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103//// Source code recreated from a .class file by IntelliJ IDEA// (powered by Fernflower decompiler)//package com.doohong.restapi.event;public class Event2 &#123; private Integer id; private String name; public static Event2.Event2Builder builder() &#123; return new Event2.Event2Builder(); &#125; public Event2(final Integer id, final String name) &#123; this.id = id; this.name = name; &#125; public Event2() &#123; &#125; public Integer getId() &#123; return this.id; &#125; public String getName() &#123; return this.name; &#125; public void setId(final Integer id) &#123; this.id = id; &#125; public void setName(final String name) &#123; this.name = name; &#125; public boolean equals(final Object o) &#123; if (o == this) &#123; return true; &#125; else if (!(o instanceof Event2)) &#123; return false; &#125; else &#123; Event2 other = (Event2)o; if (!other.canEqual(this)) &#123; return false; &#125; else &#123; Object this$id = this.getId(); Object other$id = other.getId(); if (this$id == null) &#123; if (other$id != null) &#123; return false; &#125; &#125; else if (!this$id.equals(other$id)) &#123; return false; &#125; return true; &#125; &#125; &#125; protected boolean canEqual(final Object other) &#123; return other instanceof Event2; &#125; public int hashCode() &#123; int PRIME = true; int result = 1; Object $id = this.getId(); int result = result * 59 + ($id == null ? 43 : $id.hashCode()); return result; &#125; public static class Event2Builder &#123; private Integer id; private String name; Event2Builder() &#123; &#125; public Event2.Event2Builder id(final Integer id) &#123; this.id = id; return this; &#125; public Event2.Event2Builder name(final String name) &#123; this.name = name; return this; &#125; public Event2 build() &#123; return new Event2(this.id, this.name); &#125; public String toString() &#123; Integer var10000 = this.id; return this.name; &#125; &#125;&#125;]]></content>
@@ -240,6 +241,19 @@
         <tag>SpringBoot</tag>
         <tag>library</tag>
         <tag>Lombok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[REST API란]]></title>
+    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
+    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
+      <categories>
+        <category>RESTAPI</category>
+      </categories>
+      <tags>
+        <tag>RESTAPI</tag>
+        <tag>REST</tag>
+        <tag>API</tag>
       </tags>
   </entry>
   <entry>
