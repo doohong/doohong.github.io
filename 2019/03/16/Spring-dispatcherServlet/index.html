@@ -96,20 +96,27 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="doohong&#39;s blog">
-<meta property="og:url" content="http://doohong.github.com/categories/JAVA/index.html">
+  <meta name="description" content="Dispatcher-Servlet 이란  Servlet Container에서 HTTP프로토콜을 통해 들어오는 모든 요청을 프레젠테이션 계층의 제일앞에 둬서 중앙집중식으로 처리해주는 프론트 컨트롤러(Front Controller)  클라이언트로부터 어떠한 요청이 오면 Tomcat(톰캣)과 같은 서블릿컨테이너가 요청을 받는데,이때 제일 앞에서 서버로 들어오는">
+<meta name="keywords" content="Spring,framework,DispatcherServlet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Spring]Dispatcher-Servlet이란">
+<meta property="og:url" content="http://doohong.github.com/2019/03/16/Spring-dispatcherServlet/index.html">
 <meta property="og:site_name" content="doohong&#39;s blog">
+<meta property="og:description" content="Dispatcher-Servlet 이란  Servlet Container에서 HTTP프로토콜을 통해 들어오는 모든 요청을 프레젠테이션 계층의 제일앞에 둬서 중앙집중식으로 처리해주는 프론트 컨트롤러(Front Controller)  클라이언트로부터 어떠한 요청이 오면 Tomcat(톰캣)과 같은 서블릿컨테이너가 요청을 받는데,이때 제일 앞에서 서버로 들어오는">
 <meta property="og:locale" content="ko">
+<meta property="og:image" content="http://doohong.github.com/images/spring/DispatcherServlet.png">
+<meta property="og:updated_time" content="2019-03-16T12:58:00.664Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="doohong&#39;s blog">
+<meta name="twitter:title" content="[Spring]Dispatcher-Servlet이란">
+<meta name="twitter:description" content="Dispatcher-Servlet 이란  Servlet Container에서 HTTP프로토콜을 통해 들어오는 모든 요청을 프레젠테이션 계층의 제일앞에 둬서 중앙집중식으로 처리해주는 프론트 컨트롤러(Front Controller)  클라이언트로부터 어떠한 요청이 오면 Tomcat(톰캣)과 같은 서블릿컨테이너가 요청을 받는데,이때 제일 앞에서 서버로 들어오는">
+<meta name="twitter:image" content="http://doohong.github.com/images/spring/DispatcherServlet.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://doohong.github.com/categories/JAVA/">
+  <link rel="canonical" href="http://doohong.github.com/2019/03/16/Spring-dispatcherServlet/">
 
 
 
@@ -119,7 +126,7 @@
   };
 </script>
 
-  <title>카테고리: JAVA | doohong's blog</title>
+  <title>[Spring]Dispatcher-Servlet이란 | doohong's blog</title>
   
 
 
@@ -167,7 +174,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -260,7 +267,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -299,28 +306,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -354,187 +339,227 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>JAVA<small>카테고리</small>
-        </h1>
-      </div>
-
-      
-        
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/16/Spring-dispatcherServlet/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/03/12/Java-garbagecollection/" itemprop="url">
-            
-              <span itemprop="name">[JAVA]자바의 기본 개념 정리-6.자바 가비지 컬렉터</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">[Spring]Dispatcher-Servlet이란
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-12T13:20:00+09:00" content="2019-03-12">
-          03-12
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-16 16:00:00 / Updated at: 21:58:00" itemprop="dateCreated datePublished" datetime="2019-03-16T16:00:00+09:00">2019-03-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/16/Spring-dispatcherServlet/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/16/Spring-dispatcherServlet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2018/03/05/Java-AccessModifier/" itemprop="url">
-            
-              <span itemprop="name">[JAVA]자바의 기본 개념 정리-5.접근제어자</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-03-05T18:20:00+09:00" content="2018-03-05">
-          03-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2018/03/04/java-string-pool/" itemprop="url">
-            
-              <span itemprop="name">[JAVA]자바의 기본 개념 정리-4.String pool</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-03-04T16:20:00+09:00" content="2018-03-04">
-          03-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2018/03/03/java-string/" itemprop="url">
-            
-              <span itemprop="name">[JAVA]자바의 기본 개념 정리-3.String, StringBuffer, StringBuilder</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-03-03T19:15:00+09:00" content="2018-03-03">
-          03-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2018/03/02/Java-runtime-data-area/" itemprop="url">
-            
-              <span itemprop="name">[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-03-02T18:20:00+09:00" content="2018-03-02">
-          03-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2018/03/01/Java-summary/" itemprop="url">
-            
-              <span itemprop="name">[JAVA]자바의 기본 개념 정리-1.자바란?</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-03-01T13:30:00+09:00" content="2018-03-01">
-          03-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="Dispatcher-Servlet-이란"><a href="#Dispatcher-Servlet-이란" class="headerlink" title="Dispatcher-Servlet 이란"></a>Dispatcher-Servlet 이란</h1><blockquote>
+<p> Servlet Container에서 HTTP프로토콜을 통해 들어오는 모든 요청을 프레젠테이션 계층의 제일앞에 둬서 중앙집중식으로 처리해주는 프론트 컨트롤러(Front Controller)</p>
+</blockquote>
+<p>클라이언트로부터 어떠한 요청이 오면 Tomcat(톰캣)과 같은 서블릿컨테이너가 요청을 받는데,<br>이때 제일 앞에서 서버로 들어오는 모든 요청을 처리하는 <strong>프론트 컨트롤러</strong>를 Spring에서 정의하였고,<br>이를 DispatcherServlet이라고 한다. </p>
+<p>그래서 공통처리 작업을 DispatcherServlet이 처리한 후, 적절한 세부 컨트롤러로 작업을 위임한다.</p>
+<h2 id="Dispatcher-Servlet의-처리과정"><a href="#Dispatcher-Servlet의-처리과정" class="headerlink" title="Dispatcher-Servlet의 처리과정"></a>Dispatcher-Servlet의 처리과정</h2><p><img src="/images/spring/DispatcherServlet.png" alt="DispatcherServlet"></p>
+<p>먼저 DispatcherServlet이 요청을 받으면 그 요청을 처리할 수 있는 Handler의 이름을 HandlerMapping에게 물어본다.</p>
+<p>HandlerMapping은 요청 URL을 보고 Handler를 판단하고, 또한 Handler 실행 전에 전처리, 후처리로 실행해야 할 인터셉터 목록을 결정한다.</p>
+<p>DispatcherServlet은 제어권을 Handler로 전달한다. </p>
+<p>Handler는 응답에 필요한 서비스를 호출하고 응답에서 렌더링해야 하는 View Name을 판단해서 DispatcherServlet에 전송한다.</p>
+<p>DispatcherServlet은 논리적인 View Name을 ViewResolver에 전달해서 응답에 필요한 View를 생성할 수 있도록 한다.</p>
+<p>그 후 해당 View에 Model과 컨트롤러를 전달해서 응답을 생성한다.</p>
+<p>이렇게 생성한 응답을 클라이언트에게 반환한다.</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/framework/" rel="tag"># framework</a>
+          
+            <a href="/tags/DispatcherServlet/" rel="tag"># DispatcherServlet</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/15/Algorithm-wordConversion/" rel="next" title="[Algorithm]프로그래머스-단어 변환">
+                <i class="fa fa-chevron-left"></i> [Algorithm]프로그래머스-단어 변환
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -555,8 +580,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            흝어보기
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -811,6 +845,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dispatcher-Servlet-이란"><span class="nav-number">1.</span> <span class="nav-text">Dispatcher-Servlet 이란</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Dispatcher-Servlet의-처리과정"><span class="nav-number">1.1.</span> <span class="nav-text">Dispatcher-Servlet의 처리과정</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -937,6 +988,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -950,9 +1005,28 @@
   <script id="dsq-count-scr" src="https://doohong-github-io.disqus.com/count.js" async></script>
 
 
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://doohong.github.com/2019/03/16/Spring-dispatcherServlet/";
+    this.page.identifier = "2019/03/16/Spring-dispatcherServlet/";
+    this.page.title = '[Spring]Dispatcher-Servlet이란';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://doohong-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
 
 
 
+
+
+  
 
 
   

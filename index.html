@@ -349,6 +349,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/16/Spring-dispatcherServlet/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/16/Spring-dispatcherServlet/" class="post-title-link" itemprop="url">[Spring]Dispatcher-Servlet이란</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-16 16:00:00 / Updated at: 21:58:00" itemprop="dateCreated datePublished" datetime="2019-03-16T16:00:00+09:00">2019-03-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/16/Spring-dispatcherServlet/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/16/Spring-dispatcherServlet/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Dispatcher-Servlet-이란"><a href="#Dispatcher-Servlet-이란" class="headerlink" title="Dispatcher-Servlet 이란"></a>Dispatcher-Servlet 이란</h1><blockquote>
+<p> Servlet Container에서 HTTP프로토콜을 통해 들어오는 모든 요청을 프레젠테이션 계층의 제일앞에 둬서 중앙집중식으로 처리해주는 프론트 컨트롤러(Front Controller)</p>
+</blockquote>
+<p>클라이언트로부터 어떠한 요청이 오면 Tomcat(톰캣)과 같은 서블릿컨테이너가 요청을 받는데,<br>이때 제일 앞에서 서버로 들어오는 모든 요청을 처리하는 <strong>프론트 컨트롤러</strong>를 Spring에서 정의하였고,<br>이를 DispatcherServlet이라고 한다. </p>
+<p>그래서 공통처리 작업을 DispatcherServlet이 처리한 후, 적절한 세부 컨트롤러로 작업을 위임한다.</p>
+<h2 id="Dispatcher-Servlet의-처리과정"><a href="#Dispatcher-Servlet의-처리과정" class="headerlink" title="Dispatcher-Servlet의 처리과정"></a>Dispatcher-Servlet의 처리과정</h2><p><img src="/images/spring/DispatcherServlet.png" alt="DispatcherServlet"></p>
+<p>먼저 DispatcherServlet이 요청을 받으면 그 요청을 처리할 수 있는 Handler의 이름을 HandlerMapping에게 물어본다.</p>
+<p>HandlerMapping은 요청 URL을 보고 Handler를 판단하고, 또한 Handler 실행 전에 전처리, 후처리로 실행해야 할 인터셉터 목록을 결정한다.</p>
+<p>DispatcherServlet은 제어권을 Handler로 전달한다. </p>
+<p>Handler는 응답에 필요한 서비스를 호출하고 응답에서 렌더링해야 하는 View Name을 판단해서 DispatcherServlet에 전송한다.</p>
+<p>DispatcherServlet은 논리적인 View Name을 ViewResolver에 전달해서 응답에 필요한 View를 생성할 수 있도록 한다.</p>
+<p>그 후 해당 View에 Model과 컨트롤러를 전달해서 응답을 생성한다.</p>
+<p>이렇게 생성한 응답을 클라이언트에게 반환한다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/15/Algorithm-wordConversion/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2122,222 +2307,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/02/15/Algorithm-gear/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/15/Algorithm-gear/" class="post-title-link" itemprop="url">[Algorithm]백준-톱니바퀴</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-02-15 18:20:00" itemprop="dateCreated datePublished" datetime="2019-02-15T18:20:00+09:00">2019-02-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-02-16 19:59:39" itemprop="dateModified" datetime="2019-02-16T19:59:39+09:00">2019-02-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/02/15/Algorithm-gear/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/15/Algorithm-gear/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="톱니바퀴"><a href="#톱니바퀴" class="headerlink" title="톱니바퀴"></a>톱니바퀴</h1><blockquote>
-<p><a href="https://www.acmicpc.net/problem/14891" target="_blank" rel="noopener">출처</a></p>
-</blockquote>
-<h2 id="문제-설명"><a href="#문제-설명" class="headerlink" title="문제 설명"></a>문제 설명</h2><p>총 8개의 톱니를 가지고 있는 톱니바퀴 4개가 아래 그림과 같이 일렬로 놓여져 있다. 또, 톱니는 N극 또는 S극 중 하나를 나타내고 있다. 톱니바퀴에는 번호가 매겨져 있는데, 가장 왼쪽 톱니바퀴가 1번, 그 오른쪽은 2번, 그 오른쪽은 3번, 가장 오른쪽 톱니바퀴는 4번이다.</p>
-<p><img src="/images/algoritm/gear1.png" alt="gear1"></p>
-<p>이때, 톱니바퀴를 총 K번 회전시키려고 한다. 톱니바퀴의 회전은 한 칸을 기준으로 한다. 회전은 시계 방향과 반시계 방향이 있고, 아래 그림과 같이 회전한다.</p>
-<p><img src="/images/algoritm/gear2.png" alt="gear2"></p>
-<p><img src="/images/algoritm/gear3.png" alt="gear3"></p>
-<p>톱니바퀴를 회전시키려면, 회전시킬 톱니바퀴와 회전시킬 방향을 결정해야 한다. 톱니바퀴가 회전할 때, 서로 맞닿은 극에 따라서 옆에 있는 톱니바퀴를 회전시킬 수도 있고, 회전시키지 않을 수도 있다. 톱니바퀴 A를 회전할 때, 그 옆에 있는 톱니바퀴 B와 서로 맞닿은 톱니의 극이 다르다면, B는 A가 회전한 방향과 반대방향으로 회전하게 된다. 예를 들어, 아래와 같은 경우를 살펴보자.</p>
-<p><img src="/images/algoritm/gear4.png" alt="gear4"></p>
-<p>두 톱니바퀴의 맞닿은 부분은 초록색 점선으로 묶여있는 부분이다. 여기서, 3번 톱니바퀴를 반시계 방향으로 회전했다면, 4번 톱니바퀴는 시계 방향으로 회전하게 된다. 2번 톱니바퀴는 맞닿은 부분이 S극으로 서로 같기 때문에, 회전하지 않게 되고, 1번 톱니바퀴는 2번이 회전하지 않았기 때문에, 회전하지 않게 된다. 따라서, 아래 그림과 같은 모양을 만들게 된다.</p>
-<p><img src="/images/algoritm/gear5.png" alt="gear5"></p>
-<p>위와 같은 상태에서 1번 톱니바퀴를 시계 방향으로 회전시키면, 2번 톱니바퀴가 반시계 방향으로 회전하게 되고, 2번이 회전하기 때문에, 3번도 동시에 시계 방향으로 회전하게 된다. 4번은 3번이 회전하지만, 맞닿은 극이 같기 때문에 회전하지 않는다. 따라서, 아래와 같은 상태가 된다.</p>
-<p><img src="/images/algoritm/gear6.png" alt="gear6"></p>
-<p>톱니바퀴의 초기 상태와 톱니바퀴를 회전시킨 방법이 주어졌을 때, 최종 톱니바퀴의 상태를 구하는 프로그램을 작성하시오.</p>
-<h2 id="입력"><a href="#입력" class="headerlink" title="입력"></a>입력</h2><p>첫째 줄에 1번 톱니바퀴의 상태, 둘째 줄에 2번 톱니바퀴의 상태, 셋째 줄에 3번 톱니바퀴의 상태, 넷째 줄에 4번 톱니바퀴의 상태가 주어진다. 상태는 8개의 정수로 이루어져 있고, 12시방향부터 시계방향 순서대로 주어진다. N극은 0, S극은 1로 나타나있다.</p>
-<p>다섯째 줄에는 회전 횟수 K(1 ≤ K ≤ 100)가 주어진다. 다음 K개 줄에는 회전시킨 방법이 순서대로 주어진다. 각 방법은 두 개의 정수로 이루어져 있고, 첫 번째 정수는 회전시킨 톱니바퀴의 번호, 두 번째 정수는 방향이다. 방향이 1인 경우는 시계 방향이고, -1인 경우는 반시계 방향이다.</p>
-<h2 id="출력"><a href="#출력" class="headerlink" title="출력"></a>출력</h2><p>총 K번 회전시킨 이후에 네 톱니바퀴의 점수의 합을 출력한다. 점수란 다음과 같이 계산한다.</p>
-<ul>
-<li>1번 톱니바퀴의 12시방향이 N극이면 0점, S극이면 1점</li>
-<li>2번 톱니바퀴의 12시방향이 N극이면 0점, S극이면 2점</li>
-<li>3번 톱니바퀴의 12시방향이 N극이면 0점, S극이면 4점</li>
-<li>4번 톱니바퀴의 12시방향이 N극이면 0점, S극이면 8점</li>
-</ul>
-<h2 id="입출력-예제"><a href="#입출력-예제" class="headerlink" title="입출력 예제"></a>입출력 예제</h2><p><img src="/images/algoritm/gear7.PNG" alt="gear7"></p>
-<h2 id="소스-코드"><a href="#소스-코드" class="headerlink" title="소스 코드"></a>소스 코드</h2><p><strong>자바</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> ag;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123; <span class="comment">// Gear 클래스로 만들고 싶었지만 백준 체점을 위해 이름을  Main 클래스로 변경</span></span><br><span class="line">    <span class="keyword">int</span>[] state = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> top =<span class="number">0</span>; <span class="comment">// 톱니바퀴 처음 맨위의 인덱스</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> right = <span class="number">2</span>; <span class="comment">// 톱니바퀴 3시방향 처음 인덱스</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> left = <span class="number">6</span>; <span class="comment">// 톱니바퀴 9시방향 처음 인덱스</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> direct = <span class="number">0</span>; <span class="comment">// 톱니바퀴가 어떤 방향으로 돌지</span></span><br><span class="line">    Main rightGear=<span class="keyword">null</span>; <span class="comment">// 톱니바퀴의 오른쪽 톱니바퀴</span></span><br><span class="line">    Main leftGear=<span class="keyword">null</span>; <span class="comment">// 톱니바퀴의 왼쪽 톱니바퀴</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Main</span><span class="params">(<span class="keyword">int</span>[] state)</span></span>&#123; <span class="comment">//톱니바퀴 클래스의 생성자로 톱니바퀴의 톱니에 적힌 극을 배열로 저장</span></span><br><span class="line">        <span class="keyword">this</span>.state=state;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRightGear</span><span class="params">(Main rightGear)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.rightGear =rightGear;</span><br><span class="line">    &#125; <span class="comment">// 오른쪽 톱니바퀴를 등록</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLeftGear</span><span class="params">(Main leftGear)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.leftGear =leftGear;</span><br><span class="line">    &#125; <span class="comment">// 왼쪽 톱니바퀴를 등록</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startTurn</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123; <span class="comment">// 맨처음 톱니바퀴를 돌릴때 실행시킬 메서드</span></span><br><span class="line">        <span class="keyword">this</span>.direct=num;</span><br><span class="line">        <span class="keyword">if</span>(rightGear!=<span class="keyword">null</span> &amp;&amp; leftGear!=<span class="keyword">null</span>)&#123; <span class="comment">// 좌우 톱니바퀴가 모두 존재할 경우 양쪽으로 톱니바퀴 돌리는 메서드 실행</span></span><br><span class="line">            rightTurn(direct*-<span class="number">1</span>); <span class="comment">//좌우 톱니바퀴는 자신과 반대로 돌기때문에 -1을 곱해 반대 값을 넘겨줌</span></span><br><span class="line">            leftTurn(direct*-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(rightGear==<span class="keyword">null</span>)&#123; <span class="comment">// 왼쪽 톱니바퀴만 존재할 경우</span></span><br><span class="line">            leftTurn(direct*-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(leftGear==<span class="keyword">null</span>)&#123; <span class="comment">// 오른쪽 톱니바퀴만 존재할 경우</span></span><br><span class="line">            rightTurn(direct*-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        turn(); <span class="comment">//좌우 모든 톱니바퀴를 돌리고 나서 자신의 톱니바퀴를 돌림</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">turn</span><span class="params">()</span></span>&#123; <span class="comment">// 톱니바퀴를 돌리는 메서드 배열을 직접 바꾸지않고 top, left, right 값만 바꿔줌</span></span><br><span class="line">        <span class="keyword">if</span>(direct ==-<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(top==<span class="number">7</span>)top =<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> top++;</span><br><span class="line">            <span class="keyword">if</span>(right==<span class="number">7</span>)right=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> right++;</span><br><span class="line">            <span class="keyword">if</span>(left==<span class="number">7</span>)left=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">else</span> left++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(direct==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(top==<span class="number">0</span>)top =<span class="number">7</span>;</span><br><span class="line">            <span class="keyword">else</span> top--;</span><br><span class="line">            <span class="keyword">if</span>(right==<span class="number">0</span>)right=<span class="number">7</span>;</span><br><span class="line">            <span class="keyword">else</span> right--;</span><br><span class="line">            <span class="keyword">if</span>(left==<span class="number">0</span>)left=<span class="number">7</span>;</span><br><span class="line">            <span class="keyword">else</span> left--;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">rightTurn</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">        rightGear.direct=num; <span class="comment">// 오른쪽 톱니바퀴의 방향에 자신과 반대의 값을 넣어줌</span></span><br><span class="line">        <span class="keyword">if</span>(rightGear.rightGear==<span class="keyword">null</span>&amp;&amp;<span class="keyword">this</span>.state[<span class="keyword">this</span>.right]!=rightGear.state[rightGear.left])&#123; <span class="comment">//오른쪽 톱니바퀴의 오른쪽 톱니바퀴가 존재하지않고 자신의 오른쪽 값과 오른쪽 톱니바퀴의 왼쪽 값이 다를경우</span></span><br><span class="line">            rightGear.turn(); <span class="comment">//오른쪽 톱니바퀴만 돌림</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.state[<span class="keyword">this</span>.right]!=rightGear.state[rightGear.left])&#123; <span class="comment">//오른쪽 톱니바퀴의 오른쪽 톱니바퀴가 존재하고 자신의 오른쪽 값과 오른쪽 톱니바퀴의 왼쪽 값이 다를경우</span></span><br><span class="line">            rightGear.rightTurn(rightGear.direct*-<span class="number">1</span>); <span class="comment">//오른쪽 톱니바퀴의 rightTurn 메서드를 실행시켜 오른쪽 톱니바퀴의 오른쪽 톱니바퀴도 값비교후 돌림</span></span><br><span class="line">            rightGear.turn();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123; <span class="comment">// 자신의 오른쪽 값과 오른쪽 톱니바퀴의 왼쪽값이 다를 경우는 아무 작업 하지 않고 리턴</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">leftTurn</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">        leftGear.direct=num;</span><br><span class="line">        <span class="keyword">if</span>(leftGear.leftGear==<span class="keyword">null</span> &amp;&amp; <span class="keyword">this</span>.state[<span class="keyword">this</span>.left]!=leftGear.state[leftGear.right])&#123;</span><br><span class="line">            leftGear.turn();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.state[<span class="keyword">this</span>.left]!=leftGear.state[leftGear.right])&#123;</span><br><span class="line">            leftGear.leftTurn(leftGear.direct*-<span class="number">1</span>);</span><br><span class="line">            leftGear.turn();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">score</span><span class="params">()</span></span>&#123; <span class="comment">//맨위의 값이 1일 경우는 점수있음</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.state[<span class="keyword">this</span>.top]==<span class="number">1</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> BufferedReader br =<span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> answerScore =<span class="number">0</span>; <span class="comment">//정답을 만들기 위한 변수</span></span><br><span class="line">        List&lt;<span class="keyword">int</span>[]&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;<span class="number">4</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span>[] gearStateArray =<span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">8</span>];</span><br><span class="line">            String arrayString = br.readLine();</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;arrayString.length();j++)&#123;</span><br><span class="line">                gearStateArray[j]=arrayString.charAt(j) -<span class="string">'0'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            arrayList.add(gearStateArray);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Main gear1 = <span class="keyword">new</span> Main(arrayList.get(<span class="number">0</span>)); <span class="comment">// 톱니바퀴 1 생성</span></span><br><span class="line">        Main gear2 = <span class="keyword">new</span> Main(arrayList.get(<span class="number">1</span>)); <span class="comment">// 톱니바퀴 2 생성</span></span><br><span class="line">        Main gear3 = <span class="keyword">new</span> Main(arrayList.get(<span class="number">2</span>)); <span class="comment">// 톱니바퀴 3 생성</span></span><br><span class="line">        Main gear4 = <span class="keyword">new</span> Main(arrayList.get(<span class="number">3</span>)); <span class="comment">// 톱니바퀴 4 생성</span></span><br><span class="line"></span><br><span class="line">        gear1.setRightGear(gear2); <span class="comment">//톱니바퀴의 양옆 톱니바퀴들 등록</span></span><br><span class="line">        gear2.setLeftGear(gear1); <span class="comment">//톱니바퀴의 양옆 톱니바퀴들 등록</span></span><br><span class="line">        gear2.setRightGear(gear3); <span class="comment">//톱니바퀴의 양옆 톱니바퀴들 등록</span></span><br><span class="line">        gear3.setLeftGear(gear2); <span class="comment">//톱니바퀴의 양옆 톱니바퀴들 등록</span></span><br><span class="line">        gear3.setRightGear(gear4); <span class="comment">//톱니바퀴의 양옆 톱니바퀴들 등록</span></span><br><span class="line">        gear4.setLeftGear(gear3); <span class="comment">//톱니바퀴의 양옆 톱니바퀴들 등록</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> count = Integer.parseInt(br.readLine());</span><br><span class="line">        <span class="keyword">int</span> gear,direct;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;count;i++)&#123;</span><br><span class="line">            StringTokenizer st = <span class="keyword">new</span> StringTokenizer(br.readLine(), <span class="string">" "</span>);</span><br><span class="line">            gear =Integer.parseInt(st.nextToken());</span><br><span class="line">            direct = Integer.parseInt(st.nextToken());</span><br><span class="line">            <span class="keyword">if</span>(gear==<span class="number">1</span> &amp;&amp; direct==<span class="number">1</span>) gear1.startTurn(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(gear==<span class="number">1</span> &amp;&amp; direct==-<span class="number">1</span>) gear1.startTurn(-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(gear==<span class="number">2</span> &amp;&amp; direct==<span class="number">1</span>) gear2.startTurn(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(gear==<span class="number">2</span> &amp;&amp; direct==-<span class="number">1</span>) gear2.startTurn(-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(gear==<span class="number">3</span> &amp;&amp; direct==<span class="number">1</span>) gear3.startTurn(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(gear==<span class="number">3</span> &amp;&amp; direct==-<span class="number">1</span>) gear3.startTurn(-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(gear==<span class="number">4</span> &amp;&amp; direct==<span class="number">1</span>) gear4.startTurn(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(gear==<span class="number">4</span> &amp;&amp; direct==-<span class="number">1</span>) gear4.startTurn(-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        answerScore+=gear1.score() + (gear2.score()*<span class="number">2</span>) + (gear3.score()*<span class="number">4</span>) + (gear4.score()*<span class="number">8</span>); <span class="comment">//각 톱니바퀴에 점수에 맞게 계산</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        System.out.println(answerScore);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="소스코드-설명"><a href="#소스코드-설명" class="headerlink" title="소스코드 설명"></a>소스코드 설명</h2><p>저는 우선 링크드 리스트를 이용하여 톱니바퀴가 바뀔때마다 리스트를 변경하려고 하였습니다. </p>
-<p>그러나 그냥 좌, 우, 위의 인덱스 정보만 저장 해놓고 변경하는식으로 사용하면 될 거같아 배열을 사용하기로 하였습니다.</p>
-<p>톱니바퀴 객체를 만들고 그안에 인덱스와 배열 정보들을 기초변수로 각 기어의 양 옆 기어들을 저장시키기위한 톱니바퀴 클래스 참조변수 두개를 변수로 두고 set 메서드로 연결 시키도록 하였습니다.</p>
-<p>turn 메서드는 톱니바퀴가 돌았을때의 효과를 주기 위한 인덱스 변경 메서드입니다.</p>
-<p>startTurn 메서드는 맨 처음 입력값에서 톱니바퀴를 돌릴 경우 양 옆의 톱니바퀴가 존재할 경우 양 옆으로 회전을 전이시키기 위해 따로 작성한 메서드 입니다.</p>
-<p>leftTurn, rightTurn 메서드는 각각 옆의 톱니바퀴가 돌아야 한다면 돌리고, 옆의 톱니바퀴에서도 메서드를 실행시켜 옆옆의 톱니바퀴들도 게속 확인하며 돌리는 메서드입니다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2387,7 +2356,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-count">33</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2549,7 +2518,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">62</span>
+                      
+                    
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
