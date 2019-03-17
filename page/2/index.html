@@ -349,6 +349,212 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/06/TCP_UDP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/06/TCP_UDP/" class="post-title-link" itemprop="url">TCP/UDP 차이점</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-06 14:24:00 / Updated at: 20:17:16" itemprop="dateCreated datePublished" datetime="2019-03-06T14:24:00+09:00">2019-03-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/jobinterview/" itemprop="url" rel="index"><span itemprop="name">jobinterview</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/06/TCP_UDP/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/06/TCP_UDP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h1><h2 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h2><ul>
+<li>신뢰성있는 데이터 전송을 지원하는 연결지향형 프로토콜</li>
+<li>Sequence Number, Ack Number를 통한 신뢰성 보장</li>
+<li>연결의 설정(<strong>3-way handshaking</strong>)과 해제(<strong>4-way handshaking</strong>)</li>
+<li>흐름제어와 혼잡제어를 지원하며 데이터의 순서를 보장</li>
+</ul>
+<h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><ul>
+<li>일방적으로 데이터를 전달하는 비연결형 프로토콜</li>
+<li>데이터 전송에 대한 보장을 하지 않음 (비신뢰성)</li>
+<li>헤더에 Checksum 필드를 통한 최소한의 오류검출</li>
+<li>속도가 빠름</li>
+</ul>
+<p><img src="/images/jobinterview/TCP-UDP.png" alt="TCP_UDP"></p>
+<h2 id="3-way-handshaking"><a href="#3-way-handshaking" class="headerlink" title="3-way handshaking"></a>3-way handshaking</h2><p><img src="/images/jobinterview/3-way handshaking.jfif" alt="3-way handshaking"><br>연결을 하여 데이터를 전송하기 위해  TCP에서 3-way handshaking 과정을 거친다.</p>
+<ol>
+<li>접속 요청 프로세스가 연결요청 메시지 전송(SYN)</li>
+<li>접속 요청을 받은 프로세스가 수락 (SYN + ACK)</li>
+<li>마지막으로 접속 요청 프로세스가 수락 확인을 보내 연결을 맺음(ACK)</li>
+</ol>
+<ul>
+<li>SYN(Synchronization) : 연결요청, 세션을 설정하는데 사용되며 초기에 시퀀스 번호를 보냄</li>
+<li>ACK(Acknowledgement) : 보낸 시퀀스 번호에 TCP 계층에서의 길이 또는 양을 더한 것과 같은 값을 ACK에 포함하여 전송</li>
+</ul>
+<h2 id="4-way-handshaking"><a href="#4-way-handshaking" class="headerlink" title="4-way handshaking"></a>4-way handshaking</h2><p><img src="/images/jobinterview/4-way handshaking.png" alt="4-way handshaking"></p>
+<p>4-way handshaking는 세션을 종료하기 위해 수해되는 절차이다.</p>
+<ol>
+<li>클라이언트가 연결을 종료하겠다는 FIN 플래그를 전송한다.</li>
+<li>서버는 일단 확인메시지를 보내고 자신의 통신이 끝날때까지 기다리는데 이 상태가 TIME_WAT 상태</li>
+<li>서버가 통신이 끝났으면 연결이 종료되었다고 클라이언트에게 FIN 플래그를 전송</li>
+<li>클라이언트는 확인했다는 메시지를 보냄</li>
+</ol>
+<ul>
+<li>FIN(Finish) : 세션을 종료시키는데 사용되며 더 이상 보낸 데이터가 없음을 표시</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/02/15/Algorithm-gear/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2323,233 +2529,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/REST-API/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/23/REST-API/" class="post-title-link" itemprop="url">REST API란</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-28 21:28:43" itemprop="dateModified" datetime="2019-01-28T21:28:43+09:00">2019-01-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/23/REST-API/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/REST-API/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
-</blockquote>
-<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><ul>
-<li>Application Programming Interface</li>
-<li>응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다.</li>
-</ul>
-<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><ul>
-<li>REpresentational State Treansfer</li>
-<li>인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나</li>
-<li>시스템 제각각의 독립적인 진화를 보장하기 위한 방법</li>
-<li>REST API : REST 아키텍처 스타일을 따르는 API  </li>
-</ul>
-<h1 id="그런-REST-API로-괜찮은가"><a href="#그런-REST-API로-괜찮은가" class="headerlink" title="그런 REST API로 괜찮은가"></a>그런 REST API로 괜찮은가</h1><blockquote>
-<p><a href="https://tv.naver.com/v/2292653" target="_blank" rel="noopener">그런 REST API로 괜찮은가</a> - 이응준님 강연을 보고 작성하였습니다.</p>
-</blockquote>
-<ul>
-<li>오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다.</li>
-<li>REST의 제약조건 중에서 특히 <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 잘 만족하지 못한다.</li>
-<li>REST를 따르겠다면, <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 만족시켜야한다.<ul>
-<li><strong>Self-descriptive</strong>는 custom media type이나 profile link relation 등으로 만족시킬 수 있다.</li>
-<li><strong>HATEOAS</strong>는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.<h2 id="Self-descriptive-message"><a href="#Self-descriptive-message" class="headerlink" title="Self descriptive message"></a>Self descriptive message</h2></li>
-</ul>
-</li>
-<li>메세지 스스로 메세지에 대한 설명이 가능해야 한다. <ul>
-<li>이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Self-descriptive-message를-달성하기-위한-방법"><a href="#Self-descriptive-message를-달성하기-위한-방법" class="headerlink" title="Self descriptive message를 달성하기 위한 방법"></a>Self descriptive message를 달성하기 위한 방법</h3><ol>
-<li>미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. </li>
-<li>ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다.</li>
-</ol>
-<h2 id="HATEOAS"><a href="#HATEOAS" class="headerlink" title="HATEOAS"></a>HATEOAS</h2><ul>
-<li>하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다.<ul>
-<li>HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.<br>어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.<h3 id="HATEOAS를-달성하기-위한-방법"><a href="#HATEOAS를-달성하기-위한-방법" class="headerlink" title="HATEOAS를 달성하기 위한 방법"></a>HATEOAS를 달성하기 위한 방법</h3></li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>데이터 링크 제공</li>
-<li>HTTP 헤더에 Location, Link를 활용하는 방법</li>
-</ol>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2599,7 +2578,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2763,7 +2742,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">63</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

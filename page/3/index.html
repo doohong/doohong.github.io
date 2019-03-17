@@ -349,6 +349,233 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/REST-API/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/23/REST-API/" class="post-title-link" itemprop="url">REST API란</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-28 21:28:43" itemprop="dateModified" datetime="2019-01-28T21:28:43+09:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/23/REST-API/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/REST-API/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><ul>
+<li>Application Programming Interface</li>
+<li>응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다.</li>
+</ul>
+<h1 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h1><ul>
+<li>REpresentational State Treansfer</li>
+<li>인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나</li>
+<li>시스템 제각각의 독립적인 진화를 보장하기 위한 방법</li>
+<li>REST API : REST 아키텍처 스타일을 따르는 API  </li>
+</ul>
+<h1 id="그런-REST-API로-괜찮은가"><a href="#그런-REST-API로-괜찮은가" class="headerlink" title="그런 REST API로 괜찮은가"></a>그런 REST API로 괜찮은가</h1><blockquote>
+<p><a href="https://tv.naver.com/v/2292653" target="_blank" rel="noopener">그런 REST API로 괜찮은가</a> - 이응준님 강연을 보고 작성하였습니다.</p>
+</blockquote>
+<ul>
+<li>오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다.</li>
+<li>REST의 제약조건 중에서 특히 <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 잘 만족하지 못한다.</li>
+<li>REST를 따르겠다면, <strong>Self-descriptive</strong>와 <strong>HATEOAS</strong>를 만족시켜야한다.<ul>
+<li><strong>Self-descriptive</strong>는 custom media type이나 profile link relation 등으로 만족시킬 수 있다.</li>
+<li><strong>HATEOAS</strong>는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.<h2 id="Self-descriptive-message"><a href="#Self-descriptive-message" class="headerlink" title="Self descriptive message"></a>Self descriptive message</h2></li>
+</ul>
+</li>
+<li>메세지 스스로 메세지에 대한 설명이 가능해야 한다. <ul>
+<li>이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Self-descriptive-message를-달성하기-위한-방법"><a href="#Self-descriptive-message를-달성하기-위한-방법" class="headerlink" title="Self descriptive message를 달성하기 위한 방법"></a>Self descriptive message를 달성하기 위한 방법</h3><ol>
+<li>미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. </li>
+<li>ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다.</li>
+</ol>
+<h2 id="HATEOAS"><a href="#HATEOAS" class="headerlink" title="HATEOAS"></a>HATEOAS</h2><ul>
+<li>하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다.<ul>
+<li>HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.<br>어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.<h3 id="HATEOAS를-달성하기-위한-방법"><a href="#HATEOAS를-달성하기-위한-방법" class="headerlink" title="HATEOAS를 달성하기 위한 방법"></a>HATEOAS를 달성하기 위한 방법</h3></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>데이터 링크 제공</li>
+<li>HTTP 헤더에 Location, Link를 활용하는 방법</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/Spring-Lombok/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2376,221 +2603,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/04/java-string-pool/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/04/java-string-pool/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-4.String pool</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-04 16:20:00" itemprop="dateCreated datePublished" datetime="2018-03-04T16:20:00+09:00">2018-03-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-26 18:26:32" itemprop="dateModified" datetime="2019-01-26T18:26:32+09:00">2019-01-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/03/04/java-string-pool/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/04/java-string-pool/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="String-에-대한-더-자세한-설명"><a href="#String-에-대한-더-자세한-설명" class="headerlink" title="String 에 대한 더 자세한 설명"></a>String 에 대한 더 자세한 설명</h1><p>이전 포스트에서 말했듯이 String 객체의 값은 변경할 수 없다.<br>나는 String 객체의 값을 변경 시킬수 있다고 생각하시는 분들을 위해 아래 예제를 통해 설명하겠다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"Hello"</span>;</span><br><span class="line">a = a+<span class="string">" World"</span>;</span><br><span class="line">System.out.println(a); <span class="comment">//Hello World</span></span><br></pre></td></tr></table></figure></p>
-<p>이 예제를 보면 a가 참조하는 메모리의 Hello 라는 값에 World 라는 문자열을 더해서 String 객체의 값을 변경 시킨 것으로 보인다</p>
-<p>하지만 실제로는 메모리에 Hello World 를 다시 만들고 a를 다시 참조하게 한다.</p>
-<p>간단하게 <strong>String</strong> 클래스의 <strong>immutable(불변)</strong> 에 대하여 복습 하였다.</p>
-<h1 id="String-pool-이란"><a href="#String-pool-이란" class="headerlink" title="String pool 이란??"></a>String pool 이란??</h1><p><strong>String</strong>은 자바 개발자라면 자주 쓰게되는 자료형 이다.<br>간혹 자바에서 <strong>==</strong>연산자를 이용해서 문자열을 비교하려고 할때 원치 않는 결과를 얻었던 경험들이 있을 것이다.</p>
-<p>스트링은 두가지 생성 방식이 있고 그에 따라 각각 차이점이 존재한다.</p>
-<ol>
-<li><strong>new</strong> 연산자를 이용한 방식</li>
-<li>리터럴을 이용한 방식</li>
-</ol>
-<p><strong>new</strong>를 통해 <strong>String</strong>을 생성하면 <strong>Heap</strong>영역에 존재하게 되고 리터럴을 이용할 경우 <strong>String constant pool</strong>이라는 영역에 존재하게 된다.</p>
-<p>예제를 통해 쉽게 설명해 보도록 하겠다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"Hello"</span>;</span><br><span class="line">String b = <span class="string">"Hello"</span>;</span><br><span class="line">String c = <span class="keyword">new</span> String(<span class="string">"Hello"</span>);</span><br><span class="line">System.out.println(a==b);  <span class="comment">//true</span></span><br><span class="line">System.out.println(a==c);  <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
-<p>위에 예제의 결과에서 왜 3가지 객체가 다 같은 값을 가지고 있음에도 불구하고 비교 결과가 다른지 의문을 가진 분들이 있을것이다.</p>
-<p>우선 == 연산은 값을 비교하는것이 아니라 같은 메모리를 참조하는지 비교하는 것이다.</p>
-<ul>
-<li>a의 경우 Hello 라는 문자열을 String pool 에 넣게 된다.</li>
-<li>b의 경우는 이미 같은 문자열이 String pool 에 존재하기에 같은 값을 참조하게 된다. </li>
-<li>c의 경우에는 <strong>new</strong> 연산자를 사용하여 새로운 객체를 명시적으로 생성하도록 했기 때문에 String pool이 아닌 다른 주소값을 참조하게된다.</li>
-</ul>
-<p>이러한 이유로 위와 같은 결과를 얻을 수 있다.</p>
-<p>이 예제를 통해 왜 String 객체의 값을 변경할 수 없어야 하는지 이유도 알 수 있다.<br>만약에 String 객체의 값의 변경이 가능하다면 a의 값을 변경 하였을때 원치 않게 b의 값도 변경될 수 있다.</p>
-<h2 id="String-객체의-값을-비교하는-equals"><a href="#String-객체의-값을-비교하는-equals" class="headerlink" title="String 객체의 값을 비교하는 equals()"></a>String 객체의 값을 비교하는 equals()</h2><p><strong>equals()</strong> 메소드를 이용하여 두 문자열 객체의 실제 값을 비교할 수 있다.</p>
-<p>그렇기 때문에 문자열 비교는 <strong>equals()</strong> 를 사용하는 것이 좋지만 속도적인 부분이나 메모리 부분 때문에 ==을 사용해야한다면 방법은 있다.</p>
-<p><strong>intern()</strong> 메소드를 사용하는 방법이다.</p>
-<h2 id="intern"><a href="#intern" class="headerlink" title="intern()"></a>intern()</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">String a = <span class="string">"Hello"</span>;</span><br><span class="line">String b = <span class="keyword">new</span> String(<span class="string">"Hello"</span>);</span><br><span class="line">String c = b.intern();</span><br><span class="line">System.out.println(a.equal(b));  <span class="comment">// true</span></span><br><span class="line">System.out.println(a==c);  <span class="comment">// true</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">**intern()** 메소드를 사용하면 해당 리터럴이 pool 에 존재하는지 화가인하고 존재하면 해당 pool 에 있는 리터럴을 리턴하고 없다면 리터럴을 pool 에 집어넣는다.</span><br><span class="line"></span><br><span class="line">그렇기 때문에 c의 경우는 String c = <span class="string">"Hello"</span> 로 해석할 수 있고 pool 에 이미 a가 만든 Hello 가 존재하므로 a와 같은 주소를 참조하게 된다.</span><br><span class="line"></span><br><span class="line">아마도 **intern()** 메소드보다 **equals()** 메소드를 더 많이 사용하게 되겠지만  만약 사용하게 된다면 아래와 같이 사용할 수 있지 않을까 싶다.</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">String id = <span class="string">"user"</span>;</span><br><span class="line">String compareId = UserDto.getId().intern();</span><br><span class="line"><span class="keyword">if</span>(id == user)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>그냥 이렇게도 사용할 수 있지 않을까 싶어 내가 만든 예시이다.</p>
-<p>속도나 메모리를 엄청 신경 써야 하지 않는다면 문자열 비교는 <strong>equals()</strong>로 습관화 하는것이 좋은 방법일것 같다.</p>
-<h2 id="String-pool-의-위치"><a href="#String-pool-의-위치" class="headerlink" title="String pool 의 위치"></a>String pool 의 위치</h2><p>String pool 은 java 6 버전까지 Perm 영역이었다. </p>
-<p>하지만 Perm 영역은 고정된 사이즈이며 Runtime 에 사이즈가 확장되지 않는다 </p>
-<p> 그래서 intern 되는 String 값이 커지면 OutOfMemoryException을 발생시킬 수 있었고 그에따라 java 7 버전에서 heap 영역으로 String pool 의 위치를 변경하였다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2640,7 +2652,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-count">34</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2804,7 +2816,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">63</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
