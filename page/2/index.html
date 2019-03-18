@@ -1462,6 +1462,198 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/28/REST-API-5/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/28/REST-API-5/" class="post-title-link" itemprop="url">REST API 만들기-5</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-28 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-28T18:00:00+09:00">2019-01-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-03-18 23:13:57" itemprop="dateModified" datetime="2019-03-18T23:13:57+09:00">2019-03-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/28/REST-API-5/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/28/REST-API-5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="입력값-이외에-에러-발생"><a href="#입력값-이외에-에러-발생" class="headerlink" title="입력값 이외에 에러 발생"></a>입력값 이외에 에러 발생</h1><p>저번 포스트에는 입력값 이외에 값이 들어오면 무시하였지만 이번 포스팅에서는 에러를 발생시키는 방법에대해 포스팅 하겠습니다.</p>
+<h2 id="EventControllerTests"><a href="#EventControllerTests" class="headerlink" title="EventControllerTests"></a>EventControllerTests</h2><p>테스트에 입력값 이외에 값을 넣는 테스트를 작성합니다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createEvent_Bad_request</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123; <span class="comment">//필요 이상 입력값 입력시 400오류</span></span><br><span class="line">        Event event = Event.builder()</span><br><span class="line">                .id(<span class="number">100</span>)</span><br><span class="line">                .name(<span class="string">"Spring"</span>)</span><br><span class="line">                .description(<span class="string">"REST API Development with Spring"</span>)</span><br><span class="line">                .beginEnrollmentDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">23</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .closeEnrollmentDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">24</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .beginEventDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">25</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .endEventDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">26</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .basePrice(<span class="number">100</span>)</span><br><span class="line">                .maxPrice(<span class="number">200</span>)</span><br><span class="line">                .limitOfEnrollment(<span class="number">100</span>)</span><br><span class="line">                .location(<span class="string">"강남역 D2 스타텁 팩토리"</span>)</span><br><span class="line">                .free(<span class="keyword">true</span>)</span><br><span class="line">                .offline(<span class="keyword">false</span>)</span><br><span class="line">                .eventStatus(EventStatus.PUBLISHED)</span><br><span class="line">                .build();</span><br><span class="line"></span><br><span class="line">        mockMvc.perform(post(<span class="string">"/api/events"</span>)</span><br><span class="line">                .contentType(MediaType.APPLICATION_JSON_UTF8)</span><br><span class="line">                .accept(MediaTypes.HAL_JSON)</span><br><span class="line">                .content(objectMapper.writeValueAsString(event)))</span><br><span class="line">                .andDo(print())</span><br><span class="line">                .andExpect(status().isBadRequest())</span><br><span class="line">        ;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="application-properties"><a href="#application-properties" class="headerlink" title="application.properties"></a>application.properties</h2><p>application.properties에 아래 한줄을 추가해 줍니다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spring.jackson.deserialization.fail-on-unknown-properties=true</span><br></pre></td></tr></table></figure></p>
+<p>json을 오브젝트로 변환하는 과정을 deserialization이라고 하는데<br>변환도중에 unknown-properties가 있으면 실패하게 하라 는 뜻입니다.</p>
+<h2 id="결과"><a href="#결과" class="headerlink" title="결과"></a>결과</h2><p>이렇게 하면 받기로 한 값 이외에 id, free, offline 값 등을 같이 넘기기 때문에<br>Bad Request 400 에러가 발생하게 됩니다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/27/REST-API-4/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2333,202 +2525,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/Spring-AssertJ/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/23/Spring-AssertJ/" class="post-title-link" itemprop="url">[Spring-library]AssertJ란?</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-23 17:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T17:00:00+09:00">2019-01-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-25 13:46:47" itemprop="dateModified" datetime="2019-01-25T13:46:47+09:00">2019-01-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/23/Spring-AssertJ/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/Spring-AssertJ/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="AsertJ란"><a href="#AsertJ란" class="headerlink" title="AsertJ란?"></a>AsertJ란?</h1><p> java test를 위해 좀 더 풍부한 문법을 제공하고 메서드 체이닝을 통해 직관적인 테스트 흐름을 작성할 수 있도록 개발된 오픈소스 라이브러리이다.</p>
-<p> 최근 junit에 필수로 사용되고 있는 추세이다.</p>
-<blockquote>
-<p><a href="http://joel-costigliola.github.io/assertj/" target="_blank" rel="noopener">공식홈페이지</a></p>
-</blockquote>
-<h1 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h1><h2 id="라이브러리-의존성-설정"><a href="#라이브러리-의존성-설정" class="headerlink" title="라이브러리 의존성 설정"></a>라이브러리 의존성 설정</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.assertj&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;assertj-core&lt;/artifactId&gt;</span><br><span class="line">  &lt;!-- use <span class="number">2.9</span>.1 <span class="keyword">for</span> Java <span class="number">7</span> projects --&gt;</span><br><span class="line">  &lt;version&gt;3.11.1&lt;/version&gt;</span><br><span class="line">  &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testCompile(<span class="string">"org.assertj:assertj-core:3.11.1"</span>)</span><br></pre></td></tr></table></figure>
-<p>또는 Java 7 프로젝트의 경우 버전 2.9.1<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testCompile(<span class="string">"org.assertj:assertj-core:2.9.1"</span>)</span><br></pre></td></tr></table></figure></p>
-<h2 id="AssertJ-메소드-임포트"><a href="#AssertJ-메소드-임포트" class="headerlink" title="AssertJ 메소드 임포트"></a>AssertJ 메소드 임포트</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.assertj.core.api.Assertions.*;</span><br></pre></td></tr></table></figure>
-<h2 id="실제-사용"><a href="#실제-사용" class="headerlink" title="실제 사용"></a>실제 사용</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertThat(objectUnderTest). <span class="comment">// code completion -&gt; assertions specific to objectUnderTest</span></span><br></pre></td></tr></table></figure>
-<p>모든 테스트 코드는 <strong><em>assertThat()</em></strong> 메소드에서 시작한다.</p>
-<p>###문자열 테스트<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">assertThat(<span class="string">"Hello, world! Nice to meet you."</span>) <span class="comment">// 주어진 "Hello, world! Nice to meet you."라는 문자열은</span></span><br><span class="line">				.isNotEmpty() <span class="comment">// 비어있지 않고</span></span><br><span class="line">				.contains(<span class="string">"Nice"</span>) <span class="comment">// "Nice"를 포함하고</span></span><br><span class="line">				.contains(<span class="string">"world"</span>) <span class="comment">// "world"도 포함하고</span></span><br><span class="line">				.doesNotContain(<span class="string">"ZZZ"</span>) <span class="comment">// "ZZZ"는 포함하지 않으며</span></span><br><span class="line">				.startsWith(<span class="string">"Hell"</span>) <span class="comment">// "Hell"로 시작하고</span></span><br><span class="line">				.endsWith(<span class="string">"u."</span>) <span class="comment">// "u."로 끝나며</span></span><br><span class="line">				.isEqualTo(<span class="string">"Hello, world! Nice to meet you."</span>); <span class="comment">// "Hello, world! Nice to meet you."과 일치합니다.</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="숫자-테스트"><a href="#숫자-테스트" class="headerlink" title="숫자 테스트"></a>숫자 테스트</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">assertThat(<span class="number">3.14</span>d) <span class="comment">// 주어진 3.14라는 숫자는</span></span><br><span class="line">				.isPositive() <span class="comment">// 양수이고</span></span><br><span class="line">				.isGreaterThan(<span class="number">3</span>) <span class="comment">// 3보다 크며</span></span><br><span class="line">				.isLessThan(<span class="number">4</span>) <span class="comment">// 4보다 작습니다</span></span><br><span class="line">				.isEqualTo(<span class="number">3</span>, offset(<span class="number">1</span>d)) <span class="comment">// 오프셋 1 기준으로 3과 같고</span></span><br><span class="line">				.isEqualTo(<span class="number">3.1</span>, offset(<span class="number">0.1</span>d)) <span class="comment">// 오프셋 0.1 기준으로 3.1과 같으며</span></span><br><span class="line">				.isEqualTo(<span class="number">3.14</span>); <span class="comment">// 오프셋 없이는 3.14와 같습니다</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2578,7 +2574,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
