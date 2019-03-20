@@ -349,6 +349,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/26/REST-API-3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/26/REST-API-3/" class="post-title-link" itemprop="url">REST API 만들기-3</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-26 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-26T18:00:00+09:00">2019-01-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-02-13 21:19:06" itemprop="dateModified" datetime="2019-02-13T21:19:06+09:00">2019-02-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/26/REST-API-3/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/26/REST-API-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="event-객체를-실제-DB에-저장-시키기"><a href="#event-객체를-실제-DB에-저장-시키기" class="headerlink" title="event 객체를 실제 DB에 저장 시키기"></a>event 객체를 실제 DB에 저장 시키기</h1><h2 id="Event-클래스-수정"><a href="#Event-클래스-수정" class="headerlink" title="Event 클래스 수정"></a>Event 클래스 수정</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Getter</span> <span class="meta">@Setter</span> <span class="meta">@EqualsAndHashCode</span>(of=<span class="string">"id"</span>)</span><br><span class="line"><span class="meta">@Entity</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Id</span> <span class="meta">@GeneratedValue</span></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    ...</span><br><span class="line">    <span class="meta">@Enumerated</span>(EnumType.STRING) <span class="comment">//string을 더 권장</span></span><br><span class="line">    <span class="keyword">private</span> EventStatus eventStatus = EventStatus.DRAFT;</span><br></pre></td></tr></table></figure>
+<p>Event 클래스 각 위치에 @Entity @ID @GeneratedValue  @Enumerated 어노테이션을 추가해준다. </p>
+<p><strong>@Entity</strong></p>
+<ul>
+<li>이 어노테이션은 해당 클래스가 엔티티임을 알리기 위해 사용합니다. </li>
+<li>애플리케이션이 실행이 될 때 엔티티 자동검색을 통하여 이 어노테이션이 선언 된 클래스들은 엔티티 빈으로 등록합니다.</li>
+</ul>
+<p><strong>@Id</strong></p>
+<ul>
+<li>엔티티빈의 기본키를 의미합니다. 이 어노테이션은 하나의 엔티티에는 반드시 하나가 존재해야 합니다.</li>
+</ul>
+<p><strong>@GeneratedValue</strong></p>
+<ul>
+<li>데이터베이스에 의해 자동으로 생성된 값이라는 의미입니다. </li>
+<li>즉, 프로그램 상에서 조작된 데이터가 아닌, 실제 데이터베이스에 데이터가 영속(저장)될 때 생성되는 값입니다.<br><strong>@Enumerated(EnumType.STRING)</strong></li>
+<li>EnumType.ORDINAL을 이용하면 Enum 순서 값을 DB에 저장합니다</li>
+<li>EnumType.STRING을 이용하면 Enum 필드가 테이블에 저장시 숫자형인 1,2,3이 아닌, Enum의 name이 저장됩니다.<h2 id="EventRepository-인터페이스-작성"><a href="#EventRepository-인터페이스-작성" class="headerlink" title="EventRepository 인터페이스 작성"></a>EventRepository 인터페이스 작성</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">EventRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">Event</span>,<span class="title">Integer</span>&gt; </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="EventController-클래스-수정"><a href="#EventController-클래스-수정" class="headerlink" title="EventController 클래스 수정"></a>EventController 클래스 수정</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value =<span class="string">"/api/events"</span>, produces = MediaTypes.HAL_JSON_UTF8_VALUE )</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventController</span></span>&#123;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="title">EventController</span><span class="params">(EventRepository eventRepository)</span></span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.eventRepository = eventRepository;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">createEvent</span><span class="params">(@RequestMapping Event event)</span></span>&#123;</span><br><span class="line">        Event newEvent = <span class="keyword">this</span>.eventRepository.save(event); <span class="comment">//JPA를 이용한 저장</span></span><br><span class="line">        URI createdUri = linkTo(EventController.class).slash(newEvent.getId()).toUri(); <span class="comment">//DB에 저장되며 생성된 ID값을 이용</span></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.created(createdUri).body(event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="EventControllerTests-클래스-수정"><a href="#EventControllerTests-클래스-수정" class="headerlink" title="EventControllerTests 클래스 수정"></a>EventControllerTests 클래스 수정</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@WebMvcTest</span> <span class="comment">//web과 관련된 빈들이 등록 됨</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventControllerTests</span> </span>&#123;</span><br><span class="line">    <span class="meta">@MockBean</span></span><br><span class="line">    EventRepository eventRepository; </span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createEvent</span><span class="params">()</span> <span class="keyword">throws</span>  Exception</span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    </span><br><span class="line">    event.setId(<span class="number">10</span>);</span><br><span class="line">    Mockito.when(eventRepository.save(event)).thenReturn(event);</span><br><span class="line">    </span><br><span class="line">    mockMvc.perform(post(<span class="string">"/api/events"</span>)</span><br><span class="line">                    .contentType(MediaType.APPLICATION_JSON_UTF8)</span><br><span class="line">                    .accept(MediaTypes.HAL_JSON)</span><br><span class="line">                    .content(objectMapper.writeValueAsString(event)))</span><br><span class="line">                    .andDo(print())</span><br><span class="line">                    .andExpect(status().isCreated())</span><br><span class="line">                    .andExpect(jsonPath(<span class="string">"id"</span>).exists())</span><br><span class="line">                    .andExpect(header().exists(HttpHeaders.LOCATION))</span><br><span class="line">                    .andExpect(header().string(HttpHeaders.CONTENT_TYPE,MediaTypes.HAL_JSON_UTF8_VALUE));</span><br><span class="line">    </span><br><span class="line">    ...</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>MockBean</strong></p>
+<ul>
+<li>MockBean으로 만든 eventRepository는 Mock객체이기때문에 save를 하여도 리턴 값이 null이다.</li>
+<li>그렇기 때문에 Mockito를 사용해서 Stubbing 해주었다.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/25/REST-API-2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2411,205 +2624,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/03/OOP-Inheritance/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/03/OOP-Inheritance/" class="post-title-link" itemprop="url">[OOP]상속(Inheritance)이란?</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-03 14:24:00" itemprop="dateCreated datePublished" datetime="2019-01-03T14:24:00+09:00">2019-01-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-28 21:58:29" itemprop="dateModified" datetime="2019-01-28T21:58:29+09:00">2019-01-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/OOP/" itemprop="url" rel="index"><span itemprop="name">OOP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/03/OOP-Inheritance/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/03/OOP-Inheritance/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="https://www.inflearn.com/course/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9E%85%EB%AC%B8/" target="_blank" rel="noopener">객체 지향 프로그래밍 입문</a> - 최범균님의 인프런 강좌을 보고 작성하였습니다.</p>
-</blockquote>
-<h1 id="상속-Inheritance-이란"><a href="#상속-Inheritance-이란" class="headerlink" title="상속(Inheritance)이란"></a>상속(Inheritance)이란</h1><p>상위 클래스의 기능을 재사용, 확장하는 방법</p>
-<h2 id="상속을-통한-기능-재사용시-발생할-수-있는-단점"><a href="#상속을-통한-기능-재사용시-발생할-수-있는-단점" class="headerlink" title="상속을 통한 기능 재사용시 발생할 수 있는 단점"></a>상속을 통한 기능 재사용시 발생할 수 있는 단점</h2><ol>
-<li>상위 클래스 변경 어려움</li>
-<li>클래스 증가</li>
-<li>상속 오용</li>
-</ol>
-<p><strong>상속의 단점 해결 방법은 -&gt; 조립!!</strong></p>
-<h2 id="조립-Composition"><a href="#조립-Composition" class="headerlink" title="조립(Composition)"></a>조립(Composition)</h2><p>여러 객체를 묶어서 더 복잡한 기능을 제공</p>
-<p>보통 필드로 다른 객체를 참조하는 방식으로 조립 또는 객체를 필요 시점에 생성/구함</p>
-<p>특정 기능을 재사용 하고 싶다면 특정 객체를 생성하여 사용</p>
-<h2 id="상속보다는-조립"><a href="#상속보다는-조립" class="headerlink" title="상속보다는 조립"></a>상속보다는 조립</h2><p>상속하기에 앞서 조립으로 풀 수 없는지 검토</p>
-<p>진짜 하위 타입인 경우에만 상속 사용    </p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2659,7 +2673,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">37</span>
+                    <span class="site-state-item-count">38</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>

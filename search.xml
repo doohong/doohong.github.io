@@ -220,6 +220,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[REST API 만들기-7]]></title>
+    <url>%2F2019%2F01%2F30%2FREST-API-7%2F</url>
+    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. 입력값이 이상한 경우 Bad Request 처리-2EventValidator12345678910111213141516171819@Componentpublic class EventValidator &#123; public void validate(EventDto eventDto, Errors errors)&#123; if(eventDto.getBasePrice()&gt;eventDto.getMaxPrice()&amp;&amp; eventDto.getMaxPrice()&gt;0)&#123; errors.rejectValue("basePrice","wrongValue","BasePrice is wrong."); errors.rejectValue("maxPrice","wrongValue","MaxPrice is wrong."); errors.reject("wrongPrices","Values to prices are wrong"); &#125; LocalDateTime endEventDateTime =eventDto.getEndEventDateTime(); if(endEventDateTime.isBefore(eventDto.getBeginEventDateTime()) || endEventDateTime.isBefore(eventDto.getCloseEnrollmentDateTime())|| endEventDateTime.isBefore(eventDto.getBeginEnrollmentDateTime()))&#123; errors.rejectValue("endEventDateTime","wrongValue","endEventDateTime is wrong."); &#125; // TODO beginEventDateTime // TODO CloseEnrollmentDateTime &#125;&#125; EventValidator클래스를 만들어 준 후 검증 할 값들을 어떻게 검증할 것인지를 작성하고 검증에 실패 할경우 에러를 담아 줍니다. EventController작성한 validator는 빈으로 등록했기 때문에 사용하기 위해 컨트롤러에 생성자에 넣어 사용합니다.123456private final EventValidator eventValidator;public EventController(EventRepository eventRepository, ModelMapper modelMapper, EventValidator eventValidator)&#123; this.eventRepository = eventRepository; this.modelMapper = modelMapper; this.eventValidator = eventValidator; &#125; 이렇게 컨트롤러에서 주입 받을 수 있습니다.1234eventValidator.validate(eventDto,errors); if(errors.hasErrors())&#123; return ResponseEntity.badRequest().build(); &#125; 코드 추가하여 잘못된 값에 대한 검증을 할 수 있습니다.]]></content>
+      <categories>
+        <category>RESTAPI</category>
+      </categories>
+      <tags>
+        <tag>RESTAPI</tag>
+        <tag>REST</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[REST API 만들기-6]]></title>
     <url>%2F2019%2F01%2F29%2FREST-API-6%2F</url>
     <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. 입력값이 이상한 경우 Bad Request 처리-1EventControllerTests12345678public void createEvent_Bad_request_Empty_Input() throws Exception &#123; //필요 이상 입력값 입력시 400오류 EventDto eventDto = EventDto.builder().build(); this.mockMvc.perform(post("/api/events") .contentType(MediaType.APPLICATION_JSON_UTF8) .content(this.objectMapper.writeValueAsString(eventDto))) .andExpect(status().isBadRequest()); &#125; 빈 값을 보내는 테스트 케이스를 하나 만듭니다.이 테스트는 빈 값을 보내기 때문에 BadRequest가 나오길 바라지만 테스트가 깨지게 됩니다. 하지만 입력값이 이상하지만 보내는 필드가 같기 때문에 요청이 처리가 되어버린다. 이러한 경우 @Valid와 BindingResult를 이용한다. EventController123public ResponseEntity createEvent(@RequestBody @Valid EventDto eventDto,Errors errors)&#123; ...&#125; 컨트롤러에 EventDto에 Valid어노테이션을 추가하면 EventDto에 바인딩 할때 검증을 할 수 있습니다.검증한 결과는 Errors에 담기게 됩니다. EventDto123456789101112131415161718192021public class EventDto &#123; @NotEmpty private String name; @NotEmpty private String description; @NotNull private LocalDateTime beginEnrollmentDateTime; @NotNull private LocalDateTime closeEnrollmentDateTime; @NotNull private LocalDateTime beginEventDateTime; @NotNull private LocalDateTime endEventDateTime; private String location; // (optional) 이게 없으면 온라인 모임 @Min(0) private int basePrice; // (optional) @Min(0) private int maxPrice; // (optional) @Min(0) private int limitOfEnrollment;&#125; @NotEmpty 와 NotNull을 이용하여 검증하여 줍니다. EventController다시 컨트롤러로 이동하여 아래 문장을 추가하여줍니다.123if(errors.hasErrors())&#123; return ResponseEntity.badRequest().build() ; &#125; 검증에 에러가 존재한다면 BadRequest를 응답으로 주게 됩니다.이렇게 테스트 케이스는 성공을 하게 됩니다.]]></content>
