@@ -349,6 +349,213 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/02/OOP-encapsulation/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/02/OOP-encapsulation/" class="post-title-link" itemprop="url">[OOP]캡슐화( encapsulation)란?</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-02 14:24:00" itemprop="dateCreated datePublished" datetime="2019-01-02T14:24:00+09:00">2019-01-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-28 21:56:00" itemprop="dateModified" datetime="2019-01-28T21:56:00+09:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/OOP/" itemprop="url" rel="index"><span itemprop="name">OOP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/02/OOP-encapsulation/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/02/OOP-encapsulation/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9E%85%EB%AC%B8/" target="_blank" rel="noopener">객체 지향 프로그래밍 입문</a> - 최범균님의 인프런 강좌을 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="캡슐화-encapsulation-란"><a href="#캡슐화-encapsulation-란" class="headerlink" title="캡슐화(encapsulation)란?"></a>캡슐화(encapsulation)란?</h1><p>캡슐화(encapsulation)는 일반적으로 연관 있는 변수와 함수를 클래스로 묶는 작업을 말한다.</p>
+<p>객체가 기능을 어떻게 구현 했는지 외부에 감추는 것</p>
+<ul>
+<li>구현에 사용된 데이터의 상세 내용을 외부에 감춤</li>
+</ul>
+<p>캡슐화만 잘해도 좋은 코드를 만들 수 있음</p>
+<p><strong>정보은닉(Information Hiding)</strong> 의미 포함(최근에 포함해서 이야기 많이함)</p>
+<h2 id="캡슐화의-장점"><a href="#캡슐화의-장점" class="headerlink" title="캡슐화의 장점"></a>캡슐화의 장점</h2><p>외부에 영향 없이 객체 내부 구현 변경 가능</p>
+<ul>
+<li>클래스 내부 메소드의 구현만 변경하면 되게끔 -&gt; 외부 소스코드의 연쇄적인 변경 x</li>
+</ul>
+<h2 id="캡슐화를-잘-할수-있는-규칙"><a href="#캡슐화를-잘-할수-있는-규칙" class="headerlink" title="캡슐화를 잘 할수 있는 규칙!!"></a>캡슐화를 잘 할수 있는 규칙!!</h2><p><strong>Tell, Don’t Ask 규칙</strong><br>= 데이터를 달라고 부탁하지 말고 직접 해달라고 하기!<br><strong>Demeter’s Law 규칙</strong></p>
+<ul>
+<li>메서드에서 생성한 객체의 메서드만 호출</li>
+<li>파라미터로 받은 객체의 메서드만 호출</li>
+<li>필드로 참조하는 객체의 메서드만 호출</li>
+</ul>
+<blockquote>
+<p>acc.getExpDate().isAfter(now)                 -&gt; acc.isExpired();<br>Date date = acc.getExpDate(); date.isAfter(now);    -&gt; acc.isValid(now);</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/01/OOP-summary/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1692,7 +1899,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -1862,7 +2069,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">66</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">68</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

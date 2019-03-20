@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[Spring]JPA란]]></title>
+    <url>%2F2019%2F03%2F20%2FSpring-JPA%2F</url>
+    <content type="text"><![CDATA[JPA란JPA는 여러 ORM 전문가가 참여한 EJB 3.0 스펙 작업에서 기존 EJB ORM이던 Entity Bean을 JPA라고 바꾸고 JavaSE, JavaEE를 위한 영속성(persistence) 관리와 ORM을 위한 표준 기술이다. JPA는 ORM 표준 기술로 Hibernate, OpenJPA, EclipseLink, TopLink Essentials과 같은 구현체가 있고 이에 표준 인터페이스가 바로 JPA이다. ORM 이란ORM(Object Relational Mapping)이란, Object(객체)와 Relation(관계형 데이터베이스) 간의 불일치 문제를 해결하기 위한 도구다. 흔히 알고 있는 ibatis나 mybatis는 ORM이 아니다. SQL 구문을 Mapping 하여 실행하는 sql mapper이다. 장단점장점객체지향적으로 데이터를 관리할 수 있기 때문에 비즈니스 로직에 집중 할 수 있으며, 객체지향 개발이 가능하다.테이블 생성, 변경, 관리가 쉽다. (JPA를 잘 이해하고 있는 경우)로직을 쿼리에 집중하기 보다는 객체자체에 집중 할 수 있다.빠른 개발이 가능하다. 단점어렵다. 장점을 더 극대화 하기 위해서 알아야 할게 많다.잘 이해하고 사용하지 않으면 데이터 손실이 있을 수 있다. (persistence context)성능상 문제가 있을 수 있다.(이 문제 또한 잘 이해해야 해결이 가능하다.) 어노테이션 정리@EntityJPA에서 Entity라는 것은 데이터베이스에 저장하기 위해서 유저가 정의한 클래스다. 일반적으로 RDBMS에서 Table의 정의 비슷한 것이다. Table의 이름이나 컬럼들에 대한 정보를 가진다. @Id일반적으로 키(primary key)를 가지는 변수에 선언한다. @GeneratedValue 어노테이션은 해당 Id 값을 어떻게 자동으로 생성할지 전략을 선택할 수 있다. @Table@Table을 이용하면 별도의 이름을 가진 데이터베이스 테이블과 매핑할 수 있다. 기본적으로 @Entity로 선언된 클래스의 이름은 실제 데이터베이스의 테이블 명과 일치하는 것을 매핑한다. 따라서 @Entity의 클래스명과 데이터베이스의 테이블명이 다르면 @Table(name=”XXX”) 같은 형식으로 작성하면 이름을 다르게 해서 매핑이 가능하다. @Column@Column에서 지정한 멤버 변수와 데이터베이스의 컬럼명을 다르게 주고 싶다면 @Column(name=”XXX”) 같은 형식으로 작성해주면 된다. 그렇지 않으면 기본적으로 멤버 변수명과 일치하는 데이터베이스의 컬럼을 매핑 한다. 그외의 어노테이션들이나 사용법들은 추후에 더 포스팅 하도록 하겠습니당]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>framework</tag>
+        <tag>JPA</tag>
+        <tag>SpringDataJPA</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Spring]Filter, Interceptor, AOP]]></title>
     <url>%2F2019%2F03%2F17%2FSpring-FilterInterceptorAOP%2F</url>
     <content type="text"><![CDATA[Filter, Iterceptor, AOP의 차이점 및 정리스프링으로 웹 개발을 하다보면 Filter, Interceptor, AOP를 이용해 전/후 처리를 할 수 있다, 셋 다 비슷한 기능을 가지고 있지만 시점이나 적용하는 방식이 다르다. Filter말그대로 요청과 응답을 거른뒤 정제하는 역할을 한다. 서블릿 필터는 DispatcherServlet 이전에 실행이 되는데 필터가 동작하도록 지정된 자원의 앞단에서 요청내용을 변경하거나, 여러가지 체크를 수행할 수 있다. 또한 자원의 처리가 끝난 후 응답내용에 대해서도 변경하는 처리를 할 수가 있다. 보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS방어 등의 요청에 대한 처리로 사용된다. Filter 메서드init() - 필터 인스턴스 초기화 doFilter() - 전/후 처리 destroy() - 필터 인스턴스 종료 Interceptor필터는 스프링과 무관하게 지정된 자원에 대해 동작한다. 스프링은 DistpatcherServlet으로부터 시작되므로 필터는 스프링 컨텍스트 외부에 존재하게 된다. 하지만 인터셉터는 스프링의 DistpatcherServlet이 컨트롤러를 호출하기 전, 후로 끼어들기 때문에 스프링 컨텍스트 내부에 존재하게된다. 그리고 스프링 내의 모든 객체(bean) 접근이 가능하다. 인터셉터는 여러 개를 사용할 수 있고 로그인 체크, 권한체크, 프로그램 실행시간 계산작업 로그확인, 업로드 파일처리등에 사용된다. Interceptor 메서드preHandler() - 컨트롤러 메서드가 실행되기 전 postHanler() - 컨트롤러 메서드 실행직 후 view페이지 렌더링 되기 전 afterCompletion() - view페이지가 렌더링 되고 난 후 AOP객체 지향의 프로그래밍을 했을 때 중복을 줄일 수 없는 부분을 줄이기 위해 종단면(관점)에서 바라보고 처리한다. 주로 ‘로깅’, ‘트랜잭션’, ‘에러 처리’등 비즈니스단의 메서드에서 조금 더 세밀하게 조정하고 싶을 때 사용합니다. Interceptor나 Filter와는 달리 메소드 전후의 지점에 자유롭게 설정이 가능하다. Interceptor와 Filter는 주소로 대상을 구분해서 걸러내야하는 반면, AOP는 주소, 파라미터, 애노테이션 등 다양한 방법으로 대상을 지정할 수 있다. AOP의 포인트컷@Before: 대상 메서드의 수행 전 @After: 대상 메서드의 수행 후 @After-returning: 대상 메서드의 정상적인 수행 후 @After-throwing: 예외발생 후 @Around: 대상 메서드의 수행 전/후 정리 구분 Filter Interceptor AOP 실행위치 서블릿 (Dispatcher Servlet 바깥) 서블릿 (Dispatcher Servlet 안쪽) 메서드 실행순서 1 2 3 설정파일 위치 web.xml xml,java xml,java 실행 메소드 init (필터 인스턴스 초기화)doFilter (전/후 처리)destroy (필터 인스턴스 종료) preHandler (컨트롤러 실행 전)postHandler (컨트롤러 실행 후)afterCompletion (view 페이지 렌더링 후) pointcut (포인트컷)(@after, @before, @around 등)]]></content>
@@ -299,6 +313,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[REST API란]]></title>
+    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
+    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
+      <categories>
+        <category>RESTAPI</category>
+      </categories>
+      <tags>
+        <tag>RESTAPI</tag>
+        <tag>REST</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Spring-library]Lombok이란?]]></title>
     <url>%2F2019%2F01%2F23%2FSpring-Lombok%2F</url>
     <content type="text"><![CDATA[Lombok이란? Lombok은 자바에서 Model(DTO, VO, Domain Class) 클래스를 작성할 때, 멤버 변수에 대한 Getter/Setter Method, Equals(), hashCode(), ToString()과 멤버 변수에 값을 설정하는 생성자 등등을 @Getter, @Setter 같은 어노테이션을 통해 자동으로 생성해주는 라이브러리 이다. 공식홈페이지 시작하기라이브러리 의존성 설정Maven12345678&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.projectlombok&lt;/groupId&gt; &lt;artifactId&gt;lombok&lt;/artifactId&gt; &lt;version&gt;1.18.4&lt;/version&gt; &lt;scope&gt;provided&lt;/scope&gt; &lt;/dependency&gt;&lt;/dependencies&gt; Gradle1provided 'org.projectlombok:lombok:1.18.4' AssertJ 메소드 임포트1import lombok.*; Lombok 어노테이션 @어노테이션 설명 세부기능 @Getter, @Setter Getter, Setter 메소드 자동생성 – AccessLevel : 해당 접근 제한자를 설정 – lazy : 동기화를 이용하여 최초 1회만 호출 @ToString ToString 메소드 자동생성 – exclude : 출력하지 않을 필드명 입력 – includeFieldNames : 필등명 생략 여부 설정– callSuper : 상위 클래스 toString호출 여부 설정 @EqualsAndHashCode equals, hashcode 메소드 자동생성 – of : 포함 할 필드, – exclude : 제외 할 필드 @Data @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 자동생성 @val equals, hashcode 메소드 자동생성 @NonNull 해당 값이 Null 일경우 NullPointerException을 발생 @Cleanup 자동 리소스 관리 : close() 메소드를 귀찮음 없게 안전하게 호출 @NoArgsConstructor 인자 없는 생성자 생성 @RequriedArgsConstructor 필수 인자만 있는 생성자 생성(다른 생성자가 없을 때에만 만들어짐) @AllArgsConstructor 모든 인자를 가진 생성자 생성 @Value 불편 클래스를 쉽게 생성 @Builder Builder API 처럼 사용 할 수 있도록 지원 @SneakyThrows Exception 발생시 체크된 Throable로 감싸서 전달 @Synchronized 메소드에서 동기화 Lock을 설정 @Log 종류별 로그를 사용할 수 있도록 한다. – 기본 변수명 : Log (Config 파일 만들어서 명칭 변경 가능)– 로그 종류 : @Log, @Slf4j, @CommonLog, XSlf4j, JBossLog 등 실제 사용Lombok 어노테이션을 이용하여 만든 Event Class1234567@Builder @AllArgsConstructor @NoArgsConstructor@Getter @Setter @EqualsAndHashCode(of="id")public class Event &#123; private Integer id; private String name;&#125; 실제로 만들어진 .class파일123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103//// Source code recreated from a .class file by IntelliJ IDEA// (powered by Fernflower decompiler)//package com.doohong.restapi.event;public class Event2 &#123; private Integer id; private String name; public static Event2.Event2Builder builder() &#123; return new Event2.Event2Builder(); &#125; public Event2(final Integer id, final String name) &#123; this.id = id; this.name = name; &#125; public Event2() &#123; &#125; public Integer getId() &#123; return this.id; &#125; public String getName() &#123; return this.name; &#125; public void setId(final Integer id) &#123; this.id = id; &#125; public void setName(final String name) &#123; this.name = name; &#125; public boolean equals(final Object o) &#123; if (o == this) &#123; return true; &#125; else if (!(o instanceof Event2)) &#123; return false; &#125; else &#123; Event2 other = (Event2)o; if (!other.canEqual(this)) &#123; return false; &#125; else &#123; Object this$id = this.getId(); Object other$id = other.getId(); if (this$id == null) &#123; if (other$id != null) &#123; return false; &#125; &#125; else if (!this$id.equals(other$id)) &#123; return false; &#125; return true; &#125; &#125; &#125; protected boolean canEqual(final Object other) &#123; return other instanceof Event2; &#125; public int hashCode() &#123; int PRIME = true; int result = 1; Object $id = this.getId(); int result = result * 59 + ($id == null ? 43 : $id.hashCode()); return result; &#125; public static class Event2Builder &#123; private Integer id; private String name; Event2Builder() &#123; &#125; public Event2.Event2Builder id(final Integer id) &#123; this.id = id; return this; &#125; public Event2.Event2Builder name(final String name) &#123; this.name = name; return this; &#125; public Event2 build() &#123; return new Event2(this.id, this.name); &#125; public String toString() &#123; Integer var10000 = this.id; return this.name; &#125; &#125;&#125;]]></content>
@@ -310,19 +337,6 @@
         <tag>SpringBoot</tag>
         <tag>library</tag>
         <tag>Lombok</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[REST API란]]></title>
-    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
-    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
-      <categories>
-        <category>RESTAPI</category>
-      </categories>
-      <tags>
-        <tag>RESTAPI</tag>
-        <tag>REST</tag>
-        <tag>API</tag>
       </tags>
   </entry>
   <entry>
