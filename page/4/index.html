@@ -349,6 +349,248 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/07/Spring-summary/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/07/Spring-summary/" class="post-title-link" itemprop="url">[Spring]Spring Framework</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-07 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-07T16:00:00+09:00">2019-01-07</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-29 23:47:47" itemprop="dateModified" datetime="2019-01-29T23:47:47+09:00">2019-01-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/07/Spring-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/07/Spring-summary/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Spring-Framework란"><a href="#Spring-Framework란" class="headerlink" title="Spring Framework란?"></a>Spring Framework란?</h1><blockquote>
+<p>java <strong>엔터프라이즈 개발</strong> 을 편리하게 해주는 <strong>오픈소스</strong> <strong>경량급</strong> <strong>애플리케이션 프레임워크</strong>이다.</p>
+</blockquote>
+<ul>
+<li>애플리케이션 프레임워크<ul>
+<li>특정 계층이나 기술, 업무 분야에 국한되지 않고 애플리케이션 전 영역을 포괄하는 범용적인 프레임 워크</li>
+</ul>
+</li>
+<li>경량급 프레임워크<ul>
+<li>단순한 웹컨테이너에서도 엔터프라이즈 개발의 고급 기술을 대부분 사용할 수 있다.</li>
+</ul>
+</li>
+<li>엔터프라이즈 개발 용이<ul>
+<li>개발자가 복잡하고 실수하기 쉬운 Low Level(보안,인증)에 많이 신경 쓰지 않으면서 Business Logic 개발에 전념할 수 있도록 해준다.</li>
+</ul>
+</li>
+<li>오픈소스<ul>
+<li>Spring은 Open Source 의 장점을 충분히 취하면서 동시에 Open Source 제품의 단점과 한계를 잘 극복한다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Spring-Framework-전략"><a href="#Spring-Framework-전략" class="headerlink" title="Spring Framework 전략"></a>Spring Framework 전략</h2><ol>
+<li>Protable Service</li>
+<li>Abstraction </li>
+<li>DI</li>
+<li>AOP</li>
+<li>POJO</li>
+</ol>
+<h3 id="Protable-ServiceAbstraction-서비스-추상화"><a href="#Protable-ServiceAbstraction-서비스-추상화" class="headerlink" title="Protable ServiceAbstraction(서비스 추상화)"></a>Protable ServiceAbstraction(서비스 추상화)</h3><p>트랜잭션 추상화, OXM 추상화, 데이터 액세스의 Exception 변환기능 등 기술적인 복잡함은 추상화를 통해 Low Level의 기술 구현 부분과 기술을 사용하는 인터페이스로 분리한다.</p>
+<h3 id="DI-Dependency-Injection"><a href="#DI-Dependency-Injection" class="headerlink" title="DI(Dependency Injection)"></a>DI(Dependency Injection)</h3><p>Spring은 객체지향에 충실한 설계가 가능하도록 단순한 객체 형태로 개발할 수 있고, DI는 유연하게 확장 가능한 객체를 만들어 두고 그 관계는 외부에서 다이내믹하게 설정해준다.</p>
+<h3 id="AOP-Aspect-Oriented-Programming"><a href="#AOP-Aspect-Oriented-Programming" class="headerlink" title="AOP(Aspect Oriented Programming)"></a>AOP(Aspect Oriented Programming)</h3><p>AOP는 애플리케이션 로직을 담당하는 코드에 남아 있는 기술 관련 코드를 분리해서 별도의 모듈로 관리하게 해주는 강력한 기술</p>
+<h3 id="POJO-Plain-Old-Java-Object"><a href="#POJO-Plain-Old-Java-Object" class="headerlink" title="POJO(Plain Old Java Object)"></a>POJO(Plain Old Java Object)</h3><p>POJO는 객체지향 원리에 충실하면서, 특정 환경이나 규약에 종속되지 않고 필요에 따라 재활용될 수 있는 방식으로 설계된 객체</p>
+<h2 id="Spring-Framework-특징"><a href="#Spring-Framework-특징" class="headerlink" title="Spring Framework 특징"></a>Spring Framework 특징</h2><ul>
+<li>컨테이너 역할<ul>
+<li>Spring 컨테이너는 Java 객체의 Life Cycle을 관리하며, Spring 컨테이너로 부터 필요한 객체를 가져와 사용할 수 있다.</li>
+</ul>
+</li>
+<li>DI(Dependency Injection)지원<ul>
+<li>Spring은 설정 파일이나 어노테이션을 통해서 객체간의 의존관계를 설정할 수있다.</li>
+</ul>
+</li>
+<li>AOP 지원<ul>
+<li>Spring은 트랜잭션이나 로깅, 보안과 같이 공통적으로 필요로 하는 모듈들을 실제 핵심 모듈에서 분리해서 적용할 수 있다.</li>
+</ul>
+</li>
+<li>POJO 지원<ul>
+<li>Spring 컨테이너에 저장되는 Java객체는 특정한 인터페이스를 구현하거나, 특정 클래스를 상속받지 않아도 된다.</li>
+</ul>
+</li>
+<li>트랜잭션 처리를 위한 일관된 방법을 지원<ul>
+<li>JDBC, JTA 등 어떤 트랜잭션을 사용하던 설정을 통해 정보를 관리하므로 트랜잭션 구현에 상관없이 동일한 코드 사용가능</li>
+</ul>
+</li>
+<li>영속성(persistence)과 관련된 다양한 API 지원<ul>
+<li>Spring은 MyBatis, Hibernate 등 데이터베이스 처리를 위한 ORM(Object Relational Mapping) 프레임워크들과의 연동 지원 </li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/04/OOP-polymorphism/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2310,7 +2552,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">40</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2335,7 +2577,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">카테고리</span>
                   </a>
                 </div>
@@ -2484,7 +2728,21 @@
                     
                       
                     
-                    <span class="site-state-item-count">68</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">75</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
