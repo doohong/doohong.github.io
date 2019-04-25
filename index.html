@@ -349,6 +349,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/04/25/DB-constraint/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/25/DB-constraint/" class="post-title-link" itemprop="url">DB-constraint</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-04-25 17:24:00 / Updated at: 18:43:52" itemprop="dateCreated datePublished" datetime="2019-04-25T17:24:00+09:00">2019-04-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/jobinterview/" itemprop="url" rel="index"><span itemprop="name">jobinterview</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/04/25/DB-constraint/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/04/25/DB-constraint/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="제약조건"><a href="#제약조건" class="headerlink" title="제약조건"></a>제약조건</h1><p>테이블에 올바른 데이터만 입력 받고 잘못된 데이터는 들어오지 못하도록 칼럼마다 정하는 규칙</p>
+<p>해당 조건과 맞지 않는 데이터가 들어오면 걸러내기 때문에 데이터의 정확성이 올라간다.</p>
+<p>종류는 총 5가지이다.</p>
+<h2 id="NOT-NULL"><a href="#NOT-NULL" class="headerlink" title="NOT NULL"></a>NOT NULL</h2><p>컬럼 생성시 지정하지 않으면 default로 Null이 허용가능하게 되어 있다.<br>따라서 해당 컬럼값을 입력하지 않고 튜플을 삽입시 Null이 들어가게 되는데<br>이를 방지하기 위해서는 Not Null을 기술해 주면 된다.</p>
+<h2 id="UNIQUE"><a href="#UNIQUE" class="headerlink" title="UNIQUE"></a>UNIQUE</h2><p>유일한 값만 들어가도록 하고 싶을 때 사용한다. </p>
+<p>즉, 중복이 허용되지 않도록 데이터를 넣어야하는 경우 사용한다.</p>
+<h2 id="Primary-Key"><a href="#Primary-Key" class="headerlink" title="Primary Key"></a>Primary Key</h2><p>기본키이다.<br>기본키란 해당 테이블을 대표하는 컬럼으로 Primary key로 지정된 컬럼은 Null값을 가지지 못하며,<br>중복된 값을 가질 수 없다.</p>
+<p>즉, 이 primary key에 의해 튜플들은 중복되지 않고 구분될 수 있게 된다.<br>따라서 UNIQUE와 NOT NULL을 동시에 정의한 것과 효과가 같아진다.</p>
+<h2 id="Foreign-Key"><a href="#Foreign-Key" class="headerlink" title="Foreign Key"></a>Foreign Key</h2><p>외래키를 의미하는 제약조건이다.<br>외래키는 참조 무결성을 위해 사용되는데 이 외래키로 지정된 컬럼은 반드시 다른 테이블의 “Primary key(기본키)”와 참조 관계를 가지게 되고<br>외래키로 지정된 컬럼은 참조관계를 가진 테이블의 기본키에 있는 값만을 가질 수 있다.</p>
+<p>즉, Null 값은 허용하되, 참조하고 있는 테이블의 기본키에 있는 값만 입력될 수 있다.</p>
+<h2 id="CHECK"><a href="#CHECK" class="headerlink" title="CHECK"></a>CHECK</h2><p>입력될 수 있는 데이터의 종류를 제한할 수 있다.</p>
+<p>ex) coin CHAR(1) CHECK(coin IN(‘P’,’N’,’D’))</p>
+<p>MySQL은 CHECK 제약조건을 지원하지 않는다고 한다.</p>
+<h2 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h2><p>PRIMARY KEYY 빼고 제약조건은 여러 칼럼에 중복으로 설정될 수 있고, </p>
+<p>하나의 칼럼에도 여러개의 제약 조건들이 중복으로 설정될 수있음.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/04/06/ShoesFit-summary/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2191,202 +2378,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/09/DB-index/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/09/DB-index/" class="post-title-link" itemprop="url">DB-index</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-03-09 14:24:00 / Updated at: 16:42:08" itemprop="dateCreated datePublished" datetime="2019-03-09T14:24:00+09:00">2019-03-09</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/jobinterview/" itemprop="url" rel="index"><span itemprop="name">jobinterview</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/03/09/DB-index/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/09/DB-index/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="index"><a href="#index" class="headerlink" title="index"></a>index</h1><h2 id="index란"><a href="#index란" class="headerlink" title="index란"></a>index란</h2><p>RDBMS에서 검색 속도를 높이는 기술중 하나이다.</p>
-<p>대게 B-Tree, B+ Tree 구조를 갖는다.</p>
-<p>index는 해당 TABLE의 컬럼을 색인화 한다.</p>
-<p>index는 논리적/물리적으로 테이블과 독립적임</p>
-<p>TABLE 에는 데이터의 레코드가 순서 없이 저장된다. 이때 데이터를 찾을 경우 데이터 페이지의 청므 레코드부터 끝 레코드까지 다 읽어 검색 조건과 비교하게 된다.<br>이러한 방식을 full scan이라고 하는데 full scan이 아닌 색인화 되어 있는 index파일을 검색하여 검색속도를 빠르게 한다.</p>
-<h2 id="index의-장단점"><a href="#index의-장단점" class="headerlink" title="index의 장단점"></a>index의 장단점</h2><ul>
-<li>키 값을 기초로 하여 테이블에서 검색과 정렬 속도가 향상된다.</li>
-<li>테이블의 기본 키는 자동으로 인덱스 된다.</li>
-<li>인덱스를 만들면 .mdb 파일 크기가 늘어난다.</li>
-<li>데이터를 업데이트 하거나 레코드를 추가 또는 삭제할 때 성능이 떨어진다.</li>
-</ul>
-<h2 id="index-생성시-고려할-점"><a href="#index-생성시-고려할-점" class="headerlink" title="index 생성시 고려할 점"></a>index 생성시 고려할 점</h2><ul>
-<li>WHERE 절에서 사용되는 컬럼을 인덱스로 만든다.</li>
-<li>like ‘%~~~’는 조심(처음 %가 붙으면 table scan이 된다.)</li>
-<li>데이터의 중복도가 높은 열은 인덱스로 만들지 않는다.(값이 true/false 이거나 성별 같은 경우)</li>
-<li>join, order by 에 자주 사용되는 열에는 인덱스를 생성해주는 것이 좋다.</li>
-<li>외래키가 사용되는 열에는 인덱스를 생성해주는 것이 좋다.</li>
-<li>insert, delete, update 등 데이터의 변경이 많은 컬럼에는 인덱스를 걸지 않는 편이 좋음</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2431,7 +2427,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2621,7 +2617,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">75</span>
+                      
+                    
+                    <span class="site-state-item-count">76</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

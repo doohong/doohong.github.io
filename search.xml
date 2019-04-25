@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[DB-constraint]]></title>
+    <url>%2F2019%2F04%2F25%2FDB-constraint%2F</url>
+    <content type="text"><![CDATA[제약조건테이블에 올바른 데이터만 입력 받고 잘못된 데이터는 들어오지 못하도록 칼럼마다 정하는 규칙 해당 조건과 맞지 않는 데이터가 들어오면 걸러내기 때문에 데이터의 정확성이 올라간다. 종류는 총 5가지이다. NOT NULL컬럼 생성시 지정하지 않으면 default로 Null이 허용가능하게 되어 있다.따라서 해당 컬럼값을 입력하지 않고 튜플을 삽입시 Null이 들어가게 되는데이를 방지하기 위해서는 Not Null을 기술해 주면 된다. UNIQUE유일한 값만 들어가도록 하고 싶을 때 사용한다. 즉, 중복이 허용되지 않도록 데이터를 넣어야하는 경우 사용한다. Primary Key기본키이다.기본키란 해당 테이블을 대표하는 컬럼으로 Primary key로 지정된 컬럼은 Null값을 가지지 못하며,중복된 값을 가질 수 없다. 즉, 이 primary key에 의해 튜플들은 중복되지 않고 구분될 수 있게 된다.따라서 UNIQUE와 NOT NULL을 동시에 정의한 것과 효과가 같아진다. Foreign Key외래키를 의미하는 제약조건이다.외래키는 참조 무결성을 위해 사용되는데 이 외래키로 지정된 컬럼은 반드시 다른 테이블의 “Primary key(기본키)”와 참조 관계를 가지게 되고외래키로 지정된 컬럼은 참조관계를 가진 테이블의 기본키에 있는 값만을 가질 수 있다. 즉, Null 값은 허용하되, 참조하고 있는 테이블의 기본키에 있는 값만 입력될 수 있다. CHECK입력될 수 있는 데이터의 종류를 제한할 수 있다. ex) coin CHAR(1) CHECK(coin IN(‘P’,’N’,’D’)) MySQL은 CHECK 제약조건을 지원하지 않는다고 한다. 마무리PRIMARY KEYY 빼고 제약조건은 여러 칼럼에 중복으로 설정될 수 있고, 하나의 칼럼에도 여러개의 제약 조건들이 중복으로 설정될 수있음.]]></content>
+      <categories>
+        <category>jobinterview</category>
+      </categories>
+      <tags>
+        <tag>db</tag>
+        <tag>constraint</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[ShoesFit]ShoesFit]]></title>
     <url>%2F2019%2F04%2F06%2FShoesFit-summary%2F</url>
     <content type="text"><![CDATA[신발사이즈 추천 서비스 ShoesFit 설명ShoesFit은 집단지성을 이용한 신발 사이즈 추천 서비스 입니다. 자신이 가지고 있는 두개의 신발을 이용하여 원하는 신발의 브랜드와 이름을 입력하면 다른사람들의 입력한 정보를 토대로 신발사이즈를 추천해줍니다. 입력한 두개의 신발은 연관 관계를 만들어 저장함으로 다른사람들의 검색의 도움을 주는 정보가 됩니다. 기술 설명Spring Boot를 이용하여 신발 추천 알고리즘 및 API를 개발하였습니다. MyBatis 대신 JPA를 사용하였습니다. JavaScript와 jQuery를 이용하여 자동완성 기능을 만들었으며 Ajax를 이용하여 API를 호출하여 사용하였습니다. Travis CI를 이용하여 자동 빌드와 CodeDeploy를 이용한 자동 빌드, Nginx를 이용한 무중단 배포까지 하였습니다. freenom에서 무료 도메인을 받아 aws 네임서버를 이용하여 도메인 연결을 하였습니다. let’sencrypt의 certbot을 이용하여 빠르게 ssl을 적용하였습니다. 기술 요약 SpringBoot JavaScript jQuery JPA AWS EC2(Amazon Linux) AWS RDS(Maria DB) AWS CodeDeploy AWS S3 AWS Rout 53 Travis CI Nginx certbot 사용방법 가지고 있는 신발 두개의 브랜드와 이름 사이즈를 입력하세요. 사이즈를 알고 싶은 신발의 브랜드와 이름을 입력하세요. 두신발 검색 버튼을 눌러서 검색해주세요. 주의사항 브랜드와 이름이 같은 신발은 입력하실 수 없습니다. 찾으시는 신발이 자동완성에 있으면 자동완성에 있는 단어를 입력해주세요. ex)에어맥스가 자동완성 리스트에 있으면 airmax(X) 에어맥스(O) 향후계획 CSS 추가(ㅜㅜ) JS 기능 추가 및 완벽하게 (간단하게만 해놓은 상태) API 보완 및 기능 확대 진짜 서비스]]></content>
@@ -357,6 +369,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[REST API란]]></title>
+    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
+    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
+      <categories>
+        <category>RESTAPI</category>
+      </categories>
+      <tags>
+        <tag>RESTAPI</tag>
+        <tag>REST</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Spring-library]Lombok이란?]]></title>
     <url>%2F2019%2F01%2F23%2FSpring-Lombok%2F</url>
     <content type="text"><![CDATA[Lombok이란? Lombok은 자바에서 Model(DTO, VO, Domain Class) 클래스를 작성할 때, 멤버 변수에 대한 Getter/Setter Method, Equals(), hashCode(), ToString()과 멤버 변수에 값을 설정하는 생성자 등등을 @Getter, @Setter 같은 어노테이션을 통해 자동으로 생성해주는 라이브러리 이다. 공식홈페이지 시작하기라이브러리 의존성 설정Maven12345678&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.projectlombok&lt;/groupId&gt; &lt;artifactId&gt;lombok&lt;/artifactId&gt; &lt;version&gt;1.18.4&lt;/version&gt; &lt;scope&gt;provided&lt;/scope&gt; &lt;/dependency&gt;&lt;/dependencies&gt; Gradle1provided 'org.projectlombok:lombok:1.18.4' AssertJ 메소드 임포트1import lombok.*; Lombok 어노테이션 @어노테이션 설명 세부기능 @Getter, @Setter Getter, Setter 메소드 자동생성 – AccessLevel : 해당 접근 제한자를 설정 – lazy : 동기화를 이용하여 최초 1회만 호출 @ToString ToString 메소드 자동생성 – exclude : 출력하지 않을 필드명 입력 – includeFieldNames : 필등명 생략 여부 설정– callSuper : 상위 클래스 toString호출 여부 설정 @EqualsAndHashCode equals, hashcode 메소드 자동생성 – of : 포함 할 필드, – exclude : 제외 할 필드 @Data @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 자동생성 @val equals, hashcode 메소드 자동생성 @NonNull 해당 값이 Null 일경우 NullPointerException을 발생 @Cleanup 자동 리소스 관리 : close() 메소드를 귀찮음 없게 안전하게 호출 @NoArgsConstructor 인자 없는 생성자 생성 @RequriedArgsConstructor 필수 인자만 있는 생성자 생성(다른 생성자가 없을 때에만 만들어짐) @AllArgsConstructor 모든 인자를 가진 생성자 생성 @Value 불편 클래스를 쉽게 생성 @Builder Builder API 처럼 사용 할 수 있도록 지원 @SneakyThrows Exception 발생시 체크된 Throable로 감싸서 전달 @Synchronized 메소드에서 동기화 Lock을 설정 @Log 종류별 로그를 사용할 수 있도록 한다. – 기본 변수명 : Log (Config 파일 만들어서 명칭 변경 가능)– 로그 종류 : @Log, @Slf4j, @CommonLog, XSlf4j, JBossLog 등 실제 사용Lombok 어노테이션을 이용하여 만든 Event Class1234567@Builder @AllArgsConstructor @NoArgsConstructor@Getter @Setter @EqualsAndHashCode(of="id")public class Event &#123; private Integer id; private String name;&#125; 실제로 만들어진 .class파일123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103//// Source code recreated from a .class file by IntelliJ IDEA// (powered by Fernflower decompiler)//package com.doohong.restapi.event;public class Event2 &#123; private Integer id; private String name; public static Event2.Event2Builder builder() &#123; return new Event2.Event2Builder(); &#125; public Event2(final Integer id, final String name) &#123; this.id = id; this.name = name; &#125; public Event2() &#123; &#125; public Integer getId() &#123; return this.id; &#125; public String getName() &#123; return this.name; &#125; public void setId(final Integer id) &#123; this.id = id; &#125; public void setName(final String name) &#123; this.name = name; &#125; public boolean equals(final Object o) &#123; if (o == this) &#123; return true; &#125; else if (!(o instanceof Event2)) &#123; return false; &#125; else &#123; Event2 other = (Event2)o; if (!other.canEqual(this)) &#123; return false; &#125; else &#123; Object this$id = this.getId(); Object other$id = other.getId(); if (this$id == null) &#123; if (other$id != null) &#123; return false; &#125; &#125; else if (!this$id.equals(other$id)) &#123; return false; &#125; return true; &#125; &#125; &#125; protected boolean canEqual(final Object other) &#123; return other instanceof Event2; &#125; public int hashCode() &#123; int PRIME = true; int result = 1; Object $id = this.getId(); int result = result * 59 + ($id == null ? 43 : $id.hashCode()); return result; &#125; public static class Event2Builder &#123; private Integer id; private String name; Event2Builder() &#123; &#125; public Event2.Event2Builder id(final Integer id) &#123; this.id = id; return this; &#125; public Event2.Event2Builder name(final String name) &#123; this.name = name; return this; &#125; public Event2 build() &#123; return new Event2(this.id, this.name); &#125; public String toString() &#123; Integer var10000 = this.id; return this.name; &#125; &#125;&#125;]]></content>
@@ -368,19 +393,6 @@
         <tag>SpringBoot</tag>
         <tag>library</tag>
         <tag>Lombok</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[REST API란]]></title>
-    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
-    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
-      <categories>
-        <category>RESTAPI</category>
-      </categories>
-      <tags>
-        <tag>RESTAPI</tag>
-        <tag>REST</tag>
-        <tag>API</tag>
       </tags>
   </entry>
   <entry>
