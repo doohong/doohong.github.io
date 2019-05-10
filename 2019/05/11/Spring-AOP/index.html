@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="AOP(Aspect Oriented Programing)AOP는 관점 지향 프로그래밍이다. 쉽게 말해서 AOP는 애플리케이션 전체에 걸쳐 사용되는 기능을 재사용 하도록 지원하는 것이다. 관점 지향 프로그래밍이라는 단어가 AOP를 이해하는데 더 어려움을 일으킨다. 쉽게 설명하면 프로젝트 구조를 바라 보는 관점을 바꿔 보자는 것이다. (제 3자의 관점) (핵심">
+<meta name="keywords" content="Spring,AOP,SpringBoot,AspectOrientedPrograming">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Spring]AOP란?">
+<meta property="og:url" content="http://doohong.github.com/2019/05/11/Spring-AOP/index.html">
+<meta property="og:site_name" content="doohong&#39;s blog">
+<meta property="og:description" content="AOP(Aspect Oriented Programing)AOP는 관점 지향 프로그래밍이다. 쉽게 말해서 AOP는 애플리케이션 전체에 걸쳐 사용되는 기능을 재사용 하도록 지원하는 것이다. 관점 지향 프로그래밍이라는 단어가 AOP를 이해하는데 더 어려움을 일으킨다. 쉽게 설명하면 프로젝트 구조를 바라 보는 관점을 바꿔 보자는 것이다. (제 3자의 관점) (핵심">
+<meta property="og:locale" content="ko">
+<meta property="og:image" content="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2108D041584969DA190575">
+<meta property="og:image" content="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F273B244458496A0A1B7AC5">
+<meta property="og:image" content="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2473C33D58496A2A0F6DF9">
+<meta property="og:image" content="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2715394658496A61010951">
+<meta property="og:image" content="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2379DB3E58496AA7079CEF">
+<meta property="og:updated_time" content="2019-05-10T15:44:48.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[Spring]AOP란?">
+<meta name="twitter:description" content="AOP(Aspect Oriented Programing)AOP는 관점 지향 프로그래밍이다. 쉽게 말해서 AOP는 애플리케이션 전체에 걸쳐 사용되는 기능을 재사용 하도록 지원하는 것이다. 관점 지향 프로그래밍이라는 단어가 AOP를 이해하는데 더 어려움을 일으킨다. 쉽게 설명하면 프로젝트 구조를 바라 보는 관점을 바꿔 보자는 것이다. (제 3자의 관점) (핵심">
+<meta name="twitter:image" content="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2108D041584969DA190575">
+
+
+
+
+
+
+  <link rel="canonical" href="http://doohong.github.com/2019/05/11/Spring-AOP/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[Spring]AOP란? | doohong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">doohong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Study & Development</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/doohong" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/05/11/Spring-AOP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[Spring]AOP란?
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-05-11 12:44:00 / Updated at: 00:44:48" itemprop="dateCreated datePublished" datetime="2019-05-11T12:44:00+09:00">2019-05-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/05/11/Spring-AOP/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/11/Spring-AOP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="AOP-Aspect-Oriented-Programing"><a href="#AOP-Aspect-Oriented-Programing" class="headerlink" title="AOP(Aspect Oriented Programing)"></a>AOP(Aspect Oriented Programing)</h3><p>AOP는 관점 지향 프로그래밍이다.</p>
+<p>쉽게 말해서 AOP는 애플리케이션 전체에 걸쳐 사용되는 기능을 재사용 하도록 지원하는 것이다.</p>
+<p>관점 지향 프로그래밍이라는 단어가 AOP를 이해하는데 더 어려움을 일으킨다.</p>
+<p>쉽게 설명하면 프로젝트 구조를 바라 보는 관점을 바꿔 보자는 것이다.<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2108D041584969DA190575" alt="그림1"></p>
+<p>(제 3자의 관점)<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F273B244458496A0A1B7AC5" alt="그림2"></p>
+<p>(핵심기능에서 바라본 관점)<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2473C33D58496A2A0F6DF9" alt="그림3"></p>
+<p>(부가기능에서 바라본 관점)</p>
+<p>부가적 기능의 관점엑서 보면 각각의 서비스는 before와 after 메소드를 공통으로 사용하고 있다.</p>
+<p>기존의 OOP에서 바라보던 관점을 다르게하여 부가기능적인 측면에서 보았을때 공통된 요소를 추출하자는 것이 관점 지향 프로그래밍이다.</p>
+<ul>
+<li>OOP : 비지니스 로직의 모듈화<ul>
+<li>모듈화의 핵심 단위는 비지니스 로직</li>
+</ul>
+</li>
+<li>AOP : 인프라 혹은 부가기능의 모듈화<ul>
+<li>대표적 예 : 로깅, 트랜잭션, 보안 등</li>
+<li>각각의 모듈들의 주 목적 외에 필요한 부가적인 기능들</li>
+</ul>
+</li>
+</ul>
+<p>AOP는 새로운 개념은 아니다!</p>
+<p>결국은 공통된 기능을 재사용하는 기법</p>
+<p>기존 OOP같은 경우 상속이나 위임을 통해 처리하지만 자바의 경우 다중 상속을 지원하지 않을뿐더러 상속이나 위임으로 처리하기에는 깔끔하게 모듈화가 어렵다고 한다.</p>
+<p>그래서 이러한 문제를 해결하기 위해 AOP가 등장하게 되었고 AOP의 큰 장점은 2가지가 있다.</p>
+<ol>
+<li>어플리케이션 전체에 흩어진 공통 기능이 하나의 장소에서 관리된다는 점</li>
+<li>다른 서비스 모듈들이 본인의 목적에만 충실하고 그외 사항들은 신경쓰지 않아도 된다는 점 </li>
+</ol>
+<h2 id="AOP용어"><a href="#AOP용어" class="headerlink" title="AOP용어"></a>AOP용어</h2><h3 id="타겟-Target"><a href="#타겟-Target" class="headerlink" title="타겟(Target)"></a>타겟(Target)</h3><p>부가기능을 부여할 대상을 말한다.<br>위에 그림에선 공통된 기능을 가진 Service들을 얘기한다.</p>
+<h3 id="애스펙트-Aspect"><a href="#애스펙트-Aspect" class="headerlink" title="애스펙트(Aspect)"></a>애스펙트(Aspect)</h3><p>객체지향 모듈을 오브젝트라 부르는것과 같게 부가기능 모듈을 애스펙트라 부르며, 핵심기능에 부가되어 의미를 갖는 특별한 모듈이라 생각하면 된다.</p>
+<h3 id="어드바이스-Advice"><a href="#어드바이스-Advice" class="headerlink" title="어드바이스(Advice)"></a>어드바이스(Advice)</h3><p>실질적으로 부가기능을 담은 구현체<br>어드바이스는 타겟 오브젝트에 종속되지 않기 때문에 순수하게 부가기능에만 집중 할 수 있다.<br>어드바이스는 애스펙트가 무엇을 언제할지를 정의한다.</p>
+<h3 id="포인트컷-PointCut"><a href="#포인트컷-PointCut" class="headerlink" title="포인트컷(PointCut)"></a>포인트컷(PointCut)</h3><p>부가기능이 적용될 대상(메소드)를 선정하는 방법을 얘기한다.<br>즉, 어드바이스를 적용할 조인포인트를 선별하는 기능을 정의한 모듈을 얘기한다.</p>
+<h3 id="조인포인트-JoinPoint"><a href="#조인포인트-JoinPoint" class="headerlink" title="조인포인트(JoinPoint)"></a>조인포인트(JoinPoint)</h3><p>어드바이스가 적용될 수 있는 위치를 얘기한다.<br>Spring에서는 메소드 조인포인트만 제공하고 있다.<br>따라서 Spring 내에서 조인포인트라 하면 메소드를 가르킨다고 생각하면 된다.</p>
+<h3 id="프록시-Proxy"><a href="#프록시-Proxy" class="headerlink" title="프록시(Proxy)"></a>프록시(Proxy)</h3><p>타겟을 감싸서 타겟의 요청을 대신 받아주는 랩핑(Wrapping)오브젝트이다.<br>클라이언트에서 타겟을 호출하게 되면 타겟이 아닌 타겟을 감싸고 있는 프록시가 호출되어, 타깃 메소드 실행전에 선처리, 메소드 실행 후, 후처리를 하도록 구성되어 있다.</p>
+<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2715394658496A61010951" alt="그림4"></p>
+<h3 id="인트로덕션-Introduction"><a href="#인트로덕션-Introduction" class="headerlink" title="인트로덕션 (Introduction)"></a>인트로덕션 (Introduction)</h3><p>타겟 클래스에 코드 변경없이 신규 메소드나 멤버변수를 추가하는 기능을 얘기한다. </p>
+<h3 id="위빙-Weaving"><a href="#위빙-Weaving" class="headerlink" title="위빙 (Weaving)"></a>위빙 (Weaving)</h3><p>지정된 객체에 애스팩트를 적용해서 새로운 프록시 객체를 생성하는 과정을 얘기한다.<br>예를 들면 A라는 객체에 트랜잭션 애스팩트가 지정되어 있다면, A라는 객체가 실행되기전 커넥션을 오픈하고 실행이 끝나면 커넥션을 종료하는 기능이 추가된 프록시 객체가 생성되고, 이 프록시 객체가 앞으로 A 객체가 호출되는 시점에서 사용된다. 이때의 프록시객체가 생성되는 과정을 위빙이라 생각하면 된다.<br>Spring AOP는 런타임에서 프록시 객체가 생성 된다.</p>
+<h2 id="실습-어노테이션"><a href="#실습-어노테이션" class="headerlink" title="실습(어노테이션)"></a>실습(어노테이션)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableAspectAutoProxy</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ApplicationContext ctx = SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>@SpringBootApplication 또는 @Configuration을 명시한 클래스에 @EnableAspectAutoProxy를 명시하면 Spring AOP를 사용하기 위한 첫 준비가 끝난다.</li>
+<li>@EnableAspectAutoProxy은 XML 기반의 ApplicationContext 설정에서의 &lt;aop:aspectj-autoproxy /&gt;와 동일한 기능을 한다.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Order</span>(Ordered.LOWEST_PRECEDENCE)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* com.blogcode.board.BoardService.getBoards(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">calculatePerformanceTime</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> </span>&#123;</span><br><span class="line">        Object result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">            result = proceedingJoinPoint.proceed();</span><br><span class="line">            <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"수행 시간 : "</span>+ (end - start));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            System.out.println(<span class="string">"exception! "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>스프링 빈에 @Aspect를 명시하면 해당 빈이 Aspect로 작동한다.</li>
+<li>클래스 레벨에 @Order를 명시하여 @Aspect 빈 간의 작동 순서를 정할 수 있다. int 타입의 정수로 순서를 정할 수 있는데 값이 낮을수록 우선순위가 높다. 기본값은 가장 낮은 우선순위를 가지는 Ordered.LOWEST_PRECEDENCE이다.</li>
+<li>@Aspect가 명시된 빈에는 어드바이스(Advice)라 불리는 메써드를 작성할 수 있다. 대상 스프링 빈의 메써드의 호출에 끼어드는 시점과 방법에 따라 @Before, @After, @AfterReturning, @AfterThrowing, @Around 등을 명시할 수 있다.</li>
+</ul>
+<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2379DB3E58496AA7079CEF" alt="그림5"></p>
+<p>(포인트컷 표현식)</p>
+<ul>
+<li>@Before (이전)<ul>
+<li>어드바이스 타겟 메소드가 호출되기 전에 어드바이스 기능을 수행</li>
+</ul>
+</li>
+<li>@After (이후)<ul>
+<li>타겟 메소드의 결과에 관계없이(즉 성공, 예외 관계없이) 타겟 메소드가 완료 되면 어드바이스 기능을 수행</li>
+</ul>
+</li>
+<li>@AfterReturning (정상적 반환 이후)<ul>
+<li>타겟 메소드가 성공적으로 결과값을 반환 후에 어드바이스 기능을 수행</li>
+</ul>
+</li>
+<li>@AfterThrowing (예외 발생 이후)<ul>
+<li>타겟 메소드가 수행 중 예외를 던지게 되면 어드바이스 기능을 수행</li>
+</ul>
+</li>
+<li>@Around (메소드 실행 전후)<ul>
+<li>어드바이스가 타겟 메소드를 감싸서 타겟 메소드 호출전과 후에 어드바이스 기능을 수행</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/AOP/" rel="tag"># AOP</a>
+          
+            <a href="/tags/SpringBoot/" rel="tag"># SpringBoot</a>
+          
+            <a href="/tags/AspectOrientedPrograming/" rel="tag"># AspectOrientedPrograming</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/25/DB-constraint/" rel="next" title="DB-constraint">
+                <i class="fa fa-chevron-left"></i> DB-constraint
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            흝어보기
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/profile.jpg" alt="박주홍">
+            
+              <p class="site-author-name" itemprop="name">박주홍</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">77</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/doohong" title="GitHub &rarr; https://github.com/doohong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:wnghd94@gmail.com" title="E-Mail &rarr; mailto:wnghd94@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.facebook.com/profile.php?id=100002347333017" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100002347333017" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/p.doohong" title="Instagram &rarr; https://instagram.com/p.doohong" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#AOP-Aspect-Oriented-Programing"><span class="nav-number">1.</span> <span class="nav-text">AOP(Aspect Oriented Programing)</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#AOP용어"><span class="nav-number"></span> <span class="nav-text">AOP용어</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#타겟-Target"><span class="nav-number">1.</span> <span class="nav-text">타겟(Target)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#애스펙트-Aspect"><span class="nav-number">2.</span> <span class="nav-text">애스펙트(Aspect)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#어드바이스-Advice"><span class="nav-number">3.</span> <span class="nav-text">어드바이스(Advice)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#포인트컷-PointCut"><span class="nav-number">4.</span> <span class="nav-text">포인트컷(PointCut)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#조인포인트-JoinPoint"><span class="nav-number">5.</span> <span class="nav-text">조인포인트(JoinPoint)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#프록시-Proxy"><span class="nav-number">6.</span> <span class="nav-text">프록시(Proxy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#인트로덕션-Introduction"><span class="nav-number">7.</span> <span class="nav-text">인트로덕션 (Introduction)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#위빙-Weaving"><span class="nav-number">8.</span> <span class="nav-text">위빙 (Weaving)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#실습-어노테이션"><span class="nav-number"></span> <span class="nav-text">실습(어노테이션)</span></a></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">박주홍</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  <script id="dsq-count-scr" src="https://doohong-github-io.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://doohong.github.com/2019/05/11/Spring-AOP/";
+    this.page.identifier = "2019/05/11/Spring-AOP/";
+    this.page.title = '[Spring]AOP란?';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://doohong-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

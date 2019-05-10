@@ -349,6 +349,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/10/DB-join/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/10/DB-join/" class="post-title-link" itemprop="url">DB-join</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-10 14:24:00" itemprop="dateCreated datePublished" datetime="2019-03-10T14:24:00+09:00">2019-03-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-03-23 15:40:20" itemprop="dateModified" datetime="2019-03-23T15:40:20+09:00">2019-03-23</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/jobinterview/" itemprop="url" rel="index"><span itemprop="name">jobinterview</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/10/DB-join/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/10/DB-join/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h1><h2 id="조인이란"><a href="#조인이란" class="headerlink" title="조인이란?"></a>조인이란?</h2><p>두개이상의 테이블이나 데이터베잇스를 연결하여 데이터를 검색하는 방법 이다.</p>
+<p>보통 보통 Primary key혹은 Foreign key로 두 테이블을 연결한다. </p>
+<p><img src="/images/jobinterview/joins.png" alt="JOINS"></p>
+<h2 id="INNER-JOIN"><a href="#INNER-JOIN" class="headerlink" title="INNER JOIN"></a>INNER JOIN</h2><p>결합된 테이블에 조건의 내용이 공통으로 들어가 있는 값을 결과 집합으로 만들어준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT 열 목록</span><br><span class="line">FROM 첫번째 테이블 [AS 별칭] </span><br><span class="line">INNER JOIN 두번째 테이블 [AS별칭]</span><br><span class="line">ON(join_condition)</span><br></pre></td></tr></table></figure>
+<h2 id="OUTER-JOIN"><a href="#OUTER-JOIN" class="headerlink" title="OUTER JOIN"></a>OUTER JOIN</h2><p>INNER JOIN 문을 포함하고 한쪽에만 내용이 있더라도 지정한 기준 테이블에 있는 모든 데이터를 가져오는 조인</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT 열목록</span><br><span class="line">FROM 첫번째 테이블</span><br><span class="line">&lt;LEFT | RIGHT | FULL&gt; OUTER JOIN 두번째 테이블</span><br><span class="line">ON(join_condition)</span><br><span class="line">[WHERE 검색조건]</span><br></pre></td></tr></table></figure>
+<h3 id="LEFT-OUTER-JOIN"><a href="#LEFT-OUTER-JOIN" class="headerlink" title="LEFT OUTER JOIN"></a>LEFT OUTER JOIN</h3><p>왼쪽 테이블이 기준이 되어서 그 테이블에 있는 데이터를 모두 가져온다. 기준으로 지정되지 않은 오른쪽 테이블에서 가져올 수 없는 열은 NULL로 표현된다.</p>
+<h3 id="RIGHT-OUTER-JOIN"><a href="#RIGHT-OUTER-JOIN" class="headerlink" title="RIGHT OUTER JOIN"></a>RIGHT OUTER JOIN</h3><p>오른쪽 테이블이 기준이 되어서 그 테이블에 있는 데이터를 모두 가져온다. 기준으로 지정되지 않은 왼쪽 테이블에서 가져올 수 없는 열은 NULL로 표현된다.</p>
+<h3 id="FULL-OUTER-JOIN"><a href="#FULL-OUTER-JOIN" class="headerlink" title="FULL OUTER JOIN"></a>FULL OUTER JOIN</h3><p>왼쪽과 오른쪽에 관계없이 조건이 일치하지 않아도 양쪽의 모든 내용을 포함해서 나타낸다.</p>
+<h2 id="CROSS-JOIN"><a href="#CROSS-JOIN" class="headerlink" title="CROSS JOIN"></a>CROSS JOIN</h2><p>결과값이 한쪽 테이블의 모든행들과 다른쪽 테이블의 모든 행을 조인시킨다.<br>결과 집합은 두 테이블의 개수를 곱한 값만큼 생성되며, 조인되는 테이블에 공통되는 행이 없어도 되며 조건절인 ON 키워드가 사용되지 않는다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT 열목록</span><br><span class="line">FROM 첫번째 테이블 </span><br><span class="line">CROSS JOIN 두번째 테이블</span><br></pre></td></tr></table></figure></p>
+<h2 id="SELF-JOIN"><a href="#SELF-JOIN" class="headerlink" title="SELF JOIN"></a>SELF JOIN</h2><p>하나의 테이블에 같은 데이터가 존재하는데 그 의미가 다르게 존재하는 경우. 즉, 같은 데이터이지만 다른 열에 있는 경우에는 두 테이블을 서로 SELF JOIN 문으로 확인가능</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/09/DB-index/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2212,198 +2408,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/30/REST-API-7/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/30/REST-API-7/" class="post-title-link" itemprop="url">REST API 만들기-7</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-30 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-30T18:00:00+09:00">2019-01-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-03-20 17:35:14" itemprop="dateModified" datetime="2019-03-20T17:35:14+09:00">2019-03-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/30/REST-API-7/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/30/REST-API-7/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
-</blockquote>
-<h1 id="입력값이-이상한-경우-Bad-Request-처리-2"><a href="#입력값이-이상한-경우-Bad-Request-처리-2" class="headerlink" title="입력값이 이상한 경우 Bad Request 처리-2"></a>입력값이 이상한 경우 Bad Request 처리-2</h1><h2 id="EventValidator"><a href="#EventValidator" class="headerlink" title="EventValidator"></a>EventValidator</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventValidator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">validate</span><span class="params">(EventDto eventDto, Errors errors)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(eventDto.getBasePrice()&gt;eventDto.getMaxPrice()&amp;&amp; eventDto.getMaxPrice()&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            errors.rejectValue(<span class="string">"basePrice"</span>,<span class="string">"wrongValue"</span>,<span class="string">"BasePrice is wrong."</span>);</span><br><span class="line">            errors.rejectValue(<span class="string">"maxPrice"</span>,<span class="string">"wrongValue"</span>,<span class="string">"MaxPrice is wrong."</span>);</span><br><span class="line">            errors.reject(<span class="string">"wrongPrices"</span>,<span class="string">"Values to prices are wrong"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LocalDateTime endEventDateTime =eventDto.getEndEventDateTime();</span><br><span class="line">        <span class="keyword">if</span>(endEventDateTime.isBefore(eventDto.getBeginEventDateTime()) ||</span><br><span class="line">        endEventDateTime.isBefore(eventDto.getCloseEnrollmentDateTime())||</span><br><span class="line">        endEventDateTime.isBefore(eventDto.getBeginEnrollmentDateTime()))&#123;</span><br><span class="line">            errors.rejectValue(<span class="string">"endEventDateTime"</span>,<span class="string">"wrongValue"</span>,<span class="string">"endEventDateTime is wrong."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// TODO beginEventDateTime</span></span><br><span class="line">        <span class="comment">// TODO CloseEnrollmentDateTime</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>EventValidator클래스를 만들어 준 후 검증 할 값들을 어떻게 검증할 것인지를 작성하고 검증에 실패 할경우 에러를 담아 줍니다.</p>
-<h2 id="EventController"><a href="#EventController" class="headerlink" title="EventController"></a>EventController</h2><p>작성한 validator는 빈으로 등록했기 때문에 사용하기 위해 컨트롤러에 생성자에 넣어 사용합니다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> EventValidator eventValidator;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">EventController</span><span class="params">(EventRepository eventRepository, ModelMapper modelMapper, EventValidator eventValidator)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.eventRepository = eventRepository;</span><br><span class="line">        <span class="keyword">this</span>.modelMapper = modelMapper;</span><br><span class="line">        <span class="keyword">this</span>.eventValidator = eventValidator;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>이렇게 컨트롤러에서 주입 받을 수 있습니다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eventValidator.validate(eventDto,errors);</span><br><span class="line">        <span class="keyword">if</span>(errors.hasErrors())&#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.badRequest().build();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>코드 추가하여 잘못된 값에 대한 검증을 할 수 있습니다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2453,7 +2457,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-count">42</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2645,7 +2649,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">76</span>
+                      
+                    
+                    <span class="site-state-item-count">77</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
