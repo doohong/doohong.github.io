@@ -349,6 +349,235 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/12/Java-garbagecollection/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/12/Java-garbagecollection/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-6.자바 가비지 컬렉터</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-03-12 13:20:00 / Updated at: 14:52:20" itemprop="dateCreated datePublished" datetime="2019-03-12T13:20:00+09:00">2019-03-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/03/12/Java-garbagecollection/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/12/Java-garbagecollection/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="가비지-컬렉션"><a href="#가비지-컬렉션" class="headerlink" title="가비지 컬렉션"></a>가비지 컬렉션</h1><p>쉽게 이야기해서 Java가 개발자 대신 사용하지 않는 객체를 자동으로 찾아 메모리에서 제거해줌으로써 메모리를 관리해주는 것이다.</p>
+<h2 id="GC-대상이-되는-객체"><a href="#GC-대상이-되는-객체" class="headerlink" title="GC 대상이 되는 객체"></a>GC 대상이 되는 객체</h2><ol>
+<li>모든 객체 참조가 null 인 경우</li>
+<li>객체가 블럭 안에서 생성되고 블럭이 종료된 경우</li>
+<li>부모 객체가 null이 된 경우, 자식 객체는 자동적으로 GC 대상이 된다.</li>
+<li>객체가 Weak 참조만 가지고 있을 경우</li>
+<li>객체가 Soft 참조이지만 메모리 부족이 발생한 경우</li>
+</ol>
+<h2 id="가비지-컬렉션-과정-Generational-Garbage-Collection"><a href="#가비지-컬렉션-과정-Generational-Garbage-Collection" class="headerlink" title="가비지 컬렉션 과정 - Generational Garbage Collection"></a>가비지 컬렉션 과정 - Generational Garbage Collection</h2><p>Generational Garbage Collection에서는 힙을 Young, Old or Tenured, Permanent Generation으로 나눈다.<br><img src="/images/java/heap.png" alt="heap"></p>
+<p>Young 영역</p>
+<ul>
+<li>새롭게 생성한 객체의 대부분이 여기에 위치한다.</li>
+<li>가득차게 되면 minor garbage collection이 일어난다.</li>
+<li>대부분 객체가 금방 사라지기 때문에 많은 객체가 이 곳에서 사라진다.</li>
+</ul>
+<p>Old 영역</p>
+<ul>
+<li>접근 불가능 상태가 되지 않고 Young 영역에서 살아남은 객체들이 복사된다.</li>
+<li>Young 영역 보다 크기가 크게 할당하고 큰 만큼 GC는 적게 발생한다.</li>
+<li>이 영역에서 객체가 사라질때 Major GC라고 한다.</li>
+</ul>
+<p>Permanet 영역</p>
+<ul>
+<li>Method Area라고도 한다.</li>
+<li>JVM이 클래스들과 메소드들을 설명하기 위해 필요한 메타데이터들을 포함하고 있다.</li>
+</ul>
+<ol>
+<li>새로운 객체는 Eden space에 할당 된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage.PNG" alt="Generational Garbage"></p>
+<ol start="2">
+<li>Eden space가 채워지면 minor garbage collection이 시작 된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage2.PNG" alt="Generational Garbage"></p>
+<ol start="3">
+<li>참조되는 오브젝트들은 첫 번째 S0로 이동되어지고, 비 참조 객체는 Eden space가 clear 될 때 반환된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage3.PNG" alt="Generational Garbage"></p>
+<ol start="4">
+<li><p>다음 minor garbage collection이 시작될때 Eden space에서 비 참조 객체는 삭제되고 참조객체는 참조 객체는 두번째 S1로 이동한다.<br>또한 S0의 minor minor garbage collection를 통해 S1공간으로 이동하게 되며 age가 증가 된다.<br>모든 객체들이 S1으로 이동하게 되면 S0와 Eden space는 Clear 된다.<br><img src="/images/java/GenerationalGarbage4.PNG" alt="Generational Garbage"></p>
+</li>
+<li><p>다음 minor garbage collection에도 S0로 같은 작업이 반복된다. 그리고 Eden Space와 S1 공간은 Clear 된다.</p>
+</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage5.PNG" alt="Generational Garbage"></p>
+<ol start="6">
+<li>minor garbage collection 후 일정한 age를 넘게 되면 young generation에서 old로 승격 된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage6.PNG" alt="Generational Garbage"></p>
+<ol start="7">
+<li>minor garbage collection가 계속 발생하면 객체는 게속 old로 승격된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage7.PNG" alt="Generational Garbage"></p>
+<ol start="8">
+<li>결국 major garbage collection가 일어나며 old가 Clear 되고 정리된다.</li>
+</ol>
+<p><img src="/images/java/GenerationalGarbage8.PNG" alt="Generational Garbage"></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/10/DB-join/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2212,202 +2441,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/31/REST-API-8/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/31/REST-API-8/" class="post-title-link" itemprop="url">REST API 만들기-8</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-31 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-31T18:00:00+09:00">2019-01-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-03-21 22:31:37" itemprop="dateModified" datetime="2019-03-21T22:31:37+09:00">2019-03-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/31/REST-API-8/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/31/REST-API-8/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
-</blockquote>
-<h1 id="입력값이-이상한-경우-Bad-Request-응답"><a href="#입력값이-이상한-경우-Bad-Request-응답" class="headerlink" title="입력값이 이상한 경우 Bad Request 응답"></a>입력값이 이상한 경우 Bad Request 응답</h1><h2 id="EventController"><a href="#EventController" class="headerlink" title="EventController"></a>EventController</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">eventValidator.validate(eventDto,errors);</span><br><span class="line">        <span class="keyword">if</span>(errors.hasErrors())&#123;</span><br><span class="line">            <span class="keyword">return</span> ResponseEntity.badRequest().body(errors);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<p>입력값이 이상한 경우 Bad Request 응답을 받기위해 컨트롤러 응답을 넣는것처럼<br>body에 errors객체를 넣으면 안된다!</p>
-<p>이유는 event 객체는 자바빈 스펙을 준수한 객체이기 때문에 ObjectMapper가 BeanSerializer를 이용하여 json으로 변환이 가능하다.</p>
-<p>하지만 errors 객체는 자바빈 스펙을 준수한 객체가 아니다. 그렇기 때문에 json으로 변화를 하려다 에러가 발생한다.</p>
-<h2 id="ErrorsSerializer"><a href="#ErrorsSerializer" class="headerlink" title="ErrorsSerializer"></a>ErrorsSerializer</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ErrorsSerializer</span> <span class="keyword">extends</span> <span class="title">JsonSerializer</span>&lt;<span class="title">Errors</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">serialize</span><span class="params">(Errors errors, JsonGenerator gen, SerializerProvider serializerProvider)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        gen.writeStartArray();</span><br><span class="line">        errors.getFieldErrors().stream().forEach(e-&gt;&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                gen.writeStartObject();</span><br><span class="line">                gen.writeStringField(<span class="string">"field"</span>,e.getField());</span><br><span class="line">                gen.writeStringField(<span class="string">"objectName"</span>,e.getObjectName());</span><br><span class="line">                gen.writeStringField(<span class="string">"code"</span>,e.getCode());</span><br><span class="line">                gen.writeStringField(<span class="string">"defaultMessage"</span>,e.getDefaultMessage());</span><br><span class="line">                Object rejectedValue = e.getRejectedValue();</span><br><span class="line">                <span class="keyword">if</span>(rejectedValue !=<span class="keyword">null</span>)&#123;</span><br><span class="line">                    gen.writeStringField(<span class="string">"rejectedValue"</span>,rejectedValue.toString());</span><br><span class="line">                &#125;</span><br><span class="line">                gen.writeEndObject();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e1) &#123;</span><br><span class="line">                e1.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        errors.getGlobalErrors().forEach(e-&gt;&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                gen.writeStartObject();</span><br><span class="line">                gen.writeStringField(<span class="string">"objectName"</span>,e.getObjectName());</span><br><span class="line">                gen.writeStringField(<span class="string">"code"</span>,e.getCode());</span><br><span class="line">                gen.writeStringField(<span class="string">"defaultMessage"</span>,e.getDefaultMessage());</span><br><span class="line">                gen.writeEndObject();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException e1) &#123;</span><br><span class="line">                e1.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        gen.writeEndArray();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>errors는 FieldErrors와 GlobalErrors가 있으며 json object를 두개 다 이렇게 채워주면 됩니다.</p>
-<p>ErrorSerializer을 만들고 나서 ObjectMapper에 등록을 해줘야 하는데 @JsonComponent 어노테이션을 이용하여 등록할 수 있습니다.</p>
-<p>Errors라는 객체를 serializer 할때 ErrorSerializer을 사용하게 됩니다.</p>
-<p>이렇게 하여 body(errors)를 컨트롤러에서 넣으면 errors를 응답으로 주게 됩니다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2457,7 +2490,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2651,7 +2684,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">77</span>
+                      
+                    
+                    <span class="site-state-item-count">78</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

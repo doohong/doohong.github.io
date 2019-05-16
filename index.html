@@ -349,6 +349,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/05/16/Java-outofmemory/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/16/Java-outofmemory/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-7.Out Of Memory</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-05-16 23:20:00 / Updated at: 23:46:34" itemprop="dateCreated datePublished" datetime="2019-05-16T23:20:00+09:00">2019-05-16</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/05/16/Java-outofmemory/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/16/Java-outofmemory/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Out-Of-Memory"><a href="#Out-Of-Memory" class="headerlink" title="Out Of Memory"></a>Out Of Memory</h1><p>자바 애플리케이션 환경인 WAS 기반에서 수행된 서비스들에 대해서는 흔히 JVM Heep 메모리 관련 오류들을 흔하게 접할수 있다.<br>OOME(Out Of Memory Error)는 JVM의 메모리가 부족하여 발생한 에러로 그 종류/원인은 다양하다.</p>
+<h2 id="Java-lang-OutOfMemoryError-Java-heap-space"><a href="#Java-lang-OutOfMemoryError-Java-heap-space" class="headerlink" title="Java.lang.OutOfMemoryError: Java heap space"></a>Java.lang.OutOfMemoryError: Java heap space</h2><p>Java의 Heap Memory 공간이 부족하여 발생한다. 공간 부족의 원인으로는 Heap Memory의 크기가 작아서 발생하는 경우와 애플리케이션 로직의 문제로 발생하는 경우가 있다.</p>
+<p>해당 오류를 해결하기 위한 가장 쉬운 방법으로는 -Xmx 옵션을 사용하여 Heap Memory의 크기를 증가시키는 방법이 있지만 이는 GC Time의 증가를 동반하기 때문에 충분한 사전 테스트가 필요하다.</p>
+<p>OOME가 발생한 시점에 생성된 Heap Dump 분석을 기반으로 쓸데없이 많은 Memory를 사용하거나 Memory Leak을 유발하는 로직을 찾아내어 수정해야 한다.</p>
+<h2 id="Java-lang-OutOfMemoryError-PermGen-space"><a href="#Java-lang-OutOfMemoryError-PermGen-space" class="headerlink" title="Java.lang.OutOfMemoryError : PermGen space"></a>Java.lang.OutOfMemoryError : PermGen space</h2><p>Java Heep Memory 영역 중 Permanent 영역은 Class Method와 관련된 각종 Meta Data 등을 저장하는 용도로 사용된다. 따라서 JVM 기동시 로딩되는 Class 또는 String의 수가 많다면 Java.lang.OutOfMemoryError : PermGen space의 원인이 됩니다. 또한 Classloader Leak에 의해 OOME가 발생될 수 있다.</p>
+<p>Permanent 영역은 Heap 영역과는 달리 일반 비즈니스 프로그램으로 핸들링 할 수 없기때문에 JVM Option 튜닝으로도 해결이 되지 않는다면 WAS 혹은 JDK 버그를 의심해봐야 한다.</p>
+<p>PermGen 영역은 Class를 로딩하고 해제하지 않으면 누수가 일어나며 PermGen 영역에 OutOfMemory가 발생할 수 있다. Class Loading 현황을 분석하려면 컨텍스트 메뉴에서 Java Basics &gt; Class Loader Explorer를 선택해서 확인 할 수 있다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/05/11/Spring-AOP/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2197,235 +2376,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/12/Java-garbagecollection/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/12/Java-garbagecollection/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-6.자바 가비지 컬렉터</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-03-12 13:20:00 / Updated at: 14:52:20" itemprop="dateCreated datePublished" datetime="2019-03-12T13:20:00+09:00">2019-03-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/03/12/Java-garbagecollection/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/12/Java-garbagecollection/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="가비지-컬렉션"><a href="#가비지-컬렉션" class="headerlink" title="가비지 컬렉션"></a>가비지 컬렉션</h1><p>쉽게 이야기해서 Java가 개발자 대신 사용하지 않는 객체를 자동으로 찾아 메모리에서 제거해줌으로써 메모리를 관리해주는 것이다.</p>
-<h2 id="GC-대상이-되는-객체"><a href="#GC-대상이-되는-객체" class="headerlink" title="GC 대상이 되는 객체"></a>GC 대상이 되는 객체</h2><ol>
-<li>모든 객체 참조가 null 인 경우</li>
-<li>객체가 블럭 안에서 생성되고 블럭이 종료된 경우</li>
-<li>부모 객체가 null이 된 경우, 자식 객체는 자동적으로 GC 대상이 된다.</li>
-<li>객체가 Weak 참조만 가지고 있을 경우</li>
-<li>객체가 Soft 참조이지만 메모리 부족이 발생한 경우</li>
-</ol>
-<h2 id="가비지-컬렉션-과정-Generational-Garbage-Collection"><a href="#가비지-컬렉션-과정-Generational-Garbage-Collection" class="headerlink" title="가비지 컬렉션 과정 - Generational Garbage Collection"></a>가비지 컬렉션 과정 - Generational Garbage Collection</h2><p>Generational Garbage Collection에서는 힙을 Young, Old or Tenured, Permanent Generation으로 나눈다.<br><img src="/images/java/heap.png" alt="heap"></p>
-<p>Young 영역</p>
-<ul>
-<li>새롭게 생성한 객체의 대부분이 여기에 위치한다.</li>
-<li>가득차게 되면 minor garbage collection이 일어난다.</li>
-<li>대부분 객체가 금방 사라지기 때문에 많은 객체가 이 곳에서 사라진다.</li>
-</ul>
-<p>Old 영역</p>
-<ul>
-<li>접근 불가능 상태가 되지 않고 Young 영역에서 살아남은 객체들이 복사된다.</li>
-<li>Young 영역 보다 크기가 크게 할당하고 큰 만큼 GC는 적게 발생한다.</li>
-<li>이 영역에서 객체가 사라질때 Major GC라고 한다.</li>
-</ul>
-<p>Permanet 영역</p>
-<ul>
-<li>Method Area라고도 한다.</li>
-<li>JVM이 클래스들과 메소드들을 설명하기 위해 필요한 메타데이터들을 포함하고 있다.</li>
-</ul>
-<ol>
-<li>새로운 객체는 Eden space에 할당 된다.</li>
-</ol>
-<p><img src="/images/java/GenerationalGarbage.PNG" alt="Generational Garbage"></p>
-<ol start="2">
-<li>Eden space가 채워지면 minor garbage collection이 시작 된다.</li>
-</ol>
-<p><img src="/images/java/GenerationalGarbage2.PNG" alt="Generational Garbage"></p>
-<ol start="3">
-<li>참조되는 오브젝트들은 첫 번째 S0로 이동되어지고, 비 참조 객체는 Eden space가 clear 될 때 반환된다.</li>
-</ol>
-<p><img src="/images/java/GenerationalGarbage3.PNG" alt="Generational Garbage"></p>
-<ol start="4">
-<li><p>다음 minor garbage collection이 시작될때 Eden space에서 비 참조 객체는 삭제되고 참조객체는 참조 객체는 두번째 S1로 이동한다.<br>또한 S0의 minor minor garbage collection를 통해 S1공간으로 이동하게 되며 age가 증가 된다.<br>모든 객체들이 S1으로 이동하게 되면 S0와 Eden space는 Clear 된다.<br><img src="/images/java/GenerationalGarbage4.PNG" alt="Generational Garbage"></p>
-</li>
-<li><p>다음 minor garbage collection에도 S0로 같은 작업이 반복된다. 그리고 Eden Space와 S1 공간은 Clear 된다.</p>
-</li>
-</ol>
-<p><img src="/images/java/GenerationalGarbage5.PNG" alt="Generational Garbage"></p>
-<ol start="6">
-<li>minor garbage collection 후 일정한 age를 넘게 되면 young generation에서 old로 승격 된다.</li>
-</ol>
-<p><img src="/images/java/GenerationalGarbage6.PNG" alt="Generational Garbage"></p>
-<ol start="7">
-<li>minor garbage collection가 계속 발생하면 객체는 게속 old로 승격된다.</li>
-</ol>
-<p><img src="/images/java/GenerationalGarbage7.PNG" alt="Generational Garbage"></p>
-<ol start="8">
-<li>결국 major garbage collection가 일어나며 old가 Clear 되고 정리된다.</li>
-</ol>
-<p><img src="/images/java/GenerationalGarbage8.PNG" alt="Generational Garbage"></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2475,7 +2425,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2669,7 +2619,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">77</span>
+                      
+                    
+                    <span class="site-state-item-count">78</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
