@@ -395,19 +395,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[REST API란]]></title>
-    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
-    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
-      <categories>
-        <category>RESTAPI</category>
-      </categories>
-      <tags>
-        <tag>RESTAPI</tag>
-        <tag>REST</tag>
-        <tag>API</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[[Spring-library]Lombok이란?]]></title>
     <url>%2F2019%2F01%2F23%2FSpring-Lombok%2F</url>
     <content type="text"><![CDATA[Lombok이란? Lombok은 자바에서 Model(DTO, VO, Domain Class) 클래스를 작성할 때, 멤버 변수에 대한 Getter/Setter Method, Equals(), hashCode(), ToString()과 멤버 변수에 값을 설정하는 생성자 등등을 @Getter, @Setter 같은 어노테이션을 통해 자동으로 생성해주는 라이브러리 이다. 공식홈페이지 시작하기라이브러리 의존성 설정Maven12345678&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.projectlombok&lt;/groupId&gt; &lt;artifactId&gt;lombok&lt;/artifactId&gt; &lt;version&gt;1.18.4&lt;/version&gt; &lt;scope&gt;provided&lt;/scope&gt; &lt;/dependency&gt;&lt;/dependencies&gt; Gradle1provided 'org.projectlombok:lombok:1.18.4' AssertJ 메소드 임포트1import lombok.*; Lombok 어노테이션 @어노테이션 설명 세부기능 @Getter, @Setter Getter, Setter 메소드 자동생성 – AccessLevel : 해당 접근 제한자를 설정 – lazy : 동기화를 이용하여 최초 1회만 호출 @ToString ToString 메소드 자동생성 – exclude : 출력하지 않을 필드명 입력 – includeFieldNames : 필등명 생략 여부 설정– callSuper : 상위 클래스 toString호출 여부 설정 @EqualsAndHashCode equals, hashcode 메소드 자동생성 – of : 포함 할 필드, – exclude : 제외 할 필드 @Data @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 자동생성 @val equals, hashcode 메소드 자동생성 @NonNull 해당 값이 Null 일경우 NullPointerException을 발생 @Cleanup 자동 리소스 관리 : close() 메소드를 귀찮음 없게 안전하게 호출 @NoArgsConstructor 인자 없는 생성자 생성 @RequriedArgsConstructor 필수 인자만 있는 생성자 생성(다른 생성자가 없을 때에만 만들어짐) @AllArgsConstructor 모든 인자를 가진 생성자 생성 @Value 불편 클래스를 쉽게 생성 @Builder Builder API 처럼 사용 할 수 있도록 지원 @SneakyThrows Exception 발생시 체크된 Throable로 감싸서 전달 @Synchronized 메소드에서 동기화 Lock을 설정 @Log 종류별 로그를 사용할 수 있도록 한다. – 기본 변수명 : Log (Config 파일 만들어서 명칭 변경 가능)– 로그 종류 : @Log, @Slf4j, @CommonLog, XSlf4j, JBossLog 등 실제 사용Lombok 어노테이션을 이용하여 만든 Event Class1234567@Builder @AllArgsConstructor @NoArgsConstructor@Getter @Setter @EqualsAndHashCode(of="id")public class Event &#123; private Integer id; private String name;&#125; 실제로 만들어진 .class파일123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103//// Source code recreated from a .class file by IntelliJ IDEA// (powered by Fernflower decompiler)//package com.doohong.restapi.event;public class Event2 &#123; private Integer id; private String name; public static Event2.Event2Builder builder() &#123; return new Event2.Event2Builder(); &#125; public Event2(final Integer id, final String name) &#123; this.id = id; this.name = name; &#125; public Event2() &#123; &#125; public Integer getId() &#123; return this.id; &#125; public String getName() &#123; return this.name; &#125; public void setId(final Integer id) &#123; this.id = id; &#125; public void setName(final String name) &#123; this.name = name; &#125; public boolean equals(final Object o) &#123; if (o == this) &#123; return true; &#125; else if (!(o instanceof Event2)) &#123; return false; &#125; else &#123; Event2 other = (Event2)o; if (!other.canEqual(this)) &#123; return false; &#125; else &#123; Object this$id = this.getId(); Object other$id = other.getId(); if (this$id == null) &#123; if (other$id != null) &#123; return false; &#125; &#125; else if (!this$id.equals(other$id)) &#123; return false; &#125; return true; &#125; &#125; &#125; protected boolean canEqual(final Object other) &#123; return other instanceof Event2; &#125; public int hashCode() &#123; int PRIME = true; int result = 1; Object $id = this.getId(); int result = result * 59 + ($id == null ? 43 : $id.hashCode()); return result; &#125; public static class Event2Builder &#123; private Integer id; private String name; Event2Builder() &#123; &#125; public Event2.Event2Builder id(final Integer id) &#123; this.id = id; return this; &#125; public Event2.Event2Builder name(final String name) &#123; this.name = name; return this; &#125; public Event2 build() &#123; return new Event2(this.id, this.name); &#125; public String toString() &#123; Integer var10000 = this.id; return this.name; &#125; &#125;&#125;]]></content>
@@ -419,6 +406,19 @@
         <tag>SpringBoot</tag>
         <tag>library</tag>
         <tag>Lombok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[REST API란]]></title>
+    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
+    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
+      <categories>
+        <category>RESTAPI</category>
+      </categories>
+      <tags>
+        <tag>RESTAPI</tag>
+        <tag>REST</tag>
+        <tag>API</tag>
       </tags>
   </entry>
   <entry>
@@ -511,6 +511,20 @@
       <tags>
         <tag>OOP</tag>
         <tag> Object-Oriented Programming</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[[JAVA]자바의 기본 개념 정리-8.JDK 7과 8의 정리]]></title>
+    <url>%2F2018%2F03%2F05%2Fjava-JDK%2F</url>
+    <content type="text"><![CDATA[Java JDK 7과 8의 정리JDK 7Type InferenceJDK 7 이전12Map&lt;String, List&lt;String&gt;&gt; employeeRecords = new HashMap&lt;String, List&lt;String&gt;&gt;();List&lt;Integer&gt; primes = new ArrayList&lt;Integer&gt;(); JDK 7 이후12Map&lt;String, List&lt;String&gt;&gt; employeeRecords = new HashMap&lt;&gt;();List&lt;Integer&gt; primes = new ArrayList&lt;&gt;(); String in Switch12345678910111213141516switch (day) &#123; case "NEW": System.out.println("Order is in NEW state"); break; case "CANCELED": System.out.println("Order is Cancelled"); break; case "REPLACE": System.out.println("Order is replaced successfully"); break; case "FILLED": System.out.println("Order is filled"); break; default: System.out.println("Invalid"); &#125; Automatic Resource ManagementJDK 7 이전123456789101112131415161718192021222324 FileInputStream fin = null; BufferedReader br = null; try &#123; fin = new FileInputStream("info.xml"); br = new BufferedReader(new InputStreamReader(fin)); if (br.ready()) &#123; String line1 = br.readLine(); System.out.println(line1); &#125; &#125; catch (FileNotFoundException ex) &#123; System.out.println("Info.xml is not found"); &#125; catch (IOException ex) &#123; System.out.println("Can't read the file"); &#125; finally &#123; try &#123; if (fin != null) fin.close(); if (br != null) br.close(); &#125; catch (IOException ie) &#123; System.out.println("Failed to close files"); &#125; &#125;&#125; JDK 7 이후123456789101112try (FileInputStream fin = new FileInputStream("info.xml"); BufferedReader br = new BufferedReader(new InputStreamReader( fin));) &#123; if (br.ready()) &#123; String line1 = br.readLine(); System.out.println(line1); &#125;&#125; catch (FileNotFoundException ex) &#123; System.out.println("Info.xml is not found");&#125; catch (IOException ex) &#123; System.out.println("Can't read the file");&#125; Underscore in Numeric literal12345int billion = 1_000_000_000; // 10^9long creditCardNumber = 1234_4567_8901_2345L; //16 digit numberlong ssn = 777_99_8888L;double pi = 3.1415_9265;float pif = 3.14_15_92_65f; JDK 8Lambda expressions람다 표현식은 Anonymous Function라고 할 수 있다람다를 이용하여 코드를 간결하게 할 수 있다1234567891011// BeforeRunnable oldRunner = new Runnable()&#123; public void run()&#123; System.out.println("I am running"); &#125;&#125;; // AfterRunnable java8Runner = () -&gt; &#123; System.out.println("I am running");&#125;; Method Reference특정 람다 표현식을 축약한 것으로 볼 수 있다메서드 정의를 활용하여 람다처럼 사용 가능하다123456789101112// Before inventory.sort((Apple a1, Apple a2) -&gt; a1.getWeight().compareTo(a2.getWeight())); // Afterinventory.sort(comparing(Apple::getWeight)); /* Lamda -&gt; Method Reference (Apple a) -&gt; a.getWeight Apple::getWeight () -&gt; Thread.currentThread().dumpStack() Thread.currentThread()::dumpStack*/ Stream간결하게 컬렉션의 데이터를 처리하는 기능12345678910// Before List&lt;Shape&gt; list = new ArrayList&lt;Shape&gt;();for (Shape s : shapes) &#123; if (s.getColor() == RED) &#123; list.add(s); &#125;&#125; // Aftershapes.stream().filter(s -&gt; s.getColor() == Red).collect(toList()); Default Method인터페이스의 구현체를 인터페이스 자체에서 기본으로 제공 가능하다구현 클래스에서 인터페이스를 구현하지 않아도 된다1234567public interface Sized &#123; int size(); default boolean isEmpty() &#123; // Default Method return size() == 0; &#125;&#125; Optional값을 Optional로 캡슐화하여 NullPointerException을 막는다값이 존재한다면 Optional 클래스는 값을 감싼다값이 없다면 Optional.empty메서드로 Optional을 리턴한다 New date / time APIs Joda-Time의 많은 기능을 java.time 패키지로 추가했다 LocalDate, LocalTime, Instant, Duration, Period …]]></content>
+      <categories>
+        <category>JAVA</category>
+      </categories>
+      <tags>
+        <tag>JAVA</tag>
+        <tag>JDK7</tag>
+        <tag>JDK8</tag>
+        <tag>JDK</tag>
       </tags>
   </entry>
   <entry>
