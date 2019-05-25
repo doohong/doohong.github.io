@@ -349,6 +349,284 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/Spring-Lombok/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/23/Spring-Lombok/" class="post-title-link" itemprop="url">[Spring-library]Lombok이란?</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-25 13:46:47" itemprop="dateModified" datetime="2019-01-25T13:46:47+09:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/23/Spring-Lombok/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/Spring-Lombok/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Lombok이란"><a href="#Lombok이란" class="headerlink" title="Lombok이란?"></a>Lombok이란?</h1><p> <strong><em>Lombok</em></strong>은 자바에서 Model(DTO, VO, Domain Class) 클래스를 작성할 때, 멤버 변수에 대한 Getter/Setter Method, Equals(), hashCode(), ToString()과 멤버 변수에 값을 설정하는 생성자 등등을 @Getter, @Setter 같은 어노테이션을 통해 자동으로 생성해주는 라이브러리 이다. </p>
+<blockquote>
+<p><a href="https://projectlombok.org" target="_blank" rel="noopener">공식홈페이지</a></p>
+</blockquote>
+<h1 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h1><h2 id="라이브러리-의존성-설정"><a href="#라이브러리-의존성-설정" class="headerlink" title="라이브러리 의존성 설정"></a>라이브러리 의존성 설정</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.18.4&lt;/version&gt;</span><br><span class="line">		&lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">provided <span class="string">'org.projectlombok:lombok:1.18.4'</span></span><br></pre></td></tr></table></figure>
+<h2 id="AssertJ-메소드-임포트"><a href="#AssertJ-메소드-임포트" class="headerlink" title="AssertJ 메소드 임포트"></a>AssertJ 메소드 임포트</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br></pre></td></tr></table></figure>
+<h2 id="Lombok-어노테이션"><a href="#Lombok-어노테이션" class="headerlink" title="Lombok 어노테이션"></a>Lombok 어노테이션</h2><table>
+<thead>
+<tr>
+<th>@어노테이션</th>
+<th>설명</th>
+<th>세부기능</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Getter, @Setter</td>
+<td>Getter, Setter 메소드 자동생성</td>
+<td>– AccessLevel : 해당 접근 제한자를 설정 <br> – lazy : 동기화를 이용하여 최초 1회만 호출</td>
+</tr>
+<tr>
+<td>@ToString</td>
+<td>ToString 메소드 자동생성</td>
+<td>– exclude : 출력하지 않을 필드명 입력 <br> – includeFieldNames : 필등명 생략 여부 설정<br>– callSuper : 상위 클래스 toString호출 여부 설정</td>
+</tr>
+<tr>
+<td>@EqualsAndHashCode</td>
+<td>equals, hashcode 메소드 자동생성</td>
+<td>– of : 포함 할 필드, – exclude : 제외 할 필드</td>
+</tr>
+<tr>
+<td>@Data</td>
+<td>@ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 자동생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@val</td>
+<td>equals, hashcode 메소드 자동생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@NonNull</td>
+<td>해당 값이 Null 일경우 NullPointerException을 발생</td>
+<td></td>
+</tr>
+<tr>
+<td>@Cleanup</td>
+<td>자동 리소스 관리 : close() 메소드를 귀찮음 없게 안전하게 호출</td>
+<td></td>
+</tr>
+<tr>
+<td>@NoArgsConstructor</td>
+<td>인자 없는 생성자 생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@RequriedArgsConstructor</td>
+<td>필수 인자만 있는 생성자 생성(다른 생성자가 없을 때에만 만들어짐)</td>
+<td></td>
+</tr>
+<tr>
+<td>@AllArgsConstructor</td>
+<td>모든 인자를 가진 생성자 생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@Value</td>
+<td>불편 클래스를 쉽게 생성</td>
+<td></td>
+</tr>
+<tr>
+<td>@Builder</td>
+<td>Builder API 처럼 사용 할 수 있도록 지원</td>
+<td></td>
+</tr>
+<tr>
+<td>@SneakyThrows</td>
+<td>Exception 발생시 체크된 Throable로 감싸서 전달</td>
+<td></td>
+</tr>
+<tr>
+<td>@Synchronized</td>
+<td>메소드에서 동기화 Lock을 설정</td>
+<td></td>
+</tr>
+<tr>
+<td>@Log</td>
+<td>종류별 로그를 사용할 수 있도록 한다.</td>
+<td>– 기본 변수명 : Log (Config 파일 만들어서 명칭 변경 가능)<br>– 로그 종류 : @Log, @Slf4j, @CommonLog, XSlf4j, JBossLog 등</td>
+</tr>
+</tbody>
+</table>
+<h2 id="실제-사용"><a href="#실제-사용" class="headerlink" title="실제 사용"></a>실제 사용</h2><h3 id="Lombok-어노테이션을-이용하여-만든-Event-Class"><a href="#Lombok-어노테이션을-이용하여-만든-Event-Class" class="headerlink" title="Lombok 어노테이션을 이용하여 만든 Event Class"></a>Lombok 어노테이션을 이용하여 만든 Event Class</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Getter</span> <span class="meta">@Setter</span> <span class="meta">@EqualsAndHashCode</span>(of=<span class="string">"id"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="실제로-만들어진-class파일"><a href="#실제로-만들어진-class파일" class="headerlink" title="실제로 만들어진 .class파일"></a>실제로 만들어진 .class파일</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Source code recreated from a .class file by IntelliJ IDEA</span></span><br><span class="line"><span class="comment">// (powered by Fernflower decompiler)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.doohong.restapi.event;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Event2.<span class="function">Event2Builder <span class="title">builder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Event2.Event2Builder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event2</span><span class="params">(<span class="keyword">final</span> Integer id, <span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">final</span> Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(<span class="keyword">final</span> Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Event2)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Event2 other = (Event2)o;</span><br><span class="line">            <span class="keyword">if</span> (!other.canEqual(<span class="keyword">this</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Object <span class="keyword">this</span>$id = <span class="keyword">this</span>.getId();</span><br><span class="line">                Object other$id = other.getId();</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>$id == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (other$id != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="keyword">this</span>$id.equals(other$id)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(<span class="keyword">final</span> Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Event2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> PRIME = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        Object $id = <span class="keyword">this</span>.getId();</span><br><span class="line">        <span class="keyword">int</span> result = result * <span class="number">59</span> + ($id == <span class="keyword">null</span> ? <span class="number">43</span> : $id.hashCode());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Event2Builder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        Event2Builder() &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Event2.<span class="function">Event2Builder <span class="title">id</span><span class="params">(<span class="keyword">final</span> Integer id)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Event2.<span class="function">Event2Builder <span class="title">name</span><span class="params">(<span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Event2 <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Event2(<span class="keyword">this</span>.id, <span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Integer var10000 = <span class="keyword">this</span>.id;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/REST-API/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2041,207 +2319,6 @@
 </ul>
 <h2 id="클래스-Class"><a href="#클래스-Class" class="headerlink" title="클래스(Class)"></a>클래스(Class)</h2><p>클래스는 특정한 기능을 가진 객체를 생성하게 해주는 설계도라고 할 수 있다.<br>클래스로 부터 만들어진 객체를 해당 클래스의 <strong>인스턴스</strong>라고 한다.</p>
 <p>클래스에는 객체에 포함될 변수와 메소드를 정의해야 한다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/05/java-JDK/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/05/java-JDK/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-8.JDK 7과 8의 정리</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-05 18:20:00" itemprop="dateCreated datePublished" datetime="2018-03-05T18:20:00+09:00">2018-03-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-05-20 23:20:31" itemprop="dateModified" datetime="2019-05-20T23:20:31+09:00">2019-05-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/03/05/java-JDK/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/05/java-JDK/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Java-JDK-7과-8의-정리"><a href="#Java-JDK-7과-8의-정리" class="headerlink" title="Java JDK 7과 8의 정리"></a>Java JDK 7과 8의 정리</h1><h2 id="JDK-7"><a href="#JDK-7" class="headerlink" title="JDK 7"></a>JDK 7</h2><h3 id="Type-Inference"><a href="#Type-Inference" class="headerlink" title="Type Inference"></a>Type Inference</h3><p>JDK 7 이전<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, List&lt;String&gt;&gt; employeeRecords = <span class="keyword">new</span> HashMap&lt;String, List&lt;String&gt;&gt;();</span><br><span class="line">List&lt;Integer&gt; primes = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br></pre></td></tr></table></figure></p>
-<p>JDK 7 이후<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, List&lt;String&gt;&gt; employeeRecords = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">List&lt;Integer&gt; primes = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure></p>
-<h3 id="String-in-Switch"><a href="#String-in-Switch" class="headerlink" title="String in Switch"></a>String in Switch</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">switch</span> (day) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"NEW"</span>:</span><br><span class="line">        System.out.println(<span class="string">"Order is in NEW state"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"CANCELED"</span>:</span><br><span class="line">        System.out.println(<span class="string">"Order is Cancelled"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"REPLACE"</span>:</span><br><span class="line">        System.out.println(<span class="string">"Order is replaced successfully"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"FILLED"</span>:</span><br><span class="line">        System.out.println(<span class="string">"Order is filled"</span>);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        System.out.println(<span class="string">"Invalid"</span>); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="Automatic-Resource-Management"><a href="#Automatic-Resource-Management" class="headerlink" title="Automatic Resource Management"></a>Automatic Resource Management</h3><p>JDK 7 이전<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">    FileInputStream fin = <span class="keyword">null</span>;</span><br><span class="line">    BufferedReader br = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        fin = <span class="keyword">new</span> FileInputStream(<span class="string">"info.xml"</span>);</span><br><span class="line">        br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(fin));</span><br><span class="line">        <span class="keyword">if</span> (br.ready()) &#123;</span><br><span class="line">            String line1 = br.readLine();</span><br><span class="line">            System.out.println(line1);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException ex) &#123;</span><br><span class="line">        System.out.println(<span class="string">"Info.xml is not found"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">        System.out.println(<span class="string">"Can't read the file"</span>);</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (fin != <span class="keyword">null</span>)</span><br><span class="line">                fin.close();</span><br><span class="line">            <span class="keyword">if</span> (br != <span class="keyword">null</span>)</span><br><span class="line">                br.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException ie) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Failed to close files"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>JDK 7 이후<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> (FileInputStream fin = <span class="keyword">new</span> FileInputStream(<span class="string">"info.xml"</span>);</span><br><span class="line">        BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(</span><br><span class="line">                fin));) &#123;</span><br><span class="line">    <span class="keyword">if</span> (br.ready()) &#123;</span><br><span class="line">        String line1 = br.readLine();</span><br><span class="line">        System.out.println(line1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException ex) &#123;</span><br><span class="line">    System.out.println(<span class="string">"Info.xml is not found"</span>);</span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">    System.out.println(<span class="string">"Can't read the file"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Underscore-in-Numeric-literal"><a href="#Underscore-in-Numeric-literal" class="headerlink" title="Underscore in Numeric literal"></a>Underscore in Numeric literal</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> billion = <span class="number">1_000_000_000</span>; <span class="comment">// 10^9</span></span><br><span class="line"><span class="keyword">long</span> creditCardNumber = <span class="number">1234_4567_8901_2345L</span>; <span class="comment">//16 digit number</span></span><br><span class="line"><span class="keyword">long</span> ssn = <span class="number">777_99_8888L</span>;</span><br><span class="line"><span class="keyword">double</span> pi = <span class="number">3.1415_9265</span>;</span><br><span class="line"><span class="keyword">float</span> pif = <span class="number">3.14_15_92_65f</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="JDK-8"><a href="#JDK-8" class="headerlink" title="JDK 8"></a>JDK 8</h2><h3 id="Lambda-expressions"><a href="#Lambda-expressions" class="headerlink" title="Lambda expressions"></a>Lambda expressions</h3><p>람다 표현식은 Anonymous Function라고 할 수 있다<br>람다를 이용하여 코드를 간결하게 할 수 있다<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Before</span></span><br><span class="line">Runnable oldRunner = <span class="keyword">new</span> Runnable()&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"I am running"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// After</span></span><br><span class="line">Runnable java8Runner = () -&gt; &#123;</span><br><span class="line">	System.out.println(<span class="string">"I am running"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Method-Reference"><a href="#Method-Reference" class="headerlink" title="Method Reference"></a>Method Reference</h3><p>특정 람다 표현식을 축약한 것으로 볼 수 있다<br>메서드 정의를 활용하여 람다처럼 사용 가능하다<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Before  </span></span><br><span class="line">inventory.sort((Apple a1, Apple a2) -&gt; </span><br><span class="line">					a1.getWeight().compareTo(a2.getWeight()));</span><br><span class="line"> </span><br><span class="line"><span class="comment">// After</span></span><br><span class="line">inventory.sort(comparing(Apple::getWeight));</span><br><span class="line"> </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	Lamda                       -&gt;             Method Reference</span></span><br><span class="line"><span class="comment">	(Apple a) -&gt; a.getWeight                   Apple::getWeight</span></span><br><span class="line"><span class="comment">	() -&gt; Thread.currentThread().dumpStack()   Thread.currentThread()::dumpStack</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><p>간결하게 컬렉션의 데이터를 처리하는 기능<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Before </span></span><br><span class="line">List&lt;Shape&gt; list = <span class="keyword">new</span> ArrayList&lt;Shape&gt;();</span><br><span class="line"><span class="keyword">for</span> (Shape s : shapes) &#123;</span><br><span class="line">	<span class="keyword">if</span> (s.getColor() == RED) &#123;</span><br><span class="line">		list.add(s);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// After</span></span><br><span class="line">shapes.stream().filter(s -&gt; s.getColor() == Red).collect(toList());</span><br></pre></td></tr></table></figure></p>
-<h3 id="Default-Method"><a href="#Default-Method" class="headerlink" title="Default Method"></a>Default Method</h3><p>인터페이스의 구현체를 인터페이스 자체에서 기본으로 제공 가능하다<br>구현 클래스에서 인터페이스를 구현하지 않아도 된다<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sized</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line"> </span><br><span class="line">	<span class="function"><span class="keyword">default</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;  <span class="comment">// Default Method</span></span><br><span class="line">		<span class="keyword">return</span> size() == <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="Optional"><a href="#Optional" class="headerlink" title="Optional"></a>Optional</h3><p>값을 Optional<t>로 캡슐화하여 NullPointerException을 막는다<br>값이 존재한다면 Optional 클래스는 값을 감싼다<br>값이 없다면 Optional.empty메서드로 Optional을 리턴한다</t></p>
-<h3 id="New-date-time-APIs"><a href="#New-date-time-APIs" class="headerlink" title="New date / time APIs"></a>New date / time APIs</h3><ul>
-<li>Joda-Time의 많은 기능을 java.time 패키지로 추가했다<ul>
-<li>LocalDate, LocalTime, Instant, Duration, Period …</li>
-</ul>
-</li>
-</ul>
 
           
         

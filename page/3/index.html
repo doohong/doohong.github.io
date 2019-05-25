@@ -349,6 +349,226 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/02/01/Algorithm-sort/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/01/Algorithm-sort/" class="post-title-link" itemprop="url">[Algorithm]기본적인 정렬 알고리즘</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-02-01 18:20:00" itemprop="dateCreated datePublished" datetime="2019-02-01T18:20:00+09:00">2019-02-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-02-13 22:21:03" itemprop="dateModified" datetime="2019-02-13T22:21:03+09:00">2019-02-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Algorithm/" itemprop="url" rel="index"><span itemprop="name">Algorithm</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/02/01/Algorithm-sort/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/01/Algorithm-sort/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="선택정렬"><a href="#선택정렬" class="headerlink" title="선택정렬"></a>선택정렬</h2><ol>
+<li>주어진 리스트 중에 최소값을 찾는다.</li>
+<li>그 값을 맨 앞에 위치한 값과 교체한다(패스(pass)).</li>
+<li>맨 처음 위치를 뺀 나머지 리스트를 같은 방법으로 교체한다.</li>
+</ol>
+<p><img src="/images/algoritm/Selection-Sort-Animation.gif" alt="selection-sort"></p>
+<h3 id="시간-복잡도"><a href="#시간-복잡도" class="headerlink" title="시간 복잡도"></a>시간 복잡도</h3><p>Best : <strong>O(n^2)</strong></p>
+<p>Avg : <strong>O(n^2)</strong></p>
+<p>Worst : <strong>O(n^2)</strong></p>
+<h3 id="소스-코드"><a href="#소스-코드" class="headerlink" title="소스 코드"></a>소스 코드</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] a = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> min = i;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>;j&lt;a.length;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(a[j]&lt;a[min])&#123;</span><br><span class="line">                    min=j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            swap(a,min,i);</span><br><span class="line">        &#125;</span><br><span class="line"> System.out.println(Arrays.toString(a));</span><br></pre></td></tr></table></figure>
+<h2 id="버블정렬"><a href="#버블정렬" class="headerlink" title="버블정렬"></a>버블정렬</h2><p>버블 정렬(Bubble Sort)은 인접한 두개의 원소를 비교하여 자리를 교환하는 방식으로 정렬</p>
+<p>첫번째 원소부터 인접한 원소끼리 계속 자리를 교환하면서 맨 마지막자리로 이동하는 모습이</p>
+<p>물속에서 물 위로 올라오는 물방울 모양과 같다고 해서 버블 정렬이라고 한다</p>
+<h3 id="시간-복잡도-1"><a href="#시간-복잡도-1" class="headerlink" title="시간 복잡도"></a>시간 복잡도</h3><p>Best : <strong>O(n^2)</strong></p>
+<p>Avg : <strong>O(n^2)</strong></p>
+<p>Worst : <strong>O(n^2)</strong></p>
+<h3 id="소스-코드-1"><a href="#소스-코드-1" class="headerlink" title="소스 코드"></a>소스 코드</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] b = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">9</span>&#125;;</span><br><span class="line">ffor(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;b.length-<span class="number">1</span>;i++)&#123;</span><br><span class="line">             <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;b.length-<span class="number">1</span>;j++)&#123;</span><br><span class="line">                 <span class="keyword">if</span>(b[j]&gt;b[j+<span class="number">1</span>])&#123;</span><br><span class="line">                     swap(b,j,j+<span class="number">1</span>);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;</span><br><span class="line"> System.out.println(Arrays.toString(b));</span><br></pre></td></tr></table></figure>
+<h2 id="삽입정렬"><a href="#삽입정렬" class="headerlink" title="삽입정렬"></a>삽입정렬</h2><p>삽입 정렬(insertion sort)은 자료 배열의 모든 요소를 앞에서부터 차례대로 이미 정렬된 배열 부분과 비교하여, 자신의 위치를 찾아 삽입함으로써 정렬을 완성하는 알고리즘이다.</p>
+<p><img src="/images/algoritm/Insertion-sort.PNG" alt="insertion-sort"></p>
+<h3 id="시간-복잡도-2"><a href="#시간-복잡도-2" class="headerlink" title="시간 복잡도"></a>시간 복잡도</h3><p>Best : <strong>O(n)</strong></p>
+<p>Avg : <strong>O(n^2)</strong></p>
+<p>Worst : <strong>O(n^2)</strong></p>
+<h3 id="소스-코드-2"><a href="#소스-코드-2" class="headerlink" title="소스 코드"></a>소스 코드</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] c = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;c.length;i++)&#123;</span><br><span class="line">             <span class="keyword">int</span> j=i;</span><br><span class="line">             <span class="keyword">int</span> temp=c[i];</span><br><span class="line">             <span class="keyword">while</span>(j&gt;<span class="number">0</span>&amp;&amp;c[j-<span class="number">1</span>]&gt;temp)&#123;</span><br><span class="line">                 c[j]=c[j-<span class="number">1</span>];</span><br><span class="line">                 j--;</span><br><span class="line">             &#125;</span><br><span class="line">             c[j]=temp;</span><br><span class="line">         &#125;</span><br><span class="line">System.out.println(Arrays.toString(c));</span><br></pre></td></tr></table></figure>
+<h2 id="퀵정렬"><a href="#퀵정렬" class="headerlink" title="퀵정렬"></a>퀵정렬</h2><p>분할 작업을 순환적으로 반복하면서 피봇의 왼쪽 왼쪽 부분 집합과 오른쪽 부분집합을 정렬 하는 방법</p>
+<ol>
+<li><p>전체원소 가운데 하나의 원소를 중심(Pivot)으로 2개의 부분 집합으로 분할 한다.</p>
+</li>
+<li><p>기준값(Pivot) 보다 작은 원소는 왼쪽 부분집합으로, 기준값(Pivot) 보다 큰 원소들은 오른쪽 부분 집합으로 정렬한다.</p>
+</li>
+<li><p>분할된 부분집합의 크기가 0이나 1이 될 때 까지 순환 호출을 이용하여 다시 분할 한다.</p>
+</li>
+</ol>
+<p><img src="/images/algoritm/Quick-sort-animation.gif" alt="quick-sort"></p>
+<h3 id="시간-복잡도-3"><a href="#시간-복잡도-3" class="headerlink" title="시간 복잡도"></a>시간 복잡도</h3><p>Best : <strong>O(nlogn)</strong></p>
+<p>Avg : <strong>O(nlogn)</strong></p>
+<p>Worst : <strong>O(n^2)</strong></p>
+<h3 id="소스-코드-3"><a href="#소스-코드-3" class="headerlink" title="소스 코드"></a>소스 코드</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pivot</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> middle = array[(start+end)/<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">while</span>(start&lt;end) &#123;</span><br><span class="line">        <span class="keyword">while</span> (array[start] &lt; middle &amp;&amp; start &lt; end) start++;</span><br><span class="line">        <span class="keyword">while</span> (array[end] &gt; middle &amp;&amp; start &lt; end) end--;</span><br><span class="line">        <span class="keyword">if</span> (start &lt; end) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = array[start];</span><br><span class="line">            array[start] = array[end];</span><br><span class="line">            array[end] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span>[] array,<span class="keyword">int</span> start,<span class="keyword">int</span> end )</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(start&lt;end)&#123;</span><br><span class="line">            <span class="keyword">int</span> middle = pivot(array,start,end);</span><br><span class="line"></span><br><span class="line">            quicksort(array, start,middle-<span class="number">1</span>);</span><br><span class="line">            quicksort(array,middle+<span class="number">1</span>,end);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span>[] d = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">10</span>,<span class="number">9</span>&#125;;</span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">()</span></span>&#123;</span><br><span class="line">    quicksort(d,<span class="number">0</span>,d.length-<span class="number">1</span>);</span><br><span class="line">    System.out.println(Arrays.toString(d));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/31/REST-API-8/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2153,284 +2373,6 @@
 <p>모든 테스트 코드는 <strong><em>assertThat()</em></strong> 메소드에서 시작한다.</p>
 <p>###문자열 테스트<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">assertThat(<span class="string">"Hello, world! Nice to meet you."</span>) <span class="comment">// 주어진 "Hello, world! Nice to meet you."라는 문자열은</span></span><br><span class="line">				.isNotEmpty() <span class="comment">// 비어있지 않고</span></span><br><span class="line">				.contains(<span class="string">"Nice"</span>) <span class="comment">// "Nice"를 포함하고</span></span><br><span class="line">				.contains(<span class="string">"world"</span>) <span class="comment">// "world"도 포함하고</span></span><br><span class="line">				.doesNotContain(<span class="string">"ZZZ"</span>) <span class="comment">// "ZZZ"는 포함하지 않으며</span></span><br><span class="line">				.startsWith(<span class="string">"Hell"</span>) <span class="comment">// "Hell"로 시작하고</span></span><br><span class="line">				.endsWith(<span class="string">"u."</span>) <span class="comment">// "u."로 끝나며</span></span><br><span class="line">				.isEqualTo(<span class="string">"Hello, world! Nice to meet you."</span>); <span class="comment">// "Hello, world! Nice to meet you."과 일치합니다.</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="숫자-테스트"><a href="#숫자-테스트" class="headerlink" title="숫자 테스트"></a>숫자 테스트</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">assertThat(<span class="number">3.14</span>d) <span class="comment">// 주어진 3.14라는 숫자는</span></span><br><span class="line">				.isPositive() <span class="comment">// 양수이고</span></span><br><span class="line">				.isGreaterThan(<span class="number">3</span>) <span class="comment">// 3보다 크며</span></span><br><span class="line">				.isLessThan(<span class="number">4</span>) <span class="comment">// 4보다 작습니다</span></span><br><span class="line">				.isEqualTo(<span class="number">3</span>, offset(<span class="number">1</span>d)) <span class="comment">// 오프셋 1 기준으로 3과 같고</span></span><br><span class="line">				.isEqualTo(<span class="number">3.1</span>, offset(<span class="number">0.1</span>d)) <span class="comment">// 오프셋 0.1 기준으로 3.1과 같으며</span></span><br><span class="line">				.isEqualTo(<span class="number">3.14</span>); <span class="comment">// 오프셋 없이는 3.14와 같습니다</span></span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/Spring-Lombok/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/23/Spring-Lombok/" class="post-title-link" itemprop="url">[Spring-library]Lombok이란?</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-23 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T16:00:00+09:00">2019-01-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-25 13:46:47" itemprop="dateModified" datetime="2019-01-25T13:46:47+09:00">2019-01-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/23/Spring-Lombok/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/Spring-Lombok/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Lombok이란"><a href="#Lombok이란" class="headerlink" title="Lombok이란?"></a>Lombok이란?</h1><p> <strong><em>Lombok</em></strong>은 자바에서 Model(DTO, VO, Domain Class) 클래스를 작성할 때, 멤버 변수에 대한 Getter/Setter Method, Equals(), hashCode(), ToString()과 멤버 변수에 값을 설정하는 생성자 등등을 @Getter, @Setter 같은 어노테이션을 통해 자동으로 생성해주는 라이브러리 이다. </p>
-<blockquote>
-<p><a href="https://projectlombok.org" target="_blank" rel="noopener">공식홈페이지</a></p>
-</blockquote>
-<h1 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h1><h2 id="라이브러리-의존성-설정"><a href="#라이브러리-의존성-설정" class="headerlink" title="라이브러리 의존성 설정"></a>라이브러리 의존성 설정</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencies&gt;</span><br><span class="line">	&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.projectlombok&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;lombok&lt;/artifactId&gt;</span><br><span class="line">		&lt;version&gt;1.18.4&lt;/version&gt;</span><br><span class="line">		&lt;scope&gt;provided&lt;/scope&gt;</span><br><span class="line">	&lt;/dependency&gt;</span><br><span class="line">&lt;/dependencies&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">provided <span class="string">'org.projectlombok:lombok:1.18.4'</span></span><br></pre></td></tr></table></figure>
-<h2 id="AssertJ-메소드-임포트"><a href="#AssertJ-메소드-임포트" class="headerlink" title="AssertJ 메소드 임포트"></a>AssertJ 메소드 임포트</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> lombok.*;</span><br></pre></td></tr></table></figure>
-<h2 id="Lombok-어노테이션"><a href="#Lombok-어노테이션" class="headerlink" title="Lombok 어노테이션"></a>Lombok 어노테이션</h2><table>
-<thead>
-<tr>
-<th>@어노테이션</th>
-<th>설명</th>
-<th>세부기능</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>@Getter, @Setter</td>
-<td>Getter, Setter 메소드 자동생성</td>
-<td>– AccessLevel : 해당 접근 제한자를 설정 <br> – lazy : 동기화를 이용하여 최초 1회만 호출</td>
-</tr>
-<tr>
-<td>@ToString</td>
-<td>ToString 메소드 자동생성</td>
-<td>– exclude : 출력하지 않을 필드명 입력 <br> – includeFieldNames : 필등명 생략 여부 설정<br>– callSuper : 상위 클래스 toString호출 여부 설정</td>
-</tr>
-<tr>
-<td>@EqualsAndHashCode</td>
-<td>equals, hashcode 메소드 자동생성</td>
-<td>– of : 포함 할 필드, – exclude : 제외 할 필드</td>
-</tr>
-<tr>
-<td>@Data</td>
-<td>@ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 자동생성</td>
-<td></td>
-</tr>
-<tr>
-<td>@val</td>
-<td>equals, hashcode 메소드 자동생성</td>
-<td></td>
-</tr>
-<tr>
-<td>@NonNull</td>
-<td>해당 값이 Null 일경우 NullPointerException을 발생</td>
-<td></td>
-</tr>
-<tr>
-<td>@Cleanup</td>
-<td>자동 리소스 관리 : close() 메소드를 귀찮음 없게 안전하게 호출</td>
-<td></td>
-</tr>
-<tr>
-<td>@NoArgsConstructor</td>
-<td>인자 없는 생성자 생성</td>
-<td></td>
-</tr>
-<tr>
-<td>@RequriedArgsConstructor</td>
-<td>필수 인자만 있는 생성자 생성(다른 생성자가 없을 때에만 만들어짐)</td>
-<td></td>
-</tr>
-<tr>
-<td>@AllArgsConstructor</td>
-<td>모든 인자를 가진 생성자 생성</td>
-<td></td>
-</tr>
-<tr>
-<td>@Value</td>
-<td>불편 클래스를 쉽게 생성</td>
-<td></td>
-</tr>
-<tr>
-<td>@Builder</td>
-<td>Builder API 처럼 사용 할 수 있도록 지원</td>
-<td></td>
-</tr>
-<tr>
-<td>@SneakyThrows</td>
-<td>Exception 발생시 체크된 Throable로 감싸서 전달</td>
-<td></td>
-</tr>
-<tr>
-<td>@Synchronized</td>
-<td>메소드에서 동기화 Lock을 설정</td>
-<td></td>
-</tr>
-<tr>
-<td>@Log</td>
-<td>종류별 로그를 사용할 수 있도록 한다.</td>
-<td>– 기본 변수명 : Log (Config 파일 만들어서 명칭 변경 가능)<br>– 로그 종류 : @Log, @Slf4j, @CommonLog, XSlf4j, JBossLog 등</td>
-</tr>
-</tbody>
-</table>
-<h2 id="실제-사용"><a href="#실제-사용" class="headerlink" title="실제 사용"></a>실제 사용</h2><h3 id="Lombok-어노테이션을-이용하여-만든-Event-Class"><a href="#Lombok-어노테이션을-이용하여-만든-Event-Class" class="headerlink" title="Lombok 어노테이션을 이용하여 만든 Event Class"></a>Lombok 어노테이션을 이용하여 만든 Event Class</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Builder</span> <span class="meta">@AllArgsConstructor</span> <span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@Getter</span> <span class="meta">@Setter</span> <span class="meta">@EqualsAndHashCode</span>(of=<span class="string">"id"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="실제로-만들어진-class파일"><a href="#실제로-만들어진-class파일" class="headerlink" title="실제로 만들어진 .class파일"></a>실제로 만들어진 .class파일</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="comment">// Source code recreated from a .class file by IntelliJ IDEA</span></span><br><span class="line"><span class="comment">// (powered by Fernflower decompiler)</span></span><br><span class="line"><span class="comment">//</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> com.doohong.restapi.event;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Event2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Event2.<span class="function">Event2Builder <span class="title">builder</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Event2.Event2Builder();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event2</span><span class="params">(<span class="keyword">final</span> Integer id, <span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Event2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">final</span> Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(<span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(<span class="keyword">final</span> Object o)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">this</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Event2)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Event2 other = (Event2)o;</span><br><span class="line">            <span class="keyword">if</span> (!other.canEqual(<span class="keyword">this</span>)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                Object <span class="keyword">this</span>$id = <span class="keyword">this</span>.getId();</span><br><span class="line">                Object other$id = other.getId();</span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>$id == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (other$id != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="keyword">this</span>$id.equals(other$id)) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">canEqual</span><span class="params">(<span class="keyword">final</span> Object other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> other <span class="keyword">instanceof</span> Event2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> PRIME = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        Object $id = <span class="keyword">this</span>.getId();</span><br><span class="line">        <span class="keyword">int</span> result = result * <span class="number">59</span> + ($id == <span class="keyword">null</span> ? <span class="number">43</span> : $id.hashCode());</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Event2Builder</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Integer id;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        Event2Builder() &#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Event2.<span class="function">Event2Builder <span class="title">id</span><span class="params">(<span class="keyword">final</span> Integer id)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.id = id;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> Event2.<span class="function">Event2Builder <span class="title">name</span><span class="params">(<span class="keyword">final</span> String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Event2 <span class="title">build</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Event2(<span class="keyword">this</span>.id, <span class="keyword">this</span>.name);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Integer var10000 = <span class="keyword">this</span>.id;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
