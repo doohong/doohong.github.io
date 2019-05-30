@@ -349,6 +349,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/Spring-AssertJ/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/23/Spring-AssertJ/" class="post-title-link" itemprop="url">[Spring-library]AssertJ란?</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-23 17:00:00" itemprop="dateCreated datePublished" datetime="2019-01-23T17:00:00+09:00">2019-01-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-25 13:46:47" itemprop="dateModified" datetime="2019-01-25T13:46:47+09:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/23/Spring-AssertJ/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/23/Spring-AssertJ/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="AsertJ란"><a href="#AsertJ란" class="headerlink" title="AsertJ란?"></a>AsertJ란?</h1><p> java test를 위해 좀 더 풍부한 문법을 제공하고 메서드 체이닝을 통해 직관적인 테스트 흐름을 작성할 수 있도록 개발된 오픈소스 라이브러리이다.</p>
+<p> 최근 junit에 필수로 사용되고 있는 추세이다.</p>
+<blockquote>
+<p><a href="http://joel-costigliola.github.io/assertj/" target="_blank" rel="noopener">공식홈페이지</a></p>
+</blockquote>
+<h1 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h1><h2 id="라이브러리-의존성-설정"><a href="#라이브러리-의존성-설정" class="headerlink" title="라이브러리 의존성 설정"></a>라이브러리 의존성 설정</h2><h3 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.assertj&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;assertj-core&lt;/artifactId&gt;</span><br><span class="line">  &lt;!-- use <span class="number">2.9</span>.1 <span class="keyword">for</span> Java <span class="number">7</span> projects --&gt;</span><br><span class="line">  &lt;version&gt;3.11.1&lt;/version&gt;</span><br><span class="line">  &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="Gradle"><a href="#Gradle" class="headerlink" title="Gradle"></a>Gradle</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testCompile(<span class="string">"org.assertj:assertj-core:3.11.1"</span>)</span><br></pre></td></tr></table></figure>
+<p>또는 Java 7 프로젝트의 경우 버전 2.9.1<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">testCompile(<span class="string">"org.assertj:assertj-core:2.9.1"</span>)</span><br></pre></td></tr></table></figure></p>
+<h2 id="AssertJ-메소드-임포트"><a href="#AssertJ-메소드-임포트" class="headerlink" title="AssertJ 메소드 임포트"></a>AssertJ 메소드 임포트</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> org.assertj.core.api.Assertions.*;</span><br></pre></td></tr></table></figure>
+<h2 id="실제-사용"><a href="#실제-사용" class="headerlink" title="실제 사용"></a>실제 사용</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assertThat(objectUnderTest). <span class="comment">// code completion -&gt; assertions specific to objectUnderTest</span></span><br></pre></td></tr></table></figure>
+<p>모든 테스트 코드는 <strong><em>assertThat()</em></strong> 메소드에서 시작한다.</p>
+<p>###문자열 테스트<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">assertThat(<span class="string">"Hello, world! Nice to meet you."</span>) <span class="comment">// 주어진 "Hello, world! Nice to meet you."라는 문자열은</span></span><br><span class="line">				.isNotEmpty() <span class="comment">// 비어있지 않고</span></span><br><span class="line">				.contains(<span class="string">"Nice"</span>) <span class="comment">// "Nice"를 포함하고</span></span><br><span class="line">				.contains(<span class="string">"world"</span>) <span class="comment">// "world"도 포함하고</span></span><br><span class="line">				.doesNotContain(<span class="string">"ZZZ"</span>) <span class="comment">// "ZZZ"는 포함하지 않으며</span></span><br><span class="line">				.startsWith(<span class="string">"Hell"</span>) <span class="comment">// "Hell"로 시작하고</span></span><br><span class="line">				.endsWith(<span class="string">"u."</span>) <span class="comment">// "u."로 끝나며</span></span><br><span class="line">				.isEqualTo(<span class="string">"Hello, world! Nice to meet you."</span>); <span class="comment">// "Hello, world! Nice to meet you."과 일치합니다.</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="숫자-테스트"><a href="#숫자-테스트" class="headerlink" title="숫자 테스트"></a>숫자 테스트</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">assertThat(<span class="number">3.14</span>d) <span class="comment">// 주어진 3.14라는 숫자는</span></span><br><span class="line">				.isPositive() <span class="comment">// 양수이고</span></span><br><span class="line">				.isGreaterThan(<span class="number">3</span>) <span class="comment">// 3보다 크며</span></span><br><span class="line">				.isLessThan(<span class="number">4</span>) <span class="comment">// 4보다 작습니다</span></span><br><span class="line">				.isEqualTo(<span class="number">3</span>, offset(<span class="number">1</span>d)) <span class="comment">// 오프셋 1 기준으로 3과 같고</span></span><br><span class="line">				.isEqualTo(<span class="number">3.1</span>, offset(<span class="number">0.1</span>d)) <span class="comment">// 오프셋 0.1 기준으로 3.1과 같으며</span></span><br><span class="line">				.isEqualTo(<span class="number">3.14</span>); <span class="comment">// 오프셋 없이는 3.14와 같습니다</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/23/Spring-Lombok/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2360,249 +2556,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/05/Java-AccessModifier/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/03/05/Java-AccessModifier/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-5.접근제어자</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2018-03-05 18:20:00" itemprop="dateCreated datePublished" datetime="2018-03-05T18:20:00+09:00">2018-03-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-02-01 22:22:48" itemprop="dateModified" datetime="2019-02-01T22:22:48+09:00">2019-02-01</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2018/03/05/Java-AccessModifier/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/05/Java-AccessModifier/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="접근제어자-Access-Modifier"><a href="#접근제어자-Access-Modifier" class="headerlink" title="접근제어자(Access Modifier)"></a>접근제어자(Access Modifier)</h1><p>접근제어자는 변수나 메소드, 클래스에 대한 접근을 제어하는 문법이다.</p>
-<p>접근을 제어하는 이유는 객체가 가진 고유의 멤버 변수값들이 외부에서 잘못 변경되는 것을 막기 위해서 이다.</p>
-<p>자바에는 다음과 같은 접근제어자가 있다.</p>
-<ol>
-<li><strong>private</strong></li>
-<li><strong>default</strong></li>
-<li><strong>protected</strong></li>
-<li><strong>public</strong></li>
-</ol>
-<h2 id="private"><a href="#private" class="headerlink" title="private"></a>private</h2><p>접근제어자가 private 으로 설정 되어 있다면 그 변수나 메소드는 해당 클래스에만 접근이 가능하다.</p>
-<p>최상위 클래스 선언에서는 private를 사용할 수 없다. </p>
-<h2 id="default"><a href="#default" class="headerlink" title="default"></a>default</h2><p>접근제어자를 별도로 설정하지 않는다면 default 접근제어자가 된다. default 접근제어자는 해당 패키지 내에서 접근이 가능하다.</p>
-<h2 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h2><p>protected 접근제어자는 default 접근제어자와 마찬가지로 동일 패키지내에서 접근이 가능하며 추가적으로 해당 클래스를 상속받은 외부 패키지의 클래스에서도 접근이 가능하다.</p>
-<h2 id="public"><a href="#public" class="headerlink" title="public"></a>public</h2><p>public 접근제어자는 모든 클래스에 의해 접근할 수 있다. 즉 접근 제약이 없다.</p>
-<h2 id="접근-권한"><a href="#접근-권한" class="headerlink" title="접근 권한"></a>접근 권한</h2><table>
-<thead>
-<tr>
-<th>종류</th>
-<th style="text-align:center">클래스</th>
-<th style="text-align:center">하위클래스</th>
-<th style="text-align:center">동일패키지</th>
-<th style="text-align:center">모든클래스</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>private</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">X</td>
-</tr>
-<tr>
-<td>default</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">X</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">X</td>
-</tr>
-<tr>
-<td>protected</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">X</td>
-</tr>
-<tr>
-<td>public</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">O</td>
-<td style="text-align:center">O</td>
-</tr>
-</tbody>
-</table>
-<p><strong>public &gt; protected &gt; default &gt; private</strong></p>
-<h2 id="꿀팁"><a href="#꿀팁" class="headerlink" title="꿀팁"></a>꿀팁</h2><p>메소드를 오버라이딩 할 경우 부모 클래스의 메소드의 접근제어자보다 좁아질 수는 없다.</p>
-<p><strong>그러나 확장될 수는 있다.</strong></p>
-<p>private 로 선언된 메소드를 public 으로 오버라이딩하여 모든곳에서 접근 가능하도록 수정이 가능하다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2652,7 +2605,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2854,7 +2807,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">81</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">85</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
