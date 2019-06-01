@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[[JAVA]디자인패턴-1.Iterator]]></title>
+    <url>%2F2019%2F06%2F01%2FDesignPattern-iterator%2F</url>
+    <content type="text"><![CDATA[iterator 패턴은자바 프로그래밍을 하다 보면 Array, Set, Map, List 과 같은 자료구조를 많이 사용하게 된다.이 자료구조의 특징들은 어떠한 데이터들의 집합체라는 것이다. 그래서 집합체들을 다룰 때는 얘들이 가지고 있는 개별 원소에 대해서 이런 저런 작업들을 할 일이 많다.iterator를 쓰게 되면, 집합체와 개별 원소들간에 분리시켜 생각할 수가 있다.심지어는 그 집합체가 어떤 클래스의 인스턴스인지 조차 신경쓰지 않아도 된다. 예제12345678910111213141516171819202122232425262728293031323334353637383940import java.util.ArrayList;import java.util.Iterator;import java.util.List;public class MagicianList implements Iterable&lt;String&gt; &#123; private List&lt;String&gt; list = new ArrayList&lt;String&gt;(); public void add(String name)&#123; list.add(name); &#125; public Iterator&lt;String&gt; iterator() &#123; return new Iterator&lt;String&gt;()&#123; int seq = 0; public boolean hasNext() &#123; return seq &lt; list.size(); &#125; public String next() &#123; return list.get(seq++); &#125; public void remove() &#123; throw new UnsupportedOperationException(); &#125; &#125;; &#125; public static void main(String[] arg)&#123; MagicianList magicians = new MagicianList(); magicians.add("이은결"); magicians.add("Kevin parker"); magicians.add("David Blaine"); Iterator&lt;String&gt; iterator = magicians.iterator(); while (iterator.hasNext()) &#123; String element = iterator.next(); System.out.println(element); &#125; &#125;&#125; magicians 의 원소들을 뽑아내는데, magicians 라는 변수를 전혀 쓰지 않는다.물론, 내부적으로 iterator라는 변수가 magicians와 관계를 유지해주고 있긴 하지만 일단 iterator를 가지고 온 후에는 데이터 집합체가 뭐냐에 신경을 쓸 필요가 없어진 것이다.iterator만 가져오면, hasNext() , next() 만 가지고 반복하면서 원소들에 대해서 처리를 하면 된다. Iterator관련 interfaceIteraable 인터페이스를 보게되면 Iterator iterator() 라는 메소드 한개만 가지고 있다.그리고 이 iterator 메소드를 이용하여 만들어진 iterator클래스는 클래스는 3개의 메서드를 가지고 있다.hasNext()는 다음 구성 요소가 있냐고 물어보는 메서드이다. next()는 그 요소를 뽑아 온다.remove()는 일부러 구현을 안하였다.API에 보면, 마지막으로 꺼낸 요소를 제거한다.(optional operation) 이라고 되어있는데 optional이라는 걸 강조하기위해 구현을 하지 않았다.요기서 한가지 짚고 넘어가야 할 것은 시퀀스는 hasNext()가 아니라 next()에서 증가시켜야 한다는 것이다.hasNext()를 호출하고 또 호출하는 일이 발생할 수도 있기 때문이다. hasNext라는 메소드 이름이, next를 가지고 있는지를 체크하겠다는 것이기 때문이다. JAVA API에 있는 Iterator우리가 알고 있는 일반적인 집합체들은 전부 Iterator를 제공한다.Set, List 등은 Collection 을 상속 받는데, Collection이 Iteratable을 상속 받기 때문이다.위에서 만든 클래스처럼 리스트같은 Collection을 사용할땐 list.iterator()를 사용하여 각 컬렉션의 iterator를 뽑아올 수 있다. Map은 왜 Iterator를 제공하지 않는 지를 살펴보자.Map은 Set이나 List와는 달리 key-value의 구조이다. key에 대한 Iterator인지 value에 대한 Iterator인지 구별할 방법이 없다. 그래서 아예 제공을 하지 않는다.그러나 Map에는 key에 대해서는 Set keySet()이라는 key를 Set으로 가져오기를 지원하고, value에 대해서는 Collection values() 를 제공한다. 위에서 말한것 처럼 Set과 Collection은 둘다 Iterator를 제공한다.]]></content>
+      <categories>
+        <category>Design Pattern</category>
+      </categories>
+      <tags>
+        <tag>JAVA</tag>
+        <tag>Design Pattern</tag>
+        <tag>Iterator</tag>
+        <tag>디자인패턴</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[JAVA]자바의 기본 개념 정리-9.Checked,Unchecked Exception]]></title>
     <url>%2F2019%2F05%2F30%2Fjava-CheckedUncheckedException%2F</url>
     <content type="text"><![CDATA[Exception ErrorException은 주로 자바에서 제공하는 java.lang.Exception 클래스와 Exception 클래스의 서브클래스들이 쓰이는 상황을 말한다. 예외(Exception)는 체크 예외(Checked Exception)와 언체크 예외(Unchecked Exception), 두 가지로 나눌 수 있다. 언체크 예외는 RuntimeException을 상속한 것들을 말하고, 체크 예외는 이외의 예외들을 말한다. 물론, RuntimeException 또한 Exception 클래스의 서브 클래스이지만, 프로그램이 동작하는 상황에서 발생하는 예외를 처리한다는 점에서 조금 특별하게 취급한다. 오류(Error)는 시스템에 비정상적인 상황이 생겼을 때 발생한다. 이는 시스템 레벨에서 발생하기 때문에 심각한 수준의 오류이다. 따라서 개발자가 미리 예측하여 처리할 수 없기 때문에, 애플리케이션에서 오류에 대한 처리를 신경 쓰지 않아도 된다. 오류가 시스템 레벨에서 발생한다면, 예외(Exception)는 개발자가 구현한 로직에서 발생한다. 즉, 예외는 발생할 상황을 미리 예측하여 처리할 수 있다. 즉, 예외는 개발자가 처리할 수 있기 때문에 예외를 구분하고 그에 따른 처리 방법을 명확히 알고 적용하는 것이 중요하다. Checked Exception과 Unchecked(Runtime) Exception Checked Exception 과 Unchecked Exception의 가장 큰 차이는 ‘꼭 처리를 해야 하냐’ 이다. Checked Exception이 발생할 가능성이 있는 메소드라면 반드시 로직을 try/catch로 감싸거나 throw로 던져서 처리해야 한다. Unchecked Exception은 명시적인 예외처리를 하지 않아도 된다. 이 예외는 피할 수 있지만 개발자가 부주의해서 발생하는 경우가 대부분이고, 미리 예측하지 못했던 상황에서 발생하는 예외가 아니기 때문에 굳이 로직으로 처리를 할 필요가 없도록 만들어져 있다. 그리고 한 가지 더 인지하고 있으면 좋은 것이 있다. 바로 예외발생시 트랜잭션의 roll-back 여부이다. 기본적으로 Checked Exception은 예외가 발생하면 트랜잭션을 roll-back하지 않고 예외를 던져준다. 하지만 Unchecked Exception은 예외 발생 시 트랜잭션을 roll-back한다는 점에서 차이가 있다. 트랜잭션의 전파방식 즉, 어떻게 묶어놓느냐에 따라서 Checked Exception이냐 Unchecked Exception이냐의 영향도가 크다. roll-back이 되는 범위가 달라지기 때문에 개발자가 이를 인지하지 못하면, 실행결과가 맞지 않거나 예상치 못한 예외가 발생할 수 있다. 그러므로 이를 인지하고 트랜잭션을 적용시킬 때 전파방식(propagation behavior)과 롤백규칙 등을 적절히 사용하면 더욱 효율적인 애플리케이션을 구현할 수 있을 것이다. 전략같은 작업이 진행 되더라도 발생하는 Exception에 따라 작업이 rollback(Unchecked Exception이) 될 수도 있고 commit(Checked Exception이)까지 완료될 수가 있다. 기본적으로 Checked Exception는 복구가 가능하다는 메커니즘을 가지고 있다. 그렇기 때문에 Rollback을 진행하지 않는다 생각한다. 하지만 Checked Exception 예외가 발생했을 경우 복구 전략을 갖고 그것을 복구할 수 있는 경우는 적다. 따라서 복구할 수 없는 경우나 rollback을 시켜줘야 하는 경우 더욱더 구체적인 Unchecked Exception를 만들어 발생 시켜주는 것이 더욱 좋은 처리 방법이라 생각한다.]]></content>
@@ -424,6 +438,19 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[REST API란]]></title>
+    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
+    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
+      <categories>
+        <category>RESTAPI</category>
+      </categories>
+      <tags>
+        <tag>RESTAPI</tag>
+        <tag>REST</tag>
+        <tag>API</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[[Spring-library]Lombok이란?]]></title>
     <url>%2F2019%2F01%2F23%2FSpring-Lombok%2F</url>
     <content type="text"><![CDATA[Lombok이란? Lombok은 자바에서 Model(DTO, VO, Domain Class) 클래스를 작성할 때, 멤버 변수에 대한 Getter/Setter Method, Equals(), hashCode(), ToString()과 멤버 변수에 값을 설정하는 생성자 등등을 @Getter, @Setter 같은 어노테이션을 통해 자동으로 생성해주는 라이브러리 이다. 공식홈페이지 시작하기라이브러리 의존성 설정Maven12345678&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.projectlombok&lt;/groupId&gt; &lt;artifactId&gt;lombok&lt;/artifactId&gt; &lt;version&gt;1.18.4&lt;/version&gt; &lt;scope&gt;provided&lt;/scope&gt; &lt;/dependency&gt;&lt;/dependencies&gt; Gradle1provided 'org.projectlombok:lombok:1.18.4' AssertJ 메소드 임포트1import lombok.*; Lombok 어노테이션 @어노테이션 설명 세부기능 @Getter, @Setter Getter, Setter 메소드 자동생성 – AccessLevel : 해당 접근 제한자를 설정 – lazy : 동기화를 이용하여 최초 1회만 호출 @ToString ToString 메소드 자동생성 – exclude : 출력하지 않을 필드명 입력 – includeFieldNames : 필등명 생략 여부 설정– callSuper : 상위 클래스 toString호출 여부 설정 @EqualsAndHashCode equals, hashcode 메소드 자동생성 – of : 포함 할 필드, – exclude : 제외 할 필드 @Data @ToString, @EqualsAndHashCode, @Getter, @Setter, @RequiredArgsConstructor 자동생성 @val equals, hashcode 메소드 자동생성 @NonNull 해당 값이 Null 일경우 NullPointerException을 발생 @Cleanup 자동 리소스 관리 : close() 메소드를 귀찮음 없게 안전하게 호출 @NoArgsConstructor 인자 없는 생성자 생성 @RequriedArgsConstructor 필수 인자만 있는 생성자 생성(다른 생성자가 없을 때에만 만들어짐) @AllArgsConstructor 모든 인자를 가진 생성자 생성 @Value 불편 클래스를 쉽게 생성 @Builder Builder API 처럼 사용 할 수 있도록 지원 @SneakyThrows Exception 발생시 체크된 Throable로 감싸서 전달 @Synchronized 메소드에서 동기화 Lock을 설정 @Log 종류별 로그를 사용할 수 있도록 한다. – 기본 변수명 : Log (Config 파일 만들어서 명칭 변경 가능)– 로그 종류 : @Log, @Slf4j, @CommonLog, XSlf4j, JBossLog 등 실제 사용Lombok 어노테이션을 이용하여 만든 Event Class1234567@Builder @AllArgsConstructor @NoArgsConstructor@Getter @Setter @EqualsAndHashCode(of="id")public class Event &#123; private Integer id; private String name;&#125; 실제로 만들어진 .class파일123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103//// Source code recreated from a .class file by IntelliJ IDEA// (powered by Fernflower decompiler)//package com.doohong.restapi.event;public class Event2 &#123; private Integer id; private String name; public static Event2.Event2Builder builder() &#123; return new Event2.Event2Builder(); &#125; public Event2(final Integer id, final String name) &#123; this.id = id; this.name = name; &#125; public Event2() &#123; &#125; public Integer getId() &#123; return this.id; &#125; public String getName() &#123; return this.name; &#125; public void setId(final Integer id) &#123; this.id = id; &#125; public void setName(final String name) &#123; this.name = name; &#125; public boolean equals(final Object o) &#123; if (o == this) &#123; return true; &#125; else if (!(o instanceof Event2)) &#123; return false; &#125; else &#123; Event2 other = (Event2)o; if (!other.canEqual(this)) &#123; return false; &#125; else &#123; Object this$id = this.getId(); Object other$id = other.getId(); if (this$id == null) &#123; if (other$id != null) &#123; return false; &#125; &#125; else if (!this$id.equals(other$id)) &#123; return false; &#125; return true; &#125; &#125; &#125; protected boolean canEqual(final Object other) &#123; return other instanceof Event2; &#125; public int hashCode() &#123; int PRIME = true; int result = 1; Object $id = this.getId(); int result = result * 59 + ($id == null ? 43 : $id.hashCode()); return result; &#125; public static class Event2Builder &#123; private Integer id; private String name; Event2Builder() &#123; &#125; public Event2.Event2Builder id(final Integer id) &#123; this.id = id; return this; &#125; public Event2.Event2Builder name(final String name) &#123; this.name = name; return this; &#125; public Event2 build() &#123; return new Event2(this.id, this.name); &#125; public String toString() &#123; Integer var10000 = this.id; return this.name; &#125; &#125;&#125;]]></content>
@@ -435,19 +462,6 @@
         <tag>SpringBoot</tag>
         <tag>library</tag>
         <tag>Lombok</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[REST API란]]></title>
-    <url>%2F2019%2F01%2F23%2FREST-API%2F</url>
-    <content type="text"><![CDATA[스프링 기반 REST API 개발 -백기선님 인프런 강좌를 보고 작성하였습니다. API Application Programming Interface 응용 프로그램에서 사용할 수 있도록, 운영 체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. REST REpresentational State Treansfer 인터넷 상의 시스템 간의 상호 운용성(Interoperability)을 제공하는 방법중 하나 시스템 제각각의 독립적인 진화를 보장하기 위한 방법 REST API : REST 아키텍처 스타일을 따르는 API 그런 REST API로 괜찮은가 그런 REST API로 괜찮은가 - 이응준님 강연을 보고 작성하였습니다. 오늘날 대부분의 “REST API”는 사실 REST를 따르지 않고 있다. REST의 제약조건 중에서 특히 Self-descriptive와 HATEOAS를 잘 만족하지 못한다. REST를 따르겠다면, Self-descriptive와 HATEOAS를 만족시켜야한다. Self-descriptive는 custom media type이나 profile link relation 등으로 만족시킬 수 있다. HATEOAS는 HTTP 헤더나 본문에 링크를 담아 만족시킬 수 있다.Self descriptive message 메세지 스스로 메세지에 대한 설명이 가능해야 한다. 이렇지 않으면 API문서를 항상 만들어야 한다. API만 보고 의미를 알 수 없기 때문이다. Self descriptive message를 달성하기 위한 방법 미디어 타입을 IANA에 등록하고 그 미디어 타입을 리소스 리턴할 때 Content-Type으로 사용한다. ProFile 의미가 뭔지 정보가 담긴 문서 링크 헤더를 추가한다. HATEOAS 하이퍼미디어(링크)를 통해 애플리케이션 상태 변화가 가능해야 하며 링크 정보를 동적으로 바꿀 수 있다. HATEOS는 애플리케이션 상태 전이의 late binding을 가능하게 하기 때문에 필요하다.어디서 어디로 전이가 가능한지 미리 결정되지 않는다. 어떤 상태로 전이가 완료되고 나서야 그 다음 전이될 수 있는 상태가 결정된다. 링크는 동적으로 변경될 수 있다. 언제나 서버가 마음대로 바꿀 수 있음.HATEOAS를 달성하기 위한 방법 데이터 링크 제공 HTTP 헤더에 Location, Link를 활용하는 방법]]></content>
-      <categories>
-        <category>RESTAPI</category>
-      </categories>
-      <tags>
-        <tag>RESTAPI</tag>
-        <tag>REST</tag>
-        <tag>API</tag>
       </tags>
   </entry>
   <entry>
