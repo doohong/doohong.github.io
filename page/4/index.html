@@ -349,6 +349,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/25/REST-API-2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/25/REST-API-2/" class="post-title-link" itemprop="url">REST API 만들기-2</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-25 18:00:00" itemprop="dateCreated datePublished" datetime="2019-01-25T18:00:00+09:00">2019-01-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-02-13 21:19:06" itemprop="dateModified" datetime="2019-02-13T21:19:06+09:00">2019-02-13</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/RESTAPI/" itemprop="url" rel="index"><span itemprop="name">RESTAPI</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/25/REST-API-2/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/25/REST-API-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/spring_rest-api/" target="_blank" rel="noopener">스프링 기반 REST API 개발</a> -백기선님 인프런 강좌를 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="Event-생성-API"><a href="#Event-생성-API" class="headerlink" title="Event 생성 API"></a>Event 생성 API</h1><h2 id="TDD를-위한-테스트-작성"><a href="#TDD를-위한-테스트-작성" class="headerlink" title="TDD를 위한 테스트 작성"></a>TDD를 위한 테스트 작성</h2><p>테스트 할것<br>입력값들을 전달하면 JSON 응답으로 201이 나오는지 확인.</p>
+<ul>
+<li>Location 헤더에 생성된 이벤트를 조회할 수 있는 URI 담겨 있는지 확인.</li>
+<li>id는 DB에 들어갈 때 자동생성된 값으로 나오는지 확인 <h3 id="EventControllerTest-클래스-생성"><a href="#EventControllerTest-클래스-생성" class="headerlink" title="EventControllerTest 클래스 생성"></a>EventControllerTest 클래스 생성</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@WebMvcTest</span> <span class="comment">//web과 관련된 빈들이 등록 됨</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventControllerTests</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    MockMvc mockMvc; <span class="comment">// 가짜 요청을 만들어 DispatcherServlet 에게 보내고 응답을 확인(웹서버를 띄우진 않음)</span></span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    ObjectMapper objectMapper; <span class="comment">//자동으로 빈으로 등록해줌  </span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createEvent</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Event event = Event.builder()</span><br><span class="line">                .name(<span class="string">"Spring"</span>)</span><br><span class="line">                .description(<span class="string">"REST API Development with Spring"</span>)</span><br><span class="line">                .beginEnrollmentDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">23</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .closeEnrollmentDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">24</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .beginEventDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">25</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .endEventDateTime(LocalDateTime.of(<span class="number">2018</span>,<span class="number">11</span>,<span class="number">26</span>,<span class="number">14</span>,<span class="number">22</span>))</span><br><span class="line">                .basePrice(<span class="number">100</span>)</span><br><span class="line">                .maxPrice(<span class="number">200</span>)</span><br><span class="line">                .limitOfEnrollment(<span class="number">100</span>)</span><br><span class="line">                .location(<span class="string">"강남역 D2 스타텁 팩토리"</span>)</span><br><span class="line">                .build();</span><br><span class="line">        </span><br><span class="line">        mockMvc.perform(post(<span class="string">"/api/events"</span>)</span><br><span class="line">                    .contentType((MediaType).APPLICATION_JSON_UTF8)</span><br><span class="line">                    .accepot(MediaTypes.HAL_JSON)</span><br><span class="line">                    .content(objectMapper.writeValueAsString(event))) </span><br><span class="line">                .andDo(print())</span><br><span class="line">                .andExpect(status().isCreated()</span><br><span class="line">                .andExpect(jsonPath(<span class="string">"id"</span>).exists());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>@WebMvcTest</strong></p>
+<ul>
+<li>MockMvc 빈을 자동 설정 </li>
+<li>웹 관련 빈만 등록.(슬라이스)</li>
+</ul>
+<p><strong>MockMvc</strong></p>
+<ul>
+<li>스프링 MVC 테스트 핵심클래스</li>
+<li>웹 서버를 띄우지 않고도 스프링 MVC(DispatcherServlet)가 요청을 처리하는 과정을 확인할 수 있기 때문에 컨트롤러 테스트용으로 자주 쓰임</li>
+</ul>
+<p><strong>ObjectMapper</strong></p>
+<ul>
+<li>스프링 부트에 mapping Jackson이 의존성주입이 되있을경우 자동 빈등록 </li>
+</ul>
+<p><strong>objectMapper.writeValueAsString(event)</strong></p>
+<ul>
+<li>객체를 JSON으로 변환!</li>
+</ul>
+<h3 id="EventController-클래스-작성"><a href="#EventController-클래스-작성" class="headerlink" title="EventController 클래스 작성"></a>EventController 클래스 작성</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value =<span class="string">"/api/events"</span>, produces = MediaTypes.HAL_JSON_UTF8_VALUE )</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EventController</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity <span class="title">createEvent</span><span class="params">(@RequestMapping Event event)</span></span>&#123;</span><br><span class="line">        URI createdUri = linkTo(EventController.class).slash(<span class="string">"&#123;id&#125;"</span>).toUri();</span><br><span class="line">        event.setID(<span class="number">10</span>); <span class="comment">//우선 임의로 아이디값을 준다. </span></span><br><span class="line">        <span class="keyword">return</span> ResponseEntity.created(createdUri).body(event);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>테스트를 진행하면 정상적으로 실행이 된다. </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/24/REST-API-1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2397,213 +2610,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/02/OOP-encapsulation/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/02/OOP-encapsulation/" class="post-title-link" itemprop="url">[OOP]캡슐화( encapsulation)란?</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-01-02 14:24:00" itemprop="dateCreated datePublished" datetime="2019-01-02T14:24:00+09:00">2019-01-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-01-28 21:56:00" itemprop="dateModified" datetime="2019-01-28T21:56:00+09:00">2019-01-28</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/OOP/" itemprop="url" rel="index"><span itemprop="name">OOP</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/01/02/OOP-encapsulation/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/02/OOP-encapsulation/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p><a href="https://www.inflearn.com/course/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9E%85%EB%AC%B8/" target="_blank" rel="noopener">객체 지향 프로그래밍 입문</a> - 최범균님의 인프런 강좌을 보고 작성하였습니다.</p>
-</blockquote>
-<h1 id="캡슐화-encapsulation-란"><a href="#캡슐화-encapsulation-란" class="headerlink" title="캡슐화(encapsulation)란?"></a>캡슐화(encapsulation)란?</h1><p>캡슐화(encapsulation)는 일반적으로 연관 있는 변수와 함수를 클래스로 묶는 작업을 말한다.</p>
-<p>객체가 기능을 어떻게 구현 했는지 외부에 감추는 것</p>
-<ul>
-<li>구현에 사용된 데이터의 상세 내용을 외부에 감춤</li>
-</ul>
-<p>캡슐화만 잘해도 좋은 코드를 만들 수 있음</p>
-<p><strong>정보은닉(Information Hiding)</strong> 의미 포함(최근에 포함해서 이야기 많이함)</p>
-<h2 id="캡슐화의-장점"><a href="#캡슐화의-장점" class="headerlink" title="캡슐화의 장점"></a>캡슐화의 장점</h2><p>외부에 영향 없이 객체 내부 구현 변경 가능</p>
-<ul>
-<li>클래스 내부 메소드의 구현만 변경하면 되게끔 -&gt; 외부 소스코드의 연쇄적인 변경 x</li>
-</ul>
-<h2 id="캡슐화를-잘-할수-있는-규칙"><a href="#캡슐화를-잘-할수-있는-규칙" class="headerlink" title="캡슐화를 잘 할수 있는 규칙!!"></a>캡슐화를 잘 할수 있는 규칙!!</h2><p><strong>Tell, Don’t Ask 규칙</strong><br>= 데이터를 달라고 부탁하지 말고 직접 해달라고 하기!<br><strong>Demeter’s Law 규칙</strong></p>
-<ul>
-<li>메서드에서 생성한 객체의 메서드만 호출</li>
-<li>파라미터로 받은 객체의 메서드만 호출</li>
-<li>필드로 참조하는 객체의 메서드만 호출</li>
-</ul>
-<blockquote>
-<p>acc.getExpDate().isAfter(now)                 -&gt; acc.isExpired();<br>Date date = acc.getExpDate(); date.isAfter(now);    -&gt; acc.isValid(now);</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2653,7 +2659,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2871,7 +2877,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">88</span>
+                      
+                    
+                    <span class="site-state-item-count">89</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

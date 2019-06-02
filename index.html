@@ -349,6 +349,200 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/01/DesignPattern-adapter/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/01/DesignPattern-adapter/" class="post-title-link" itemprop="url">[JAVA]디자인패턴-1.Adapter</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-06-01 18:20:00" itemprop="dateCreated datePublished" datetime="2019-06-01T18:20:00+09:00">2019-06-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-06-02 18:54:15" itemprop="dateModified" datetime="2019-06-02T18:54:15+09:00">2019-06-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Design-Pattern/" itemprop="url" rel="index"><span itemprop="name">Design Pattern</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/06/01/DesignPattern-adapter/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/01/DesignPattern-adapter/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Adapter-패턴"><a href="#Adapter-패턴" class="headerlink" title="Adapter 패턴"></a>Adapter 패턴</h1><p>한 클래스의 인터페이스를 클라이언트에서 사용하고자하는 다른 인터페이스로 변환한다.</p>
+<p>어댑터를 이용하면 인터페이스 호환성 문제 때문에 같이 쓸 수 없는 클래스들을 연결해서 쓸 수 있다.</p>
+<h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IteratorToEnumeration</span> <span class="keyword">implements</span> <span class="title">Enumeration</span>&lt;<span class="title">String</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Iterator&lt;String&gt; iter;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">IteratorToEnumeration</span><span class="params">(Iterator&lt;String&gt; iter)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.iter = iter;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasMoreElements</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> iter.hasNext();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">nextElement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> iter.next();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">---------------뭔가 훌륭한 method를 가지고 있는 클래스 ------------</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">goodMethod</span><span class="params">(Enumeration&lt;String&gt; enu)</span></span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (enu.hasMoreElements()) &#123;</span><br><span class="line">            System.out.println(enu.nextElement());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">        list.add(<span class="string">"이은결"</span>);</span><br><span class="line">        list.add(<span class="string">"Kevin parker"</span>);</span><br><span class="line">        list.add(<span class="string">"David Blaine"</span>);</span><br><span class="line">        Enumeration&lt;String&gt; ite = <span class="keyword">new</span> IteratorToEnumeration(list.iterator());</span><br><span class="line">        Test.goodMethod(ite);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>최종족으로 사용하고자 하는 메서드는 goodMethod()이다.<br>하지만 iterator을 가지고 있는 List는 Enumeration 인자가 없기 때문에 사용하지 못한다.<br>이때 IteratorToEnumeration 클래스가 iterator를 받아서 Enumeration 클래스를 사용 할 수 있도록 Enumeration 인터페이스의 메서드를 구현 한다.</p>
+<p>AtoB의 형태를 가지는 Adapter는 A를 멤버변수로 가지고 B를 구현한다. </p>
+<h2 id="Adapter를-구현하는-방법"><a href="#Adapter를-구현하는-방법" class="headerlink" title="Adapter를 구현하는 방법"></a>Adapter를 구현하는 방법</h2><p>위에서 소개된 방법은 “구성을 통한 방법” 또는 “위임을 통한 방법” 이다. Adapter 자체는 하는 일이 별로 없다. 내부적으로  멤버한테다가 일을 다 떠넘긴다. 외관상 다른 형태로 변환가능하기 위한 것이지 어떤 일을 직접할려는 것은 아니다.</p>
+<p>두번째 방법은 상속을 이용하는 방법이다. A to B로 할 경우 A와 B를 둘다 구현하는 방법이다. A와 B가 둘 다 인터페이스거나, 하나만 인터페이스일 때는 가능하지만, 둘 다 클래스일 경우에는 불가능하다. </p>
+<p>세번째 방법은 Adapter 클래스를 만들지 않고 method로 만드는 방법이다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Enumeration&lt;String&gt; <span class="title">iteratorToEnumeration</span><span class="params">(<span class="keyword">final</span> Iterator&lt;String&gt; iter)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Enumeration&lt;String&gt;() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasMoreElements</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> iter.hasNext();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">nextElement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> iter.next();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>눈치 빠른 사람들은 인자가 final이란 것을 봤을 것이다. final로 말뚝 박는 건 “변경 절대 불가!” 를 보장하는 것이다. 메서드 안에서 Enumeration의 구현체가 인자로 받은 것을 사용하는데, 이런 경우에는 인자가 final 로 정의되어야 하며, 그렇지 않을 경우 컴파일시에 문제가 된다.<br>final로 정의한다는 것은 read-only라는 뜻이다. 주의할 것은 read-only라는 게 다른 변수로 할당을 못한다는 것 뿐 내부의 메서드를 호출하지 못한다는 것은 아니다. (메서드 내부에서 iter = 다른것; 이런식으로 사용하지 못한다는 이야기다.) </p>
+<p>세번째 방법은 Adapter 패턴이라고 불리지는 않는다. 그러나 하는 일이 비슷하다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/01/DesignPattern-iterator/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2167,191 +2361,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/16/Spring-dispatcherServlet/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/16/Spring-dispatcherServlet/" class="post-title-link" itemprop="url">[Spring]Dispatcher-Servlet이란</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-03-16 16:00:00 / Updated at: 21:58:00" itemprop="dateCreated datePublished" datetime="2019-03-16T16:00:00+09:00">2019-03-16</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/03/16/Spring-dispatcherServlet/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/16/Spring-dispatcherServlet/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Dispatcher-Servlet-이란"><a href="#Dispatcher-Servlet-이란" class="headerlink" title="Dispatcher-Servlet 이란"></a>Dispatcher-Servlet 이란</h1><blockquote>
-<p> Servlet Container에서 HTTP프로토콜을 통해 들어오는 모든 요청을 프레젠테이션 계층의 제일앞에 둬서 중앙집중식으로 처리해주는 프론트 컨트롤러(Front Controller)</p>
-</blockquote>
-<p>클라이언트로부터 어떠한 요청이 오면 Tomcat(톰캣)과 같은 서블릿컨테이너가 요청을 받는데,<br>이때 제일 앞에서 서버로 들어오는 모든 요청을 처리하는 <strong>프론트 컨트롤러</strong>를 Spring에서 정의하였고,<br>이를 DispatcherServlet이라고 한다. </p>
-<p>그래서 공통처리 작업을 DispatcherServlet이 처리한 후, 적절한 세부 컨트롤러로 작업을 위임한다.</p>
-<h2 id="Dispatcher-Servlet의-처리과정"><a href="#Dispatcher-Servlet의-처리과정" class="headerlink" title="Dispatcher-Servlet의 처리과정"></a>Dispatcher-Servlet의 처리과정</h2><p><img src="/images/spring/DispatcherServlet.png" alt="DispatcherServlet"></p>
-<p>먼저 DispatcherServlet이 요청을 받으면 그 요청을 처리할 수 있는 Handler의 이름을 HandlerMapping에게 물어본다.</p>
-<p>HandlerMapping은 요청 URL을 보고 Handler를 판단하고, 또한 Handler 실행 전에 전처리, 후처리로 실행해야 할 인터셉터 목록을 결정한다.</p>
-<p>DispatcherServlet은 제어권을 Handler로 전달한다. </p>
-<p>Handler는 응답에 필요한 서비스를 호출하고 응답에서 렌더링해야 하는 View Name을 판단해서 DispatcherServlet에 전송한다.</p>
-<p>DispatcherServlet은 논리적인 View Name을 ViewResolver에 전달해서 응답에 필요한 View를 생성할 수 있도록 한다.</p>
-<p>그 후 해당 View에 Model과 컨트롤러를 전달해서 응답을 생성한다.</p>
-<p>이렇게 생성한 응답을 클라이언트에게 반환한다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2401,7 +2410,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-count">47</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2619,7 +2628,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">88</span>
+                      
+                    
+                    <span class="site-state-item-count">89</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
