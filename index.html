@@ -349,6 +349,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/01/DesignPattern-factory/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/01/DesignPattern-factory/" class="post-title-link" itemprop="url">[JAVA]디자인패턴-3.Factory</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-06-01 18:20:00" itemprop="dateCreated datePublished" datetime="2019-06-01T18:20:00+09:00">2019-06-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-06-04 21:41:59" itemprop="dateModified" datetime="2019-06-04T21:41:59+09:00">2019-06-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Design-Pattern/" itemprop="url" rel="index"><span itemprop="name">Design Pattern</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/06/01/DesignPattern-factory/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/01/DesignPattern-factory/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Factory-Method패턴"><a href="#Factory-Method패턴" class="headerlink" title="Factory Method패턴"></a>Factory Method패턴</h1><p>factory는 객체를 찍어내는 공장으로 생각하면 된다.<br>객체 선언은 보통 new 객체() 이렇게 하지만 factory는 내부에서 그런 일을 해준다.<br>즉 factory를 가져다가 쓰는 부분에서는 new 객체()와 같은 식으로 변수를 선언할 필요가 없다.<br>객체를 만들어내는 부분을 서브 클래스Sub-Class에 위임하는 패턴.<br>즉, new 키워드를 호출하는 부분을 서브 클래스에 위임하는 것이다.<br>결국 팩토리 메소드 패턴은 객체를 만들어내는 공장(Factory 객체)을 만드는 패턴이라 이해하면 된다.</p>
+<h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDescription</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnimalFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Animal <span class="title">create</span><span class="params">(String animalName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (animalName == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"null은 안 되지롱~"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (animalName.equals(<span class="string">"소"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Cow();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (animalName.equals(<span class="string">"고양이"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Cat();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (animalName.equals(<span class="string">"개"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Dog();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"쥐잡기 선수"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cow</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"우유 및 고기 제공"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"주로 집 지킴"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Animal a1= AnimalFactory.create(<span class="string">"소"</span>);</span><br><span class="line">        a1.printDescription();</span><br><span class="line">        Animal a2= AnimalFactory.create(<span class="string">"고양이"</span>);</span><br><span class="line">        a2.printDescription();</span><br><span class="line">        Animal a3= AnimalFactory.create(<span class="string">"개"</span>);</span><br><span class="line">        a3.printDescription();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>일단 Animal이라는 인터페이스가 있고 Cat, Cow, Dog 이라는 인터페이스의 구현체들이 있다..<br>그리고 AnimalFactory가 있는데, 여기서 Animal의 구현체를 돌려준다.<br>Test에서 new Cow()와 같이 하지 않고, AnimalFactory.create(“소”)를 호출하는 게 일반적인 방법과의 차이다.</p>
+<h2 id="Factory-의-유용성"><a href="#Factory-의-유용성" class="headerlink" title="Factory 의 유용성"></a>Factory 의 유용성</h2><p>Animal a1 = AnimalFactory.create(“소”); 와 같은 코드에서 a1이 Cow라는 것을 굳이 신경쓰지 않겠다는 것이다. Test클래스 안에는 new 라는 구문 자체가 없다.<br>정확히 어떤 클래스의 인스턴스인지 신경쓰지 않고 구현할 수 있는 장점이 있다. 객체 타입이 굉장히 유연해 질 수 있다는 뜻이다.<br>팩토리 메소드 패턴을 사용하는 이유는 클래스간의 결합도를 낮추기 위한 것이다. 결합도라는 것은 간단히 말해 클래스의 변경점이 생겼을 때 얼마나 다른 클래스에도 영향을 주는가를 뜻하는데, 팩토리 메소드 패턴을 사용하는 경우 직접 객체를 생성해 사용하는 것을 방지하고 서브 클래스에 위임함으로써 보다 효율적인 코드 제어를 할 수 있고 의존성을 제거한다. 결과적으로 결합도 또한 낮출 수 있게 된다.</p>
+<h2 id="Factory-Method의-종류"><a href="#Factory-Method의-종류" class="headerlink" title="Factory Method의 종류"></a>Factory Method의 종류</h2><p>예제에서는 Factory의 인스턴스를 만들지 않고, static 메쏘드인 create()만을 호출 하였다. 이런 방식을 static factory method라고 한다.<br>그냥 factory method라고 하면, factory의 인스턴스를 만들어서 쓰는 방식을 말한다.<br>static factory에 비해 사용 빈도는 좀 떨어지지만, factory의 인스턴스에 귀속되는 객체를 생성해야 할 때는 이런 방식을 사용한다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/01/DesignPattern-adapter/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2114,253 +2303,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/17/Spring-FilterInterceptorAOP/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/17/Spring-FilterInterceptorAOP/" class="post-title-link" itemprop="url">[Spring]Filter, Interceptor, AOP</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-03-17 16:00:00" itemprop="dateCreated datePublished" datetime="2019-03-17T16:00:00+09:00">2019-03-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-03-18 23:15:03" itemprop="dateModified" datetime="2019-03-18T23:15:03+09:00">2019-03-18</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/03/17/Spring-FilterInterceptorAOP/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/17/Spring-FilterInterceptorAOP/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Filter-Iterceptor-AOP의-차이점-및-정리"><a href="#Filter-Iterceptor-AOP의-차이점-및-정리" class="headerlink" title="Filter, Iterceptor, AOP의 차이점 및 정리"></a>Filter, Iterceptor, AOP의 차이점 및 정리</h1><p>스프링으로 웹 개발을 하다보면 Filter, Interceptor, AOP를 이용해 전/후 처리를 할 수 있다,</p>
-<p>셋 다 비슷한 기능을 가지고 있지만 시점이나 적용하는 방식이 다르다.</p>
-<p><img src="/images/spring/FilterIterceptorAOP.png" alt="Filter_Iterceptor_AOP"></p>
-<h2 id="Filter"><a href="#Filter" class="headerlink" title="Filter"></a>Filter</h2><p>말그대로 요청과 응답을 거른뒤 정제하는 역할을 한다.</p>
-<p>서블릿 필터는 DispatcherServlet 이전에 실행이 되는데 필터가 동작하도록 지정된 자원의 앞단에서 요청내용을 변경하거나,  여러가지 체크를 수행할 수 있다.</p>
-<p>또한 자원의 처리가 끝난 후 응답내용에 대해서도 변경하는 처리를 할 수가 있다.</p>
-<p>보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS방어 등의 요청에 대한 처리로 사용된다.</p>
-<h3 id="Filter-메서드"><a href="#Filter-메서드" class="headerlink" title="Filter 메서드"></a>Filter 메서드</h3><p>init() - 필터 인스턴스 초기화</p>
-<p>doFilter() - 전/후 처리</p>
-<p>destroy() - 필터 인스턴스 종료   </p>
-<h2 id="Interceptor"><a href="#Interceptor" class="headerlink" title="Interceptor"></a>Interceptor</h2><p>필터는 스프링과 무관하게 지정된 자원에 대해 동작한다. </p>
-<p>스프링은 DistpatcherServlet으로부터 시작되므로 필터는 스프링 컨텍스트 외부에 존재하게 된다. </p>
-<p>하지만 인터셉터는 스프링의 DistpatcherServlet이 컨트롤러를 호출하기 전, 후로 끼어들기 때문에 스프링 컨텍스트 내부에 존재하게된다. </p>
-<p>그리고 스프링 내의 모든 객체(bean) 접근이 가능하다. </p>
-<p>인터셉터는 여러 개를 사용할 수 있고 로그인 체크, 권한체크, 프로그램 실행시간 계산작업 로그확인, 업로드 파일처리등에 사용된다.</p>
-<h3 id="Interceptor-메서드"><a href="#Interceptor-메서드" class="headerlink" title="Interceptor 메서드"></a>Interceptor 메서드</h3><p>preHandler() - 컨트롤러 메서드가 실행되기 전</p>
-<p>postHanler() - 컨트롤러 메서드 실행직 후 view페이지 렌더링 되기 전</p>
-<p>afterCompletion() - view페이지가 렌더링 되고 난 후</p>
-<h2 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h2><p>객체 지향의 프로그래밍을 했을 때 중복을 줄일 수 없는 부분을 줄이기 위해 종단면(관점)에서 바라보고 처리한다.</p>
-<p>주로 ‘로깅’, ‘트랜잭션’, ‘에러 처리’등 비즈니스단의 메서드에서 조금 더 세밀하게 조정하고 싶을 때 사용합니다.</p>
-<p>Interceptor나 Filter와는 달리 메소드 전후의 지점에 자유롭게 설정이 가능하다.</p>
-<p>Interceptor와 Filter는 주소로 대상을 구분해서 걸러내야하는 반면, AOP는 주소, 파라미터, 애노테이션 등 다양한 방법으로 대상을 지정할 수 있다.</p>
-<h3 id="AOP의-포인트컷"><a href="#AOP의-포인트컷" class="headerlink" title="AOP의 포인트컷"></a>AOP의 포인트컷</h3><p>@Before: 대상 메서드의 수행 전</p>
-<p>@After: 대상 메서드의 수행 후</p>
-<p>@After-returning: 대상 메서드의 정상적인 수행 후</p>
-<p>@After-throwing: 예외발생 후</p>
-<p>@Around: 대상 메서드의 수행 전/후</p>
-<h2 id="정리"><a href="#정리" class="headerlink" title="정리"></a>정리</h2><table>
-<thead>
-<tr>
-<th>구분</th>
-<th>Filter</th>
-<th>Interceptor</th>
-<th>AOP</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>실행위치</td>
-<td>서블릿 (Dispatcher Servlet 바깥)</td>
-<td>서블릿 (Dispatcher Servlet 안쪽)</td>
-<td>메서드</td>
-</tr>
-<tr>
-<td>실행순서</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-</tr>
-<tr>
-<td>설정파일 위치</td>
-<td>web.xml</td>
-<td>xml,java</td>
-<td>xml,java</td>
-</tr>
-<tr>
-<td>실행 메소드</td>
-<td>init (필터 인스턴스 초기화)<br>doFilter (전/후 처리)<br>destroy (필터 인스턴스 종료)</td>
-<td>preHandler (컨트롤러 실행 전)<br>postHandler (컨트롤러 실행 후)<br>afterCompletion (view 페이지 렌더링 후)</td>
-<td>pointcut (포인트컷)<br>(@after, @before, @around 등)</td>
-</tr>
-</tbody>
-</table>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2410,7 +2352,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2630,7 +2572,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">89</span>
+                      
+                    
+                    <span class="site-state-item-count">90</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

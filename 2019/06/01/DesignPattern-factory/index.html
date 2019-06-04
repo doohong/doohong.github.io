@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="IoC(Inversion of Control)IoC는 번역하면 제어의 역전 이라는 뜻이다. 일반적인 프로그램은 자신이 사용할 오브젝트를 직접 선택하고 생성한다. ex) new Class(); 오브젝트의 대한 제어권을 자신이 가지고 있는 능동적인 상태인 것이다. 하지만 스프링에서는 프로그램의 흐름을 프레임워크가 주도하게 된다. ex) @Autowired 등으">
-<meta name="keywords" content="Spring,framework,IoC,DI">
+  <meta name="description" content="Factory Method패턴factory는 객체를 찍어내는 공장으로 생각하면 된다.객체 선언은 보통 new 객체() 이렇게 하지만 factory는 내부에서 그런 일을 해준다.즉 factory를 가져다가 쓰는 부분에서는 new 객체()와 같은 식으로 변수를 선언할 필요가 없다.객체를 만들어내는 부분을 서브 클래스Sub-Class에 위임하는 패턴.즉, new">
+<meta name="keywords" content="JAVA,Design Pattern,디자인패턴,Factory">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[Spring]IoC 와 DI란">
-<meta property="og:url" content="http://doohong.github.com/2019/01/08/Spring-IoCDI/index.html">
+<meta property="og:title" content="[JAVA]디자인패턴-3.Factory">
+<meta property="og:url" content="http://doohong.github.com/2019/06/01/DesignPattern-factory/index.html">
 <meta property="og:site_name" content="doohong&#39;s blog">
-<meta property="og:description" content="IoC(Inversion of Control)IoC는 번역하면 제어의 역전 이라는 뜻이다. 일반적인 프로그램은 자신이 사용할 오브젝트를 직접 선택하고 생성한다. ex) new Class(); 오브젝트의 대한 제어권을 자신이 가지고 있는 능동적인 상태인 것이다. 하지만 스프링에서는 프로그램의 흐름을 프레임워크가 주도하게 된다. ex) @Autowired 등으">
+<meta property="og:description" content="Factory Method패턴factory는 객체를 찍어내는 공장으로 생각하면 된다.객체 선언은 보통 new 객체() 이렇게 하지만 factory는 내부에서 그런 일을 해준다.즉 factory를 가져다가 쓰는 부분에서는 new 객체()와 같은 식으로 변수를 선언할 필요가 없다.객체를 만들어내는 부분을 서브 클래스Sub-Class에 위임하는 패턴.즉, new">
 <meta property="og:locale" content="ko">
-<meta property="og:updated_time" content="2019-01-31T14:41:52.460Z">
+<meta property="og:updated_time" content="2019-06-04T12:41:59.073Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[Spring]IoC 와 DI란">
-<meta name="twitter:description" content="IoC(Inversion of Control)IoC는 번역하면 제어의 역전 이라는 뜻이다. 일반적인 프로그램은 자신이 사용할 오브젝트를 직접 선택하고 생성한다. ex) new Class(); 오브젝트의 대한 제어권을 자신이 가지고 있는 능동적인 상태인 것이다. 하지만 스프링에서는 프로그램의 흐름을 프레임워크가 주도하게 된다. ex) @Autowired 등으">
+<meta name="twitter:title" content="[JAVA]디자인패턴-3.Factory">
+<meta name="twitter:description" content="Factory Method패턴factory는 객체를 찍어내는 공장으로 생각하면 된다.객체 선언은 보통 new 객체() 이렇게 하지만 factory는 내부에서 그런 일을 해준다.즉 factory를 가져다가 쓰는 부분에서는 new 객체()와 같은 식으로 변수를 선언할 필요가 없다.객체를 만들어내는 부분을 서브 클래스Sub-Class에 위임하는 패턴.즉, new">
 
 
 
 
 
 
-  <link rel="canonical" href="http://doohong.github.com/2019/01/08/Spring-IoCDI/">
+  <link rel="canonical" href="http://doohong.github.com/2019/06/01/DesignPattern-factory/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>[Spring]IoC 와 DI란 | doohong's blog</title>
+  <title>[JAVA]디자인패턴-3.Factory | doohong's blog</title>
   
 
 
@@ -353,7 +353,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/08/Spring-IoCDI/">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/01/DesignPattern-factory/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="박주홍">
@@ -370,7 +370,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">[Spring]IoC 와 DI란
+          <h1 class="post-title" itemprop="name headline">[JAVA]디자인패턴-3.Factory
 
               
             
@@ -396,7 +396,7 @@
                 
               
 
-              <time title="Post created: 2019-01-08 16:00:00" itemprop="dateCreated datePublished" datetime="2019-01-08T16:00:00+09:00">2019-01-08</time>
+              <time title="Post created: 2019-06-01 18:20:00" itemprop="dateCreated datePublished" datetime="2019-06-01T18:20:00+09:00">2019-06-01</time>
             
 
             
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-01-31 23:41:52" itemprop="dateModified" datetime="2019-01-31T23:41:52+09:00">2019-01-31</time>
+                <time title="Updated at: 2019-06-04 21:41:59" itemprop="dateModified" datetime="2019-06-04T21:41:59+09:00">2019-06-04</time>
               
             
           </span>
@@ -430,7 +430,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Design-Pattern/" itemprop="url" rel="index"><span itemprop="name">Design Pattern</span></a></span>
 
                 
                 
@@ -448,8 +448,8 @@
                   <i class="fa fa-comment-o"></i>
                 </span>
             
-                <a href="/2019/01/08/Spring-IoCDI/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/08/Spring-IoCDI/" itemprop="commentCount"></span>
+                <a href="/2019/06/01/DesignPattern-factory/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/01/DesignPattern-factory/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -477,18 +477,11 @@
       
 
       
-        <h1 id="IoC-Inversion-of-Control"><a href="#IoC-Inversion-of-Control" class="headerlink" title="IoC(Inversion of Control)"></a>IoC(Inversion of Control)</h1><p>IoC는 번역하면 제어의 역전 이라는 뜻이다.</p>
-<p>일반적인 프로그램은 자신이 사용할 오브젝트를 직접 선택하고 생성한다. ex) new Class();</p>
-<p>오브젝트의 대한 제어권을 자신이 가지고 있는 능동적인 상태인 것이다.</p>
-<p>하지만 스프링에서는 프로그램의 흐름을 프레임워크가 주도하게 된다. ex) @Autowired 등으로 Bean을 자동 주입</p>
-<p>즉, 제어권이 컨터에너로 넘어가게 되고 이것을 제어권의 흐름이 바뀌었다고 해서 IoC(Inversion of Control : 제어의 역전)이라고 한다.</p>
-<p>제어권이 컨테이너로 넘어옴으로써 DI(의존성 주입), AOP(관점 지향 프로그래밍)등이 가능하게 된다.</p>
-<h1 id="DI-Dependency-Injection"><a href="#DI-Dependency-Injection" class="headerlink" title="DI(Dependency Injection)"></a>DI(Dependency Injection)</h1><p>DI는 번역하면 의존성 주입 이라는 뜻이다.</p>
-<p>객체간의 의존성을 자신이 아닌 외부에서 주입하는 개념이다.</p>
-<p>객체지향에서 의존하고 있다라는 의미는 하나의 오브젝트에서 다른 오브젝트를 사용할때를 말한다.</p>
-<p>A라는 클래스에서 B라는 클래스를 사용할 경우 A클래스는 B클래스에 의존하고 있다고 표현한다.</p>
-<p>B클래스를 생성해서 A클래스에 넣어주는 과정, 이를 의존성 주입이다.</p>
-<p>주입은 제 3자가 해준다. IoC의 개념이다. 결국 DI는 IoC의 세부적인 개념이다!.</p>
+        <h1 id="Factory-Method패턴"><a href="#Factory-Method패턴" class="headerlink" title="Factory Method패턴"></a>Factory Method패턴</h1><p>factory는 객체를 찍어내는 공장으로 생각하면 된다.<br>객체 선언은 보통 new 객체() 이렇게 하지만 factory는 내부에서 그런 일을 해준다.<br>즉 factory를 가져다가 쓰는 부분에서는 new 객체()와 같은 식으로 변수를 선언할 필요가 없다.<br>객체를 만들어내는 부분을 서브 클래스Sub-Class에 위임하는 패턴.<br>즉, new 키워드를 호출하는 부분을 서브 클래스에 위임하는 것이다.<br>결국 팩토리 메소드 패턴은 객체를 만들어내는 공장(Factory 객체)을 만드는 패턴이라 이해하면 된다.</p>
+<h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDescription</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AnimalFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Animal <span class="title">create</span><span class="params">(String animalName)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (animalName == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"null은 안 되지롱~"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (animalName.equals(<span class="string">"소"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Cow();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (animalName.equals(<span class="string">"고양이"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Cat();</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (animalName.equals(<span class="string">"개"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> Dog();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"쥐잡기 선수"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cow</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"우유 및 고기 제공"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="keyword">implements</span> <span class="title">Animal</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">printDescription</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"주로 집 지킴"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Animal a1= AnimalFactory.create(<span class="string">"소"</span>);</span><br><span class="line">        a1.printDescription();</span><br><span class="line">        Animal a2= AnimalFactory.create(<span class="string">"고양이"</span>);</span><br><span class="line">        a2.printDescription();</span><br><span class="line">        Animal a3= AnimalFactory.create(<span class="string">"개"</span>);</span><br><span class="line">        a3.printDescription();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>일단 Animal이라는 인터페이스가 있고 Cat, Cow, Dog 이라는 인터페이스의 구현체들이 있다..<br>그리고 AnimalFactory가 있는데, 여기서 Animal의 구현체를 돌려준다.<br>Test에서 new Cow()와 같이 하지 않고, AnimalFactory.create(“소”)를 호출하는 게 일반적인 방법과의 차이다.</p>
+<h2 id="Factory-의-유용성"><a href="#Factory-의-유용성" class="headerlink" title="Factory 의 유용성"></a>Factory 의 유용성</h2><p>Animal a1 = AnimalFactory.create(“소”); 와 같은 코드에서 a1이 Cow라는 것을 굳이 신경쓰지 않겠다는 것이다. Test클래스 안에는 new 라는 구문 자체가 없다.<br>정확히 어떤 클래스의 인스턴스인지 신경쓰지 않고 구현할 수 있는 장점이 있다. 객체 타입이 굉장히 유연해 질 수 있다는 뜻이다.<br>팩토리 메소드 패턴을 사용하는 이유는 클래스간의 결합도를 낮추기 위한 것이다. 결합도라는 것은 간단히 말해 클래스의 변경점이 생겼을 때 얼마나 다른 클래스에도 영향을 주는가를 뜻하는데, 팩토리 메소드 패턴을 사용하는 경우 직접 객체를 생성해 사용하는 것을 방지하고 서브 클래스에 위임함으로써 보다 효율적인 코드 제어를 할 수 있고 의존성을 제거한다. 결과적으로 결합도 또한 낮출 수 있게 된다.</p>
+<h2 id="Factory-Method의-종류"><a href="#Factory-Method의-종류" class="headerlink" title="Factory Method의 종류"></a>Factory Method의 종류</h2><p>예제에서는 Factory의 인스턴스를 만들지 않고, static 메쏘드인 create()만을 호출 하였다. 이런 방식을 static factory method라고 한다.<br>그냥 factory method라고 하면, factory의 인스턴스를 만들어서 쓰는 방식을 말한다.<br>static factory에 비해 사용 빈도는 좀 떨어지지만, factory의 인스턴스에 귀속되는 객체를 생성해야 할 때는 이런 방식을 사용한다.</p>
 
       
     </div>
@@ -512,13 +505,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring/" rel="tag"># Spring</a>
+            <a href="/tags/JAVA/" rel="tag"># JAVA</a>
           
-            <a href="/tags/framework/" rel="tag"># framework</a>
+            <a href="/tags/Design-Pattern/" rel="tag"># Design Pattern</a>
           
-            <a href="/tags/IoC/" rel="tag"># IoC</a>
+            <a href="/tags/디자인패턴/" rel="tag"># 디자인패턴</a>
           
-            <a href="/tags/DI/" rel="tag"># DI</a>
+            <a href="/tags/Factory/" rel="tag"># Factory</a>
           
         </div>
       
@@ -531,8 +524,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/07/Spring-summary/" rel="next" title="[Spring]Spring Framework">
-                <i class="fa fa-chevron-left"></i> [Spring]Spring Framework
+              <a href="/2019/06/01/DesignPattern-adapter/" rel="next" title="[JAVA]디자인패턴-1.Adapter">
+                <i class="fa fa-chevron-left"></i> [JAVA]디자인패턴-1.Adapter
               </a>
             
           </div>
@@ -540,10 +533,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/09/Spring-bean/" rel="prev" title="[Spring]빈 등록하기!">
-                [Spring]빈 등록하기! <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -928,7 +917,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IoC-Inversion-of-Control"><span class="nav-number">1.</span> <span class="nav-text">IoC(Inversion of Control)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DI-Dependency-Injection"><span class="nav-number">2.</span> <span class="nav-text">DI(Dependency Injection)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Factory-Method패턴"><span class="nav-number">1.</span> <span class="nav-text">Factory Method패턴</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#예제"><span class="nav-number">1.1.</span> <span class="nav-text">예제</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factory-의-유용성"><span class="nav-number">1.2.</span> <span class="nav-text">Factory 의 유용성</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Factory-Method의-종류"><span class="nav-number">1.3.</span> <span class="nav-text">Factory Method의 종류</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1080,9 +1069,9 @@
 
 <script>
   var disqus_config = function() {
-    this.page.url = "http://doohong.github.com/2019/01/08/Spring-IoCDI/";
-    this.page.identifier = "2019/01/08/Spring-IoCDI/";
-    this.page.title = '[Spring]IoC 와 DI란';
+    this.page.url = "http://doohong.github.com/2019/06/01/DesignPattern-factory/";
+    this.page.identifier = "2019/06/01/DesignPattern-factory/";
+    this.page.title = '[JAVA]디자인패턴-3.Factory';
     };
   function loadComments() {
     var d = document, s = d.createElement('script');

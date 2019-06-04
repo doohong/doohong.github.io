@@ -349,6 +349,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/03/OOP-Inheritance/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/03/OOP-Inheritance/" class="post-title-link" itemprop="url">[OOP]상속(Inheritance)이란?</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-01-03 14:24:00" itemprop="dateCreated datePublished" datetime="2019-01-03T14:24:00+09:00">2019-01-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-28 21:58:29" itemprop="dateModified" datetime="2019-01-28T21:58:29+09:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/OOP/" itemprop="url" rel="index"><span itemprop="name">OOP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/01/03/OOP-Inheritance/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/01/03/OOP-Inheritance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><a href="https://www.inflearn.com/course/%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%9E%85%EB%AC%B8/" target="_blank" rel="noopener">객체 지향 프로그래밍 입문</a> - 최범균님의 인프런 강좌을 보고 작성하였습니다.</p>
+</blockquote>
+<h1 id="상속-Inheritance-이란"><a href="#상속-Inheritance-이란" class="headerlink" title="상속(Inheritance)이란"></a>상속(Inheritance)이란</h1><p>상위 클래스의 기능을 재사용, 확장하는 방법</p>
+<h2 id="상속을-통한-기능-재사용시-발생할-수-있는-단점"><a href="#상속을-통한-기능-재사용시-발생할-수-있는-단점" class="headerlink" title="상속을 통한 기능 재사용시 발생할 수 있는 단점"></a>상속을 통한 기능 재사용시 발생할 수 있는 단점</h2><ol>
+<li>상위 클래스 변경 어려움</li>
+<li>클래스 증가</li>
+<li>상속 오용</li>
+</ol>
+<p><strong>상속의 단점 해결 방법은 -&gt; 조립!!</strong></p>
+<h2 id="조립-Composition"><a href="#조립-Composition" class="headerlink" title="조립(Composition)"></a>조립(Composition)</h2><p>여러 객체를 묶어서 더 복잡한 기능을 제공</p>
+<p>보통 필드로 다른 객체를 참조하는 방식으로 조립 또는 객체를 필요 시점에 생성/구함</p>
+<p>특정 기능을 재사용 하고 싶다면 특정 객체를 생성하여 사용</p>
+<h2 id="상속보다는-조립"><a href="#상속보다는-조립" class="headerlink" title="상속보다는 조립"></a>상속보다는 조립</h2><p>상속하기에 앞서 조립으로 풀 수 없는지 검토</p>
+<p>진짜 하위 타입인 경우에만 상속 사용    </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/01/02/OOP-encapsulation/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1899,7 +2098,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2119,7 +2318,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">89</span>
+                      
+                    
+                    <span class="site-state-item-count">90</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
