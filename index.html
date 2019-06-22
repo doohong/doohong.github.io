@@ -349,6 +349,240 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/22/SSL-WebRoot/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/22/SSL-WebRoot/" class="post-title-link" itemprop="url">ssl 적용- webroot방식(with apache)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-06-22 18:20:00 / Updated at: 18:30:31" itemprop="dateCreated datePublished" datetime="2019-06-22T18:20:00+09:00">2019-06-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/etc/" itemprop="url" rel="index"><span itemprop="name">etc</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/06/22/SSL-WebRoot/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/22/SSL-WebRoot/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ssl-적용-webroot방식-with-apache"><a href="#ssl-적용-webroot방식-with-apache" class="headerlink" title="ssl 적용- webroot방식(with apache)"></a>ssl 적용- webroot방식(with apache)</h1><h2 id="webroot방식이란"><a href="#webroot방식이란" class="headerlink" title="webroot방식이란"></a>webroot방식이란</h2><ol>
+<li><p><strong>Standalone 방식</strong></p>
+<p> 이 방법은 Certbot이 간이 웹 서버를 돌려 도메인 인증 요청을 처리하는 방식입니다.하지만 인증용 간이 서버가 80, 443번 포트를 사용하기 때문에 운영 중인 서버가 해당 포트를 쓰게 된다면, 발급 또는 갱신 시 마다 <strong>잠시 서버를 내려야 하는 문제</strong>가 있습니다.물론 해당 포트를 사용하지 않는다면 이 방법을 사용하셔도 무방합니다.</p>
+</li>
+<li><p><strong>Webroot 방식</strong></p>
+<p> 이 방법은 도메인 인증을 위해 외부에서 접근 가능한 경로를 제공하고, Let’s Encrypt 측에서 해당 경로로 접속해 인증을 하는 방식입니다.이 방식을 사용할 경우 1번 방식의 <strong>서비스 종료</strong>는 하지 않아도 됩니다.</p>
+</li>
+</ol>
+<p><strong>서버를 내려야 하는 문제를 해결하기 위해 Webroot방식을 적용 시키려고 한다.</strong></p>
+<h2 id="환경"><a href="#환경" class="headerlink" title="환경"></a>환경</h2><h3 id="OS-CentOS7"><a href="#OS-CentOS7" class="headerlink" title="OS : CentOS7"></a>OS : CentOS7</h3><h3 id="WebServer-Apache"><a href="#WebServer-Apache" class="headerlink" title="WebServer : Apache"></a>WebServer : Apache</h3><h2 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h2><ol>
+<li>/var/www/html 에 사용할 VirtualHost 폴더와 그안에 html파일을 넣어준다 (예제는 test.com)</li>
+</ol>
+<p>예제처럼 도메인에 맞춰 폴더를 만들어주면 좋을듯</p>
+<pre><code>$ mkdir /var/www/html/test 
+
+$ nano /var/www/html/test/index.html
+</code></pre><ol start="2">
+<li>/etc/httpd/conf.d 에 test.conf파일을 만들어 준다.</li>
+</ol>
+<p>www. 같은 도메인은 ServerAlias 을 이용해 추가</p>
+<p>RewriteCond %{SERVER_NAME} =<a href="http://www.test" target="_blank" rel="noopener">www.test</a> [OR] 을 이용해 https로 rewrite</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:80</span>&gt;</span></span><br><span class="line">    ServerName test.com</span><br><span class="line">    ServerAlias www.test.com</span><br><span class="line">    DocumentRoot /var/www/html/test</span><br><span class="line">    CustomLog /var/log/httpd/access.log common</span><br><span class="line">    ErrorLog /var/log/httpd/error.log</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteRule ^/.well-known/ - [L]</span><br><span class="line">    RewriteCond %&#123;SERVER_NAME&#125; =www.test.com [OR]</span><br><span class="line">    RewriteCond %&#123;SERVER_NAME&#125; =test.com</span><br><span class="line">    RewriteRule ^ https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [END,NE,R=permanent]</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>Certbot 설치</li>
+</ol>
+<p><a href="https://certbot.eff.org/" target="_blank" rel="noopener">https://certbot.eff.org/</a> 홈페이지에서 각자 맞는 환경 선택</p>
+<p>여기선 centos에 apache로 진행</p>
+<pre><code>$ yum install certbot python-certbot-apache
+</code></pre><ol start="4">
+<li>centos에 명령어를 입력해준다.</li>
+</ol>
+<p>test.com 뿐만아니라 <a href="http://www.test.com도" target="_blank" rel="noopener">www.test.com도</a> 인증서를 적용시키기 위해 다음과 같은 옵션 추가</p>
+<p>-d test.com -d <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a></p>
+<pre><code>$ certbot --webroot --installer apache -w /var/www/html/test -d test.com -d www.test.com
+</code></pre><ol start="5">
+<li><p>/etc/httpd/conf.d에 gajah.tours-le-ssl.conf 파일이 생성됨 내용은</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mod_ssl.c</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:443</span>&gt;</span></span><br><span class="line">    ServerName test.com</span><br><span class="line">    ServerAlias www.test.com</span><br><span class="line">    DocumentRoot /var/www/html/test</span><br><span class="line">    CustomLog /var/log/httpd/access.log common</span><br><span class="line">    ErrorLog /var/log/httpd/error.log</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteRule ^/.well-known/ - [L]</span><br><span class="line">    # Some rewrite rules in this file were disabled on your HTTPS site,</span><br><span class="line">    # because they have the potential to create redirection loops.</span><br><span class="line">    </span><br><span class="line">    #   RewriteCond %&#123;SERVER_NAME&#125; =www.test.com [OR]</span><br><span class="line">    #   RewriteCond %&#123;SERVER_NAME&#125; =test.com</span><br><span class="line">    #   RewriteRule ^ https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [END,NE,R=permanent]</span><br><span class="line">    Include /etc/letsencrypt/options-ssl-apache.conf</span><br><span class="line">    SSLCertificateFile /etc/letsencrypt/live/test/cert.pem</span><br><span class="line">    SSLCertificateKeyFile /etc/letsencrypt/live/test/privkey.pem</span><br><span class="line">    SSLCertificateChainFile /etc/letsencrypt/live/test/chain.pem</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>apache 재시작</p>
+<p> $ systemctl restart httpd</p>
+</li>
+<li><p>TEST</p>
+</li>
+</ol>
+<p>test.com 나 <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a> 로 접속해본다</p>
+<p><a href="https://test.com" target="_blank" rel="noopener">https://test.com</a> 로 rewrite되고 정상적으로 인증이 되는지 확인 </p>
+<ol>
+<li>Renew certificate with cron</li>
+</ol>
+<p>Let’s Encrypt SSL인증서는 90일마다 갱신해줘야 한다. </p>
+<pre><code>$ /opt/certbot/certbot-auto renew --dry-run
+or
+$ certbot renew --dry-run
+</code></pre><p>—dry-run 옵션을 이용하여 잘동작하는지 확인할 수 있다.</p>
+<p>갱신하는 방법은 한줄로 가능하지만 크론탭을 이용하여 자동적으로 갱신되도록 하는게 좋다.</p>
+<p>크론탭을 수정하려면 -e옵션을 사용하고 작성된 크론탭을 보려면 -l옵션을 이용한다</p>
+<pre><code>$ crontab -e
+
+0 18 1 */1 * /opt/certbot/certbot-auto renew --dry-run
+
+$ crontab -l
+</code></pre><p>매달 1일 18시에 갱신을 하는 크론탭을 작성하고 -l 옵션을 이용해 확인한다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/01/DesignPattern-factory/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -482,6 +716,184 @@
 <p>일단 Animal이라는 인터페이스가 있고 Cat, Cow, Dog 이라는 인터페이스의 구현체들이 있다..<br>그리고 AnimalFactory가 있는데, 여기서 Animal의 구현체를 돌려준다.<br>Test에서 new Cow()와 같이 하지 않고, AnimalFactory.create(“소”)를 호출하는 게 일반적인 방법과의 차이다.</p>
 <h2 id="Factory-의-유용성"><a href="#Factory-의-유용성" class="headerlink" title="Factory 의 유용성"></a>Factory 의 유용성</h2><p>Animal a1 = AnimalFactory.create(“소”); 와 같은 코드에서 a1이 Cow라는 것을 굳이 신경쓰지 않겠다는 것이다. Test클래스 안에는 new 라는 구문 자체가 없다.<br>정확히 어떤 클래스의 인스턴스인지 신경쓰지 않고 구현할 수 있는 장점이 있다. 객체 타입이 굉장히 유연해 질 수 있다는 뜻이다.<br>팩토리 메소드 패턴을 사용하는 이유는 클래스간의 결합도를 낮추기 위한 것이다. 결합도라는 것은 간단히 말해 클래스의 변경점이 생겼을 때 얼마나 다른 클래스에도 영향을 주는가를 뜻하는데, 팩토리 메소드 패턴을 사용하는 경우 직접 객체를 생성해 사용하는 것을 방지하고 서브 클래스에 위임함으로써 보다 효율적인 코드 제어를 할 수 있고 의존성을 제거한다. 결과적으로 결합도 또한 낮출 수 있게 된다.</p>
 <h2 id="Factory-Method의-종류"><a href="#Factory-Method의-종류" class="headerlink" title="Factory Method의 종류"></a>Factory Method의 종류</h2><p>예제에서는 Factory의 인스턴스를 만들지 않고, static 메쏘드인 create()만을 호출 하였다. 이런 방식을 static factory method라고 한다.<br>그냥 factory method라고 하면, factory의 인스턴스를 만들어서 쓰는 방식을 말한다.<br>static factory에 비해 사용 빈도는 좀 떨어지지만, factory의 인스턴스에 귀속되는 객체를 생성해야 할 때는 이런 방식을 사용한다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/01/DesignPattern-iterator/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/01/DesignPattern-iterator/" class="post-title-link" itemprop="url">[JAVA]디자인패턴-1.Iterator</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-06-01 18:20:00 / Updated at: 18:21:24" itemprop="dateCreated datePublished" datetime="2019-06-01T18:20:00+09:00">2019-06-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Design-Pattern/" itemprop="url" rel="index"><span itemprop="name">Design Pattern</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/06/01/DesignPattern-iterator/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/01/DesignPattern-iterator/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="iterator-패턴은"><a href="#iterator-패턴은" class="headerlink" title="iterator 패턴은"></a>iterator 패턴은</h1><p>자바 프로그래밍을 하다 보면 Array, Set, Map, List 과 같은 자료구조를 많이 사용하게 된다.<br>이 자료구조의 특징들은 어떠한 데이터들의 집합체라는 것이다. 그래서 집합체들을 다룰 때는 얘들이 가지고 있는 개별 원소에 대해서 이런 저런 작업들을 할 일이 많다.<br>iterator를 쓰게 되면, 집합체와 개별 원소들간에 분리시켜 생각할 수가 있다.<br>심지어는 그 집합체가 어떤 클래스의 인스턴스인지 조차 신경쓰지 않아도 된다.</p>
+<h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MagicianList</span> <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"> <span class="keyword">private</span> List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">  list.add(name);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">public</span> Iterator&lt;String&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span>  <span class="keyword">new</span> Iterator&lt;String&gt;()&#123;</span><br><span class="line">   <span class="keyword">int</span> seq = <span class="number">0</span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  seq &lt; list.size();</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> list.get(seq++);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span></span>&#123;</span><br><span class="line">  MagicianList magicians = <span class="keyword">new</span> MagicianList();</span><br><span class="line">  magicians.add(<span class="string">"이은결"</span>);</span><br><span class="line">  magicians.add(<span class="string">"Kevin parker"</span>);</span><br><span class="line">  magicians.add(<span class="string">"David Blaine"</span>);</span><br><span class="line">  </span><br><span class="line">  Iterator&lt;String&gt; iterator = magicians.iterator();</span><br><span class="line">  <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">   String element = iterator.next();</span><br><span class="line">   System.out.println(element);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>magicians 의 원소들을 뽑아내는데, magicians 라는 변수를 전혀 쓰지 않는다.<br>물론, 내부적으로 iterator라는 변수가 magicians와 관계를 유지해주고 있긴 하지만 일단 iterator를 가지고 온 후에는 데이터 집합체가 뭐냐에 신경을 쓸 필요가 없어진 것이다.<br>iterator만 가져오면,  hasNext() , next() 만 가지고 반복하면서 원소들에 대해서 처리를 하면 된다.</p>
+<h2 id="Iterator관련-interface"><a href="#Iterator관련-interface" class="headerlink" title="Iterator관련 interface"></a>Iterator관련 interface</h2><p>Iteraable 인터페이스를 보게되면 Iterator<e> iterator() 라는 메소드 한개만 가지고 있다.<br>그리고 이 iterator 메소드를 이용하여 만들어진 iterator클래스는 클래스는 3개의 메서드를 가지고 있다.<br>hasNext()는 다음 구성 요소가 있냐고 물어보는 메서드이다.  next()는 그 요소를 뽑아 온다.<br>remove()는 일부러 구현을 안하였다.<br>API에 보면, 마지막으로 꺼낸 요소를 제거한다.(optional operation) 이라고 되어있는데 optional이라는 걸 강조하기위해 구현을 하지 않았다.<br>요기서 한가지 짚고 넘어가야 할 것은 시퀀스는 hasNext()가 아니라 next()에서 증가시켜야 한다는 것이다.<br>hasNext()를 호출하고 또 호출하는 일이 발생할 수도 있기 때문이다. hasNext라는 메소드 이름이, next를 가지고 있는지를 체크하겠다는 것이기 때문이다.</e></p>
+<h2 id="JAVA-API에-있는-Iterator"><a href="#JAVA-API에-있는-Iterator" class="headerlink" title="JAVA API에 있는 Iterator"></a>JAVA API에 있는 Iterator</h2><p>우리가 알고 있는 일반적인 집합체들은 전부 Iterator를 제공한다.<br>Set, List 등은 Collection 을 상속 받는데, Collection이 Iteratable을 상속 받기 때문이다.<br>위에서 만든 클래스처럼 리스트같은 Collection을 사용할땐 list.iterator()를 사용하여 각 컬렉션의 iterator를 뽑아올 수 있다.</p>
+<p>Map은 왜 Iterator를 제공하지 않는 지를 살펴보자.<br>Map은 Set이나 List와는 달리 key-value의 구조이다. key에 대한 Iterator인지 value에 대한 Iterator인지 구별할 방법이 없다. 그래서 아예 제공을 하지 않는다.<br>그러나 Map에는 key에 대해서는 Set<k> keySet()이라는 key를 Set으로 가져오기를 지원하고, value에 대해서는 Collection<v> values() 를 제공한다. 위에서 말한것 처럼 Set과 Collection은 둘다 Iterator를 제공한다.</v></k></p>
 
           
         
@@ -676,184 +1088,6 @@
 <p>세번째 방법은 Adapter 클래스를 만들지 않고 method로 만드는 방법이다.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Enumeration&lt;String&gt; <span class="title">iteratorToEnumeration</span><span class="params">(<span class="keyword">final</span> Iterator&lt;String&gt; iter)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Enumeration&lt;String&gt;() &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasMoreElements</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> iter.hasNext();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">nextElement</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> iter.next();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
 <p>눈치 빠른 사람들은 인자가 final이란 것을 봤을 것이다. final로 말뚝 박는 건 “변경 절대 불가!” 를 보장하는 것이다. 메서드 안에서 Enumeration의 구현체가 인자로 받은 것을 사용하는데, 이런 경우에는 인자가 final 로 정의되어야 하며, 그렇지 않을 경우 컴파일시에 문제가 된다.<br>final로 정의한다는 것은 read-only라는 뜻이다. 주의할 것은 read-only라는 게 다른 변수로 할당을 못한다는 것 뿐 내부의 메서드를 호출하지 못한다는 것은 아니다. (메서드 내부에서 iter = 다른것; 이런식으로 사용하지 못한다는 이야기다.) </p>
 <p>세번째 방법은 Adapter 패턴이라고 불리지는 않는다. 그러나 하는 일이 비슷하다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/01/DesignPattern-iterator/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/01/DesignPattern-iterator/" class="post-title-link" itemprop="url">[JAVA]디자인패턴-1.Iterator</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-06-01 18:20:00 / Updated at: 18:21:24" itemprop="dateCreated datePublished" datetime="2019-06-01T18:20:00+09:00">2019-06-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Design-Pattern/" itemprop="url" rel="index"><span itemprop="name">Design Pattern</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/06/01/DesignPattern-iterator/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/01/DesignPattern-iterator/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="iterator-패턴은"><a href="#iterator-패턴은" class="headerlink" title="iterator 패턴은"></a>iterator 패턴은</h1><p>자바 프로그래밍을 하다 보면 Array, Set, Map, List 과 같은 자료구조를 많이 사용하게 된다.<br>이 자료구조의 특징들은 어떠한 데이터들의 집합체라는 것이다. 그래서 집합체들을 다룰 때는 얘들이 가지고 있는 개별 원소에 대해서 이런 저런 작업들을 할 일이 많다.<br>iterator를 쓰게 되면, 집합체와 개별 원소들간에 분리시켜 생각할 수가 있다.<br>심지어는 그 집합체가 어떤 클래스의 인스턴스인지 조차 신경쓰지 않아도 된다.</p>
-<h2 id="예제"><a href="#예제" class="headerlink" title="예제"></a>예제</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MagicianList</span> <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"> <span class="keyword">private</span> List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String name)</span></span>&#123;</span><br><span class="line">  list.add(name);</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">public</span> Iterator&lt;String&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span>  <span class="keyword">new</span> Iterator&lt;String&gt;()&#123;</span><br><span class="line">   <span class="keyword">int</span> seq = <span class="number">0</span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span>  seq &lt; list.size();</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> String <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> list.get(seq++);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> UnsupportedOperationException();</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"> &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] arg)</span></span>&#123;</span><br><span class="line">  MagicianList magicians = <span class="keyword">new</span> MagicianList();</span><br><span class="line">  magicians.add(<span class="string">"이은결"</span>);</span><br><span class="line">  magicians.add(<span class="string">"Kevin parker"</span>);</span><br><span class="line">  magicians.add(<span class="string">"David Blaine"</span>);</span><br><span class="line">  </span><br><span class="line">  Iterator&lt;String&gt; iterator = magicians.iterator();</span><br><span class="line">  <span class="keyword">while</span> (iterator.hasNext()) &#123;</span><br><span class="line">   String element = iterator.next();</span><br><span class="line">   System.out.println(element);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>magicians 의 원소들을 뽑아내는데, magicians 라는 변수를 전혀 쓰지 않는다.<br>물론, 내부적으로 iterator라는 변수가 magicians와 관계를 유지해주고 있긴 하지만 일단 iterator를 가지고 온 후에는 데이터 집합체가 뭐냐에 신경을 쓸 필요가 없어진 것이다.<br>iterator만 가져오면,  hasNext() , next() 만 가지고 반복하면서 원소들에 대해서 처리를 하면 된다.</p>
-<h2 id="Iterator관련-interface"><a href="#Iterator관련-interface" class="headerlink" title="Iterator관련 interface"></a>Iterator관련 interface</h2><p>Iteraable 인터페이스를 보게되면 Iterator<e> iterator() 라는 메소드 한개만 가지고 있다.<br>그리고 이 iterator 메소드를 이용하여 만들어진 iterator클래스는 클래스는 3개의 메서드를 가지고 있다.<br>hasNext()는 다음 구성 요소가 있냐고 물어보는 메서드이다.  next()는 그 요소를 뽑아 온다.<br>remove()는 일부러 구현을 안하였다.<br>API에 보면, 마지막으로 꺼낸 요소를 제거한다.(optional operation) 이라고 되어있는데 optional이라는 걸 강조하기위해 구현을 하지 않았다.<br>요기서 한가지 짚고 넘어가야 할 것은 시퀀스는 hasNext()가 아니라 next()에서 증가시켜야 한다는 것이다.<br>hasNext()를 호출하고 또 호출하는 일이 발생할 수도 있기 때문이다. hasNext라는 메소드 이름이, next를 가지고 있는지를 체크하겠다는 것이기 때문이다.</e></p>
-<h2 id="JAVA-API에-있는-Iterator"><a href="#JAVA-API에-있는-Iterator" class="headerlink" title="JAVA API에 있는 Iterator"></a>JAVA API에 있는 Iterator</h2><p>우리가 알고 있는 일반적인 집합체들은 전부 Iterator를 제공한다.<br>Set, List 등은 Collection 을 상속 받는데, Collection이 Iteratable을 상속 받기 때문이다.<br>위에서 만든 클래스처럼 리스트같은 Collection을 사용할땐 list.iterator()를 사용하여 각 컬렉션의 iterator를 뽑아올 수 있다.</p>
-<p>Map은 왜 Iterator를 제공하지 않는 지를 살펴보자.<br>Map은 Set이나 List와는 달리 key-value의 구조이다. key에 대한 Iterator인지 value에 대한 Iterator인지 구별할 방법이 없다. 그래서 아예 제공을 하지 않는다.<br>그러나 Map에는 key에 대해서는 Set<k> keySet()이라는 key를 Set으로 가져오기를 지원하고, value에 대해서는 Collection<v> values() 를 제공한다. 위에서 말한것 처럼 Set과 Collection은 둘다 Iterator를 제공한다.</v></k></p>
 
           
         
@@ -2120,189 +2354,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/20/Spring-JPA/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/20/Spring-JPA/" class="post-title-link" itemprop="url">[Spring]JPA란</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-03-20 15:00:00 / Updated at: 15:45:09" itemprop="dateCreated datePublished" datetime="2019-03-20T15:00:00+09:00">2019-03-20</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/03/20/Spring-JPA/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/20/Spring-JPA/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JPA란"><a href="#JPA란" class="headerlink" title="JPA란"></a>JPA란</h1><p>JPA는 여러 ORM 전문가가 참여한 EJB 3.0 스펙 작업에서 기존 EJB ORM이던 Entity Bean을 JPA라고 바꾸고 JavaSE, JavaEE를 위한 영속성(persistence) 관리와 ORM을 위한 표준 기술이다. JPA는 ORM 표준 기술로 Hibernate, OpenJPA, EclipseLink, TopLink Essentials과 같은 구현체가 있고 이에 표준 인터페이스가 바로 JPA이다.</p>
-<h2 id="ORM-이란"><a href="#ORM-이란" class="headerlink" title="ORM 이란"></a>ORM 이란</h2><p>ORM(Object Relational Mapping)이란, Object(객체)와 Relation(관계형 데이터베이스)  간의 불일치 문제를 해결하기 위한 도구다.</p>
-<p>흔히 알고 있는 ibatis나 mybatis는 ORM이 아니다. SQL 구문을 Mapping 하여 실행하는 sql mapper이다.</p>
-<h2 id="장단점"><a href="#장단점" class="headerlink" title="장단점"></a>장단점</h2><h3 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h3><p>객체지향적으로 데이터를 관리할 수 있기 때문에 비즈니스 로직에 집중 할 수 있으며, 객체지향 개발이 가능하다.<br>테이블 생성, 변경, 관리가 쉽다. (JPA를 잘 이해하고 있는 경우)<br>로직을 쿼리에 집중하기 보다는 객체자체에 집중 할 수 있다.<br>빠른 개발이 가능하다.</p>
-<h3 id="단점"><a href="#단점" class="headerlink" title="단점"></a>단점</h3><p>어렵다. 장점을 더 극대화 하기 위해서 알아야 할게 많다.<br>잘 이해하고 사용하지 않으면 데이터 손실이 있을 수 있다. (persistence context)<br>성능상 문제가 있을 수 있다.(이 문제 또한 잘 이해해야 해결이 가능하다.)</p>
-<h2 id="어노테이션-정리"><a href="#어노테이션-정리" class="headerlink" title="어노테이션 정리"></a>어노테이션 정리</h2><h3 id="Entity"><a href="#Entity" class="headerlink" title="@Entity"></a>@Entity</h3><p>JPA에서 Entity라는 것은 데이터베이스에 저장하기 위해서 유저가 정의한 클래스다. 일반적으로 RDBMS에서 Table의 정의 비슷한 것이다. Table의 이름이나 컬럼들에 대한 정보를 가진다.</p>
-<h3 id="Id"><a href="#Id" class="headerlink" title="@Id"></a>@Id</h3><p>일반적으로 키(primary key)를 가지는 변수에 선언한다. @GeneratedValue 어노테이션은 해당 Id 값을 어떻게 자동으로 생성할지 전략을 선택할 수 있다. </p>
-<h3 id="Table"><a href="#Table" class="headerlink" title="@Table"></a>@Table</h3><p>@Table을 이용하면 별도의 이름을 가진 데이터베이스 테이블과 매핑할 수 있다. 기본적으로 @Entity로 선언된 클래스의 이름은 실제 데이터베이스의 테이블 명과 일치하는 것을 매핑한다. 따라서 @Entity의 클래스명과 데이터베이스의 테이블명이 다르면 @Table(name=”XXX”) 같은 형식으로 작성하면 이름을 다르게 해서 매핑이 가능하다.</p>
-<h3 id="Column"><a href="#Column" class="headerlink" title="@Column"></a>@Column</h3><p>@Column에서 지정한 멤버 변수와 데이터베이스의 컬럼명을 다르게 주고 싶다면 @Column(name=”XXX”) 같은 형식으로 작성해주면 된다. 그렇지 않으면 기본적으로 멤버 변수명과 일치하는 데이터베이스의 컬럼을 매핑 한다.</p>
-<hr>
-<p>그외의 어노테이션들이나 사용법들은 추후에 더 포스팅 하도록 하겠습니당 </p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2352,7 +2403,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">48</span>
+                    <span class="site-state-item-count">49</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2381,7 +2432,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">카테고리</span>
                   </a>
                 </div>
@@ -2574,7 +2627,23 @@
                     
                       
                     
-                    <span class="site-state-item-count">90</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">98</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
