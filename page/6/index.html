@@ -349,6 +349,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/02/Java-runtime-data-area/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/03/02/Java-runtime-data-area/" class="post-title-link" itemprop="url">[JAVA]자바의 기본 개념 정리-2.자바 메모리 구조</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-03-02 18:20:00" itemprop="dateCreated datePublished" datetime="2018-03-02T18:20:00+09:00">2018-03-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-01-24 11:50:27" itemprop="dateModified" datetime="2019-01-24T11:50:27+09:00">2019-01-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2018/03/02/Java-runtime-data-area/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/03/02/Java-runtime-data-area/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Runtime-Data-Area"><a href="#Runtime-Data-Area" class="headerlink" title="Runtime Data Area"></a>Runtime Data Area</h1><ul>
+<li>JVM이 프로그램을 수행하기 위해 운영체제로부터 할당 받는 메모리 영역으로 자바 애플리케이션을 실행할 때 사용되는 데이터들을 적재하는 영역이다.</li>
+<li>이 영역은 각각의 목젝에 따라 크게 <strong>Method Area</strong>, <strong>Heap Area</strong>, <strong>Stack Area</strong>, <strong>PC Register</strong>, <strong>Native Method Stack</strong>로 나눌 수 있다.</li>
+</ul>
+<p><img src="/images/java/java_runtime_data_area.png" alt="Runtime Data Area"></p>
+<h2 id="Method-Area-메소드-영역"><a href="#Method-Area-메소드-영역" class="headerlink" title="Method Area(메소드 영역)"></a>Method Area(메소드 영역)</h2><ul>
+<li>클래스 멤버 변수의 이름, 데이터 타입, 접근 제어자 정보같은 필드 정보와 메소드의 이름, 리턴 타입, 파라미터, 접근 제어자 정보같은 메소드 정보, Type정보(Interface인지 class인지), Constant Pool(상수 풀 : 문자 상수, 타입, 필드, 객체 참조가 저장됨), static 변수, final class 변수등이 생성되는 영역이다.</li>
+<li>프로그램이 실행되면 모든 코드가 저장되어 있는 상태가 아니다. new 키워드를 통해 객체가 동적으로 생성되기 이전에는 텍스트 일 뿐이다.</li>
+<li>객체 생성 후에 메소드를 실행하게 되면 해당 클래스 코드에 대한 정보를 Method Area에 저장 하게 된다. </li>
+</ul>
+<h2 id="Heap-area-힙-영역"><a href="#Heap-area-힙-영역" class="headerlink" title="Heap area(힙 영역)"></a>Heap area(힙 영역)</h2><ul>
+<li>사용자가 관리하는 인스턴스가 생성되는 공간으로 객체를 동적으로 생성하면 인스턴스가 Heap 영역의 메모리에 할당되어 사용되어진다. 프로그램은 시작될 때 미리 Heap 영역을 많이 할당해 놓으며 인스턴스와 인스턴스 변수가 저장된다. 레퍼런스 변수의 경우 Heap에 인스턴스가 저장 되는것이 아니라 포인터가 저장된다.</li>
+<li>메소드 영역에 로드된 클래스만 생성이 가능하고 Garbage Collector가 참조되지 않는 메모리를 확인하고 제거하는 영역이다.</li>
+</ul>
+<h2 id="Stack-area-스택-영역"><a href="#Stack-area-스택-영역" class="headerlink" title="Stack area (스택 영역)"></a>Stack area (스택 영역)</h2><ul>
+<li>지역 변수, 파라미터, 리턴 값, 연산에 사용되는 임시 값등이 생성되는 영역이다.</li>
+<li>int x = 10; 이라는 소스를 작성했다면 정수값이 할당될 수 있는 메모리공간을 x라고 잡아두고 그 메모리 영역에 값이 10이 들어간다. 즉, 스택에 메모리에 이름이 x라고 붙여주고 값이 10인 메모리 공간을 만든다.</li>
+<li>Animal dog = new Animal(); 이라는 코드를 작성했다면 Animal dog은 스택 영역에 생성되고 new로 생성된 Animal클래스의 인스턴스는 힙 영역에 생성된다.</li>
+<li>스택영역에 생성된 dog의 값으로 힙 영역의 주소값을 가지고 있다. 즉 스택 영역에 생성된 dog가 힙 영역에 생성된 객체를 참조하고 있는 것이다.</li>
+</ul>
+<h2 id="PC-Register-PC-레지스터"><a href="#PC-Register-PC-레지스터" class="headerlink" title="PC Register (PC 레지스터)"></a>PC Register (PC 레지스터)</h2><ul>
+<li>PC Registers는 Thread가 생성될 때 마다 생기는 공간으로 Thread가 어떠한 명령을 실행하게 될지에 대한 부분을 기록을 한다.</li>
+<li>JVM은 Stacks-Base 방식으로 작동 하는데, JVM은 CPU에 직접 Instruction을 수행하지 않고, Stack에서 Operand를 뽑아내 이를 별도의 메모리 공간에 저장하는 방식을 취하는데, 이러한 메모리 공간을 PC Registers라고 한다.</li>
+</ul>
+<h2 id="Native-method-stack"><a href="#Native-method-stack" class="headerlink" title="Native method stack"></a>Native method stack</h2><ul>
+<li>자바 외 언어로 작성된 네이티브 코드를 위한 메모리 영역이다. 보통 C/C++등의 코드를 수행하기 위한 스택이다. </li>
+<li>JNI를 통해 표준에 가까운 방식으로 구현이 가능하다.</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2018/03/01/Java-summary/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -599,7 +811,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -630,7 +842,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">카테고리</span>
                   </a>
                 </div>
@@ -845,7 +1059,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">101</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">107</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

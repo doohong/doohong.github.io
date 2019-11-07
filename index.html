@@ -349,6 +349,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/11/07/kotlin-ApplyAlsoLetRunWith/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/07/kotlin-ApplyAlsoLetRunWith/" class="post-title-link" itemprop="url">[Kotlin]코틀린 기본 개념 정리-1.apply, also, let, run, with</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-11-07 22:00:00 / Updated at: 22:07:35" itemprop="dateCreated datePublished" datetime="2019-11-07T22:00:00+09:00">2019-11-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Kotlin/" itemprop="url" rel="index"><span itemprop="name">Kotlin</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/11/07/kotlin-ApplyAlsoLetRunWith/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/07/kotlin-ApplyAlsoLetRunWith/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="코틀린의-apply-also-let-run-with"><a href="#코틀린의-apply-also-let-run-with" class="headerlink" title="코틀린의 apply, also, let, run, with"></a>코틀린의 apply, also, let, run, with</h1><h2 id="메소드-정의"><a href="#메소드-정의" class="headerlink" title="메소드 정의"></a>메소드 정의</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// apply</span></span><br><span class="line">inline fun &lt;T&gt; T.apply(block: T.() -&gt; Unit): T &#123;</span><br><span class="line">    block()</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// also</span></span><br><span class="line">inline fun &lt;T&gt; T.also(block: (T) -&gt; Unit): T &#123;</span><br><span class="line">    block(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// let</span></span><br><span class="line">inline fun &lt;T, R&gt; T.let(block: (T) -&gt; R): R &#123;</span><br><span class="line">    <span class="keyword">return</span> block(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// run</span></span><br><span class="line">inline fun &lt;T, R&gt; T.run(block: T.() -&gt; R): R &#123;</span><br><span class="line">    <span class="keyword">return</span> block()</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// with</span></span><br><span class="line">inline fun &lt;T, R&gt; with(receiver: T, block: T.() -&gt; R): R &#123;</span><br><span class="line">    <span class="keyword">return</span> receiver.block()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>with, also, apply, let, run 은 아래의 3 가지 차이점 중 1 가지가 서로 다릅니다.</p>
+<ul>
+<li>범위 지정 함수 의 호출시에 수신 객체가 매개 변수로 명시적으로 전달되거나 수신 객체의 확장 함수로 암시적 수신 객체 로 전달된다.</li>
+<li>범위 지정 함수 의 수신 객체 지정 람다 에 전달되는 수신 객체가 명시적 매개 변수 로 전달 되거나 수신 객체의 확장 함수로 암시적 수신 객체로 코드 블록 내부로 전달 된다.</li>
+<li>범위 지정 함수의 결과로 수신 객체를 그대로 반환하거나 수신 객체 지정 람다 의 실행 결과를 반환한다.</li>
+</ul>
+<h2 id="각-메서드-설명"><a href="#각-메서드-설명" class="headerlink" title="각 메서드 설명"></a>각 메서드 설명</h2><h3 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h3><p>수신 객체 람다 내부에서 수신 객체의 함수를 사용하지 않고 수신 객체 자신을 다시 반환 하려는 경우에 apply 를 사용합니다.<br>수신 객체 의 프로퍼티 만을 사용하는 대표적인 경우가 객체의 초기화 이며, 이곳에 apply 를 사용합니다.</p>
+<h3 id="also"><a href="#also" class="headerlink" title="also"></a>also</h3><p>수신 객체 람다가 전달된 수신 객체를 전혀 사용 하지 않거나 수신 객체의 속성을 변경하지 않고 사용하는 경우 also 를 사용합니다.<br>also 는 apply 와 마찬가지로 수신 객체를 반환 하므로 블록 함수가 다른 값을 반환 해야하는 경우에는 also 를 사용할수 없습니다.<br>예를 들자면, 객체의 사이드 이팩트를 확인하거나 수신 객체의 프로퍼티에 데이터를 할당하기 전에 해당 데이터의 유효성을 검사 할 때 매우 유용합니다.</p>
+<h3 id="let"><a href="#let" class="headerlink" title="let"></a>let</h3><p>수신 객체의 객체를 블록의 인자로 넘기고 블록의 결과값을 반환합니다.<br>null 체크 후 코드를 실행하거나 블록 내의 결과물을 반환하고 싶을경우,<br>단일 지역 변수의 범위를 제한하고 싶을 경우 사용됩니다.</p>
+<h3 id="run"><a href="#run" class="headerlink" title="run"></a>run</h3><p>어떤 값을 계산할 필요가 있거나 여러개의 지역 변수의 범위를 제한하려면 run 을 사용합니다.<br>매개 변수로 전달된 명시적 수신객체 를 암시적 수신 객체로 변환 할때 run ()을 사용할수 있습니다.</p>
+<h3 id="with"><a href="#with" class="headerlink" title="with"></a>with</h3><p>안전한 호출(?.)을 지원하지 않고 Non-nullable (Null 이 될수 없는) 수신 객체 이고 결과가 필요하지 않은 경우에만 with 를 사용합니다.</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/28/DesignPattern-Singleton/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -475,240 +659,6 @@
 <p>DCL(Double Checking Locking)을 써서 getSingletonObject()에서 동기화 되는 영역을 줄일 수 있다. 초기에 객체를 생성하지 않으면서도 동기화하는 부분을 작게 만들었다. 그러나 이 코드는 멀티코어 환경에서 동작할 때, 하나의 CPU를 제외하고는 다른 CPU가 lock이 걸리게 된다. 그렇기 때문에 다른 방법이 필요하다.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">final</span> Singleton4 single = <span class="keyword">new</span> Singleton4();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstatnce</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> SingletonHolder.single;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>마지막 방법은 내부 클래스를 이용하는 방법이다. 내부 클래스가 호출되는 시점에 최초로 생성이 되기 때문에 필요하지 않을때 생성하지 않을 수 있으며 속도도 빠르다.</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/22/SSL-WebRoot/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/22/SSL-WebRoot/" class="post-title-link" itemprop="url">ssl 적용- webroot방식(with apache)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-06-22 18:20:00 / Updated at: 18:30:31" itemprop="dateCreated datePublished" datetime="2019-06-22T18:20:00+09:00">2019-06-22</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/etc/" itemprop="url" rel="index"><span itemprop="name">etc</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/06/22/SSL-WebRoot/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/22/SSL-WebRoot/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="ssl-적용-webroot방식-with-apache"><a href="#ssl-적용-webroot방식-with-apache" class="headerlink" title="ssl 적용- webroot방식(with apache)"></a>ssl 적용- webroot방식(with apache)</h1><h2 id="webroot방식이란"><a href="#webroot방식이란" class="headerlink" title="webroot방식이란"></a>webroot방식이란</h2><ol>
-<li><p><strong>Standalone 방식</strong></p>
-<p> 이 방법은 Certbot이 간이 웹 서버를 돌려 도메인 인증 요청을 처리하는 방식입니다.하지만 인증용 간이 서버가 80, 443번 포트를 사용하기 때문에 운영 중인 서버가 해당 포트를 쓰게 된다면, 발급 또는 갱신 시 마다 <strong>잠시 서버를 내려야 하는 문제</strong>가 있습니다.물론 해당 포트를 사용하지 않는다면 이 방법을 사용하셔도 무방합니다.</p>
-</li>
-<li><p><strong>Webroot 방식</strong></p>
-<p> 이 방법은 도메인 인증을 위해 외부에서 접근 가능한 경로를 제공하고, Let’s Encrypt 측에서 해당 경로로 접속해 인증을 하는 방식입니다.이 방식을 사용할 경우 1번 방식의 <strong>서비스 종료</strong>는 하지 않아도 됩니다.</p>
-</li>
-</ol>
-<p><strong>서버를 내려야 하는 문제를 해결하기 위해 Webroot방식을 적용 시키려고 한다.</strong></p>
-<h2 id="환경"><a href="#환경" class="headerlink" title="환경"></a>환경</h2><h3 id="OS-CentOS7"><a href="#OS-CentOS7" class="headerlink" title="OS : CentOS7"></a>OS : CentOS7</h3><h3 id="WebServer-Apache"><a href="#WebServer-Apache" class="headerlink" title="WebServer : Apache"></a>WebServer : Apache</h3><h2 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h2><ol>
-<li>/var/www/html 에 사용할 VirtualHost 폴더와 그안에 html파일을 넣어준다 (예제는 test.com)</li>
-</ol>
-<p>예제처럼 도메인에 맞춰 폴더를 만들어주면 좋을듯</p>
-<pre><code>$ mkdir /var/www/html/test 
-
-$ nano /var/www/html/test/index.html
-</code></pre><ol start="2">
-<li>/etc/httpd/conf.d 에 test.conf파일을 만들어 준다.</li>
-</ol>
-<p>www. 같은 도메인은 ServerAlias 을 이용해 추가</p>
-<p>RewriteCond %{SERVER_NAME} =<a href="http://www.test" target="_blank" rel="noopener">www.test</a> [OR] 을 이용해 https로 rewrite</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:80</span>&gt;</span></span><br><span class="line">    ServerName test.com</span><br><span class="line">    ServerAlias www.test.com</span><br><span class="line">    DocumentRoot /var/www/html/test</span><br><span class="line">    CustomLog /var/log/httpd/access.log common</span><br><span class="line">    ErrorLog /var/log/httpd/error.log</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteRule ^/.well-known/ - [L]</span><br><span class="line">    RewriteCond %&#123;SERVER_NAME&#125; =www.test.com [OR]</span><br><span class="line">    RewriteCond %&#123;SERVER_NAME&#125; =test.com</span><br><span class="line">    RewriteRule ^ https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [END,NE,R=permanent]</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol>
-<li>Certbot 설치</li>
-</ol>
-<p><a href="https://certbot.eff.org/" target="_blank" rel="noopener">https://certbot.eff.org/</a> 홈페이지에서 각자 맞는 환경 선택</p>
-<p>여기선 centos에 apache로 진행</p>
-<pre><code>$ yum install certbot python-certbot-apache
-</code></pre><ol start="4">
-<li>centos에 명령어를 입력해준다.</li>
-</ol>
-<p>test.com 뿐만아니라 <a href="http://www.test.com도" target="_blank" rel="noopener">www.test.com도</a> 인증서를 적용시키기 위해 다음과 같은 옵션 추가</p>
-<p>-d test.com -d <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a></p>
-<pre><code>$ certbot --webroot --installer apache -w /var/www/html/test -d test.com -d www.test.com
-</code></pre><ol start="5">
-<li><p>/etc/httpd/conf.d에 gajah.tours-le-ssl.conf 파일이 생성됨 내용은</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mod_ssl.c</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:443</span>&gt;</span></span><br><span class="line">    ServerName test.com</span><br><span class="line">    ServerAlias www.test.com</span><br><span class="line">    DocumentRoot /var/www/html/test</span><br><span class="line">    CustomLog /var/log/httpd/access.log common</span><br><span class="line">    ErrorLog /var/log/httpd/error.log</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteRule ^/.well-known/ - [L]</span><br><span class="line">    # Some rewrite rules in this file were disabled on your HTTPS site,</span><br><span class="line">    # because they have the potential to create redirection loops.</span><br><span class="line">    </span><br><span class="line">    #   RewriteCond %&#123;SERVER_NAME&#125; =www.test.com [OR]</span><br><span class="line">    #   RewriteCond %&#123;SERVER_NAME&#125; =test.com</span><br><span class="line">    #   RewriteRule ^ https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [END,NE,R=permanent]</span><br><span class="line">    Include /etc/letsencrypt/options-ssl-apache.conf</span><br><span class="line">    SSLCertificateFile /etc/letsencrypt/live/test/cert.pem</span><br><span class="line">    SSLCertificateKeyFile /etc/letsencrypt/live/test/privkey.pem</span><br><span class="line">    SSLCertificateChainFile /etc/letsencrypt/live/test/chain.pem</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>apache 재시작</p>
-<p> $ systemctl restart httpd</p>
-</li>
-<li><p>TEST</p>
-</li>
-</ol>
-<p>test.com 나 <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a> 로 접속해본다</p>
-<p><a href="https://test.com" target="_blank" rel="noopener">https://test.com</a> 로 rewrite되고 정상적으로 인증이 되는지 확인 </p>
-<ol>
-<li>Renew certificate with cron</li>
-</ol>
-<p>Let’s Encrypt SSL인증서는 90일마다 갱신해줘야 한다. </p>
-<pre><code>$ /opt/certbot/certbot-auto renew --dry-run
-or
-$ certbot renew --dry-run
-</code></pre><p>—dry-run 옵션을 이용하여 잘동작하는지 확인할 수 있다.</p>
-<p>갱신하는 방법은 한줄로 가능하지만 크론탭을 이용하여 자동적으로 갱신되도록 하는게 좋다.</p>
-<p>크론탭을 수정하려면 -e옵션을 사용하고 작성된 크론탭을 보려면 -l옵션을 이용한다</p>
-<pre><code>$ crontab -e
-
-0 18 1 */1 * /opt/certbot/certbot-auto renew --dry-run
-
-$ crontab -l
-</code></pre><p>매달 1일 18시에 갱신을 하는 크론탭을 작성하고 -l 옵션을 이용해 확인한다.</p>
 
           
         
@@ -953,6 +903,240 @@ $ crontab -l
 </code></pre><p>매달 1일 18시에 갱신을 하는 크론탭을 작성하고 -l 옵션을 이용해 확인한다.</p>
 <pre><code>$ certbot certificates //발급된 인증서 목록 확인 명령어
 </code></pre>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/06/22/SSL-WebRoot/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/22/SSL-WebRoot/" class="post-title-link" itemprop="url">ssl 적용- webroot방식(with apache)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-06-22 18:20:00 / Updated at: 18:30:31" itemprop="dateCreated datePublished" datetime="2019-06-22T18:20:00+09:00">2019-06-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/etc/" itemprop="url" rel="index"><span itemprop="name">etc</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/06/22/SSL-WebRoot/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/06/22/SSL-WebRoot/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="ssl-적용-webroot방식-with-apache"><a href="#ssl-적용-webroot방식-with-apache" class="headerlink" title="ssl 적용- webroot방식(with apache)"></a>ssl 적용- webroot방식(with apache)</h1><h2 id="webroot방식이란"><a href="#webroot방식이란" class="headerlink" title="webroot방식이란"></a>webroot방식이란</h2><ol>
+<li><p><strong>Standalone 방식</strong></p>
+<p> 이 방법은 Certbot이 간이 웹 서버를 돌려 도메인 인증 요청을 처리하는 방식입니다.하지만 인증용 간이 서버가 80, 443번 포트를 사용하기 때문에 운영 중인 서버가 해당 포트를 쓰게 된다면, 발급 또는 갱신 시 마다 <strong>잠시 서버를 내려야 하는 문제</strong>가 있습니다.물론 해당 포트를 사용하지 않는다면 이 방법을 사용하셔도 무방합니다.</p>
+</li>
+<li><p><strong>Webroot 방식</strong></p>
+<p> 이 방법은 도메인 인증을 위해 외부에서 접근 가능한 경로를 제공하고, Let’s Encrypt 측에서 해당 경로로 접속해 인증을 하는 방식입니다.이 방식을 사용할 경우 1번 방식의 <strong>서비스 종료</strong>는 하지 않아도 됩니다.</p>
+</li>
+</ol>
+<p><strong>서버를 내려야 하는 문제를 해결하기 위해 Webroot방식을 적용 시키려고 한다.</strong></p>
+<h2 id="환경"><a href="#환경" class="headerlink" title="환경"></a>환경</h2><h3 id="OS-CentOS7"><a href="#OS-CentOS7" class="headerlink" title="OS : CentOS7"></a>OS : CentOS7</h3><h3 id="WebServer-Apache"><a href="#WebServer-Apache" class="headerlink" title="WebServer : Apache"></a>WebServer : Apache</h3><h2 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h2><ol>
+<li>/var/www/html 에 사용할 VirtualHost 폴더와 그안에 html파일을 넣어준다 (예제는 test.com)</li>
+</ol>
+<p>예제처럼 도메인에 맞춰 폴더를 만들어주면 좋을듯</p>
+<pre><code>$ mkdir /var/www/html/test 
+
+$ nano /var/www/html/test/index.html
+</code></pre><ol start="2">
+<li>/etc/httpd/conf.d 에 test.conf파일을 만들어 준다.</li>
+</ol>
+<p>www. 같은 도메인은 ServerAlias 을 이용해 추가</p>
+<p>RewriteCond %{SERVER_NAME} =<a href="http://www.test" target="_blank" rel="noopener">www.test</a> [OR] 을 이용해 https로 rewrite</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:80</span>&gt;</span></span><br><span class="line">    ServerName test.com</span><br><span class="line">    ServerAlias www.test.com</span><br><span class="line">    DocumentRoot /var/www/html/test</span><br><span class="line">    CustomLog /var/log/httpd/access.log common</span><br><span class="line">    ErrorLog /var/log/httpd/error.log</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteRule ^/.well-known/ - [L]</span><br><span class="line">    RewriteCond %&#123;SERVER_NAME&#125; =www.test.com [OR]</span><br><span class="line">    RewriteCond %&#123;SERVER_NAME&#125; =test.com</span><br><span class="line">    RewriteRule ^ https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [END,NE,R=permanent]</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>Certbot 설치</li>
+</ol>
+<p><a href="https://certbot.eff.org/" target="_blank" rel="noopener">https://certbot.eff.org/</a> 홈페이지에서 각자 맞는 환경 선택</p>
+<p>여기선 centos에 apache로 진행</p>
+<pre><code>$ yum install certbot python-certbot-apache
+</code></pre><ol start="4">
+<li>centos에 명령어를 입력해준다.</li>
+</ol>
+<p>test.com 뿐만아니라 <a href="http://www.test.com도" target="_blank" rel="noopener">www.test.com도</a> 인증서를 적용시키기 위해 다음과 같은 옵션 추가</p>
+<p>-d test.com -d <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a></p>
+<pre><code>$ certbot --webroot --installer apache -w /var/www/html/test -d test.com -d www.test.com
+</code></pre><ol start="5">
+<li><p>/etc/httpd/conf.d에 gajah.tours-le-ssl.conf 파일이 생성됨 내용은</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">IfModule</span> <span class="attr">mod_ssl.c</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">VirtualHost</span> *<span class="attr">:443</span>&gt;</span></span><br><span class="line">    ServerName test.com</span><br><span class="line">    ServerAlias www.test.com</span><br><span class="line">    DocumentRoot /var/www/html/test</span><br><span class="line">    CustomLog /var/log/httpd/access.log common</span><br><span class="line">    ErrorLog /var/log/httpd/error.log</span><br><span class="line">    RewriteEngine on</span><br><span class="line">    RewriteRule ^/.well-known/ - [L]</span><br><span class="line">    # Some rewrite rules in this file were disabled on your HTTPS site,</span><br><span class="line">    # because they have the potential to create redirection loops.</span><br><span class="line">    </span><br><span class="line">    #   RewriteCond %&#123;SERVER_NAME&#125; =www.test.com [OR]</span><br><span class="line">    #   RewriteCond %&#123;SERVER_NAME&#125; =test.com</span><br><span class="line">    #   RewriteRule ^ https://%&#123;SERVER_NAME&#125;%&#123;REQUEST_URI&#125; [END,NE,R=permanent]</span><br><span class="line">    Include /etc/letsencrypt/options-ssl-apache.conf</span><br><span class="line">    SSLCertificateFile /etc/letsencrypt/live/test/cert.pem</span><br><span class="line">    SSLCertificateKeyFile /etc/letsencrypt/live/test/privkey.pem</span><br><span class="line">    SSLCertificateChainFile /etc/letsencrypt/live/test/chain.pem</span><br><span class="line"><span class="tag">&lt;/<span class="name">VirtualHost</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">IfModule</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>apache 재시작</p>
+<p> $ systemctl restart httpd</p>
+</li>
+<li><p>TEST</p>
+</li>
+</ol>
+<p>test.com 나 <a href="http://www.test.com" target="_blank" rel="noopener">www.test.com</a> 로 접속해본다</p>
+<p><a href="https://test.com" target="_blank" rel="noopener">https://test.com</a> 로 rewrite되고 정상적으로 인증이 되는지 확인 </p>
+<ol>
+<li>Renew certificate with cron</li>
+</ol>
+<p>Let’s Encrypt SSL인증서는 90일마다 갱신해줘야 한다. </p>
+<pre><code>$ /opt/certbot/certbot-auto renew --dry-run
+or
+$ certbot renew --dry-run
+</code></pre><p>—dry-run 옵션을 이용하여 잘동작하는지 확인할 수 있다.</p>
+<p>갱신하는 방법은 한줄로 가능하지만 크론탭을 이용하여 자동적으로 갱신되도록 하는게 좋다.</p>
+<p>크론탭을 수정하려면 -e옵션을 사용하고 작성된 크론탭을 보려면 -l옵션을 이용한다</p>
+<pre><code>$ crontab -e
+
+0 18 1 */1 * /opt/certbot/certbot-auto renew --dry-run
+
+$ crontab -l
+</code></pre><p>매달 1일 18시에 갱신을 하는 크론탭을 작성하고 -l 옵션을 이용해 확인한다.</p>
+
           
         
       
@@ -2119,250 +2303,6 @@ $ crontab -l
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/05/11/Spring-AOP/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/11/Spring-AOP/" class="post-title-link" itemprop="url">[Spring]AOP란?</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-05-11 12:44:00 / Updated at: 00:44:48" itemprop="dateCreated datePublished" datetime="2019-05-11T12:44:00+09:00">2019-05-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/05/11/Spring-AOP/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/11/Spring-AOP/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="AOP-Aspect-Oriented-Programing"><a href="#AOP-Aspect-Oriented-Programing" class="headerlink" title="AOP(Aspect Oriented Programing)"></a>AOP(Aspect Oriented Programing)</h3><p>AOP는 관점 지향 프로그래밍이다.</p>
-<p>쉽게 말해서 AOP는 애플리케이션 전체에 걸쳐 사용되는 기능을 재사용 하도록 지원하는 것이다.</p>
-<p>관점 지향 프로그래밍이라는 단어가 AOP를 이해하는데 더 어려움을 일으킨다.</p>
-<p>쉽게 설명하면 프로젝트 구조를 바라 보는 관점을 바꿔 보자는 것이다.<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2108D041584969DA190575" alt="그림1"></p>
-<p>(제 3자의 관점)<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F273B244458496A0A1B7AC5" alt="그림2"></p>
-<p>(핵심기능에서 바라본 관점)<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2473C33D58496A2A0F6DF9" alt="그림3"></p>
-<p>(부가기능에서 바라본 관점)</p>
-<p>부가적 기능의 관점엑서 보면 각각의 서비스는 before와 after 메소드를 공통으로 사용하고 있다.</p>
-<p>기존의 OOP에서 바라보던 관점을 다르게하여 부가기능적인 측면에서 보았을때 공통된 요소를 추출하자는 것이 관점 지향 프로그래밍이다.</p>
-<ul>
-<li>OOP : 비지니스 로직의 모듈화<ul>
-<li>모듈화의 핵심 단위는 비지니스 로직</li>
-</ul>
-</li>
-<li>AOP : 인프라 혹은 부가기능의 모듈화<ul>
-<li>대표적 예 : 로깅, 트랜잭션, 보안 등</li>
-<li>각각의 모듈들의 주 목적 외에 필요한 부가적인 기능들</li>
-</ul>
-</li>
-</ul>
-<p>AOP는 새로운 개념은 아니다!</p>
-<p>결국은 공통된 기능을 재사용하는 기법</p>
-<p>기존 OOP같은 경우 상속이나 위임을 통해 처리하지만 자바의 경우 다중 상속을 지원하지 않을뿐더러 상속이나 위임으로 처리하기에는 깔끔하게 모듈화가 어렵다고 한다.</p>
-<p>그래서 이러한 문제를 해결하기 위해 AOP가 등장하게 되었고 AOP의 큰 장점은 2가지가 있다.</p>
-<ol>
-<li>어플리케이션 전체에 흩어진 공통 기능이 하나의 장소에서 관리된다는 점</li>
-<li>다른 서비스 모듈들이 본인의 목적에만 충실하고 그외 사항들은 신경쓰지 않아도 된다는 점 </li>
-</ol>
-<h2 id="AOP용어"><a href="#AOP용어" class="headerlink" title="AOP용어"></a>AOP용어</h2><h3 id="타겟-Target"><a href="#타겟-Target" class="headerlink" title="타겟(Target)"></a>타겟(Target)</h3><p>부가기능을 부여할 대상을 말한다.<br>위에 그림에선 공통된 기능을 가진 Service들을 얘기한다.</p>
-<h3 id="애스펙트-Aspect"><a href="#애스펙트-Aspect" class="headerlink" title="애스펙트(Aspect)"></a>애스펙트(Aspect)</h3><p>객체지향 모듈을 오브젝트라 부르는것과 같게 부가기능 모듈을 애스펙트라 부르며, 핵심기능에 부가되어 의미를 갖는 특별한 모듈이라 생각하면 된다.</p>
-<h3 id="어드바이스-Advice"><a href="#어드바이스-Advice" class="headerlink" title="어드바이스(Advice)"></a>어드바이스(Advice)</h3><p>실질적으로 부가기능을 담은 구현체<br>어드바이스는 타겟 오브젝트에 종속되지 않기 때문에 순수하게 부가기능에만 집중 할 수 있다.<br>어드바이스는 애스펙트가 무엇을 언제할지를 정의한다.</p>
-<h3 id="포인트컷-PointCut"><a href="#포인트컷-PointCut" class="headerlink" title="포인트컷(PointCut)"></a>포인트컷(PointCut)</h3><p>부가기능이 적용될 대상(메소드)를 선정하는 방법을 얘기한다.<br>즉, 어드바이스를 적용할 조인포인트를 선별하는 기능을 정의한 모듈을 얘기한다.</p>
-<h3 id="조인포인트-JoinPoint"><a href="#조인포인트-JoinPoint" class="headerlink" title="조인포인트(JoinPoint)"></a>조인포인트(JoinPoint)</h3><p>어드바이스가 적용될 수 있는 위치를 얘기한다.<br>Spring에서는 메소드 조인포인트만 제공하고 있다.<br>따라서 Spring 내에서 조인포인트라 하면 메소드를 가르킨다고 생각하면 된다.</p>
-<h3 id="프록시-Proxy"><a href="#프록시-Proxy" class="headerlink" title="프록시(Proxy)"></a>프록시(Proxy)</h3><p>타겟을 감싸서 타겟의 요청을 대신 받아주는 랩핑(Wrapping)오브젝트이다.<br>클라이언트에서 타겟을 호출하게 되면 타겟이 아닌 타겟을 감싸고 있는 프록시가 호출되어, 타깃 메소드 실행전에 선처리, 메소드 실행 후, 후처리를 하도록 구성되어 있다.</p>
-<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2715394658496A61010951" alt="그림4"></p>
-<h3 id="인트로덕션-Introduction"><a href="#인트로덕션-Introduction" class="headerlink" title="인트로덕션 (Introduction)"></a>인트로덕션 (Introduction)</h3><p>타겟 클래스에 코드 변경없이 신규 메소드나 멤버변수를 추가하는 기능을 얘기한다. </p>
-<h3 id="위빙-Weaving"><a href="#위빙-Weaving" class="headerlink" title="위빙 (Weaving)"></a>위빙 (Weaving)</h3><p>지정된 객체에 애스팩트를 적용해서 새로운 프록시 객체를 생성하는 과정을 얘기한다.<br>예를 들면 A라는 객체에 트랜잭션 애스팩트가 지정되어 있다면, A라는 객체가 실행되기전 커넥션을 오픈하고 실행이 끝나면 커넥션을 종료하는 기능이 추가된 프록시 객체가 생성되고, 이 프록시 객체가 앞으로 A 객체가 호출되는 시점에서 사용된다. 이때의 프록시객체가 생성되는 과정을 위빙이라 생각하면 된다.<br>Spring AOP는 런타임에서 프록시 객체가 생성 된다.</p>
-<h2 id="실습-어노테이션"><a href="#실습-어노테이션" class="headerlink" title="실습(어노테이션)"></a>실습(어노테이션)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableAspectAutoProxy</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ApplicationContext ctx = SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>@SpringBootApplication 또는 @Configuration을 명시한 클래스에 @EnableAspectAutoProxy를 명시하면 Spring AOP를 사용하기 위한 첫 준비가 끝난다.</li>
-<li>@EnableAspectAutoProxy은 XML 기반의 ApplicationContext 설정에서의 &lt;aop:aspectj-autoproxy /&gt;와 동일한 기능을 한다.</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Order</span>(Ordered.LOWEST_PRECEDENCE)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* com.blogcode.board.BoardService.getBoards(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">calculatePerformanceTime</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> </span>&#123;</span><br><span class="line">        Object result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">            result = proceedingJoinPoint.proceed();</span><br><span class="line">            <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"수행 시간 : "</span>+ (end - start));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            System.out.println(<span class="string">"exception! "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>스프링 빈에 @Aspect를 명시하면 해당 빈이 Aspect로 작동한다.</li>
-<li>클래스 레벨에 @Order를 명시하여 @Aspect 빈 간의 작동 순서를 정할 수 있다. int 타입의 정수로 순서를 정할 수 있는데 값이 낮을수록 우선순위가 높다. 기본값은 가장 낮은 우선순위를 가지는 Ordered.LOWEST_PRECEDENCE이다.</li>
-<li>@Aspect가 명시된 빈에는 어드바이스(Advice)라 불리는 메써드를 작성할 수 있다. 대상 스프링 빈의 메써드의 호출에 끼어드는 시점과 방법에 따라 @Before, @After, @AfterReturning, @AfterThrowing, @Around 등을 명시할 수 있다.</li>
-</ul>
-<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2379DB3E58496AA7079CEF" alt="그림5"></p>
-<p>(포인트컷 표현식)</p>
-<ul>
-<li>@Before (이전)<ul>
-<li>어드바이스 타겟 메소드가 호출되기 전에 어드바이스 기능을 수행</li>
-</ul>
-</li>
-<li>@After (이후)<ul>
-<li>타겟 메소드의 결과에 관계없이(즉 성공, 예외 관계없이) 타겟 메소드가 완료 되면 어드바이스 기능을 수행</li>
-</ul>
-</li>
-<li>@AfterReturning (정상적 반환 이후)<ul>
-<li>타겟 메소드가 성공적으로 결과값을 반환 후에 어드바이스 기능을 수행</li>
-</ul>
-</li>
-<li>@AfterThrowing (예외 발생 이후)<ul>
-<li>타겟 메소드가 수행 중 예외를 던지게 되면 어드바이스 기능을 수행</li>
-</ul>
-</li>
-<li>@Around (메소드 실행 전후)<ul>
-<li>어드바이스가 타겟 메소드를 감싸서 타겟 메소드 호출전과 후에 어드바이스 기능을 수행</li>
-</ul>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2412,7 +2352,7 @@ $ crontab -l
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2443,7 +2383,9 @@ $ crontab -l
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">카테고리</span>
                   </a>
                 </div>
@@ -2658,7 +2600,19 @@ $ crontab -l
                     
                       
                     
-                    <span class="site-state-item-count">101</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">107</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>

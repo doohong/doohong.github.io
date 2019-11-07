@@ -349,6 +349,250 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/05/11/Spring-AOP/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/11/Spring-AOP/" class="post-title-link" itemprop="url">[Spring]AOP란?</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-05-11 12:44:00 / Updated at: 00:44:48" itemprop="dateCreated datePublished" datetime="2019-05-11T12:44:00+09:00">2019-05-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/05/11/Spring-AOP/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/05/11/Spring-AOP/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="AOP-Aspect-Oriented-Programing"><a href="#AOP-Aspect-Oriented-Programing" class="headerlink" title="AOP(Aspect Oriented Programing)"></a>AOP(Aspect Oriented Programing)</h3><p>AOP는 관점 지향 프로그래밍이다.</p>
+<p>쉽게 말해서 AOP는 애플리케이션 전체에 걸쳐 사용되는 기능을 재사용 하도록 지원하는 것이다.</p>
+<p>관점 지향 프로그래밍이라는 단어가 AOP를 이해하는데 더 어려움을 일으킨다.</p>
+<p>쉽게 설명하면 프로젝트 구조를 바라 보는 관점을 바꿔 보자는 것이다.<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile23.uf.tistory.com%2Fimage%2F2108D041584969DA190575" alt="그림1"></p>
+<p>(제 3자의 관점)<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile4.uf.tistory.com%2Fimage%2F273B244458496A0A1B7AC5" alt="그림2"></p>
+<p>(핵심기능에서 바라본 관점)<br><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile3.uf.tistory.com%2Fimage%2F2473C33D58496A2A0F6DF9" alt="그림3"></p>
+<p>(부가기능에서 바라본 관점)</p>
+<p>부가적 기능의 관점엑서 보면 각각의 서비스는 before와 after 메소드를 공통으로 사용하고 있다.</p>
+<p>기존의 OOP에서 바라보던 관점을 다르게하여 부가기능적인 측면에서 보았을때 공통된 요소를 추출하자는 것이 관점 지향 프로그래밍이다.</p>
+<ul>
+<li>OOP : 비지니스 로직의 모듈화<ul>
+<li>모듈화의 핵심 단위는 비지니스 로직</li>
+</ul>
+</li>
+<li>AOP : 인프라 혹은 부가기능의 모듈화<ul>
+<li>대표적 예 : 로깅, 트랜잭션, 보안 등</li>
+<li>각각의 모듈들의 주 목적 외에 필요한 부가적인 기능들</li>
+</ul>
+</li>
+</ul>
+<p>AOP는 새로운 개념은 아니다!</p>
+<p>결국은 공통된 기능을 재사용하는 기법</p>
+<p>기존 OOP같은 경우 상속이나 위임을 통해 처리하지만 자바의 경우 다중 상속을 지원하지 않을뿐더러 상속이나 위임으로 처리하기에는 깔끔하게 모듈화가 어렵다고 한다.</p>
+<p>그래서 이러한 문제를 해결하기 위해 AOP가 등장하게 되었고 AOP의 큰 장점은 2가지가 있다.</p>
+<ol>
+<li>어플리케이션 전체에 흩어진 공통 기능이 하나의 장소에서 관리된다는 점</li>
+<li>다른 서비스 모듈들이 본인의 목적에만 충실하고 그외 사항들은 신경쓰지 않아도 된다는 점 </li>
+</ol>
+<h2 id="AOP용어"><a href="#AOP용어" class="headerlink" title="AOP용어"></a>AOP용어</h2><h3 id="타겟-Target"><a href="#타겟-Target" class="headerlink" title="타겟(Target)"></a>타겟(Target)</h3><p>부가기능을 부여할 대상을 말한다.<br>위에 그림에선 공통된 기능을 가진 Service들을 얘기한다.</p>
+<h3 id="애스펙트-Aspect"><a href="#애스펙트-Aspect" class="headerlink" title="애스펙트(Aspect)"></a>애스펙트(Aspect)</h3><p>객체지향 모듈을 오브젝트라 부르는것과 같게 부가기능 모듈을 애스펙트라 부르며, 핵심기능에 부가되어 의미를 갖는 특별한 모듈이라 생각하면 된다.</p>
+<h3 id="어드바이스-Advice"><a href="#어드바이스-Advice" class="headerlink" title="어드바이스(Advice)"></a>어드바이스(Advice)</h3><p>실질적으로 부가기능을 담은 구현체<br>어드바이스는 타겟 오브젝트에 종속되지 않기 때문에 순수하게 부가기능에만 집중 할 수 있다.<br>어드바이스는 애스펙트가 무엇을 언제할지를 정의한다.</p>
+<h3 id="포인트컷-PointCut"><a href="#포인트컷-PointCut" class="headerlink" title="포인트컷(PointCut)"></a>포인트컷(PointCut)</h3><p>부가기능이 적용될 대상(메소드)를 선정하는 방법을 얘기한다.<br>즉, 어드바이스를 적용할 조인포인트를 선별하는 기능을 정의한 모듈을 얘기한다.</p>
+<h3 id="조인포인트-JoinPoint"><a href="#조인포인트-JoinPoint" class="headerlink" title="조인포인트(JoinPoint)"></a>조인포인트(JoinPoint)</h3><p>어드바이스가 적용될 수 있는 위치를 얘기한다.<br>Spring에서는 메소드 조인포인트만 제공하고 있다.<br>따라서 Spring 내에서 조인포인트라 하면 메소드를 가르킨다고 생각하면 된다.</p>
+<h3 id="프록시-Proxy"><a href="#프록시-Proxy" class="headerlink" title="프록시(Proxy)"></a>프록시(Proxy)</h3><p>타겟을 감싸서 타겟의 요청을 대신 받아주는 랩핑(Wrapping)오브젝트이다.<br>클라이언트에서 타겟을 호출하게 되면 타겟이 아닌 타겟을 감싸고 있는 프록시가 호출되어, 타깃 메소드 실행전에 선처리, 메소드 실행 후, 후처리를 하도록 구성되어 있다.</p>
+<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile29.uf.tistory.com%2Fimage%2F2715394658496A61010951" alt="그림4"></p>
+<h3 id="인트로덕션-Introduction"><a href="#인트로덕션-Introduction" class="headerlink" title="인트로덕션 (Introduction)"></a>인트로덕션 (Introduction)</h3><p>타겟 클래스에 코드 변경없이 신규 메소드나 멤버변수를 추가하는 기능을 얘기한다. </p>
+<h3 id="위빙-Weaving"><a href="#위빙-Weaving" class="headerlink" title="위빙 (Weaving)"></a>위빙 (Weaving)</h3><p>지정된 객체에 애스팩트를 적용해서 새로운 프록시 객체를 생성하는 과정을 얘기한다.<br>예를 들면 A라는 객체에 트랜잭션 애스팩트가 지정되어 있다면, A라는 객체가 실행되기전 커넥션을 오픈하고 실행이 끝나면 커넥션을 종료하는 기능이 추가된 프록시 객체가 생성되고, 이 프록시 객체가 앞으로 A 객체가 호출되는 시점에서 사용된다. 이때의 프록시객체가 생성되는 과정을 위빙이라 생각하면 된다.<br>Spring AOP는 런타임에서 프록시 객체가 생성 된다.</p>
+<h2 id="실습-어노테이션"><a href="#실습-어노테이션" class="headerlink" title="실습(어노테이션)"></a>실습(어노테이션)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="meta">@EnableAspectAutoProxy</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        ApplicationContext ctx = SpringApplication.run(Application.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>@SpringBootApplication 또는 @Configuration을 명시한 클래스에 @EnableAspectAutoProxy를 명시하면 Spring AOP를 사용하기 위한 첫 준비가 끝난다.</li>
+<li>@EnableAspectAutoProxy은 XML 기반의 ApplicationContext 설정에서의 &lt;aop:aspectj-autoproxy /&gt;와 동일한 기능을 한다.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Order</span>(Ordered.LOWEST_PRECEDENCE)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around</span>(<span class="string">"execution(* com.blogcode.board.BoardService.getBoards(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">calculatePerformanceTime</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> </span>&#123;</span><br><span class="line">        Object result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">long</span> start = System.currentTimeMillis();</span><br><span class="line">            result = proceedingJoinPoint.proceed();</span><br><span class="line">            <span class="keyword">long</span> end = System.currentTimeMillis();</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">"수행 시간 : "</span>+ (end - start));</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            System.out.println(<span class="string">"exception! "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>스프링 빈에 @Aspect를 명시하면 해당 빈이 Aspect로 작동한다.</li>
+<li>클래스 레벨에 @Order를 명시하여 @Aspect 빈 간의 작동 순서를 정할 수 있다. int 타입의 정수로 순서를 정할 수 있는데 값이 낮을수록 우선순위가 높다. 기본값은 가장 낮은 우선순위를 가지는 Ordered.LOWEST_PRECEDENCE이다.</li>
+<li>@Aspect가 명시된 빈에는 어드바이스(Advice)라 불리는 메써드를 작성할 수 있다. 대상 스프링 빈의 메써드의 호출에 끼어드는 시점과 방법에 따라 @Before, @After, @AfterReturning, @AfterThrowing, @Around 등을 명시할 수 있다.</li>
+</ul>
+<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory&amp;fname=http%3A%2F%2Fcfile26.uf.tistory.com%2Fimage%2F2379DB3E58496AA7079CEF" alt="그림5"></p>
+<p>(포인트컷 표현식)</p>
+<ul>
+<li>@Before (이전)<ul>
+<li>어드바이스 타겟 메소드가 호출되기 전에 어드바이스 기능을 수행</li>
+</ul>
+</li>
+<li>@After (이후)<ul>
+<li>타겟 메소드의 결과에 관계없이(즉 성공, 예외 관계없이) 타겟 메소드가 완료 되면 어드바이스 기능을 수행</li>
+</ul>
+</li>
+<li>@AfterReturning (정상적 반환 이후)<ul>
+<li>타겟 메소드가 성공적으로 결과값을 반환 후에 어드바이스 기능을 수행</li>
+</ul>
+</li>
+<li>@AfterThrowing (예외 발생 이후)<ul>
+<li>타겟 메소드가 수행 중 예외를 던지게 되면 어드바이스 기능을 수행</li>
+</ul>
+</li>
+<li>@Around (메소드 실행 전후)<ul>
+<li>어드바이스가 타겟 메소드를 감싸서 타겟 메소드 호출전과 후에 어드바이스 기능을 수행</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/04/25/DB-constraint/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2182,202 +2426,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/03/10/DB-join/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="박주홍">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/profile.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="doohong's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/10/DB-join/" class="post-title-link" itemprop="url">DB-join</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">작성일</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2019-03-10 14:24:00" itemprop="dateCreated datePublished" datetime="2019-03-10T14:24:00+09:00">2019-03-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2019-03-23 15:40:20" itemprop="dateModified" datetime="2019-03-23T15:40:20+09:00">2019-03-23</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/jobinterview/" itemprop="url" rel="index"><span itemprop="name">jobinterview</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <a href="/2019/03/10/DB-join/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/10/DB-join/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h1><h2 id="조인이란"><a href="#조인이란" class="headerlink" title="조인이란?"></a>조인이란?</h2><p>두개이상의 테이블이나 데이터베잇스를 연결하여 데이터를 검색하는 방법 이다.</p>
-<p>보통 보통 Primary key혹은 Foreign key로 두 테이블을 연결한다. </p>
-<p><img src="/images/jobinterview/joins.png" alt="JOINS"></p>
-<h2 id="INNER-JOIN"><a href="#INNER-JOIN" class="headerlink" title="INNER JOIN"></a>INNER JOIN</h2><p>결합된 테이블에 조건의 내용이 공통으로 들어가 있는 값을 결과 집합으로 만들어준다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT 열 목록</span><br><span class="line">FROM 첫번째 테이블 [AS 별칭] </span><br><span class="line">INNER JOIN 두번째 테이블 [AS별칭]</span><br><span class="line">ON(join_condition)</span><br></pre></td></tr></table></figure>
-<h2 id="OUTER-JOIN"><a href="#OUTER-JOIN" class="headerlink" title="OUTER JOIN"></a>OUTER JOIN</h2><p>INNER JOIN 문을 포함하고 한쪽에만 내용이 있더라도 지정한 기준 테이블에 있는 모든 데이터를 가져오는 조인</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT 열목록</span><br><span class="line">FROM 첫번째 테이블</span><br><span class="line">&lt;LEFT | RIGHT | FULL&gt; OUTER JOIN 두번째 테이블</span><br><span class="line">ON(join_condition)</span><br><span class="line">[WHERE 검색조건]</span><br></pre></td></tr></table></figure>
-<h3 id="LEFT-OUTER-JOIN"><a href="#LEFT-OUTER-JOIN" class="headerlink" title="LEFT OUTER JOIN"></a>LEFT OUTER JOIN</h3><p>왼쪽 테이블이 기준이 되어서 그 테이블에 있는 데이터를 모두 가져온다. 기준으로 지정되지 않은 오른쪽 테이블에서 가져올 수 없는 열은 NULL로 표현된다.</p>
-<h3 id="RIGHT-OUTER-JOIN"><a href="#RIGHT-OUTER-JOIN" class="headerlink" title="RIGHT OUTER JOIN"></a>RIGHT OUTER JOIN</h3><p>오른쪽 테이블이 기준이 되어서 그 테이블에 있는 데이터를 모두 가져온다. 기준으로 지정되지 않은 왼쪽 테이블에서 가져올 수 없는 열은 NULL로 표현된다.</p>
-<h3 id="FULL-OUTER-JOIN"><a href="#FULL-OUTER-JOIN" class="headerlink" title="FULL OUTER JOIN"></a>FULL OUTER JOIN</h3><p>왼쪽과 오른쪽에 관계없이 조건이 일치하지 않아도 양쪽의 모든 내용을 포함해서 나타낸다.</p>
-<h2 id="CROSS-JOIN"><a href="#CROSS-JOIN" class="headerlink" title="CROSS JOIN"></a>CROSS JOIN</h2><p>결과값이 한쪽 테이블의 모든행들과 다른쪽 테이블의 모든 행을 조인시킨다.<br>결과 집합은 두 테이블의 개수를 곱한 값만큼 생성되며, 조인되는 테이블에 공통되는 행이 없어도 되며 조건절인 ON 키워드가 사용되지 않는다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT 열목록</span><br><span class="line">FROM 첫번째 테이블 </span><br><span class="line">CROSS JOIN 두번째 테이블</span><br></pre></td></tr></table></figure></p>
-<h2 id="SELF-JOIN"><a href="#SELF-JOIN" class="headerlink" title="SELF JOIN"></a>SELF JOIN</h2><p>하나의 테이블에 같은 데이터가 존재하는데 그 의미가 다르게 존재하는 경우. 즉, 같은 데이터이지만 다른 열에 있는 경우에는 두 테이블을 서로 SELF JOIN 문으로 확인가능</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2427,7 +2475,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">포스트</span>
                   </a>
                 </div>
@@ -2458,7 +2506,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">9</span>
+                      
+                    
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">카테고리</span>
                   </a>
                 </div>
@@ -2673,7 +2723,19 @@
                     
                       
                     
-                    <span class="site-state-item-count">101</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">107</span>
                     <span class="site-state-item-name">태그</span>
                   </a>
                 </div>
