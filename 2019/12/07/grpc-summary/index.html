@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="ko">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="gRPC란gRPC는 구글이 최초로 개발한 오픈 소스 원격 프로시저 호출(RPC) 시스템 입니다. 전송을 위해 HTTP/2를 사용하며 인터페이스 정의 언어로 프로토콜 버퍼를 사용하며 인증, 양방향 스트리밍 및 흐름 제어, 차단 및 비차단 바인딩, 취소 및 타임아웃 등의 기능을 제공 합니다. 프로토콜 버파란프로토콜 버퍼(protocol Buffer)란 직렬화">
+<meta name="keywords" content="proto,gRPC,protocol,protocolbuffer,spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[gRPC]gRPC-1.개념">
+<meta property="og:url" content="http://doohong.github.com/2019/12/07/grpc-summary/index.html">
+<meta property="og:site_name" content="doohong&#39;s blog">
+<meta property="og:description" content="gRPC란gRPC는 구글이 최초로 개발한 오픈 소스 원격 프로시저 호출(RPC) 시스템 입니다. 전송을 위해 HTTP/2를 사용하며 인터페이스 정의 언어로 프로토콜 버퍼를 사용하며 인증, 양방향 스트리밍 및 흐름 제어, 차단 및 비차단 바인딩, 취소 및 타임아웃 등의 기능을 제공 합니다. 프로토콜 버파란프로토콜 버퍼(protocol Buffer)란 직렬화">
+<meta property="og:locale" content="ko">
+<meta property="og:updated_time" content="2019-12-07T13:14:13.808Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[gRPC]gRPC-1.개념">
+<meta name="twitter:description" content="gRPC란gRPC는 구글이 최초로 개발한 오픈 소스 원격 프로시저 호출(RPC) 시스템 입니다. 전송을 위해 HTTP/2를 사용하며 인터페이스 정의 언어로 프로토콜 버퍼를 사용하며 인증, 양방향 스트리밍 및 흐름 제어, 차단 및 비차단 바인딩, 취소 및 타임아웃 등의 기능을 제공 합니다. 프로토콜 버파란프로토콜 버퍼(protocol Buffer)란 직렬화">
+
+
+
+
+
+
+  <link rel="canonical" href="http://doohong.github.com/2019/12/07/grpc-summary/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>[gRPC]gRPC-1.개념 | doohong's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="ko">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">doohong's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Study & Development</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>홈</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>태그</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>카테고리</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>아카이브</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/doohong" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://doohong.github.com/2019/12/07/grpc-summary/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="박주홍">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/profile.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="doohong's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">[gRPC]gRPC-1.개념
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">작성일</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2019-12-07 23:00:00 / Updated at: 22:14:13" itemprop="dateCreated datePublished" datetime="2019-12-07T23:00:00+09:00">2019-12-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/gRPC/" itemprop="url" rel="index"><span itemprop="name">gRPC</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <a href="/2019/12/07/grpc-summary/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">댓글: </span> <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/07/grpc-summary/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="gRPC란"><a href="#gRPC란" class="headerlink" title="gRPC란"></a>gRPC란</h2><p>gRPC는 구글이 최초로 개발한 오픈 소스 원격 프로시저 호출(RPC) 시스템 입니다. 전송을 위해 <strong>HTTP/2</strong>를 사용하며 인터페이스 정의 언어로 <strong>프로토콜 버퍼</strong>를 사용하며 인증, 양방향 스트리밍 및 흐름 제어, 차단 및 비차단 바인딩, 취소 및 타임아웃 등의 기능을 제공 합니다.</p>
+<h2 id="프로토콜-버파란"><a href="#프로토콜-버파란" class="headerlink" title="프로토콜 버파란"></a>프로토콜 버파란</h2><p>프로토콜 버퍼(protocol Buffer)란 직렬화 데이터 구조입니다. (XML,JSON 와 비슷한)</p>
+<p>프로토콜 버퍼는 같은 데이터를 보내더라도 크기가 작기 떄문에 동일 시간에 더 많은 데이터를 보낼 수 있으며 별도의 파싱이 필요 없게 됩니다.<br>하지만 JSON 구조는 사람이 읽기 편한 반면에 프로토콜 버퍼는 사람이 읽기 어려우며 proto 문법을 배워야 하는 단점도 존재 합니다.</p>
+<h2 id="protocol-buffer-문법"><a href="#protocol-buffer-문법" class="headerlink" title="protocol buffer 문법"></a>protocol buffer 문법</h2><h3 id="protocol-buffer-형태"><a href="#protocol-buffer-형태" class="headerlink" title="protocol buffer 형태"></a>protocol buffer 형태</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yntax = &quot;proto3&quot;;</span><br><span class="line">package PB.Simple;</span><br><span class="line">option java_package = &quot;com.model.protobuf&quot;;</span><br><span class="line"></span><br><span class="line">message SimpleProtoBufMessage &#123;</span><br><span class="line">int32 id = 1;</span><br><span class="line">string message = 2;</span><br><span class="line">enum MessageType &#123;</span><br><span class="line">PING = 0;</span><br><span class="line">REQUEST = 1;</span><br><span class="line">RESPONSE = 2;</span><br><span class="line">&#125;</span><br><span class="line">MessageType messageType = 3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>syntax 는 컴파일할 대상 protobuf 버전을 지칭하며 java_package 와 같은 것들은 option 으로 지정되어 자바로 컴파일 시에만 적용됩니다.<br>위의 message 는 클래스로 매핑이 되며 그 안의 멤버변수들은 1, 2, 3 과 같은 연속된 숫자가 값으로 할당되는데 이는 직렬화 순서를 의미합니다.</p>
+<h3 id="기본-자료형"><a href="#기본-자료형" class="headerlink" title="기본 자료형"></a>기본 자료형</h3><ul>
+<li>double(double)</li>
+<li>float(float)</li>
+<li>int32(int)</li>
+<li>int64(long)</li>
+<li>uint32(int)</li>
+<li>uint64(long)</li>
+<li>sint32(int)</li>
+<li>sint64(long)</li>
+<li>fixed32(int)</li>
+<li>fixed64(long)</li>
+<li>sfixed32(int)</li>
+<li>sfixed64(long)</li>
+<li>bool(bool)</li>
+<li>string(String)</li>
+<li>byte(ByteString)</li>
+</ul>
+<h3 id="default-값"><a href="#default-값" class="headerlink" title="default 값"></a>default 값</h3><ul>
+<li>string -&gt; “”</li>
+<li>bytes -&gt; “”</li>
+<li>bool -&gt; false</li>
+<li>numeric -&gt; 0</li>
+<li>enums -&gt; 첫번 째 enum 값</li>
+</ul>
+<h3 id="enums-type"><a href="#enums-type" class="headerlink" title="enums type"></a>enums type</h3><p>option allow_alias = true;를 설정하면 서로 다른 필드에 대해서 같은 태그 번호(1)를 줄 수 있다.</p>
+<p>설정하지 않으면 서로 다른 필드에 같은 태그 번호를 붙일 수 없다.</p>
+<p>enum 값은 32비트 정수 범위여야만 한다. (varint encoding을 사용해서 비효율적이란다.)</p>
+<p>message type안에 enum을 정의해도 된다. 정의한 enum은 .proto파일의 모든 message type에서 접근 가능하다.</p>
+<h3 id="필드-번호-지정-룰"><a href="#필드-번호-지정-룰" class="headerlink" title="필드 번호 지정 룰"></a>필드 번호 지정 룰</h3><p>필드 번호를 지정할 때는 1번에서 15번까지는 1바이트를 사용하고 16번부터 2047번 까지는 2바이트를 사용한다. 따라서 자주 발생하는 메세지의 필드 번호는 1~15를 매기는 것이 성능, 데이터 크기에 유리하다)<br>필드 번호 최소 - 1, 최대 2^29-1(536,870,911)<br>단, 19000~19999번은 예약된 번호라 사용하면 안된다.<br>singular필드는 0~1, repeated필드는 0~N개가 있다.</p>
+<h3 id="수식어"><a href="#수식어" class="headerlink" title="수식어"></a>수식어</h3><p>required, optional, repeated는 modifier(수식어)라고 하는데, 해당 필드가 반드시 필요한지와 선택인지 또는 반복되는지를 나타내기 위해 사용합니다.</p>
+<p>required 는 proto3에서 없어졌고, optional 은 proto3에서 기본형이라 역시 사라졌습니다. </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/proto/" rel="tag"># proto</a>
+          
+            <a href="/tags/gRPC/" rel="tag"># gRPC</a>
+          
+            <a href="/tags/protocol/" rel="tag"># protocol</a>
+          
+            <a href="/tags/protocolbuffer/" rel="tag"># protocolbuffer</a>
+          
+            <a href="/tags/spring/" rel="tag"># spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/07/kotlin-ApplyAlsoLetRunWith/" rel="next" title="[Kotlin]코틀린 기본 개념 정리-1.apply, also, let, run, with">
+                <i class="fa fa-chevron-left"></i> [Kotlin]코틀린 기본 개념 정리-1.apply, also, let, run, with
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            목차
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            흝어보기
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/profile.jpg" alt="박주홍">
+            
+              <p class="site-author-name" itemprop="name">박주홍</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-name">포스트</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">카테고리</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-name">태그</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/doohong" title="GitHub &rarr; https://github.com/doohong" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:wnghd94@gmail.com" title="E-Mail &rarr; mailto:wnghd94@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.facebook.com/profile.php?id=100002347333017" title="FB Page &rarr; https://www.facebook.com/profile.php?id=100002347333017" rel="noopener" target="_blank"><i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/p.doohong" title="Instagram &rarr; https://instagram.com/p.doohong" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gRPC란"><span class="nav-number">1.</span> <span class="nav-text">gRPC란</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#프로토콜-버파란"><span class="nav-number">2.</span> <span class="nav-text">프로토콜 버파란</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#protocol-buffer-문법"><span class="nav-number">3.</span> <span class="nav-text">protocol buffer 문법</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#protocol-buffer-형태"><span class="nav-number">3.1.</span> <span class="nav-text">protocol buffer 형태</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#기본-자료형"><span class="nav-number">3.2.</span> <span class="nav-text">기본 자료형</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#default-값"><span class="nav-number">3.3.</span> <span class="nav-text">default 값</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#enums-type"><span class="nav-number">3.4.</span> <span class="nav-text">enums type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#필드-번호-지정-룰"><span class="nav-number">3.5.</span> <span class="nav-text">필드 번호 지정 룰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#수식어"><span class="nav-number">3.6.</span> <span class="nav-text">수식어</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">박주홍</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+  <script id="dsq-count-scr" src="https://doohong-github-io.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://doohong.github.com/2019/12/07/grpc-summary/";
+    this.page.identifier = "2019/12/07/grpc-summary/";
+    this.page.title = '[gRPC]gRPC-1.개념';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://doohong-github-io.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
